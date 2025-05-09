@@ -1,6 +1,11 @@
 /*--------------------------------------------------------------
 4. wpo-footer
 --------------------------------------------------------------*/
+
+footer a.navbar-brand img {
+    width: 40%;
+}
+
 .wpo-site-footer {
     background: $dark-gray;
     background-size: cover;

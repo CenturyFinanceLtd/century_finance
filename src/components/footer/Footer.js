@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../images/logo-s2.svg";
+import Logo from "../../images/logo-s2.png";
 
 const ClickHandler = () => {
   window.scrollTo(10, 0);
@@ -153,9 +153,9 @@ const Footer = (props) => {
             <div className="col col-lg-6 col-md-12 col-12">
               <ul>
                 <li>
-                  &copy; 2023{" "}
+                  &copy; 2025{" "}
                   <Link onClick={ClickHandler} to="/">
-                    Eduko
+                    Century FInance Limited
                   </Link>
                   . All rights reserved.
                 </li>

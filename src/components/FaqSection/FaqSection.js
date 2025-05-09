@@ -10,7 +10,54 @@ import shape2 from "../../images/team/shape-2.svg";
 import shape3 from "../../images/team/shape-3.svg";
 import shape4 from "../../images/team/shape-4.svg";
 
-const TeamSection = (props) => {
+// Your FAQ data
+const faqData = [
+  {
+    id: "panel1",
+    question:
+      "Is this training suitable for beginners with no prior experience?",
+    answerLines: [
+      "Absolutely! Our training modules are designed to guide beginners step-by-step. We start with the basics of stock trading and gradually introduce advanced strategies, making sure you understand each concept before moving forward.",
+    ],
+  },
+  {
+    id: "panel2",
+    question: "What makes your stock market training different from others?",
+    answerLines: [
+      "We combine expert market research with practical, hands-on learning. Our sessions are led by SEBI-certified advisors who bring real-time insights, trading strategies, and personalized mentoring to help you build both confidence and skill in stock trading.",
+    ],
+  },
+  {
+    id: "panel3",
+    question: "What is the difference between trading and investing?",
+    answerLines: [
+      "Trading involves buying and selling stocks frequently to take advantage of short-term market movements.",
+      "Investing is a long-term approach focused on building wealth over time by holding assets for years.",
+      "Both require different strategies, risk tolerance, and levels of market knowledge.",
+    ],
+  },
+  {
+    id: "panel4",
+    question: "How can I start investing in the stock market as a beginner?",
+    answerLines: [
+      "To start investing, you'll need to:",
+      "Open a brokerage account.",
+      "Set your investment goals.",
+      "Research and choose the stocks or funds you want to invest in.",
+      "Monitor your investments regularly.",
+      "Start small and diversify to manage risk effectively.",
+    ],
+  },
+  {
+    id: "panel5",
+    question: "What is the stock market, and how does it work?",
+    answerLines: [
+      "The stock market is a platform where investors can buy and sell shares of publicly traded companies. It works through a network of exchanges—such as the New York Stock Exchange (NYSE) or NASDAQ—where companies list their shares through an initial public offering (IPO), and investors trade those shares based on market demand.",
+    ],
+  },
+];
+
+const FaqSection = (props) => {
   // Set 'panel1' as the default expanded panel
   const [expanded, setExpanded] = React.useState("panel1");
 
@@ -57,85 +104,38 @@ const TeamSection = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-10 col-12">
               <div className="wpo-benefits-item">
-                <Accordion
-                  expanded={expanded === "panel1"}
-                  onChange={handleChange("panel1")}>
-                  <AccordionSummary
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                    sx={expanded === "panel1" ? activeSummaryStyles : {}}>
-                    <Typography>
-                      Market research on our global panel with support from our
-                      experts.
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Eum exercitationem pariatur iure nemo esse repellendus est
-                      quo recusandae. Delectus, maxime.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion
-                  expanded={expanded === "panel2"}
-                  onChange={handleChange("panel2")}>
-                  <AccordionSummary
-                    aria-controls="panel2bh-content"
-                    id="panel2bh-header"
-                    sx={expanded === "panel2" ? activeSummaryStyles : {}}>
-                    <Typography>
-                      Planning can help alleviate workplace stress and increase
-                      productivity.
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Eum exercitationem pariatur iure nemo esse repellendus est
-                      quo recusandae. Delectus, maxime.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion
-                  expanded={expanded === "panel3"}
-                  onChange={handleChange("panel3")}>
-                  <AccordionSummary
-                    aria-controls="panel3bh-content"
-                    id="panel3bh-header"
-                    sx={expanded === "panel3" ? activeSummaryStyles : {}}>
-                    <Typography>
-                      Those who experiment the most, are able to innovate the
-                      best.
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Eum exercitationem pariatur iure nemo esse repellendus est
-                      quo recusandae. Delectus, maxime.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion
-                  expanded={expanded === "panel4"}
-                  onChange={handleChange("panel4")}>
-                  <AccordionSummary
-                    aria-controls="panel4bh-content"
-                    id="panel4bh-header"
-                    sx={expanded === "panel4" ? activeSummaryStyles : {}}>
-                    <Typography>
-                      Understand Your Problem, You must understand the issue.
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Eum exercitationem pariatur iure nemo esse repellendus est
-                      quo recusandae. Delectus, maxime.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
+                {faqData.map((faqItem) => (
+                  <Accordion
+                    key={faqItem.id}
+                    expanded={expanded === faqItem.id}
+                    onChange={handleChange(faqItem.id)}>
+                    <AccordionSummary
+                      aria-controls={`${faqItem.id}bh-content`}
+                      id={`${faqItem.id}bh-header`}
+                      sx={expanded === faqItem.id ? activeSummaryStyles : {}}>
+                      <Typography>{faqItem.question}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      {faqItem.answerLines.map((line, index) => (
+                        <Typography
+                          key={index}
+                          component="p" // Render each line as a paragraph for proper spacing
+                          variant="body2"
+                          gutterBottom={index < faqItem.answerLines.length - 1}
+                          style={
+                            faqItem.id === "panel4" && index > 0
+                              ? { marginLeft: "1em", textIndent: "-1em" }
+                              : {}
+                          }>
+                          {/* For panel4, add a bullet for list items after the first line */}
+                          {faqItem.id === "panel4" && index > 0
+                            ? `• ${line}`
+                            : line}
+                        </Typography>
+                      ))}
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
               </div>
             </div>
           </div>
@@ -157,4 +157,4 @@ const TeamSection = (props) => {
   );
 };
 
-export default TeamSection;
+export default FaqSection;
