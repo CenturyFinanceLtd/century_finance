@@ -14,12 +14,14 @@ const HeaderTopbar = (props) => {
                     <i className="fi flaticon-phone-call"></i> (+91) 8815532159
                   </li>
                   <li>
-                    <i className="fi flaticon-email"></i>demo.Eduko@gmail.com
+                    <i className="fi flaticon-email"></i>
+                    customerservice@centuryfinancelimited.com
                   </li>
-                  <li>
-                    <i className="fi flaticon-maps-and-flags"></i>244 Royal Ln.
-                    Mesa, New Jersey 463
-                  </li>
+                  {/* <li>
+                    <i className="fi flaticon-maps-and-flags"></i>Iconic
+                    Corenthum, 5th floor, Tower C, Block A, Industrial Areas
+                    Sector 62, Noida, Uttar Pradesh, 201301
+                  </li> */}
                 </ul>
               </div>
             </div>
