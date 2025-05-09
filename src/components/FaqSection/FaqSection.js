@@ -1,9 +1,4 @@
 import React from "react";
-// Link is removed as it's not used by the new FAQ content
-// import { Link } from "react-router-dom";
-// Team API import is removed
-// import Team from "../../api/team";
-
 // MUI Accordion imports
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -15,17 +10,26 @@ import shape2 from "../../images/team/shape-2.svg";
 import shape3 from "../../images/team/shape-3.svg";
 import shape4 from "../../images/team/shape-4.svg";
 
-// ClickHandler is removed as it's not used by the new FAQ content
-// const ClickHandler = () => {
-//   window.scrollTo(10, 0);
-// };
-
 const TeamSection = (props) => {
-  // You might consider renaming this component to FaqSection for clarity
-  const [expanded, setExpanded] = React.useState(false);
+  // Set 'panel1' as the default expanded panel
+  const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+
+  // Define active styles for reuse
+  const activeSummaryStyles = {
+    backgroundColor: "red",
+    color: "white",
+    "& .MuiTypography-root": {
+      // Ensure Typography text is also white
+      color: "white",
+    },
+    "& .MuiAccordionSummary-expandIconWrapper": {
+      // Ensure expand icon is also white
+      color: "white",
+    },
   };
 
   return (
@@ -49,26 +53,17 @@ const TeamSection = (props) => {
             &nbsp;Questions
           </h2>
         </div>
-        {/* Replacing wpo-team-wrap with FAQ content structure */}
         <div className="faq-accordion-wrap">
-          {" "}
-          {/* You can use a more relevant class name here */}
           <div className="row justify-content-center">
-            {" "}
-            {/* Optional: for centering the accordion block */}
             <div className="col-lg-10 col-12">
-              {" "}
-              {/* Adjust column width as needed */}
-              {/* Copied from FaqSection */}
               <div className="wpo-benefits-item">
-                {" "}
-                {/* This class came from the FaqSection snippet, keep or change as per your styling */}
                 <Accordion
                   expanded={expanded === "panel1"}
                   onChange={handleChange("panel1")}>
                   <AccordionSummary
                     aria-controls="panel1bh-content"
-                    id="panel1bh-header">
+                    id="panel1bh-header"
+                    sx={expanded === "panel1" ? activeSummaryStyles : {}}>
                     <Typography>
                       Market research on our global panel with support from our
                       experts.
@@ -87,7 +82,8 @@ const TeamSection = (props) => {
                   onChange={handleChange("panel2")}>
                   <AccordionSummary
                     aria-controls="panel2bh-content"
-                    id="panel2bh-header">
+                    id="panel2bh-header"
+                    sx={expanded === "panel2" ? activeSummaryStyles : {}}>
                     <Typography>
                       Planning can help alleviate workplace stress and increase
                       productivity.
@@ -106,7 +102,8 @@ const TeamSection = (props) => {
                   onChange={handleChange("panel3")}>
                   <AccordionSummary
                     aria-controls="panel3bh-content"
-                    id="panel3bh-header">
+                    id="panel3bh-header"
+                    sx={expanded === "panel3" ? activeSummaryStyles : {}}>
                     <Typography>
                       Those who experiment the most, are able to innovate the
                       best.
@@ -125,7 +122,8 @@ const TeamSection = (props) => {
                   onChange={handleChange("panel4")}>
                   <AccordionSummary
                     aria-controls="panel4bh-content"
-                    id="panel4bh-header">
+                    id="panel4bh-header"
+                    sx={expanded === "panel4" ? activeSummaryStyles : {}}>
                     <Typography>
                       Understand Your Problem, You must understand the issue.
                     </Typography>
