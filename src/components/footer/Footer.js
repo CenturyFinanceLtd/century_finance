@@ -128,8 +128,9 @@ const Footer = (props) => {
                 </div>
                 <div className="contact-ft">
                   <ul>
-                    <li>
-                      <i className="fi flaticon-email"></i>
+                    <li style = {{textTransform: "lowercase"}}>
+                      <i className="fi flaticon-email"
+                      ></i>
                       customerservice@centuryfinancelimited.com
                     </li>
                     <li>
