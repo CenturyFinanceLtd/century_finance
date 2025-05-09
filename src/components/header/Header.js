@@ -36,7 +36,7 @@ const Header = (props) => {
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-6 col-md-1 col-1">
+              <div className="col-lg-7 col-md-1 col-1">
                 <div
                   id="navbar"
                   className="collapse navbar-collapse navigation-holder">
@@ -288,7 +288,7 @@ const Header = (props) => {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-2 col-md-3 col-2">
+              <div className="col-lg-3 col-md-3 col-2">
                 <div className="header-right">
                   <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">
