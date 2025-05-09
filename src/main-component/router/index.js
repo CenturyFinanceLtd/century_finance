@@ -37,6 +37,12 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import LoginPage from '../LoginPage';
 import SignUpPage from '../SignUpPage';
 import ForgotPassword from '../ForgotPassword';
+import OnlineTrainingProgram from '../OnlineTrainingProgram/OnlineTrainingProgram';
+import TrainingProgram from "../TrainingProgram/TrainingProgram";
+import Portpholio from "../Portpholio/Portpholio";
+import FinanceMicro from "../FinanceMicro/FinanceMicro";
+import InvestmentPlan from "../InvestmentPlan/InvestmentPlan";
+import SubscriptionPlan from "../SubscriptionPlan/SubscriptionPlan";
 
 const AllRoute = () => {
 
@@ -51,7 +57,10 @@ const AllRoute = () => {
           <Route path="home-4" element={<HomePage4 />} />
           <Route path="home-5" element={<HomePage5 />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="category-single/:slug" element={<CategorySinglePage />} />
+          <Route
+            path="category-single/:slug"
+            element={<CategorySinglePage />}
+          />
           <Route path="course-single/:slug" element={<CourseSinglePage />} />
           <Route path="course" element={<CoursePage />} />
           <Route path="course-2" element={<CoursePageS2 />} />
@@ -62,29 +71,43 @@ const AllRoute = () => {
           <Route path="teacher" element={<TeamPage />} />
           <Route path="team-single/:slug" element={<TeamSinglePage />} />
           <Route path="event-single/:slug" element={<EventSinglePage />} />
-          <Route path='become-teacher' element={<BeComeTeacherPage />} />
+          <Route path="become-teacher" element={<BeComeTeacherPage />} />
           <Route path="shop" element={<ShopPage />} />
-          <Route path='product-single/:slug' element={<ProductSinglePage />} />
-          <Route path='cart' element={<CartPage />} />
-          <Route path='checkout' element={<CheckoutPage />} />
-          <Route path='order_received' element={<OrderRecived />} />
-          <Route path='faq' element={<FaqPage />} />
-          <Route path='privacy' element={<PrivacyPage/>} />
-          <Route path='terms' element={<TermsPage/>} />
-          <Route path='blog' element={<BlogPage />} />
-          <Route path='blog-left-sidebar' element={<BlogPageLeft />} />
-          <Route path='blog-fullwidth' element={<BlogPageFullwidth />} />
-          <Route path='blog-single/:slug' element={<BlogDetails />} />
-          <Route path='blog-single-left-sidebar/:slug' element={<BlogDetailsLeftSiide />} />
-          <Route path='blog-single-fullwidth/:slug' element={<BlogDetailsFull />} />
-          <Route path='404' element={<ErrorPage />} />
-          <Route path='contact' element={<ContactPage />} />
-          <Route path='login' element={<LoginPage />} />
-          <Route path='register' element={<SignUpPage />} />
-          <Route path='forgot-password' element={<ForgotPassword />} />
+          <Route path="product-single/:slug" element={<ProductSinglePage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="order_received" element={<OrderRecived />} />
+          <Route path="faq" element={<FaqPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="terms" element={<TermsPage />} />
+          <Route path="blog" element={<BlogPage />} />
+          <Route path="blog-left-sidebar" element={<BlogPageLeft />} />
+          <Route path="blog-fullwidth" element={<BlogPageFullwidth />} />
+          <Route path="blog-single/:slug" element={<BlogDetails />} />
+          <Route
+            path="blog-single-left-sidebar/:slug"
+            element={<BlogDetailsLeftSiide />}
+          />
+          <Route
+            path="blog-single-fullwidth/:slug"
+            element={<BlogDetailsFull />}
+          />
+          <Route path="404" element={<ErrorPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<SignUpPage />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="online_training_program"
+            element={<OnlineTrainingProgram />}
+          />
+          <Route path="training_program" element={<TrainingProgram />} />
+          <Route path="portpholio" element={<Portpholio />} />
+          <Route path="finance_micro" element={<FinanceMicro />} />
+          <Route path="investment_plan" element={<InvestmentPlan />} />
+          <Route path="subscription_plan" element={<SubscriptionPlan />} />
         </Routes>
       </BrowserRouter>
-
     </div>
   );
 }
