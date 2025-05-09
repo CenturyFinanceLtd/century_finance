@@ -11,7 +11,7 @@ const Contactpage = () => {
                     <div className="col col-lg-10 offset-lg-1">
                         <div className="office-info">
                             <div className="row">
-                                <div className="col col-xl-4 col-lg-6 col-md-6 col-12">
+                                <div className="col col-xl-6 col-lg-6 col-md-6 col-12">
                                     <div className="office-info-item">
                                         <div className="office-info-icon">
                                             <div className="icon">
@@ -20,11 +20,11 @@ const Contactpage = () => {
                                         </div>
                                         <div className="office-info-text">
                                             <h2>Address</h2>
-                                            <p>7 Green Lake Street Crawfordsville, IN 47933</p>
+                                            <p>Iconic Corenthum, 5th floor, Tower C, Block A, Industrial Areas Sector 62, Noida, Uttar Pradesh, 201301</p>
                                         </div>
                                     </div>
                                 </div> 
-                                <div className="col col-xl-4 col-lg-6 col-md-6 col-12">
+                                <div className="col col-xl-6 col-lg-6 col-md-6 col-12">
                                     <div className="office-info-item">
                                         <div className="office-info-icon">
                                             <div className="icon">
@@ -33,12 +33,12 @@ const Contactpage = () => {
                                         </div>
                                         <div className="office-info-text">
                                             <h2>Email Us</h2>
-                                            <p>Eduko@gmail.com</p>
-                                            <p>helloyou@gmail.com</p>
+                                            <p><a href="mailto:general-inquiry@centuryfinancelimited.com">general-inquiry@centuryfinancelimited.com</a></p>
+                                            <p><a href="mailto:customerservice@centuryfinancelimited.com">customerservice@centuryfinancelimited.com</a></p>
                                         </div>
                                     </div>
                                 </div> 
-                                <div className="col col-xl-4 col-lg-6 col-md-6 col-12">
+                                <div className="col col-xl-12 col-lg-6 col-md-6 col-12 mt-5">
                                     <div className="office-info-item">
                                         <div className="office-info-icon">
                                             <div className="icon">
@@ -47,8 +47,7 @@ const Contactpage = () => {
                                         </div>
                                         <div className="office-info-text">
                                             <h2>Call Now</h2>
-                                            <p>+1 800 123 456 789</p>
-                                            <p>+1 800 123 654 987</p>
+                                            <p><a href="tel:+918815532159">(+91) 8815532159</a></p>
                                         </div>
                                     </div>
                                 </div> 
@@ -67,7 +66,7 @@ const Contactpage = () => {
             </div> 
             <section className="wpo-contact-map-section">
                 <div className="wpo-contact-map">
-                    <iframe title='comtact-map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.9147703055!2d-74.11976314309273!3d40.69740344223377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbd!4v1547528325671"></iframe>
+                    <iframe title='comtact-map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.101630764862!2d77.37119297583713!3d28.62671598434421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5447d350e9f%3A0x4beba507fa3f455b!2sThe%20Iconic%20Corenthum!5e0!3m2!1sen!2sin!4v1746793573339!5m2!1sen!2sin"></iframe>
                 </div>
             </section>
         </section>
