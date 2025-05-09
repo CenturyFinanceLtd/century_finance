@@ -6,7 +6,7 @@ import shape2 from '../../images/funfact-shape-2.png'
 const FunFact2 = (props) => {
 
     return (
-        <section className="wpo-fun-fact-section-s2 section-padding">
+        <section className="wpo-fun-fact-section-s2 section-padding my-5">
             <div className="container">
                 <div className="row">
                     <div className="col col-xs-12">
