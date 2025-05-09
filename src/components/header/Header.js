@@ -36,7 +36,7 @@ const Header = (props) => {
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-7 col-md-1 col-1">
+              <div className="col-lg-auto ms-lg-auto col-md-1 col-1">
                 <div
                   id="navbar"
                   className="collapse navbar-collapse navigation-holder">
