@@ -26,7 +26,7 @@ const Header = (props) => {
                   <MobileMenu />
                 </div>
               </div>
-              <div className="col-lg-3 col-md-4 col-6">
+              <div className="col-lg-1 col-md-4 col-6">
                 <div className="navbar-header">
                   <Link
                     onClick={ClickHandler}
@@ -288,7 +288,7 @@ const Header = (props) => {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-3 col-2">
+              <div className="col-lg-2 col-md-3 col-2">
                 <div className="header-right">
                   <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">

@@ -200,6 +200,10 @@
   }
 }
 
+.row.align-items-center {
+    justify-content: space-between;
+}
+
 @media (max-width: 991px) {
   .wpo-site-header .navigation {
     padding: 20px 0;
