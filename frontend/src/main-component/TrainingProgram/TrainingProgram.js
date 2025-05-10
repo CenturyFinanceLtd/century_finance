@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
-import CourseSinglePage from "../CourseSinglePage/Tabs/TrainingTab";
+import CourseSinglePage from "../CourseSinglePage/TrainingProgramTabs/TrainingTab";
 
 const TrainingProgram = () => {
   return (
