@@ -89,8 +89,7 @@ const CoureseTab = ({ EventsDetails }) => {
                 >
                   {/* Content for the tab button in its default state */}
                   <div className="feature-item">
-                    <div className="icon"
-                    style = {{fontSize: "30px"}}>
+                    <div className="icon" style={{ fontSize: "30px" }}>
                       <tab.IconComponent />
                     </div>
                     <div className="feature-text">
@@ -102,7 +101,7 @@ const CoureseTab = ({ EventsDetails }) => {
                   {/* Content for the tab button when it's active
                       CSS should make this visible and hide ".feature-item" when parent is ".active" */}
                   <div className="feature-item-hidden">
-                    <div className="icon">
+                    <div className="icon" style={{ fontSize: "30px" }}>
                       <tab.IconComponent />{" "}
                       {/* Icon could be styled differently or be different if needed */}
                     </div>
