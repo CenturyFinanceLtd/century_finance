@@ -3,14 +3,13 @@ import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 
 import shape1 from "../../images/team/shape-1.svg";
 import shape2 from "../../images/team/shape-2.svg";
 import shape3 from "../../images/team/shape-3.svg";
 import shape4 from "../../images/team/shape-4.svg";
 
-// Your FAQ data
+// Your FAQ data (remains the same)
 const faqData = [
   {
     id: "panel1",
@@ -58,24 +57,34 @@ const faqData = [
 ];
 
 const FaqSection = (props) => {
-  // Set 'panel1' as the default expanded panel
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // Define active styles for reuse
+  // Base styles for the AccordionSummary's content area
+  const summaryContentBaseStyles = {
+    "& .MuiAccordionSummary-content": {
+      // Target the inner content div
+      marginTop: "20px",
+      marginBottom: "20px",
+    },
+  };
+
+  // Active styles for AccordionSummary (when expanded)
   const activeSummaryStyles = {
-    backgroundColor: "red",
+    backgroundColor: "red", // Example: theme's primary color
     color: "white",
-    "& .MuiTypography-root": {
-      // Ensure Typography text is also white
+    "& .MuiAccordionSummary-expandIconWrapper": {
       color: "white",
     },
-    "& .MuiAccordionSummary-expandIconWrapper": {
-      // Ensure expand icon is also white
-      color: "white",
+    // Ensure text color within the content is also white when active
+    "& .MuiAccordionSummary-content": {
+      color: "white", // This will apply to the question text
+      // We also need to re-apply margins here if they are not inherited or if activeSummaryStyles overrides them
+      marginTop: "20px",
+      marginBottom: "20px",
     },
   };
 
@@ -112,26 +121,37 @@ const FaqSection = (props) => {
                     <AccordionSummary
                       aria-controls={`${faqItem.id}bh-content`}
                       id={`${faqItem.id}bh-header`}
-                      sx={expanded === faqItem.id ? activeSummaryStyles : {}}>
-                      <Typography>{faqItem.question}</Typography>
+                      // Apply base styles, and merge active styles if expanded
+                      sx={
+                        expanded === faqItem.id
+                          ? {
+                              ...summaryContentBaseStyles,
+                              ...activeSummaryStyles,
+                            }
+                          : summaryContentBaseStyles
+                      }>
+                      {faqItem.question}
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails
+                      sx={{
+                        marginTop: "20px", // This margin remains for the details section
+                        marginBottom: "20px",
+                      }}>
                       {faqItem.answerLines.map((line, index) => (
-                        <Typography
+                        <p
                           key={index}
-                          component="p" // Render each line as a paragraph for proper spacing
-                          variant="body2"
-                          gutterBottom={index < faqItem.answerLines.length - 1}
-                          style={
-                            faqItem.id === "panel4" && index > 0
+                          style={{
+                            ...(faqItem.id === "panel4" && index > 0
                               ? { marginLeft: "1em", textIndent: "-1em" }
-                              : {}
-                          }>
-                          {/* For panel4, add a bullet for list items after the first line */}
+                              : {}),
+                            ...(index < faqItem.answerLines.length - 1
+                              ? { marginBottom: "0.5em" }
+                              : {}),
+                          }}>
                           {faqItem.id === "panel4" && index > 0
                             ? `• ${line}`
                             : line}
-                        </Typography>
+                        </p>
                       ))}
                     </AccordionDetails>
                   </Accordion>
@@ -141,6 +161,7 @@ const FaqSection = (props) => {
           </div>
         </div>
       </div>
+      {/* Decorative shapes remain the same */}
       <div className="shape-1">
         <img src={shape1} alt="" />
       </div>
