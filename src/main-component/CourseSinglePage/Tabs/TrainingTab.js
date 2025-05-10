@@ -11,15 +11,11 @@ import BasicPlan from "./BasicPlan";
 import PremiumPlan from "./PremiumPlan";
 import LearningToEarningPlan from "./LearningToEarningPlan";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faTwitter,
-  faFacebookF,
-} from "@fortawesome/free-brands-svg-icons"; // Example brand icons
+import { faLightbulb, faCrown, faChartLine } from '@fortawesome/free-solid-svg-icons'; // Or whichever icons you are using
 
-const IconBasicPlan = () => <i className="fi flaticon-eye"></i>;
-const IconPremiumPlan = () => <i className="fi flaticon-list-ul"></i>;
-const IconLearningToEarningPlan = () => <i className="fi flaticon-user-tie"></i>;
+const IconBasicPlan = () => <FontAwesomeIcon icon={faLightbulb} />;
+const IconPremiumPlan = () => <FontAwesomeIcon icon={faCrown} />;
+const IconLearningToEarningPlan = () => <FontAwesomeIcon icon={faChartLine} />;
 
 const CoureseTab = ({ EventsDetails }) => {
   const [activeTab, setActiveTab] = useState("1");
@@ -93,7 +89,8 @@ const CoureseTab = ({ EventsDetails }) => {
                 >
                   {/* Content for the tab button in its default state */}
                   <div className="feature-item">
-                    <div className="icon">
+                    <div className="icon"
+                    style = {{fontSize: "30px"}}>
                       <tab.IconComponent />
                     </div>
                     <div className="feature-text">
