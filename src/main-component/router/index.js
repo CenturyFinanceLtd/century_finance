@@ -39,7 +39,7 @@ import SignUpPage from '../SignUpPage';
 import ForgotPassword from '../ForgotPassword';
 import OnlineTrainingProgram from '../OnlineTrainingProgram/OnlineTrainingProgram';
 import TrainingProgram from "../TrainingProgram/TrainingProgram";
-import Portpholio from "../Portpholio/Portpholio";
+import Portfolio from "../Portfolio/Portfolio";
 import FinanceMicro from "../FinanceMicro/FinanceMicro";
 import InvestmentPlan from "../InvestmentPlan/InvestmentPlan";
 import SubscriptionPlan from "../SubscriptionPlan/SubscriptionPlan";
@@ -102,7 +102,7 @@ const AllRoute = () => {
             element={<OnlineTrainingProgram />}
           />
           <Route path="training_program" element={<TrainingProgram />} />
-          <Route path="portpholio" element={<Portpholio />} />
+          <Route path="Portfolio" element={<Portfolio />} />
           <Route path="finance_micro" element={<FinanceMicro />} />
           <Route path="investment_plan" element={<InvestmentPlan />} />
           <Route path="subscription_plan" element={<SubscriptionPlan />} />

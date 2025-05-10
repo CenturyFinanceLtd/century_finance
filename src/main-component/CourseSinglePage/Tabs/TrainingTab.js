@@ -10,6 +10,12 @@ import classnames from "classnames";
 import BasicPlan from "./BasicPlan";
 import PremiumPlan from "./PremiumPlan";
 import LearningToEarningPlan from "./LearningToEarningPlan";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+  faTwitter,
+  faFacebookF,
+} from "@fortawesome/free-brands-svg-icons"; // Example brand icons
 
 const IconBasicPlan = () => <i className="fi flaticon-eye"></i>;
 const IconPremiumPlan = () => <i className="fi flaticon-list-ul"></i>;
@@ -28,22 +34,28 @@ const CoureseTab = ({ EventsDetails }) => {
       id: "1",
       title: "Basic Plan",
       IconComponent: IconBasicPlan,
-      description: "Start your trading journey with foundational knowledge in key markets.", // Content for the tab button
-      activeDescription: "Start your trading journey with foundational knowledge in key markets.", // Content for the active tab button
+      description:
+        "Start your trading journey with foundational knowledge in key markets.", // Content for the tab button
+      activeDescription:
+        "Start your trading journey with foundational knowledge in key markets.", // Content for the active tab button
     },
     {
       id: "2",
       title: "Premium Plan",
       IconComponent: IconPremiumPlan,
-      description: "Elevate your trading skills with advanced strategies and in-depth insights.",
-      activeDescription: "Elevate your trading skills with advanced strategies and in-depth insights.",
+      description:
+        "Elevate your trading skills with advanced strategies and in-depth insights.",
+      activeDescription:
+        "Elevate your trading skills with advanced strategies and in-depth insights.",
     },
     {
       id: "3",
       title: "Learning to Earning Plan",
       IconComponent: IconLearningToEarningPlan,
-      description: "Transform your expertise into tangible results and master the art of profitable trading.",
-      activeDescription: "Transform your expertise into tangible results and master the art of profitable trading.",
+      description:
+        "Transform your expertise into tangible results and master the art of profitable trading.",
+      activeDescription:
+        "Transform your expertise into tangible results and master the art of profitable trading.",
     },
   ];
 

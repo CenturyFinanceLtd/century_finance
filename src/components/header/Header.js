@@ -98,8 +98,8 @@ const Header = (props) => {
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/portpholio">
-                            Portpholio
+                          <Link onClick={ClickHandler} to="/Portfolio">
+                            Portfolio
                           </Link>
                         </li>
                         <li>
