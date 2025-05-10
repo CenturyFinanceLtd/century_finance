@@ -404,7 +404,7 @@
     h2 {
       font-size: 44px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 700;
       color: #1a1729;
       z-index: 1;
       line-height: 1.5em;
@@ -457,7 +457,7 @@
       font-size: 18px;
       line-height: 23px;
       font-weight: 700;
-      color: $theme-primary-color-s3;
+      color: $theme-primary-color-s2;
 
       @include media-query(1199px) {
         font-size: 16px;
@@ -549,11 +549,11 @@
           display: block;
           width: 55px;
           height: 55px;
-          border: 1px solid $theme-primary-color-s3;
+          border: 1px solid $theme-primary-color-s2;
           text-align: center;
           line-height: 52px;
           border-radius: 50%;
-          color: $theme-primary-color-s3;
+          color: $theme-primary-color-s2;
           margin-right: 10px;
           background: none;
         }
@@ -564,7 +564,7 @@
           }
 
           a {
-            color: $theme-primary-color-s3;
+            color: $theme-primary-color-s2;
             font-weight: 600;
             font-size: 20px;
             width: 100%;
@@ -762,7 +762,7 @@
           width: 60px;
           height: 60px;
           line-height: 60px;
-          background: $theme-primary-color-s3;
+          background: $theme-primary-color-s2;
           text-align: center;
           border-radius: 50%;
           margin-right: 10px;
@@ -1140,7 +1140,7 @@
         max-width: 580px;
         font-size: 20px;
         padding-left: 15px;
-        border-left: 3px solid $theme-primary-color-s3;
+        border-left: 3px solid $theme-primary-color-s2;
 
         @include media-query(1199px) {
           font-size: 16px;
