@@ -128,7 +128,7 @@ const Header = (props) => {
                       </Link>
                     </li>
 
-                    {/* <li className="menu-item-has-children">
+                    <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="/">
                         Online Training Course
                       </Link>
@@ -284,7 +284,7 @@ const Header = (props) => {
                           </Link>
                         </li>
                       </ul>
-                    </li> */}
+                    </li>
                   </ul>
                 </div>
               </div>
