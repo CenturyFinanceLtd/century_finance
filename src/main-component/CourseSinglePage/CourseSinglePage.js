@@ -5,7 +5,7 @@ import Scrollbar from '../../components/scrollbar/scrollbar'
 import { useParams } from 'react-router-dom'
 import Courses from "../../api/Courses";
 import Footer from '../../components/footer/Footer';
-import CoureseTab from './Tabs/CoureseTab';
+import CoureseTab from './Tabs/TrainingTab';
 import Sidebar from './sidebar';
 
 const CourseSinglePage = (props) => {
