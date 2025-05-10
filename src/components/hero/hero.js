@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import hero1 from "../../images/slider/1.png";
+import hero1 from "../../images/slider/banner-image1.png";
 import shape1 from "../../images/slider/shape-1.svg";
 import shape2 from "../../images/slider/shape-2.svg";
 import shape3 from "../../images/slider/shape-3.svg";

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CountUp from "react-countup";
-import abImg from "../../images/about/img-1.jpg";
-import abImg2 from "../../images/about/img-2.jpg";
+import abImg from "../../images/about/about-image-1.png";
+import abImg2 from "../../images/about/about-image-2.png";
 
 const About = (props) => {
   const ClickHandler = () => {
