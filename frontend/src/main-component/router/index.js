@@ -37,7 +37,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import LoginPage from '../LoginPage';
 import SignUpPage from '../SignUpPage';
 import ForgotPassword from '../ForgotPassword';
-import OnlineTrainingProgram from '../OnlineTrainingProgram/OnlineTrainingProgram';
+import OnlineCourses from '../OnlineCourses/OnlineCourses';
 import TrainingProgram from "../TrainingProgram/TrainingProgram";
 import Portfolio from "../Portfolio/Portfolio";
 import FinanceMicro from "../FinanceMicro/FinanceMicro";
@@ -98,8 +98,8 @@ const AllRoute = () => {
           <Route path="register" element={<SignUpPage />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route
-            path="online_training_program"
-            element={<OnlineTrainingProgram />}
+            path="online_courses"
+            element={<OnlineCourses />}
           />
           <Route path="training_program" element={<TrainingProgram />} />
           <Route path="Portfolio" element={<Portfolio />} />
