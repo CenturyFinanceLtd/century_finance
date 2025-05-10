@@ -9,7 +9,7 @@ import {
 import classnames from "classnames";
 import BasicPlan from "./BasicPlan";
 import PremiumPlan from "./PremiumPlan";
-import LearningToEarningPlan from "./LearningToEarningPlan";
+import LearningToEarningPlan from "./VipPlan";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb, faCrown, faChartLine } from '@fortawesome/free-solid-svg-icons'; // Or whichever icons you are using
 
@@ -17,7 +17,7 @@ const IconBasicPlan = () => <FontAwesomeIcon icon={faLightbulb} />;
 const IconPremiumPlan = () => <FontAwesomeIcon icon={faCrown} />;
 const IconLearningToEarningPlan = () => <FontAwesomeIcon icon={faChartLine} />;
 
-const CoureseTab = ({ EventsDetails }) => {
+const PortfolioTab = ({ EventsDetails }) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = (tab) => {
@@ -149,4 +149,4 @@ const CoureseTab = ({ EventsDetails }) => {
   );
 };
 
-export default CoureseTab;
+export default PortfolioTab;
