@@ -38,19 +38,6 @@ const Contactpage = () => {
                                         </div>
                                     </div>
                                 </div> 
-                                <div className="col col-xl-12 col-lg-6 col-md-6 col-12 mt-5">
-                                    <div className="office-info-item">
-                                        <div className="office-info-icon">
-                                            <div className="icon">
-                                                <i className="fi flaticon-phone-call"></i>
-                                            </div>
-                                        </div>
-                                        <div className="office-info-text">
-                                            <h2>Call Now</h2>
-                                            <p><a href="tel:+918815532159">(+91) 8815532159</a></p>
-                                        </div>
-                                    </div>
-                                </div> 
                             </div>
                         </div>
                         <div className="wpo-contact-title">
