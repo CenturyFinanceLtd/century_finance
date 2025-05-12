@@ -1,3 +1,25 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /
+Disallow: Googlebot/
+Disallow: Bingbot/
+User-agent: Mediapartners-Google
+Disallow: /
+User-agent: facebookexternalhit
+Disallow: /
+
+#Important User Agents
+User-agent: Googlebot
+User-agent: adsbot-google
+User-agent: Googlebot-image
+#User-agent: Bingbot
+#User-agent: Slurp
+#Crawl-delay: 5
+
+Disallow: /cgi-bin/
+Disallow: /tag/
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: /wp-content/uploads/
+Disallow: /feed/
+
+Sitemap:https://www.centuryfinancelimited.com/sitemap.xml
