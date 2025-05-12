@@ -44,9 +44,8 @@ const About = (props) => {
                 <div className="wpo-section-title">
                   <small>About Us</small>
                   <h2>
-                    A New Different Way To Improve Your
-                    <span>
-                      Skills.
+                    A New Different Way To Improve
+                    <span>  Your Skills.
                       <i className="shape">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
