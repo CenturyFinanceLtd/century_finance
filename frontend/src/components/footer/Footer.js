@@ -133,9 +133,9 @@ const Footer = (props) => {
                       ></i>
                       customerservice@centuryfinancelimited.com
                     </li>
-                    <li>
+                    {/* <li>
                       <i className="fi flaticon-phone-call"></i>(+91) 8815532159
-                    </li>
+                    </li> */}
                     <li>
                       <i className="fi flaticon-placeholder"></i>Iconic
                       Corenthum, 5th floor, Tower C, Block A, Industrial Areas
