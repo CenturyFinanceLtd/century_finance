@@ -28,10 +28,7 @@ const Header = (props) => {
               </div>
               <div className="col-lg-1 col-md-4 col-6">
                 <div className="navbar-header">
-                  <Link
-                    onClick={ClickHandler}
-                    className="navbar-brand"
-                    to="/">
+                  <Link onClick={ClickHandler} className="navbar-brand" to="/">
                     <img src={Logo} alt="logo" />
                   </Link>
                 </div>
@@ -44,7 +41,12 @@ const Header = (props) => {
                     <i className="ti-close"></i>
                   </button>
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
-                    <li className="menu-item-has-children">
+                    <li>
+                      <Link onClick={ClickHandler} to="/">
+                        Home
+                      </Link>
+                    </li>
+                    {/* <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="/">
                         Home
                       </Link>
@@ -75,7 +77,7 @@ const Header = (props) => {
                           </Link>
                         </li>
                       </ul>
-                    </li>
+                    </li> */}
                     <li>
                       <Link onClick={ClickHandler} to="/about">
                         About
@@ -113,9 +115,7 @@ const Header = (props) => {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            onClick={ClickHandler}
-                            to="/subscription_plan">
+                          <Link onClick={ClickHandler} to="/subscription_plan">
                             Subscription Plan
                           </Link>
                         </li>

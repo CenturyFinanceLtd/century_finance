@@ -10,9 +10,9 @@ const HeaderTopbar = (props) => {
             <div className="col col-lg-7 col-md-12 col-12">
               <div className="contact-intro">
                 <ul>
-                  <li>
+                  {/* <li>
                     <i className="fi flaticon-phone-call"></i> (+91) 8815532159
-                  </li>
+                  </li> */}
                   <li>
                     <i className="fi flaticon-email"></i>
                     customerservice@centuryfinancelimited.com
