@@ -1,5 +1,5 @@
 import React from "react";
-import abimg from "../../../images/about/img-3.png";
+import abimg from "../../../images/about/personal.png";
 import shape from "../../../images/about/shape.png";
 import { Link } from "react-router-dom";
 
