@@ -13,7 +13,7 @@ const About = (props) => {
     <section className="wpo-about-section section-padding">
       <div className="container">
         <div className="wpo-about-wrap">
-          <div className="row align-items-center">
+          <div className="row">
             <div className="col-lg-6 col-md-12 col-12">
               <div className="wpo-about-img-wrap">
                 <div className="wpo-about-img-left">

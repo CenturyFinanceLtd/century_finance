@@ -13,7 +13,7 @@ import cImg1 from "../../images/slider/client1.png";
 import cImg2 from "../../images/slider/client2.png";
 import cImg3 from "../../images/slider/client3.png";
 import cImg4 from "../../images/slider/client4.png";
-// import VideoModal from "../ModalVideo/VideoModal";
+import VideoModal from "../ModalVideo/VideoModal";
 
 const settings = {
   dots: false,
@@ -69,60 +69,60 @@ const Hero = () => {
                     <Link onClick={ClickHandler} to="/about" className="theme-btn">
                       Get Started
                     </Link>
-                    {/* <ul>
-                  <li className="video-holder">
-                    <VideoModal />
-                  </li>
-                  <li className="video-text">Watch Our Video</li>
-                </ul> */}
+                    <ul>
+                      <li className="video-holder">
+                        <VideoModal />
+                      </li>
+                      <li className="video-text">Watch Our Video</li>
+                    </ul>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="student-pic">
                     <img src={hero1} alt="" />
-                <div className="student-shape">
-                  <div className="shape-1"></div>
-                  <div className="shape-2"></div>
-                  <div className="shape-3"></div>
-                </div>
-                    {/* <div className="student">
-                  <div className="icon">
-                    <i className="fi flaticon-team"></i>
-                  </div>
-                  <div className="content">
-                    <h3>25k+</h3>
-                    <p>Total Active Students</p>
-                  </div>
-                </div> */}
-                    {/* <div className="wpo-supporter">
-                  <div className="wpo-supporter-text">
-                    <div className="content">
-                      <h3>200+</h3>
-                      <p>Top Expert Mentors</p>
+                    <div className="student-shape">
+                      <div className="shape-1"></div>
+                      <div className="shape-2"></div>
+                      <div className="shape-3"></div>
                     </div>
-                  </div>
-                  <div className="wpo-supporter-img">
-                    <ul className="wpo-supporter-slide">
-                      <Slider {...settings}>
-                        <li>
-                          <img src={cImg1} alt="" />
-                        </li>
-                        <li>
-                          <img src={cImg2} alt="" />
-                        </li>
-                        <li>
-                          <img src={cImg3} alt="" />
-                        </li>
-                        <li>
-                          <img src={cImg4} alt="" />
-                        </li>
-                        <li>
-                          <img src={cImg1} alt="" />
-                        </li>
-                      </Slider>
-                    </ul>
-                  </div>
-                </div> */}
+                    <div className="student">
+                      <div className="icon">
+                        <i className="fi flaticon-team"></i>
+                      </div>
+                      <div className="content">
+                        <h3>25k+</h3>
+                        <p>Total Active Students</p>
+                      </div>
+                    </div>
+                    <div className="wpo-supporter">
+                      <div className="wpo-supporter-text">
+                        <div className="content">
+                          <h3>200+</h3>
+                          <p>Top Expert Mentors</p>
+                        </div>
+                      </div>
+                      <div className="wpo-supporter-img">
+                        <ul className="wpo-supporter-slide">
+                          <Slider {...settings}>
+                            <li>
+                              <img src={cImg1} alt="" />
+                            </li>
+                            <li>
+                              <img src={cImg2} alt="" />
+                            </li>
+                            <li>
+                              <img src={cImg3} alt="" />
+                            </li>
+                            <li>
+                              <img src={cImg4} alt="" />
+                            </li>
+                            <li>
+                              <img src={cImg1} alt="" />
+                            </li>
+                          </Slider>
+                        </ul>
+                      </div>
+                    </div>
                     <div className="wp-shape-1">
                       <img src={shape1} alt="" />
                     </div>
