@@ -33,7 +33,7 @@ const Footer = (props) => {
                   </Link>
                 </div>
                 <p>
-                  Smart trading begins with smart learning — gain insights,
+                  Smart trading begins with smart learning, gain insights,
                   build confidence, master strategies, reduce risks, and grow
                   your financial future.
                 </p>
@@ -220,7 +220,7 @@ const Footer = (props) => {
                   {/* Updated year to current year 2025 */}©{" "}
                   {new Date().getFullYear()}{" "}
                   <Link onClick={ClickHandler} to="/">
-                    Century FInance Limited
+                    Century Finance Limited
                   </Link>
                   . All rights reserved.
                 </li>

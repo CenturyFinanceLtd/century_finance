@@ -37,20 +37,17 @@ const CourseSection = (props) => {
                 <div className="col-lg-6 col-md-12 col-12">
                   <div className="wpo-about-text">
                     <p>
-                      The Century Finance We provide a comprehensive training
-                      program designed to give you a strong foundation in the
-                      stock market. Our curriculum covers a wide range of
-                      trading segments, including. Equity Trading Learn how to
-                      invest in company shares with confidence and strategy.
-                      Commodity TradingUnderstand the dynamics of trading
-                      commodities like gold, silver, oil, and more. Foreign
-                      Market Trading Get insights into international markets and
-                      learn how to trade across global platforms.We also believe
-                      in personal attention and support, which is why we
-                      dedicate specific time for doubt-clearing sessions.
-                      Whether it's a technical question or a conceptual one, our
-                      experts are available to ensure you understand every topic
-                      thoroughly.
+                      We provide a comprehensive training program designed to give you a strong foundation in the stock market. Our curriculum covers a wide range of trading segments, including: 
+                      <ol className="mt-4">
+                        <li><strong>Equity Trading</strong> – Learn how to invest in company shares with confidence and strategy.</li>
+                        <li><strong>Commodity Trading</strong> – Understand the dynamics of trading commodities like gold, silver, oil, and more.</li>
+                        <li><strong>Foreign Market Trading</strong> – Get insights into international markets and learn how to trade across global platforms.</li>
+                      </ol>
+                      In addition to financial training, we also offer a <strong>personality development program</strong> aimed at helping you build confidence, discipline, and the right mindset required for successful trading.
+
+                      To help you get started, we provide Paid demo sessions that offer a real-time experience of how stock trading works, guided by experienced trainers. These sessions are perfect for beginners who want to explore before fully committing.
+
+                      We also believe in personal attention and support, which is why we dedicate specific time for <strong>doubt-clearing sessions.</strong> Whether it's a technical question or a conceptual one, our experts are available to ensure you understand every topic thoroughly.
                     </p>
                     <div className="more-btn mt-5">
                       <Link onClick={ClickHandler} to="/course" className="theme-btn-s2">

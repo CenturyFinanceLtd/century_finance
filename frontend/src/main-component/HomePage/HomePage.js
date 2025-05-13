@@ -8,7 +8,7 @@ import WhatdoWeOffer from "../../components/WhatDoWeOffer/WhatDoWeOffer";
 import WhatdoWeOffer2 from "../../components/WhatDoWeOffer2/WhatDoWeOffer2";
 import OurMIssion from "../../components/OurMission/OurMission";
 import FaqSection from "../../components/FaqSection/FaqSection";
-import Newslatter from "../../components/Newslatter/Newslatter";
+// import Newslatter from "../../components/Newslatter/Newslatter";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
 
@@ -36,7 +36,7 @@ const HomePage = () => {
       <WhatdoWeOffer2 />
       <OurMIssion />
       <FaqSection />
-      <Newslatter />
+      {/* <Newslatter /> */}
       <Footer />
       <Scrollbar />
     </Fragment>

@@ -31,27 +31,27 @@ const CoureseTab = ({ EventsDetails }) => {
       title: "Basic Plan",
       IconComponent: IconBasicPlan,
       description:
-        "Start your trading journey with foundational knowledge in key markets.", // Content for the tab button
+        "Fee: Just 45,000 INR", // Content for the tab button
       activeDescription:
-        "Start your trading journey with foundational knowledge in key markets.", // Content for the active tab button
+        "Fee: 45,000 INR", // Content for the active tab button
     },
     {
       id: "2",
       title: "Premium Plan",
       IconComponent: IconPremiumPlan,
       description:
-        "Elevate your trading skills with advanced strategies and in-depth insights.",
+        "Fee: Just 85,000 INR",
       activeDescription:
-        "Elevate your trading skills with advanced strategies and in-depth insights.",
+        "Fee: Just 85,000 INR",
     },
     {
       id: "3",
       title: "Learning to Earning Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
-        "Transform your expertise into tangible results and master the art of profitable trading.",
+        "Fee: Just 1,40,000 INR",
       activeDescription:
-        "Transform your expertise into tangible results and master the art of profitable trading.",
+        "Fee: Just 1,40,000 INR",
     },
   ];
 

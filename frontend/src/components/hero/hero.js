@@ -13,7 +13,7 @@ import cImg1 from "../../images/slider/client1.png";
 import cImg2 from "../../images/slider/client2.png";
 import cImg3 from "../../images/slider/client3.png";
 import cImg4 from "../../images/slider/client4.png";
-import VideoModal from "../ModalVideo/VideoModal";
+// import VideoModal from "../ModalVideo/VideoModal";
 
 const settings = {
   dots: false,
@@ -55,7 +55,6 @@ const Hero = () => {
                           </svg>
                         </i>
                       </span>{" "}
-                      Updates Daily
                     </h2>
                   </div>
                   <div data-swiper-parallax="400" className="slide-text">
@@ -69,12 +68,12 @@ const Hero = () => {
                     <Link onClick={ClickHandler} to="/about" className="theme-btn">
                       Get Started
                     </Link>
-                    <ul>
+                    {/* <ul>
                       <li className="video-holder">
                         <VideoModal />
                       </li>
                       <li className="video-text">Watch Our Video</li>
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>
                 <div className="col-md-6">

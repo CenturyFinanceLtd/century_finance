@@ -421,3 +421,9 @@
         }
     }
 }
+
+@media (min-width: 768px) {
+    .border-right{
+        border-right: 1px solid red;
+    }
+}
