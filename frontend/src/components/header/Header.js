@@ -41,11 +41,11 @@ const Header = (props) => {
                     <i className="ti-close"></i>
                   </button>
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
-                    <li>
+                    {/* <li>
                       <Link onClick={ClickHandler} to="/">
                         Home
                       </Link>
-                    </li>
+                    </li> */}
                     {/* <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="/">
                         Home
@@ -89,9 +89,10 @@ const Header = (props) => {
                         Contact
                       </Link>
                     </li>
+
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="">
-                        Customer Services
+                        Customer Services &nbsp; <i className="ti-angle-down"></i>
                       </Link>
                       <ul className="sub-menu">
                         <li>
@@ -123,10 +124,57 @@ const Header = (props) => {
                     </li>
 
                     <li>
-                      <Link onClick={ClickHandler} to="/online_courses">
-                        Online Courses
+                      <Link onClick={ClickHandler} to="">
+                        Markets &nbsp; <i className="ti-angle-down"></i>
+                      </Link>
+                      <ul className="sub-menu">
+                        <li>
+                          <Link onClick={ClickHandler} to="/">
+                            Stocks
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/">
+                            Commodities
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/">
+                            Crypto
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/">
+                            Gold
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/">
+                            Currencies
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li>
+                      <Link onClick={ClickHandler} to="/">
+                        Investment
                       </Link>
                     </li>
+
+                    <li>
+                      <Link onClick={ClickHandler} to="/">
+                        Finance
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link onClick={ClickHandler} to="/">
+                        Blog
+                      </Link>
+                    </li>
+
+
 
                     {/* <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="/">
@@ -290,7 +338,7 @@ const Header = (props) => {
               </div>
               <div className="col-lg-3 col-md-3 col-2">
                 <div className="header-right">
-                  <div className="header-search-form-wrapper">
+                  {/* <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">
                       <button
                         onClick={() => setMenuState(!menuActive)}
@@ -318,7 +366,7 @@ const Header = (props) => {
                         </form>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="close-form">
                     <Link onClick={ClickHandler} className="login" to="/login">
                       <span className="text">Sign In</span>
