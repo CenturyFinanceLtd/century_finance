@@ -92,11 +92,12 @@ const Header = (props) => {
 
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="">
-                        Customer Services &nbsp; <i className="ti-angle-down"></i>
+                        Customer Services &nbsp;{" "}
+                        <i className="ti-angle-down"></i>
                       </Link>
                       <ul className="sub-menu">
                         <li>
-                          <Link onClick={ClickHandler} to="/training_program">
+                          <Link onClick={ClickHandler} to="/training-program">
                             Training Program
                           </Link>
                         </li>
@@ -111,13 +112,13 @@ const Header = (props) => {
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/investment_plan">
+                          <Link onClick={ClickHandler} to="/investment-plan">
                             Investment Plan
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/subscription_plan">
-                            Subscription Plan
+                          <Link onClick={ClickHandler} to="/calls-subscription-plan">
+                            Calls Subscription Plan
                           </Link>
                         </li>
                       </ul>
@@ -157,24 +158,22 @@ const Header = (props) => {
                     </li>
 
                     <li>
-                      <Link onClick={ClickHandler} to="/">
+                      <Link onClick={ClickHandler} to="/investment">
                         Investment
                       </Link>
                     </li>
 
                     <li>
-                      <Link onClick={ClickHandler} to="/">
+                      <Link onClick={ClickHandler} to="/finance-services">
                         Finance
                       </Link>
                     </li>
 
                     <li>
-                      <Link onClick={ClickHandler} to="/">
+                      <Link onClick={ClickHandler} to="">
                         Blog
                       </Link>
                     </li>
-
-
 
                     {/* <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="/">

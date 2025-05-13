@@ -43,6 +43,8 @@ import Portfolio from "../Portfolio/Portfolio";
 import Finance from "../Finance/Finance";
 import InvestmentPlan from "../InvestmentPlan/InvestmentPlan";
 import SubscriptionPlan from "../SubscriptionPlan/SubscriptionPlan";
+import Investment from "../Investment/Investment";
+import FinanceService from "../FinanceService/FinanceService";
 
 const AllRoute = () => {
 
@@ -76,7 +78,7 @@ const AllRoute = () => {
           <Route path="product-single/:slug" element={<ProductSinglePage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
-          <Route path="order_received" element={<OrderRecived />} />
+          <Route path="order-received" element={<OrderRecived />} />
           <Route path="faq" element={<FaqPage />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TermsPage />} />
@@ -97,15 +99,14 @@ const AllRoute = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<SignUpPage />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route
-            path="online_courses"
-            element={<OnlineCourses />}
-          />
-          <Route path="training_program" element={<TrainingProgram />} />
+          <Route path="online-courses" element={<OnlineCourses />} />
+          <Route path="training-program" element={<TrainingProgram />} />
           <Route path="Portfolio" element={<Portfolio />} />
           <Route path="finance" element={<Finance />} />
-          <Route path="investment_plan" element={<InvestmentPlan />} />
-          <Route path="subscription_plan" element={<SubscriptionPlan />} />
+          <Route path="investment-plan" element={<InvestmentPlan />} />
+          <Route path="calls-subscription-plan" element={<SubscriptionPlan />} />
+          <Route path="investment" element={<Investment />} />
+          <Route path="finance-service" element={<FinanceService />} />
         </Routes>
       </BrowserRouter>
     </div>
