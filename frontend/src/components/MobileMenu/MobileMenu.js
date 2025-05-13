@@ -10,33 +10,6 @@ const menus = [
         id: 1,
         title: 'Home',
         link: '/home',
-        submenu: [
-            {
-                id: 11,
-                title: 'Home style 1',
-                link: '/home-1'
-            },
-            {
-                id: 12,
-                title: 'Home style 2',
-                link: '/home-2'
-            },
-            {
-                id: 13,
-                title: 'Home style 3',
-                link: '/home-3'
-            },
-            {
-                id: 14,
-                title: 'Home style 4',
-                link: '/home-4'
-            },
-            {
-                id: 15,
-                title: 'Home style 5',
-                link: '/home-5'
-            },
-        ]
     },
 
     {
@@ -46,151 +19,92 @@ const menus = [
     },
 
     {
-        id: 6,
-        title: 'Courses',
-        link: '/course',
+        id: 3,
+        title: 'Contact',
+        link: '/contact',
+    },
+
+    {
+        id: 4,
+        title: 'Customer Services',
+        link: '/',
         submenu: [
             {
-                id: 61,
-                title: 'Courses Style 1',
-                link: '/course',
+                id: 41,
+                title: 'Training Program',
+                link: '/',
             },
             {
-                id: 61,
-                title: 'Courses Style 2',
-                link: '/course-2',
+                id: 42,
+                title: 'Portfolio',
+                link: '/',
             },
             {
-                id: 61,
-                title: 'Courses Style 3',
-                link: '/course-3',
+                id: 43,
+                title: 'Finance',
+                link: '/',
             },
             {
-                id: 62,
-                title: 'Course Single',
-                link: '/course-single/Learn-WordPress-&-Elementor-for-Beginners'
+                id: 44,
+                title: 'Investment Plan',
+                link: '/'
+            },
+            {
+                id: 45,
+                title: 'Subscription Plan',
+                link: '/'
             }
         ]
     },
     {
-        id: 3,
-        title: 'Pages',
+        id: 5,
+        title: 'Markets',
         link: '/',
         submenu: [
             {
-                id: 31,
-                title: 'Lesson',
+                id: 51,
+                title: 'Stocks',
                 link: '/lesson'
             },
             {
-                id: 2,
-                title: 'Gallery',
-                link: '/gallery'
+                id: 52,
+                title: 'Commodities',
+                link: '/'
             },
             {
-                id: 322,
-                title: 'Testimonial',
-                link: '/testimonial'
+                id: 53,
+                title: 'Crypto',
+                link: '/'
             },
             {
-                id: 385,
-                title: 'Teachers',
-                link: '/teacher',
+                id: 54,
+                title: 'Gold',
+                link: '/',
             },
             {
-                id: 386,
-                title: 'Team Single',
-                link: '/team-single/Courtney-Henry'
-            },
-            {
-                id: 388,
-                title: 'Become Teacher',
-                link: '/become-teacher'
-            },
-            {
-                id: 371,
-                title: 'Shop',
-                link: '/shop',
-            },
-            {
-                id: 375,
-                title: 'Shop Single',
-                link: '/product-single/Newspaper'
-            },
-            {
-                id: 376,
-                title: 'Cart',
-                link: '/cart'
-            },
-            {
-                id: 377,
-                title: 'Checkout',
-                link: '/checkout'
-            },
-            {
-                id: 33,
-                title: 'FAQ',
-                link: '/faq'
-            },
-            {
-                id: 34,
-                title: '404 Error',
-                link: '/404'
-            },
-            {
-                id: 35,
-                title: 'Login',
-                link: '/login'
-            },
-            {
-                id: 36,
-                title: 'Register',
-                link: '/register'
-            },
+                id: 55,
+                title: 'Currencies',
+                link: '/'
+            }
         ]
     },
 
     {
-        id: 5,
+        id: 6,
+        title: 'Investment',
+        link: '/',
+    },
+
+    {
+        id: 7,
+        title: 'Finance',
+        link: '/',
+    },
+
+    {
+        id: 8,
         title: 'Blog',
         link: '/blog',
-        submenu: [
-            {
-                id: 51,
-                title: 'Blog',
-                link: '/blog'
-            },
-            {
-                id: 52,
-                title: 'Blog Left sidebar',
-                link: '/blog-left'
-            },
-            {
-                id: 53,
-                title: 'Blog full width',
-                link: '/blog-fullwidth'
-            },
-            {
-                id: 54,
-                title: 'Blog single',
-                link: '/blog-single/Become-a-great-WordPress-&-PHP-developer.'
-            },
-            {
-                id: 55,
-                title: 'Blog single Left sidebar',
-                link: '/blog-single-left-sidebar/Become-a-great-WordPress-&-PHP-developer.'
-            },
-            {
-                id: 56,
-                title: 'Blog single Left sidebar',
-                link: '/blog-single-fullwidth/Become-a-great-WordPress-&-PHP-developer.'
-            },
-        ]
-    },
-    {
-        id: 88,
-        title: 'Contact',
-        link: '/contact',
     }
 
 

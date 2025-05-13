@@ -152,6 +152,9 @@
     }
 }
 
+.MuiList-root p{
+    margin-bottom: 0;
+}
 
 .responsivemenu a:not([href]):not([class]), 
 .responsivemenu a:not([href]):not([class]):hover{

@@ -338,7 +338,7 @@ const Header = (props) => {
               </div>
               <div className="col-lg-3 col-md-3 col-2">
                 <div className="header-right">
-                  {/* <div className="header-search-form-wrapper">
+                  <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">
                       <button
                         onClick={() => setMenuState(!menuActive)}
@@ -366,7 +366,7 @@ const Header = (props) => {
                         </form>
                       </div>
                     </div>
-                  </div> */}
+                  </div>
                   <div className="close-form">
                     <Link onClick={ClickHandler} className="login" to="/login">
                       <span className="text">Sign In</span>
