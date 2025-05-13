@@ -33,9 +33,8 @@ const BasicPlan = (props) => {
                 <p>
                   <strong>Price:</strong> ₹17,000/- <br />
                   <strong>Duration:</strong> 30 Days <br />
-                  <strong>Total Calls:</strong> 45 Handpicked Trades <br />
-                  <strong>Coverage:</strong> Equity • Commodity • Global Markets
-                  • Cryptocurrencies
+                  <strong>Total Calls:</strong> Included 45 Calls<br />
+                  <strong>Coverage:</strong> Equity • Commodity • Foreign Market
                 </p>
 
                 <h4>📘 Detailed Plan Description</h4>
@@ -49,9 +48,7 @@ const BasicPlan = (props) => {
                 </p>
                 <p>
                   This plan combines technical analysis, fundamental insights,
-                  and real-time market tracking to deliver 45 actionable calls
-                  per month — each with clear entry, stop-loss, and target
-                  points. Whether you’re focused on intraday, swing, or
+                  and real-time market tracking to deliver 45 actionable calls. Whether you’re focused on intraday, swing, or
                   positional trading, this plan empowers you with strategic
                   guidance across the financial landscape.
                 </p>
@@ -59,7 +56,7 @@ const BasicPlan = (props) => {
             </div>
           </div>
           <div>
-            <h4>📊 Full Asset Coverage</h4>
+            <h4 className="mt-4">Full Asset Coverage</h4>
             <h5>🔹 Equity & Index Segment (NSE/BSE)</h5>
             <ul>
               <li>Nifty 50 – India's benchmark index for blue-chip stocks.</li>

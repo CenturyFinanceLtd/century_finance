@@ -36,36 +36,36 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
       title: "Premium Subscription Plan",
       IconComponent: IconBasicPlan,
       description:
-        "Start your trading journey with foundational knowledge in key markets.", // Content for the tab button
+        "", // Content for the tab button
       activeDescription:
-        "Start your trading journey with foundational knowledge in key markets.", // Content for the active tab button
+        "", // Content for the active tab button
     },
     {
       id: "2",
       title: "Super Subscription Plan",
       IconComponent: IconPremiumPlan,
       description:
-        "Elevate your trading skills with advanced strategies and in-depth insights.",
+        "",
       activeDescription:
-        "Elevate your trading skills with advanced strategies and in-depth insights.",
+        "",
     },
     {
       id: "3",
       title: "Advance Premium Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
-        "Transform your expertise into tangible results and master the art of profitable trading.",
+        "",
       activeDescription:
-        "Transform your expertise into tangible results and master the art of profitable trading.",
+        "",
     },
     {
       id: "4",
       title: "VVIP Stock Subscription Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
-        "Transform your expertise into tangible results and master the art of profitable trading.",
+        "",
       activeDescription:
-        "Transform your expertise into tangible results and master the art of profitable trading.",
+        "",
     },
   ];
 
