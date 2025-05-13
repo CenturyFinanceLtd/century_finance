@@ -33,7 +33,7 @@ const CourseSection = (props) => {
         <section className="wpo-about-section">
           <div className="container">
             <div className="wpo-about-wrap">
-              <div className="row align-items-center">
+              <div className="row">
                 <div className="col-lg-6 col-md-12 col-12">
                   <div className="wpo-about-text">
                     <p>
@@ -52,12 +52,17 @@ const CourseSection = (props) => {
                       experts are available to ensure you understand every topic
                       thoroughly.
                     </p>
+                    <div className="more-btn mt-5">
+                      <Link onClick={ClickHandler} to="/course" className="theme-btn-s2">
+                        View All Courses
+                      </Link>
+                    </div>
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-12 col-12">
                   <div
                     className="wpo-about-img-wrap"
-                    style={{ marginRight: "-200px", marginLeft: "20px" }}>
+                    style={{ marginLeft: "20px" }}>
                     <div className="wpo-about-img-left">
                       <div className="wpo-about-img">
                         <img src={abImg} alt="" />
@@ -74,12 +79,6 @@ const CourseSection = (props) => {
             </div>
           </div>
         </section>
-        <div className="more-btn text-center">
-          <Link onClick={ClickHandler} to="/course" className="theme-btn-s2">
-            View All Courses
-          </Link>
-              </div>
-              
       </div>
     </div>
   );

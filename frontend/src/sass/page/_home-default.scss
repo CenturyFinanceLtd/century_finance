@@ -9,7 +9,7 @@
 
         .wpo-about-img-wrap {
             display: flex;
-            margin-left: -200px;
+            // margin-left: -200px;
             margin-right: 20px;
 
             @media(max-width:991px) {
@@ -1798,4 +1798,8 @@
 
         }
     }
+}
+
+.slick-prev:before, .slick-next:before{
+    color: red;
 }

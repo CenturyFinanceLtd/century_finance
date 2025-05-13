@@ -1526,3 +1526,14 @@
     }
   }
 }
+
+// manual
+@media (min-width:992px) and (max-width:1399px) {
+  .static-hero .slide-title h2 span{
+    display: inline-block;
+  }
+  .static-hero .slide-title h2 span .shape{
+    top: -12px;
+    left: -33px;
+  }
+}
