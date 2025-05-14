@@ -1,28 +1,24 @@
 // backend/controllers/authController.js
 const User = require("../models/User");
+const PendingUser = require("../models/PendingUser"); // New model for temporary data
 const sendEmail = require("../utils/sendEmail");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto"); // Node.js crypto module
+const bcrypt = require("bcryptjs"); // Needed for hashing password before temporary store
 
-// Helper function to generate JWT token
+// --- Helper Functions (signToken, createSendToken - remain the same) ---
 const signToken = (id) => {
   if (!process.env.JWT_SECRET || !process.env.JWT_EXPIRES_IN) {
     console.error(
       "🔴 JWT_SECRET or JWT_EXPIRES_IN is not defined in .env file! Cannot sign token."
     );
-    // In a real app, you might throw an error or return null, then handle it.
-    // For now, this will cause jwt.sign to fail if env vars are missing.
-    // It's better to ensure they are set.
   }
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
-// Helper function to send token in response
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
-
   const userOutput = { ...user.toObject() };
   delete userOutput.password;
   delete userOutput.emailVerificationOtp;
@@ -34,13 +30,19 @@ const createSendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "success",
     token,
-    data: {
-      user: userOutput,
-    },
+    data: { user: userOutput },
   });
 };
 
-exports.signup = async (req, res, next) => {
+// --- Authentication Controller Functions ---
+
+/**
+ * @desc    Initiate Signup: Check email. If new, send OTP and store data temporarily.
+ * If existing but unverified, resend OTP. If verified, reject.
+ * @route   POST /api/auth/signup
+ * @access  Public
+ */
+exports.signup = async (req, res) => {
   try {
     const {
       fullName,
@@ -52,6 +54,7 @@ exports.signup = async (req, res, next) => {
       universityOrCollege,
     } = req.body;
 
+    // --- Input Validation ---
     if (
       !fullName ||
       !email ||
@@ -82,83 +85,258 @@ exports.signup = async (req, res, next) => {
         });
     }
 
-    let existingUser = await User.findOne({ email });
-
-    if (existingUser && existingUser.isEmailVerified) {
+    const existingVerifiedUser = await User.findOne({
+      email,
+      isEmailVerified: true,
+    });
+    if (existingVerifiedUser) {
       return res
         .status(400)
         .json({
           status: "fail",
-          message: "An account with this email already exists and is verified.",
+          message:
+            "This email is already registered and verified. Please login.",
         });
     }
 
-    let userToSave;
-    if (existingUser && !existingUser.isEmailVerified) {
+    // Handle existing but unverified user in the main User table (resend OTP to them)
+    const existingUnverifiedUser = await User.findOne({
+      email,
+      isEmailVerified: false,
+    });
+    if (existingUnverifiedUser) {
       console.log(
-        `User ${email} exists but not verified. Updating details and resending OTP.`
+        `Email ${email} exists in User table but not verified. Resending OTP.`
       );
-      existingUser.fullName = fullName;
-      existingUser.password = password;
-      existingUser.phoneNumber = phoneNumber;
-      existingUser.fatherName = fatherName;
-      existingUser.universityOrCollege = universityOrCollege || "";
-      userToSave = existingUser;
-    } else {
-      console.log(`Creating new user for ${email}.`);
-      userToSave = new User({
-        fullName,
-        email,
-        password,
-        phoneNumber,
-        fatherName,
-        universityOrCollege: universityOrCollege || "",
-        isEmailVerified: false,
+      const newOtp = existingUnverifiedUser.generateEmailVerificationOtp(); // Method on User model
+      await existingUnverifiedUser.save({ validateBeforeSave: false }); // Save new OTP details to User
+
+      const message = `Your One-Time Password (OTP) for Century Finance email verification is: ${newOtp}\nThis OTP is valid for 10 minutes.`;
+      const emailSent = await sendEmail({
+        email: existingUnverifiedUser.email,
+        subject: "Verify Your Email - Century Finance (New OTP)",
+        message,
+        html: `<p>Your new One-Time Password (OTP) for Century Finance email verification is: <strong>${newOtp}</strong></p><p>This OTP is valid for 10 minutes.</p>`,
+      });
+
+      if (!emailSent) {
+        return res
+          .status(500)
+          .json({
+            status: "error",
+            message:
+              "There was an error resending the verification email. Please try again.",
+          });
+      }
+      return res.status(200).json({
+        status: "success",
+        message: "This email is pending verification. A new OTP has been sent.",
+        data: { email: existingUnverifiedUser.email, existingUnverified: true }, // Flag for frontend
       });
     }
 
-    const verificationOtp = userToSave.generateEmailVerificationOtp();
-    await userToSave.save();
-
-    const message = `Your One-Time Password (OTP) for Century Finance email verification is: ${verificationOtp}\nThis OTP is valid for 10 minutes.`;
+    // If email does not exist in User table, it's a completely new registration attempt.
+    // Store data temporarily in PendingUser collection.
     console.log(
-      `Attempting to send verification OTP to ${userToSave.email}...`
+      `New registration attempt for ${email}. Generating OTP and storing temporarily.`
     );
+    const plainOtp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+    const salt = await bcrypt.genSalt(10);
+    const hashedOtp = await bcrypt.hash(plainOtp, salt);
+    const hashedPasswordForPending = await bcrypt.hash(password, salt); // Hash password for temporary storage
+
+    // Delete any previous pending registration for this email
+    await PendingUser.deleteMany({ email });
+
+    const pendingUser = new PendingUser({
+      email,
+      otp: hashedOtp, // Store hashed OTP
+      otpExpires: Date.now() + 15 * 60 * 1000, // OTP valid for 15 minutes
+      fullName,
+      hashedPassword: hashedPasswordForPending, // Store pre-hashed password
+      phoneNumber,
+      fatherName,
+      universityOrCollege: universityOrCollege || "",
+    });
+    await pendingUser.save();
+
+    const message = `Your One-Time Password (OTP) for Century Finance email verification is: ${plainOtp}\nThis OTP is valid for 10 minutes.`;
     const emailSent = await sendEmail({
-      email: userToSave.email,
+      email: email,
       subject: "Verify Your Email - Century Finance",
-      message: message,
-      html: `<p>Your One-Time Password (OTP) for Century Finance email verification is: <strong>${verificationOtp}</strong></p><p>This OTP is valid for 10 minutes.</p>`,
+      message,
+      html: `<p>Your One-Time Password (OTP) for Century Finance email verification is: <strong>${plainOtp}</strong></p><p>This OTP is valid for 10 minutes.</p>`,
     });
 
     if (!emailSent) {
-      console.error(
-        `Failed to send OTP email to ${userToSave.email}. Cleaning up OTP fields.`
-      );
-      userToSave.emailVerificationOtp = undefined;
-      userToSave.emailVerificationOtpExpires = undefined;
-      await userToSave.save({ validateBeforeSave: false });
-      return res.status(500).json({
-        status: "error",
-        message:
-          "There was an error sending the verification email. Please try again.",
-      });
+      await PendingUser.deleteOne({ _id: pendingUser._id }); // Clean up if email fails
+      return res
+        .status(500)
+        .json({
+          status: "error",
+          message:
+            "There was an error sending the verification email. Please try again.",
+        });
     }
 
     res.status(200).json({
       status: "success",
       message:
         "OTP sent to your email. Please verify to complete registration.",
-      data: { email: userToSave.email },
+      data: { email },
     });
   } catch (error) {
     console.error("Signup Controller Error:", error);
+    res
+      .status(500)
+      .json({
+        status: "error",
+        message: "Something went wrong during the signup process.",
+        errorDetails: error.message,
+      });
+  }
+};
+
+/**
+ * @desc    Verify OTP and Complete Registration (for new users) OR Verify existing unverified user.
+ * @route   POST /api/auth/verify-otp
+ * @access  Public
+ */
+exports.verifyOtpAndCompleteRegistration = async (req, res) => {
+  try {
+    const {
+      email,
+      otp,
+      fullName,
+      password,
+      phoneNumber,
+      fatherName,
+      universityOrCollege,
+    } = req.body;
+
+    if (!email || !otp) {
+      return res
+        .status(400)
+        .json({ status: "fail", message: "Email and OTP are required." });
+    }
+
+    // Scenario 1: Check if this OTP is for an existing but unverified user in the MAIN User table
+    let user = await User.findOne({
+      email,
+      emailVerificationOtp: otp, // Assumes User model stores plain OTP for this flow
+      emailVerificationOtpExpires: { $gt: Date.now() },
+    });
+
+    if (user && !user.isEmailVerified) {
+      console.log(
+        `Verifying OTP for existing unverified user in User table: ${email}`
+      );
+      user.isEmailVerified = true;
+      user.emailVerificationOtp = undefined;
+      user.emailVerificationOtpExpires = undefined;
+      await user.save();
+      createSendToken(user, 200, res); // Log them in
+      return;
+    }
+
+    // Scenario 2: Check if this OTP is for a NEW user from the PendingUser collection
+    const pendingUser = await PendingUser.findOne({
+      email,
+      otpExpires: { $gt: Date.now() },
+    });
+
+    if (!pendingUser) {
+      return res
+        .status(400)
+        .json({
+          status: "fail",
+          message:
+            "No pending OTP request found for this email, or OTP has expired. Please try signing up again.",
+        });
+    }
+
+    const isOtpValid = await pendingUser.compareOtp(otp); // Use compareOtp method from PendingUser model
+
+    if (!isOtpValid) {
+      return res
+        .status(400)
+        .json({
+          status: "fail",
+          message: "Invalid OTP. Please check and try again.",
+        });
+    }
+
+    // OTP is valid for a new registration. Now create the user in the main User collection.
+    // All necessary data should have been sent again from the client or was stored in PendingUser.
+    // Here, we expect client to resend all data.
+    if (!fullName || !password || !phoneNumber || !fatherName) {
+      return res
+        .status(400)
+        .json({
+          status: "fail",
+          message:
+            "Missing required user details for registration completion (Full Name, Password, Phone, Father Name).",
+        });
+    }
+    if (password.length < 6) {
+      // Re-validate password length
+      return res
+        .status(400)
+        .json({
+          status: "fail",
+          message: "Password must be at least 6 characters long.",
+        });
+    }
+
+    console.log(
+      `OTP verified for new user ${email}. Creating user in main User table.`
+    );
+    const newUser = new User({
+      fullName: pendingUser.fullName, // Use data from pendingUser store
+      email: pendingUser.email,
+      password: pendingUser.hashedPassword, // Use the pre-hashed password from pending store
+      phoneNumber: pendingUser.phoneNumber,
+      fatherName: pendingUser.fatherName,
+      universityOrCollege: pendingUser.universityOrCollege,
+      isEmailVerified: true, // Mark as verified now
+    });
+    // IMPORTANT: The User model's pre-save hook will try to re-hash 'password'.
+    // Since we are setting 'password' with an already hashed value,
+    // we need to tell mongoose it's not modified in the traditional sense if we want to avoid double hashing,
+    // OR ensure the pre-save hook only runs if `this.isModified('password')` and the password field is not already a hash.
+    // A simpler way for this flow: User model's pre-save hook hashes `password`.
+    // So, we should pass the PLAIN password again from client, or store plain password in PendingUser (less secure).
+    // Let's assume client resends plain password and User model handles hashing.
+
+    const finalNewUser = new User({
+      fullName: fullName || pendingUser.fullName, // Prioritize fresh data from client if available
+      email: email, // From request
+      password: password, // From request, will be hashed by User model's pre-save
+      phoneNumber: phoneNumber || pendingUser.phoneNumber,
+      fatherName: fatherName || pendingUser.fatherName,
+      universityOrCollege:
+        universityOrCollege || pendingUser.universityOrCollege || "",
+      isEmailVerified: true,
+    });
+
+    await finalNewUser.save();
+
+    // Delete the pending user record as it's now processed
+    await PendingUser.deleteOne({ _id: pendingUser._id });
+
+    createSendToken(finalNewUser, 201, res); // 201 for resource created
+  } catch (error) {
+    console.error(
+      "Verify OTP & Complete Registration Controller Error:",
+      error
+    );
     if (error.code === 11000) {
       return res
         .status(400)
         .json({
           status: "fail",
-          message: "An account with this email already exists.",
+          message:
+            "This email has just been registered. Please try logging in.",
         });
     }
     if (error.name === "ValidationError") {
@@ -171,55 +349,13 @@ exports.signup = async (req, res, next) => {
       .status(500)
       .json({
         status: "error",
-        message: "Something went wrong during the signup process.",
+        message: "Something went wrong during account finalization.",
         errorDetails: error.message,
       });
   }
 };
 
-exports.verifyEmailOtp = async (req, res, next) => {
-  try {
-    const { email, otp } = req.body;
-    if (!email || !otp) {
-      return res
-        .status(400)
-        .json({
-          status: "fail",
-          message: "Please provide both email and OTP.",
-        });
-    }
-    const user = await User.findOne({
-      email,
-      emailVerificationOtp: otp,
-      emailVerificationOtpExpires: { $gt: Date.now() },
-    });
-    if (!user) {
-      return res
-        .status(400)
-        .json({
-          status: "fail",
-          message:
-            "Invalid or expired OTP. Please request a new one if needed.",
-        });
-    }
-    user.isEmailVerified = true;
-    user.emailVerificationOtp = undefined;
-    user.emailVerificationOtpExpires = undefined;
-    await user.save();
-    console.log(`Email verified for ${user.email}. Logging in.`);
-    createSendToken(user, 200, res);
-  } catch (error) {
-    console.error("Verify Email OTP Controller Error:", error);
-    res
-      .status(500)
-      .json({
-        status: "error",
-        message: "Something went wrong during OTP verification.",
-        errorDetails: error.message,
-      });
-  }
-};
-
+// --- LOGIN --- (Remains the same, checking isEmailVerified)
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -257,6 +393,7 @@ exports.login = async (req, res, next) => {
   }
 };
 
+// --- FORGOT/RESET PASSWORD --- (Remains largely the same)
 exports.forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
@@ -316,11 +453,8 @@ exports.forgotPassword = async (req, res, next) => {
       message: "Password reset OTP sent to email!",
     });
   } catch (error) {
-    // Catch unexpected errors from sendEmail or other operations
     console.error("Forgot Password Controller Error:", error);
-    // Ensure OTP fields are cleared if an error occurs after generation but before successful email send
     if (req.body.email && error.name !== "MongoServerError") {
-      // Avoid trying to save if it's a DB error itself
       try {
         const userForCleanup = await User.findOne({ email: req.body.email });
         if (userForCleanup) {
@@ -419,7 +553,7 @@ exports.resetPassword = async (req, res, next) => {
             "Invalid or expired OTP, or user not found. Please try the forgot password process again.",
         });
     }
-    user.password = password;
+    user.password = password; // Pre-save hook will hash
     user.passwordResetOtp = undefined;
     user.passwordResetOtpExpires = undefined;
     await user.save();
@@ -442,3 +576,6 @@ exports.resetPassword = async (req, res, next) => {
       });
   }
 };
+
+// Remove or repurpose the old verifyEmailOtp if verifyOtpAndCompleteRegistration covers all cases
+// exports.verifyEmailOtp = ... (old function)

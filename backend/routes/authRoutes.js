@@ -2,28 +2,32 @@
 const express = require("express");
 const router = express.Router();
 
-// Import controller functions from authController
-// Ensure this path is correct and authController.js exports all these functions.
 const {
   signup,
-  verifyEmailOtp,
+  verifyOtpAndCompleteRegistration, // Use this for the main OTP verification step
   login,
   forgotPassword,
   verifyPasswordResetOtp,
   resetPassword,
+  // The old 'verifyEmailOtp' might be removed if its logic is fully in the new function,
+  // or kept if you have a distinct flow for resending OTPs to already partially registered users.
+  // For simplicity, we'll assume verifyOtpAndCompleteRegistration handles both new and existing unverified for now.
 } = require("../controllers/authController");
 
-// --- Define Authentication Routes ---
-
 // POST /api/auth/signup
-router.post("/signup", signup); // Associated with exports.signup in controller
+// - Checks email. If new, stores data temporarily in PendingUser, sends OTP.
+// - If existing but unverified in User table, updates User with new OTP and resends.
+// - If verified, returns error.
+router.post("/signup", signup);
 
-// POST /api/auth/verify-email
-router.post("/verify-email", verifyEmailOtp); // Associated with exports.verifyEmailOtp
+// POST /api/auth/verify-otp (or /api/auth/complete-registration)
+// - Verifies OTP against PendingUser (for new users) or User (for existing unverified).
+// - If new user & OTP valid: Creates main User record, deletes PendingUser, logs in.
+// - If existing unverified user & OTP valid: Verifies User, logs in.
+router.post("/verify-otp", verifyOtpAndCompleteRegistration); // Changed endpoint name for clarity
 
 // POST /api/auth/login
-router.post("/login", login); // THIS IS LIKELY LINE 19 (or close to it)
-// Error here means 'login' is undefined after import
+router.post("/login", login);
 
 // POST /api/auth/forgot-password
 router.post("/forgot-password", forgotPassword);
