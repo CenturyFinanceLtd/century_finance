@@ -9,10 +9,10 @@ import shape2 from "../../images/slider/shape-2.svg";
 import shape3 from "../../images/slider/shape-3.svg";
 import shape4 from "../../images/slider/shape-4.svg";
 
-import cImg1 from "../../images/slider/client1.png";
-import cImg2 from "../../images/slider/client2.png";
-import cImg3 from "../../images/slider/client3.png";
-import cImg4 from "../../images/slider/client4.png";
+// import cImg1 from "../../images/slider/client1.png";
+// import cImg2 from "../../images/slider/client2.png";
+// import cImg3 from "../../images/slider/client3.png";
+// import cImg4 from "../../images/slider/client4.png";
 // import VideoModal from "../ModalVideo/VideoModal";
 
 const settings = {
@@ -67,10 +67,10 @@ const Hero = () => {
         style={{
           position: "fixed",
           right: "4%", // Adjust as needed for precise placement after rotation
-          top: "20%",
+          top: "233px",
           zIndex: 1000, // Ensure it's on top of other content
           padding: "12px 20px", // Slightly adjusted padding
-          backgroundColor: "#000000",
+          backgroundColor: "#198754",
           color: "white",
           border: "none",
           borderRadius: "5px",
@@ -78,9 +78,10 @@ const Hero = () => {
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
           transformOrigin: "center", // Explicitly set transform origin if needed
           whiteSpace: "nowrap", // Prevent text from wrapping
+          fontSize: "14px",
         }}>
-        Download Brochure
-        <span className="blinking-new-icon">(NEW!)</span>
+        Download Investment Plan
+        <span className="blinking-new-icon">(NEW)</span>
       </button>
       <section className="static-hero">
         <div className="hero-container">
@@ -133,7 +134,7 @@ const Hero = () => {
                         <div className="shape-2"></div>
                         <div className="shape-3"></div>
                       </div>
-                      <div className="student">
+                      {/* <div className="student">
                         <div className="icon">
                           <i className="fi flaticon-team"></i>
                         </div>
@@ -141,8 +142,8 @@ const Hero = () => {
                           <h3>25k+</h3>
                           <p>Total Active Students</p>
                         </div>
-                      </div>
-                      <div className="wpo-supporter">
+                      </div> */}
+                      {/* <div className="wpo-supporter">
                         <div className="wpo-supporter-text">
                           <div className="content">
                             <h3>200+</h3>
@@ -170,7 +171,7 @@ const Hero = () => {
                             </Slider>
                           </ul>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="wp-shape-1">
                         <img src={shape1} alt="" />
                       </div>
