@@ -32,7 +32,7 @@ const Hero = () => {
 
   const handleDownloadBrochure = () => {
     // The path to your PDF file in the public folder
-    const pdfUrl = "/pdf/smart-saver.pdf"; // CORRECTED: Use root-relative path for public folder
+    const pdfUrl = "../../pdf/smart-saver.pdf"; // CORRECTED: Use root-relative path for public folder
     // IMPORTANT: Make sure 'brochure.pdf' is in your 'public/pdf/' directory
     const link = document.createElement("a");
     link.href = pdfUrl;
@@ -44,7 +44,7 @@ const Hero = () => {
 
   const handleDownloadBrochure1 = () => {
     // The path to your PDF file in the public folder
-    const pdfUrl = "/pdf/money-max.pdf"; // CORRECTED: Use root-relative path for public folder
+    const pdfUrl = "../../pdf/money-max.pdf"; // CORRECTED: Use root-relative path for public folder
     // IMPORTANT: Make sure 'brochure.pdf' is in your 'public/pdf/' directory
     const link = document.createElement("a");
     link.href = pdfUrl;
