@@ -43,14 +43,14 @@ const userSchema = new mongoose.Schema(
     },
     isEmailVerified: {
       type: Boolean,
-      default: false,
+      default: false, // Default is false, controller will set to true upon verification
     },
     emailVerificationOtp: {
-      // Stores the plain OTP sent to the user
+      // Stores the plain OTP sent to the user (for existing unverified users)
       type: String,
     },
     emailVerificationOtpExpires: {
-      // Stores the expiry time of the OTP
+      // Stores the expiry time of the OTP (for existing unverified users)
       type: Date,
     },
     passwordResetOtp: {
@@ -70,19 +70,18 @@ const userSchema = new mongoose.Schema(
 // Hash password before saving the user model
 userSchema.pre("save", async function (next) {
   // Only run this function if password was actually modified (or is new)
-  if (!this.isModified("password")) {
-    return next();
+  if (this.isModified("password")) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
   }
-  // Hash the password
-  const salt = await bcrypt.genSalt(10); // Salt rounds
-  this.password = await bcrypt.hash(this.password, salt);
 
-  // If it's a new user or email is being changed and not yet verified,
-  // ensure OTP fields are ready to be set by the controller.
-  // isEmailVerified should be false by default or set by controller.
-  if (this.isNew || this.isModified("email")) {
-    this.isEmailVerified = false; // Ensure verification status is reset if email changes
-    // OTP fields themselves will be set by the controller logic calling generateEmailVerificationOtp
+  // If an *existing* user's email is changed, they should re-verify.
+  // For new users, `isEmailVerified` is set by the controller after OTP.
+  // The default for `isEmailVerified` in the schema is `false`.
+  if (!this.isNew && this.isModified("email")) {
+    this.isEmailVerified = false;
+    this.emailVerificationOtp = undefined; // Clear old OTP if email changes
+    this.emailVerificationOtpExpires = undefined;
   }
   next();
 });
@@ -91,30 +90,24 @@ userSchema.pre("save", async function (next) {
 
 // Method to compare entered password with the hashed password in the database
 userSchema.methods.comparePassword = async function (enteredPassword) {
-  if (!this.password) return false; // Should not happen if password is required
+  if (!this.password) return false;
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Method to generate an email verification OTP
+// Method to generate an email verification OTP (used for existing unverified users)
 userSchema.methods.generateEmailVerificationOtp = function () {
   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
-
-  this.emailVerificationOtp = otp; // Store the plain OTP on the user document
+  this.emailVerificationOtp = otp;
   this.emailVerificationOtpExpires = Date.now() + 10 * 60 * 1000; // OTP valid for 10 minutes
-
-  // console.log(`Generated Email OTP for ${this.email}: ${otp}`); // For debugging
-  return otp; // Return plain OTP to be sent via email by the controller
+  return otp;
 };
 
 // Method to generate a password reset OTP
 userSchema.methods.generatePasswordResetOtp = function () {
   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
-
   this.passwordResetOtp = otp;
   this.passwordResetOtpExpires = Date.now() + 10 * 60 * 1000; // OTP valid for 10 minutes
-
-  // console.log(`Generated Password Reset OTP for ${this.email}: ${otp}`); // For debugging
-  return otp; // Return plain OTP
+  return otp;
 };
 
 const User = mongoose.model("User", userSchema);

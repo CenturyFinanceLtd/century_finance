@@ -1,17 +1,17 @@
 // frontend/src/main-component/SignUpPage/index.js
-import React, { useState, useEffect } from "react"; // Added useEffect
+import React, { useState, useRef } from "react"; // Removed useEffect as validator is stable with useRef
 import Grid from "@mui/material/Grid";
 import SimpleReactValidator from "simple-react-validator";
 import { toast } from "react-toastify";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress"; // For loading state
+import CircularProgress from "@mui/material/CircularProgress";
 
 import "./style.scss"; // Ensure your styles are correctly linked
 
 const SignUpPage = (props) => {
-  const navigate = useNavigate(); // Changed from push to navigate for React Router v6+
+  const navigate = useNavigate();
 
   const [value, setValue] = useState({
     email: "",
@@ -23,20 +23,21 @@ const SignUpPage = (props) => {
     universityOrCollege: "", // New field (optional)
   });
 
-  const [loading, setLoading] = useState(false); // For API call loading state
+  const [loading, setLoading] = useState(false);
 
-  // useEffect to initialize the validator.
   // Using a ref for the validator is often more stable with functional components.
-  const validator = React.useRef(
+  const validator = useRef(
     new SimpleReactValidator({
-      className: "errorMessage",
+      className: "errorMessage", // Class for styling validation messages
       validators: {
-        // Optional: Custom validator for phone number if needed
         phone: {
-          message: "Please enter a valid 10-digit phone number.",
-          rule: (val, params, validator) => {
+          // Custom phone validator
+          message:
+            "Please enter a valid 10-digit phone number starting with 6, 7, 8, or 9.",
+          rule: (val, params, validatorInstance) => {
+            // Renamed validator to validatorInstance to avoid conflict
             return (
-              validator.helpers.testRegex(val, /^[6-9]\d{9}$/i) &&
+              validatorInstance.helpers.testRegex(val, /^[6-9]\d{9}$/i) &&
               params.indexOf(val) === -1
             );
           },
@@ -47,25 +48,26 @@ const SignUpPage = (props) => {
 
   const changeHandler = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    // For immediate feedback, you can choose to show messages on change or blur
-    // validator.current.showMessages();
+    // Show message for the field being changed if it was already touched
+    if (validator.current.fields[e.target.name]) {
+      validator.current.showMessageFor(e.target.name);
+    }
   };
 
-  // To re-render and show messages after a field is touched and loses focus
+  // To show validation messages when a field loses focus
   const touchMessageHandler = (e) => {
     validator.current.showMessageFor(e.target.name);
-    // Force a re-render if necessary, though typically state change does this.
-    // If using a ref for validator, you might need to force update if messages don't show.
-    // For simplicity, we'll rely on validator.current.allValid() in submit.
+    // Force a re-render to ensure messages update if validator state doesn't trigger it
+    setValue((prev) => ({ ...prev }));
   };
 
   const submitForm = async (e) => {
     e.preventDefault();
     if (validator.current.allValid()) {
       setLoading(true);
-      validator.current.hideMessages();
+      validator.current.hideMessages(); // Hide all messages before new submission
 
-      const userData = {
+      const userDataForApi = {
         fullName: value.full_name,
         email: value.email,
         password: value.password,
@@ -76,7 +78,6 @@ const SignUpPage = (props) => {
       };
 
       try {
-        // Replace with your actual API endpoint
         const response = await fetch(
           "https://api.centuryfinancelimited.com/api/auth/signup",
           {
@@ -84,7 +85,7 @@ const SignUpPage = (props) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(userData),
+            body: JSON.stringify(userDataForApi),
           }
         );
 
@@ -95,8 +96,30 @@ const SignUpPage = (props) => {
           toast.success(
             data.message || "OTP sent to your email! Please verify."
           );
-          // Navigate to OTP verification page, passing the email
-          navigate("/verify-otp", { state: { email: value.email } });
+
+          // Data to pass to the OTP verification page
+          // For new users, we pass all submitted data so it can be used to create the final user record
+          // For existing unverified users, only email and action might be strictly needed by OTP page,
+          // but backend's signup response gives `action` which helps OTP page decide.
+          const signupDataForOtpPage = {
+            fullName: value.full_name,
+            password: value.password, // Send plain password for final registration step
+            phoneNumber: value.phoneNumber,
+            fatherName: value.fatherName,
+            universityOrCollege: value.universityOrCollege,
+          };
+
+          navigate("/verify-otp", {
+            state: {
+              email: value.email,
+              action: data.data?.action, // 'verifyNewUser' or 'verifyExistingUser'
+              // Only pass full signupData if the backend indicates it's for a new user verification
+              signupData:
+                data.data?.action === "verifyNewUser"
+                  ? signupDataForOtpPage
+                  : null,
+            },
+          });
         } else {
           toast.error(data.message || "Signup failed. Please try again.");
         }
@@ -106,7 +129,7 @@ const SignUpPage = (props) => {
         toast.error("An error occurred during signup. Please try again.");
       }
     } else {
-      validator.current.showMessages();
+      validator.current.showMessages(); // Show all validation errors
       toast.error("Please fill all required fields correctly.");
     }
   };
@@ -128,8 +151,17 @@ const SignUpPage = (props) => {
                 name="full_name"
                 label="Full Name"
                 InputLabelProps={{ shrink: true }}
-                onBlur={touchMessageHandler} // Show message on blur
+                onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                error={
+                  validator.current.message(
+                    "full_name",
+                    value.full_name,
+                    "required|alpha_space"
+                  )
+                    ? true
+                    : false
+                }
               />
               {validator.current.message(
                 "full_name",
@@ -149,6 +181,15 @@ const SignUpPage = (props) => {
                 InputLabelProps={{ shrink: true }}
                 onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                error={
+                  validator.current.message(
+                    "email",
+                    value.email,
+                    "required|email"
+                  )
+                    ? true
+                    : false
+                }
               />
               {validator.current.message(
                 "email",
@@ -160,7 +201,7 @@ const SignUpPage = (props) => {
               <TextField
                 className="inputOutline"
                 fullWidth
-                type="tel" // Use type="tel" for phone numbers
+                type="tel"
                 placeholder="Phone Number"
                 value={value.phoneNumber}
                 variant="outlined"
@@ -169,8 +210,16 @@ const SignUpPage = (props) => {
                 InputLabelProps={{ shrink: true }}
                 onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                error={
+                  validator.current.message(
+                    "phoneNumber",
+                    value.phoneNumber,
+                    "required|phone"
+                  )
+                    ? true
+                    : false
+                }
               />
-              {/* Using custom phone validator or a simple required numeric */}
               {validator.current.message(
                 "phoneNumber",
                 value.phoneNumber,
@@ -189,6 +238,15 @@ const SignUpPage = (props) => {
                 InputLabelProps={{ shrink: true }}
                 onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                error={
+                  validator.current.message(
+                    "fatherName",
+                    value.fatherName,
+                    "required|alpha_space"
+                  )
+                    ? true
+                    : false
+                }
               />
               {validator.current.message(
                 "fatherName",
@@ -206,11 +264,19 @@ const SignUpPage = (props) => {
                 name="universityOrCollege"
                 label="University/College Name"
                 InputLabelProps={{ shrink: true }}
-                onBlur={touchMessageHandler} // Still good to have for consistency if you add rules later
+                onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                // Optional field, so error prop might not be needed unless specific validation is added
+                error={
+                  validator.current.message(
+                    "universityOrCollege",
+                    value.universityOrCollege,
+                    "alpha_space"
+                  )
+                    ? true
+                    : false
+                }
               />
-              {/* No validation message shown if it's truly optional and has no rules */}
-              {/* If you add rules like 'alpha_space', it will show if invalid */}
               {validator.current.message(
                 "universityOrCollege",
                 value.universityOrCollege,
@@ -222,7 +288,7 @@ const SignUpPage = (props) => {
                 className="inputOutline"
                 fullWidth
                 type="password"
-                placeholder="Password (min 6 chars)"
+                placeholder="Password (min 6 characters)"
                 value={value.password}
                 variant="outlined"
                 name="password"
@@ -230,6 +296,15 @@ const SignUpPage = (props) => {
                 InputLabelProps={{ shrink: true }}
                 onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                error={
+                  validator.current.message(
+                    "password",
+                    value.password,
+                    "required|min:6"
+                  )
+                    ? true
+                    : false
+                }
               />
               {validator.current.message(
                 "password",
@@ -243,13 +318,22 @@ const SignUpPage = (props) => {
                 fullWidth
                 type="password"
                 placeholder="Confirm Password"
-                value={value.confirm_password} // Corrected to use confirm_password state
+                value={value.confirm_password} // Ensure this is value.confirm_password
                 variant="outlined"
                 name="confirm_password"
                 label="Confirm Password"
                 InputLabelProps={{ shrink: true }}
                 onBlur={touchMessageHandler}
                 onChange={changeHandler}
+                error={
+                  validator.current.message(
+                    "confirm_password",
+                    value.confirm_password,
+                    `required|in:${value.password}`
+                  )
+                    ? true
+                    : false
+                }
               />
               {validator.current.message(
                 "confirm_password",
@@ -263,20 +347,17 @@ const SignUpPage = (props) => {
                   fullWidth
                   className="cBtn cBtnLarge cBtnTheme"
                   type="submit"
-                  disabled={loading}>
+                  disabled={loading}
+                  variant="contained" // Added for better MUI styling
+                  color="primary" // Added for better MUI styling
+                >
                   {loading ? (
-                    <CircularProgress size={24} color="inherit" />
+                    <CircularProgress size={24} style={{ color: "white" }} />
                   ) : (
                     "Sign Up"
                   )}
                 </Button>
               </Grid>
-              {/* Social login buttons can be implemented later */}
-              {/* <Grid className="loginWithSocial">
-                                <Button className="facebook"><i className="fa fa-facebook"></i></Button>
-                                <Button className="twitter"><i className="fa fa-twitter"></i></Button>
-                                <Button className="linkedin"><i className="fa fa-linkedin"></i></Button>
-                            </Grid> */}
               <p className="noteHelp">
                 Already have an account?{" "}
                 <Link to="/login">Return to Sign In</Link>
@@ -285,7 +366,8 @@ const SignUpPage = (props) => {
           </Grid>
         </form>
         <div className="shape-img">
-          <i className="fi flaticon-honeycomb"></i>
+          <i className="fi flaticon-honeycomb"></i>{" "}
+          {/* Ensure flaticon is set up */}
         </div>
       </Grid>
     </Grid>
