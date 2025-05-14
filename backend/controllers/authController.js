@@ -529,3 +529,102 @@ exports.resetPassword = async (req, res, next) => {
       });
   }
 };
+
+
+// --- NEW FUNCTIONS FOR PROFILE UPDATE ---
+
+/**
+ * @desc    Update current logged-in user's details (name, phone, fatherName, college)
+ * @route   PATCH /api/auth/update-my-details
+ * @access  Protected
+ */
+exports.updateMyDetails = async (req, res, next) => {
+  try {
+      const { fullName, phoneNumber, fatherName, universityOrCollege } = req.body;
+
+      // Email cannot be updated here to avoid re-verification complexities in this simple update.
+      // Create a separate flow if email change with verification is needed.
+
+      const fieldsToUpdate = {};
+      if (fullName) fieldsToUpdate.fullName = fullName;
+      if (phoneNumber) fieldsToUpdate.phoneNumber = phoneNumber;
+      if (fatherName) fieldsToUpdate.fatherName = fatherName;
+      // Allow unsetting universityOrCollege by passing empty string or handle explicitly
+      if (universityOrCollege !== undefined) fieldsToUpdate.universityOrCollege = universityOrCollege;
+
+
+      if (Object.keys(fieldsToUpdate).length === 0) {
+          return res.status(400).json({ status: 'fail', message: 'Please provide at least one field to update.' });
+      }
+
+      const updatedUser = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+          new: true, // Return the modified document rather than the original
+          runValidators: true, // Ensure schema validations are run
+      }).select('-password'); // Exclude password from the returned user object
+
+      if (!updatedUser) {
+          return res.status(404).json({ status: 'fail', message: 'User not found.' });
+      }
+
+      res.status(200).json({
+          status: 'success',
+          data: {
+              user: updatedUser,
+          },
+      });
+  } catch (error) {
+      console.error("Update Details Controller Error:", error);
+      if (error.name === 'ValidationError') {
+          const messages = Object.values(error.errors).map(val => val.message);
+          return res.status(400).json({ status: 'fail', message: messages.join('. ') });
+      }
+      res.status(500).json({ status: 'error', message: 'Something went wrong updating details.', errorDetails: error.message });
+  }
+};
+
+
+/**
+* @desc    Update current logged-in user's password
+* @route   PATCH /api/auth/update-my-password
+* @access  Protected
+*/
+exports.updateMyPassword = async (req, res, next) => {
+  try {
+      const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
+      if (!currentPassword || !newPassword || !confirmNewPassword) {
+          return res.status(400).json({ status: 'fail', message: 'Please provide current password, new password, and confirm new password.' });
+      }
+
+      if (newPassword !== confirmNewPassword) {
+          return res.status(400).json({ status: 'fail', message: 'New passwords do not match.' });
+      }
+
+      if (newPassword.length < 6) {
+          return res.status(400).json({ status: 'fail', message: 'New password must be at least 6 characters long.' });
+      }
+
+      // 1) Get user from collection (req.user is set by protect middleware, but doesn't have password)
+      const user = await User.findById(req.user.id).select('+password');
+
+      // 2) Check if posted current password is correct
+      if (!user || !(await user.comparePassword(currentPassword))) {
+          return res.status(401).json({ status: 'fail', message: 'Your current password is incorrect.' });
+      }
+
+      // 3) If so, update password
+      user.password = newPassword; // The pre('save') hook in User model will hash it
+      await user.save(); // This will trigger the pre-save hook
+
+      // 4) Log user in, send new JWT
+      createSendToken(user, 200, res);
+
+  } catch (error) {
+      console.error("Update Password Controller Error:", error);
+      if (error.name === 'ValidationError') {
+          const messages = Object.values(error.errors).map(val => val.message);
+          return res.status(400).json({ status: 'fail', message: messages.join('. ') });
+      }
+      res.status(500).json({ status: 'error', message: 'Something went wrong updating password.', errorDetails: error.message });
+  }
+};
