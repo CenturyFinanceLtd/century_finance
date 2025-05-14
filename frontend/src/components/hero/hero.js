@@ -35,8 +35,8 @@ const Hero = () => {
       <div className="hero-container">
         <div className="hero-inner">
           <div className="container-fluid">
-            <div className="">
-              <div className="row">
+            <div className="banner_m">
+              <div className="row1">
                 <div className="col-md-6 hero-content">
                   <div data-swiper-parallax="300" className="slide-title-sub">
                     <span>Find Your Perfect Tutor</span>
