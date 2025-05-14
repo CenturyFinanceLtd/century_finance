@@ -88,7 +88,7 @@ const Hero = () => {
           <div className="hero-inner">
             <div className="container-fluid">
               <div className="">
-                <div className="row">
+                <div className="row1">
                   <div className="col-md-6 hero-content">
                     <div data-swiper-parallax="300" className="slide-title-sub">
                       <span>Find Your Perfect Tutor</span>
