@@ -102,7 +102,7 @@ const AllRoute = () => {
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="online-courses" element={<OnlineCourses />} />
           <Route path="training-program" element={<TrainingProgram />} />
-          <Route path="Portfolio" element={<Portfolio />} />
+          <Route path="portfolio" element={<Portfolio />} />
           <Route path="finance" element={<Finance />} />
           <Route path="investment-plan" element={<InvestmentPlan />} />
           <Route

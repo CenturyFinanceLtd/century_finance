@@ -100,14 +100,26 @@ const BasicPlan = (props) => {
                 Trains you to think like a market professional</p>
               <h3 className="fw-bold">📢 Important Note:</h3>
               <p><strong>
-                <h6>This programme is exclusively for final-year students to ensure focused training and peer learning.
-                  🎯Only a limited number of seats are offered each batch for quality mentorship.</h6>
-                Enroll Now- Start Your Career Ahead of the Curve
-                Contact: [8815532159]
-                Email: [customerservice@centuryfinancelimited.com,general-inquiry@centuryfinancelimited.com]
-                Website: []
-              </strong>
-              </p>
+                This programme is exclusively for final-year students to ensure focused training and peer learning.
+                🎯Only a limited number of seats are offered each batch for quality mentorship.</strong></p>
+              <ul>
+                <li className="mb-4"><strong>Enroll Now- Start Your Career Ahead of the Curve</strong></li>
+                {/* <li><strong>Contact:</strong> [8815532159]</li> */}
+                <li><strong>Email:</strong>{' '}
+                  <a href="mailto:customerservice@centuryfinancelimited.com" onClick={ClickHandler} target="_blank" rel="noopener noreferrer">
+                    customerservice@centuryfinancelimited.com
+                  </a>{' , '}
+                  <a href="mailto:general-inquiry@centuryfinancelimited.com" onClick={ClickHandler} target="_blank" rel="noopener noreferrer">
+                    general-inquiry@centuryfinancelimited.com
+                  </a>
+                </li>
+                <li>
+                  <strong>Website:</strong>{' '}
+                  <a href="https://centuryfinancelimited.com/" onClick={ClickHandler} target="_blank" rel="noopener noreferrer">
+                    centuryfinancelimited.com
+                  </a>
+                </li>
+              </ul>
               <Link onClick={ClickHandler} to="/about" className="theme-btn-s2">
                 Learn More About Basic Plan
               </Link>
