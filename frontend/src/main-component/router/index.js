@@ -46,7 +46,7 @@ import SubscriptionPlan from "../SubscriptionPlan/SubscriptionPlan";
 import Investment from "../Investment/Investment";
 import FinanceService from "../FinanceService/FinanceService";
 import VerifyOtpPage from "../SignUpPage/VerifyOtpPage";
-
+import EditProfilePage from "../EditProfilePage";
 const AllRoute = () => {
 
   return (
@@ -112,6 +112,7 @@ const AllRoute = () => {
           <Route path="investment" element={<Investment />} />
           <Route path="finance-service" element={<FinanceService />} />
           <Route path="/verify-otp" element={<VerifyOtpPage />} />
+          <Route path="/edit-profile" element={<EditProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,17 +1,105 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import MobileMenu from "../MobileMenu/MobileMenu";
-import Logo from "../../images/logo.png";
-import HeaderTopbar from "../HeaderTopbar/HeaderTopbar";
+// frontend/src/components/header/Header.js (or Navbar.js)
+import React, { useState, useEffect, useRef } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../store/actions/authActions";
+import MobileMenu from "../MobileMenu/MobileMenu"; // Corrected path assuming it's in the same components folder
+import Logo from "../../images/logo.png"; // Your existing logo
+import HeaderTopbar from "../HeaderTopbar/HeaderTopbar"; // Corrected path
+import {
+  FaUserCircle,
+  FaChevronDown,
+  FaEdit,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import Button from "@mui/material/Button"; // MUI Button import added
+
+// Styles for the dropdown - consider moving to your SCSS file
+const dropdownStyles = {
+  position: "absolute",
+  top: "calc(100% + 10px)",
+  right: 0,
+  backgroundColor: "white",
+  border: "1px solid #e0e0e0",
+  borderRadius: "8px",
+  boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+  zIndex: 1000,
+  minWidth: "220px",
+  overflow: "hidden",
+};
+
+const dropdownItemStyles = {
+  display: "flex",
+  alignItems: "center",
+  padding: "12px 20px",
+  textDecoration: "none",
+  color: "#333",
+  cursor: "pointer",
+  borderBottom: "1px solid #f0f0f0",
+  fontSize: "15px",
+  transition: "background-color 0.2s ease",
+};
+
+const dropdownHeaderStyles = {
+  padding: "15px 20px",
+  borderBottom: "1px solid #e0e0e0",
+  backgroundColor: "#f8f9fa",
+  color: "#495057",
+  fontSize: "14px",
+  lineHeight: "1.4",
+};
 
 const Header = (props) => {
-  const [menuActive, setMenuState] = useState(false);
+  const [menuActive, setMenuState] = useState(false); // For your existing search toggle
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const { isAuthenticated, user: authUser } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const SubmitHandler = (e) => {
     e.preventDefault();
   };
 
   const ClickHandler = () => {
     window.scrollTo(10, 0);
+    setProfileDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
+  useEffect(() => {
+    setProfileDropdownOpen(false);
+  }, [location.pathname]);
+
+  const toggleProfileDropdown = (e) => {
+    e.stopPropagation();
+    setProfileDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    setProfileDropdownOpen(false);
+    navigate("/");
+  };
+
+  const handleEditProfile = () => {
+    navigate("/edit-profile");
+    setProfileDropdownOpen(false);
   };
 
   return (
@@ -41,59 +129,29 @@ const Header = (props) => {
                     <i className="ti-close"></i>
                   </button>
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
-                    {/* <li>
-                      <Link onClick={ClickHandler} to="/">
-                        Home
-                      </Link>
-                    </li> */}
-                    {/* <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="/">
-                        Home
-                      </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/home">
-                            Home Style 1
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/home-2">
-                            Home Style 2
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/home-3">
-                            Home Style 3
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/home-4">
-                            Home Style 4
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/home-5">
-                            Home Style 5
-                          </Link>
-                        </li>
-                      </ul>
-                    </li> */}
                     <li>
-                      <Link onClick={ClickHandler} to="/about">
+                      <NavLink
+                        onClick={ClickHandler}
+                        to="/about"
+                        className={({ isActive }) =>
+                          isActive ? "current-menu-item" : ""
+                        }>
                         About
-                      </Link>
+                      </NavLink>
                     </li>
-
                     <li>
-                      <Link onClick={ClickHandler} to="/contact">
+                      <NavLink
+                        onClick={ClickHandler}
+                        to="/contact"
+                        className={({ isActive }) =>
+                          isActive ? "current-menu-item" : ""
+                        }>
                         Contact
-                      </Link>
+                      </NavLink>
                     </li>
-
                     <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="">
-                        Customer Services &nbsp;{" "}
-                        <i className="ti-angle-down"></i>
+                      <Link onClick={ClickHandler} to="#">
+                        Customer Services <i className="ti-angle-down"></i>
                       </Link>
                       <ul className="sub-menu">
                         <li>
@@ -117,16 +175,17 @@ const Header = (props) => {
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/calls-subscription-plan">
+                          <Link
+                            onClick={ClickHandler}
+                            to="/calls-subscription-plan">
                             Calls Subscription Plan
                           </Link>
                         </li>
                       </ul>
                     </li>
-
-                    <li>
-                      <Link onClick={ClickHandler} to="">
-                        Markets &nbsp; <i className="ti-angle-down"></i>
+                    <li className="menu-item-has-children">
+                      <Link onClick={ClickHandler} to="#">
+                        Markets <i className="ti-angle-down"></i>
                       </Link>
                       <ul className="sub-menu">
                         <li>
@@ -156,182 +215,21 @@ const Header = (props) => {
                         </li>
                       </ul>
                     </li>
-
                     <li>
                       <Link onClick={ClickHandler} to="/investment">
                         Investment
                       </Link>
                     </li>
-
                     <li>
                       <Link onClick={ClickHandler} to="/finance-services">
                         Finance
                       </Link>
                     </li>
-
                     <li>
-                      <Link onClick={ClickHandler} to="">
+                      <Link onClick={ClickHandler} to="/blog">
                         Blog
                       </Link>
                     </li>
-
-                    {/* <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="/">
-                        Online Training Course
-                      </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/blog">
-                            Blog right sidebar
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/blog-left-sidebar">
-                            Blog left sidebar
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/blog-fullwidth">
-                            Blog fullwidth
-                          </Link>
-                        </li>
-                        <li className="menu-item-has-children">
-                          <Link onClick={ClickHandler} to="/">
-                            Blog details
-                          </Link>
-                          <ul className="sub-menu">
-                            <li>
-                              <Link
-                                onClick={ClickHandler}
-                                to="/blog-single/Become-a-great-WordPress-&-PHP-developer.">
-                                Blog details right sidebar
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                onClick={ClickHandler}
-                                to="/blog-single-left-sidebar/Become-a-great-WordPress-&-PHP-developer.">
-                                Blog details left sidebar
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                onClick={ClickHandler}
-                                to="/blog-single-fullwidth/Become-a-great-WordPress-&-PHP-developer.">
-                                Blog details fullwidth
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="/">
-                        Shop
-                      </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/shop">
-                            Shop
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={ClickHandler}
-                            to="/product-single/Principles-and-Policies">
-                            Shop Single
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/cart">
-                            Cart
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/checkout">
-                            Checkout
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="/">
-                        Pages
-                      </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/lesson">
-                            Lesson
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/gallery">
-                            Gallery
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/testimonial">
-                            Testimonial
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/teacher">
-                            Teachers
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={ClickHandler}
-                            to="/team-single/Courtney-Henry">
-                            Teacher Single
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/become-teacher">
-                            Become Teacher
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/faq">
-                            FAQ
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/404">
-                            404 Error
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="/">
-                        Course
-                      </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/course">
-                            Courses Style 1
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/course-2">
-                            Courses Style 2
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/course-3">
-                            Courses Style 3
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={ClickHandler}
-                            to="/course-single/Learn-WordPress-&-Elementor-for-Beginners">
-                            Courses single
-                          </Link>
-                        </li>
-                      </ul>
-                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -366,23 +264,118 @@ const Header = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className="close-form">
-                    <Link onClick={ClickHandler} className="login" to="/login">
-                      <span className="text">Sign In</span>
-                      <span className="mobile">
-                        <i className="fi flaticon-charity"></i>
-                      </span>
-                    </Link>
-                    <Link
-                      onClick={ClickHandler}
-                      className="theme-btn"
-                      to="/register">
-                      <span className="text">Sign Up</span>
-                      <span className="mobile">
-                        <i className="fi flaticon-charity"></i>
-                      </span>
-                    </Link>
-                  </div>
+                  {isAuthenticated && authUser ? (
+                    <div
+                      className="user-profile-section"
+                      ref={dropdownRef}
+                      style={{ position: "relative", marginLeft: "15px" }}>
+                      <Button
+                        onClick={toggleProfileDropdown}
+                        aria-controls="profile-menu"
+                        aria-haspopup="true"
+                        style={{
+                          textTransform: "none",
+                          color: "#333",
+                          padding: "8px",
+                          minWidth: "auto",
+                        }}>
+                        <FaUserCircle
+                          size={28}
+                          style={{ color: "#555", marginRight: "8px" }}
+                        />
+                        <span
+                          style={{
+                            fontWeight: 500,
+                            color: "#333",
+                            display: "inline-block",
+                            maxWidth: "100px",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                          }}>
+                          {authUser.fullName?.split(" ")[0] || "Profile"}
+                        </span>
+                        <FaChevronDown
+                          size={16}
+                          style={{
+                            marginLeft: "5px",
+                            color: "#555",
+                            transform: profileDropdownOpen
+                              ? "rotate(180deg)"
+                              : "rotate(0deg)",
+                            transition: "transform 0.3s ease",
+                          }}
+                        />
+                      </Button>
+                      {profileDropdownOpen && (
+                        <div
+                          className="profile-dropdown-menu"
+                          style={dropdownStyles}>
+                          <div style={dropdownHeaderStyles}>
+                            Signed in as <br />
+                            <strong>{authUser.fullName}</strong>
+                          </div>
+                          <div
+                            onClick={handleEditProfile}
+                            style={{ ...dropdownItemStyles }}
+                            onMouseEnter={(e) =>
+                              (e.currentTarget.style.backgroundColor =
+                                "#f0f0f0")
+                            }
+                            onMouseLeave={(e) =>
+                              (e.currentTarget.style.backgroundColor =
+                                "transparent")
+                            }>
+                            <FaEdit
+                              style={{ marginRight: "10px", color: "#555" }}
+                            />{" "}
+                            Edit Profile
+                          </div>
+                          <div
+                            onClick={handleLogout}
+                            style={{
+                              ...dropdownItemStyles,
+                              borderBottom: "none",
+                            }}
+                            onMouseEnter={(e) =>
+                              (e.currentTarget.style.backgroundColor =
+                                "#f0f0f0")
+                            }
+                            onMouseLeave={(e) =>
+                              (e.currentTarget.style.backgroundColor =
+                                "transparent")
+                            }>
+                            <FaSignOutAlt
+                              style={{ marginRight: "10px", color: "#555" }}
+                            />{" "}
+                            Logout
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="close-form" style={{ marginLeft: "15px" }}>
+                      <Link
+                        onClick={ClickHandler}
+                        className="login"
+                        to="/login"
+                        style={{ marginRight: "10px" }}>
+                        <span className="text">Sign In</span>
+                        <span className="mobile">
+                          <i className="fi flaticon-charity"></i>
+                        </span>
+                      </Link>
+                      <Link
+                        onClick={ClickHandler}
+                        className="theme-btn"
+                        to="/register">
+                        <span className="text">Sign Up</span>
+                        <span className="mobile">
+                          <i className="fi flaticon-charity"></i>
+                        </span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
-// frontend/src/main-component/LoginPage/index.js (or your file path)
-import React, { useState, useRef, useEffect } from "react"; // Added useRef, useEffect
+// frontend/src/main-component/LoginPage/index.js
+import React, { useState, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import SimpleReactValidator from "simple-react-validator";
 import { toast } from "react-toastify";
@@ -9,14 +9,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useDispatch } from "react-redux"; // Import useDispatch
+import { loginSuccess } from "../../store/actions/authActions"; // Import your loginSuccess action
 
 import "./style.scss"; // Your existing styles
 
 const LoginPage = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Initialize useDispatch
 
   const [value, setValue] = useState({
-    email: "", // Start with empty fields for better UX
+    email: "",
     password: "",
     remember: false,
   });
@@ -32,10 +35,6 @@ const LoginPage = (props) => {
   // Handles changes in input fields
   const changeHandler = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    // Optionally, trigger validation message display on change:
-    // if (validator.current.fields[e.target.name]) {
-    //    validator.current.showMessageFor(e.target.name);
-    // }
   };
 
   // Handles the "Remember Me" checkbox
@@ -80,19 +79,11 @@ const LoginPage = (props) => {
         if (response.ok && data.status === "success" && data.token) {
           toast.success("Login successful!");
 
-          // Store authentication token and user data in localStorage
-          // Note: For higher security, consider HttpOnly cookies set by the backend.
-          localStorage.setItem("authToken", data.token);
-          localStorage.setItem("authUser", JSON.stringify(data.data.user));
+          // Dispatch loginSuccess action to update Redux state and localStorage
+          dispatch(loginSuccess(data.data.user, data.token));
 
-          // TODO: IMPORTANT - Update global application state (e.g., using Context API or Redux)
-          // This will allow other components (like your Header) to know the user is logged in.
-          // Example: authContext.login(data.data.user, data.token);
-
-          // Clear form fields (optional, as navigating away)
-          setValue({ email: "", password: "", remember: false });
-
-          navigate("/home"); // Navigate to the home page or user dashboard
+          setValue({ email: "", password: "", remember: false }); // Clear form
+          navigate("/home"); // Navigate to home or dashboard
         } else {
           // Display error message from backend or a generic one
           toast.error(
@@ -194,7 +185,9 @@ const LoginPage = (props) => {
                   fullWidth
                   className="cBtnTheme cBtnLarge"
                   type="submit"
-                  disabled={loading}>
+                  disabled={loading}
+                  variant="contained"
+                  color="primary">
                   {loading ? (
                     <CircularProgress size={24} style={{ color: "white" }} />
                   ) : (
@@ -202,13 +195,6 @@ const LoginPage = (props) => {
                   )}
                 </Button>
               </Grid>
-              {/* Social login buttons can be implemented later if needed */}
-              {/* <Grid className="loginWithSocial">
-                                <Button className="facebook"><i className="fa fa-facebook"></i></Button>
-                                <Button className="twitter"><i className="fa fa-twitter"></i></Button>
-                                <Button className="linkedin"><i className="fa fa-linkedin"></i></Button>
-                            </Grid> 
-                            */}
               <p className="noteHelp">
                 Don't have an account?{" "}
                 <Link to="/register">Create free account</Link>
