@@ -28,7 +28,7 @@ const pendingUserSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: "30m", // Automatically delete this temporary record after 30 minutes
+    expires: "30m", // Automatically delete this temporary record after 30 minutes (adjust as needed)
   },
 });
 

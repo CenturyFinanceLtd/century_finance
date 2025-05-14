@@ -11,6 +11,7 @@ const signToken = (id) => {
     console.error(
       "🔴 JWT_SECRET or JWT_EXPIRES_IN is not defined in .env file! Cannot sign token."
     );
+    // This will cause jwt.sign to fail if env vars are missing.
   }
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -21,6 +22,7 @@ const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
   const userOutput = { ...user.toObject() };
   delete userOutput.password;
+  // Clear any OTP fields from the final user object sent to client
   delete userOutput.emailVerificationOtp;
   delete userOutput.emailVerificationOtpExpires;
   delete userOutput.passwordResetOtp;
@@ -85,6 +87,7 @@ exports.signup = async (req, res) => {
         });
     }
 
+    // Check if email is already registered AND verified in the main User table
     const existingVerifiedUser = await User.findOne({
       email,
       isEmailVerified: true,
@@ -99,17 +102,17 @@ exports.signup = async (req, res) => {
         });
     }
 
-    // Handle existing but unverified user in the main User table (resend OTP to them)
+    // Check if email exists in the main User table but is NOT verified
     const existingUnverifiedUser = await User.findOne({
       email,
       isEmailVerified: false,
     });
     if (existingUnverifiedUser) {
       console.log(
-        `Email ${email} exists in User table but not verified. Resending OTP.`
+        `Email ${email} exists in User table but not verified. Resending OTP to existing User record.`
       );
       const newOtp = existingUnverifiedUser.generateEmailVerificationOtp(); // Method on User model
-      await existingUnverifiedUser.save({ validateBeforeSave: false }); // Save new OTP details to User
+      await existingUnverifiedUser.save({ validateBeforeSave: true }); // Save new OTP details to User
 
       const message = `Your One-Time Password (OTP) for Century Finance email verification is: ${newOtp}\nThis OTP is valid for 10 minutes.`;
       const emailSent = await sendEmail({
@@ -120,6 +123,7 @@ exports.signup = async (req, res) => {
       });
 
       if (!emailSent) {
+        // Don't clear OTP fields here, as the user might try again.
         return res
           .status(500)
           .json({
@@ -131,29 +135,29 @@ exports.signup = async (req, res) => {
       return res.status(200).json({
         status: "success",
         message: "This email is pending verification. A new OTP has been sent.",
-        data: { email: existingUnverifiedUser.email, existingUnverified: true }, // Flag for frontend
+        data: { email: existingUnverifiedUser.email, action: "verifyExisting" }, // Flag for frontend
       });
     }
 
-    // If email does not exist in User table, it's a completely new registration attempt.
+    // If email does not exist in User table at all, it's a completely new registration attempt.
     // Store data temporarily in PendingUser collection.
     console.log(
-      `New registration attempt for ${email}. Generating OTP and storing temporarily.`
+      `New registration attempt for ${email}. Generating OTP and storing temporarily in PendingUser.`
     );
     const plainOtp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
     const salt = await bcrypt.genSalt(10);
-    const hashedOtp = await bcrypt.hash(plainOtp, salt);
+    const hashedOtpForPending = await bcrypt.hash(plainOtp, salt);
     const hashedPasswordForPending = await bcrypt.hash(password, salt); // Hash password for temporary storage
 
-    // Delete any previous pending registration for this email
+    // Delete any previous pending registration for this email to ensure only one is active
     await PendingUser.deleteMany({ email });
 
     const pendingUser = new PendingUser({
       email,
-      otp: hashedOtp, // Store hashed OTP
+      otp: hashedOtpForPending,
       otpExpires: Date.now() + 15 * 60 * 1000, // OTP valid for 15 minutes
       fullName,
-      hashedPassword: hashedPasswordForPending, // Store pre-hashed password
+      hashedPassword: hashedPasswordForPending,
       phoneNumber,
       fatherName,
       universityOrCollege: universityOrCollege || "",
@@ -183,7 +187,7 @@ exports.signup = async (req, res) => {
       status: "success",
       message:
         "OTP sent to your email. Please verify to complete registration.",
-      data: { email },
+      data: { email, action: "verifyNew" }, // Flag for frontend
     });
   } catch (error) {
     console.error("Signup Controller Error:", error);
@@ -198,12 +202,14 @@ exports.signup = async (req, res) => {
 };
 
 /**
- * @desc    Verify OTP and Complete Registration (for new users) OR Verify existing unverified user.
+ * @desc    Verify OTP and Complete Registration (for new users from PendingUser)
+ * OR Verify OTP for existing unverified user from User table.
  * @route   POST /api/auth/verify-otp
  * @access  Public
  */
 exports.verifyOtpAndCompleteRegistration = async (req, res) => {
   try {
+    // For new user registration completion, frontend MUST send all original signup data again.
     const {
       email,
       otp,
@@ -211,7 +217,7 @@ exports.verifyOtpAndCompleteRegistration = async (req, res) => {
       password,
       phoneNumber,
       fatherName,
-      universityOrCollege,
+      universityOrCollege, // These are for new user creation
     } = req.body;
 
     if (!email || !otp) {
@@ -223,7 +229,7 @@ exports.verifyOtpAndCompleteRegistration = async (req, res) => {
     // Scenario 1: Check if this OTP is for an existing but unverified user in the MAIN User table
     let user = await User.findOne({
       email,
-      emailVerificationOtp: otp, // Assumes User model stores plain OTP for this flow
+      emailVerificationOtp: otp, // User model stores plain OTP for its own verification flow
       emailVerificationOtpExpires: { $gt: Date.now() },
     });
 
@@ -255,7 +261,7 @@ exports.verifyOtpAndCompleteRegistration = async (req, res) => {
         });
     }
 
-    const isOtpValid = await pendingUser.compareOtp(otp); // Use compareOtp method from PendingUser model
+    const isOtpValid = await pendingUser.compareOtp(otp); // Compare submitted OTP with hashed OTP in PendingUser
 
     if (!isOtpValid) {
       return res
@@ -267,8 +273,7 @@ exports.verifyOtpAndCompleteRegistration = async (req, res) => {
     }
 
     // OTP is valid for a new registration. Now create the user in the main User collection.
-    // All necessary data should have been sent again from the client or was stored in PendingUser.
-    // Here, we expect client to resend all data.
+    // Ensure all required fields for user creation are present from the request.
     if (!fullName || !password || !phoneNumber || !fatherName) {
       return res
         .status(400)
@@ -289,48 +294,33 @@ exports.verifyOtpAndCompleteRegistration = async (req, res) => {
     }
 
     console.log(
-      `OTP verified for new user ${email}. Creating user in main User table.`
+      `OTP verified for new user ${email}. Creating user in main User table from PendingUser data.`
     );
+    // Create the new user using the data sent in THIS request, as PendingUser only had hashed password.
+    // The password sent here will be hashed by the User model's pre-save hook.
     const newUser = new User({
-      fullName: pendingUser.fullName, // Use data from pendingUser store
-      email: pendingUser.email,
-      password: pendingUser.hashedPassword, // Use the pre-hashed password from pending store
-      phoneNumber: pendingUser.phoneNumber,
-      fatherName: pendingUser.fatherName,
-      universityOrCollege: pendingUser.universityOrCollege,
+      fullName,
+      email,
+      password, // Plain password from request, will be hashed by User model
+      phoneNumber,
+      fatherName,
+      universityOrCollege: universityOrCollege || "",
       isEmailVerified: true, // Mark as verified now
     });
-    // IMPORTANT: The User model's pre-save hook will try to re-hash 'password'.
-    // Since we are setting 'password' with an already hashed value,
-    // we need to tell mongoose it's not modified in the traditional sense if we want to avoid double hashing,
-    // OR ensure the pre-save hook only runs if `this.isModified('password')` and the password field is not already a hash.
-    // A simpler way for this flow: User model's pre-save hook hashes `password`.
-    // So, we should pass the PLAIN password again from client, or store plain password in PendingUser (less secure).
-    // Let's assume client resends plain password and User model handles hashing.
 
-    const finalNewUser = new User({
-      fullName: fullName || pendingUser.fullName, // Prioritize fresh data from client if available
-      email: email, // From request
-      password: password, // From request, will be hashed by User model's pre-save
-      phoneNumber: phoneNumber || pendingUser.phoneNumber,
-      fatherName: fatherName || pendingUser.fatherName,
-      universityOrCollege:
-        universityOrCollege || pendingUser.universityOrCollege || "",
-      isEmailVerified: true,
-    });
-
-    await finalNewUser.save();
+    await newUser.save();
 
     // Delete the pending user record as it's now processed
     await PendingUser.deleteOne({ _id: pendingUser._id });
 
-    createSendToken(finalNewUser, 201, res); // 201 for resource created
+    createSendToken(newUser, 201, res); // 201 for resource created
   } catch (error) {
     console.error(
       "Verify OTP & Complete Registration Controller Error:",
       error
     );
     if (error.code === 11000) {
+      // Duplicate key error if email got created in User table concurrently
       return res
         .status(400)
         .json({
@@ -355,7 +345,7 @@ exports.verifyOtpAndCompleteRegistration = async (req, res) => {
   }
 };
 
-// --- LOGIN --- (Remains the same, checking isEmailVerified)
+// --- LOGIN --- (Remains the same)
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -576,6 +566,3 @@ exports.resetPassword = async (req, res, next) => {
       });
   }
 };
-
-// Remove or repurpose the old verifyEmailOtp if verifyOtpAndCompleteRegistration covers all cases
-// exports.verifyEmailOtp = ... (old function)
