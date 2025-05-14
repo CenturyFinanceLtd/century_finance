@@ -32,11 +32,23 @@ const Hero = () => {
 
   const handleDownloadBrochure = () => {
     // The path to your PDF file in the public folder
-    const pdfUrl = "/pdf/brochure.pdf"; // CORRECTED: Use root-relative path for public folder
+    const pdfUrl = "/pdf/smart-saver.pdf"; // CORRECTED: Use root-relative path for public folder
     // IMPORTANT: Make sure 'brochure.pdf' is in your 'public/pdf/' directory
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.setAttribute("download", "Century_Finance_Brochure.pdf"); // This is the filename the user will see
+    link.setAttribute("download", "smart-saver.pdf"); // This is the filename the user will see
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link); // Clean up the DOM
+  };
+
+  const handleDownloadBrochure1 = () => {
+    // The path to your PDF file in the public folder
+    const pdfUrl = "/pdf/money-max.pdf"; // CORRECTED: Use root-relative path for public folder
+    // IMPORTANT: Make sure 'brochure.pdf' is in your 'public/pdf/' directory
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.setAttribute("download", "money-max.pdf"); // This is the filename the user will see
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Clean up the DOM
@@ -80,7 +92,28 @@ const Hero = () => {
           whiteSpace: "nowrap", // Prevent text from wrapping
           fontSize: "14px",
         }}>
-        Download Investment Plan
+        Download Smart Saver Plan
+        <span className="blinking-new-icon">(NEW)</span>
+      </button>
+      <button
+        onClick={handleDownloadBrochure1}
+        style={{
+          position: "fixed",
+          right: "4%", // Adjust as needed for precise placement after rotation
+          top: "280px",
+          zIndex: 1000, // Ensure it's on top of other content
+          padding: "12px 20px", // Slightly adjusted padding
+          backgroundColor: "#198754",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          transformOrigin: "center", // Explicitly set transform origin if needed
+          whiteSpace: "nowrap", // Prevent text from wrapping
+          fontSize: "14px",
+        }}>
+        Download Money Max Plan
         <span className="blinking-new-icon">(NEW)</span>
       </button>
       <section className="static-hero">
