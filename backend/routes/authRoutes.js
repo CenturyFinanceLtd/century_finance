@@ -4,7 +4,7 @@ const router = express.Router();
 
 const {
   signup,
-  verifyOtpAndCompleteRegistration, // Renamed/new function
+  verifyOtp, // Renamed from verifyOtpAndCompleteRegistration for simplicity
   login,
   forgotPassword,
   verifyPasswordResetOtp,
@@ -14,8 +14,9 @@ const {
 // POST /api/auth/signup
 router.post("/signup", signup);
 
-// POST /api/auth/verify-otp (This endpoint now handles final registration for new users, or verification for existing unverified)
-router.post("/verify-otp", verifyOtpAndCompleteRegistration);
+// POST /api/auth/verify-otp
+// This endpoint handles OTP verification for both new pending users and existing unverified users.
+router.post("/verify-otp", verifyOtp);
 
 // POST /api/auth/login
 router.post("/login", login);
