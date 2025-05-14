@@ -1,12 +1,11 @@
 // backend/models/User.js
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs"); // For hashing passwords
-const crypto = require("crypto"); // For generating OTPs and tokens
+// const crypto = require('crypto'); // Not strictly needed for OTP generation if using Math.random
 
 const userSchema = new mongoose.Schema(
   {
     fullName: {
-      // Changed from 'Name' in your screenshot to be more descriptive
       type: String,
       required: [true, "Full name is required."],
       trim: true,
@@ -32,8 +31,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Phone number is required."],
       trim: true,
-      // Add a regex for basic phone number validation if needed, e.g., for Indian numbers:
-      // match: [/^[6-9]\d{9}$/, 'Please fill a valid 10-digit phone number.']
     },
     fatherName: {
       type: String,
@@ -42,16 +39,18 @@ const userSchema = new mongoose.Schema(
     },
     universityOrCollege: {
       type: String,
-      trim: true, // Optional field, so not required
+      trim: true, // Optional field
     },
     isEmailVerified: {
       type: Boolean,
       default: false,
     },
     emailVerificationOtp: {
+      // Stores the plain OTP sent to the user
       type: String,
     },
     emailVerificationOtpExpires: {
+      // Stores the expiry time of the OTP
       type: Date,
     },
     passwordResetOtp: {
@@ -60,12 +59,6 @@ const userSchema = new mongoose.Schema(
     passwordResetOtpExpires: {
       type: Date,
     },
-    // You might want to add roles later, e.g., 'user', 'admin'
-    // role: {
-    //     type: String,
-    //     enum: ['user', 'admin'],
-    //     default: 'user',
-    // },
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields
@@ -80,16 +73,16 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
-  // Hash the password with cost of 12
-  const salt = await bcrypt.genSalt(10);
+  // Hash the password
+  const salt = await bcrypt.genSalt(10); // Salt rounds
   this.password = await bcrypt.hash(this.password, salt);
 
   // If it's a new user or email is being changed and not yet verified,
-  // clear any OTP fields to ensure they are regenerated if needed.
+  // ensure OTP fields are ready to be set by the controller.
+  // isEmailVerified should be false by default or set by controller.
   if (this.isNew || this.isModified("email")) {
-    this.emailVerificationOtp = undefined;
-    this.emailVerificationOtpExpires = undefined;
-    this.isEmailVerified = false; // Reset verification status if email changes
+    this.isEmailVerified = false; // Ensure verification status is reset if email changes
+    // OTP fields themselves will be set by the controller logic calling generateEmailVerificationOtp
   }
   next();
 });
@@ -98,24 +91,22 @@ userSchema.pre("save", async function (next) {
 
 // Method to compare entered password with the hashed password in the database
 userSchema.methods.comparePassword = async function (enteredPassword) {
+  if (!this.password) return false; // Should not happen if password is required
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Method to generate and hash an email verification OTP
+// Method to generate an email verification OTP
 userSchema.methods.generateEmailVerificationOtp = function () {
   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
 
-  // Store the plain OTP temporarily for sending, but it won't be saved plain in DB
-  // (The hashed version could be saved if needed for direct comparison, but for simplicity,
-  // we'll just store the plain one with an expiry for now. For higher security, hash it.)
-  this.emailVerificationOtp = otp; // For sending via email
+  this.emailVerificationOtp = otp; // Store the plain OTP on the user document
   this.emailVerificationOtpExpires = Date.now() + 10 * 60 * 1000; // OTP valid for 10 minutes
 
   // console.log(`Generated Email OTP for ${this.email}: ${otp}`); // For debugging
-  return otp; // Return plain OTP to be sent via email
+  return otp; // Return plain OTP to be sent via email by the controller
 };
 
-// Method to generate and hash a password reset OTP
+// Method to generate a password reset OTP
 userSchema.methods.generatePasswordResetOtp = function () {
   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
 
