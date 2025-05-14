@@ -25,6 +25,8 @@ const settings = {
   autoplaySpeed: 2500,
 };
 
+// ... other imports ...
+
 const Hero = () => {
   const ClickHandler = () => {
     window.scrollTo(10, 0);
@@ -32,11 +34,11 @@ const Hero = () => {
 
   const handleDownloadBrochure = () => {
     // The path to your PDF file in the public folder
-    const pdfUrl = "../../pdf/smart-saver.pdf"; // CORRECTED: Use root-relative path for public folder
-    // IMPORTANT: Make sure 'brochure.pdf' is in your 'public/pdf/' directory
+    const pdfUrl = "/pdf/smart-saver.pdf"; // CORRECTED: Root-relative path
+    // IMPORTANT: ENSURE 'smart-saver.pdf' is in your 'public/pdf/' directory
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.setAttribute("download", "smart-saver.pdf"); // This is the filename the user will see
+    link.setAttribute("download", "smart-saver.pdf"); // This ensures the downloaded file has this exact name
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Clean up the DOM
@@ -44,17 +46,17 @@ const Hero = () => {
 
   const handleDownloadBrochure1 = () => {
     // The path to your PDF file in the public folder
-    const pdfUrl = "../../pdf/money-max.pdf"; // CORRECTED: Use root-relative path for public folder
-    // IMPORTANT: Make sure 'brochure.pdf' is in your 'public/pdf/' directory
+    const pdfUrl = "/pdf/money-max.pdf"; // CORRECTED: Root-relative path
+    // IMPORTANT: ENSURE 'money-max.pdf' is in your 'public/pdf/' directory
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.setAttribute("download", "money-max.pdf"); // This is the filename the user will see
+    link.setAttribute("download", "money-max.pdf"); // This ensures the downloaded file has this exact name
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Clean up the DOM
   };
 
-  // CSS for the blinking animation
+  // CSS for the blinking animation (this part is fine)
   const blinkAnimation = `
     @keyframes blink {
       0%, 100% { opacity: 1; }
@@ -65,7 +67,7 @@ const Hero = () => {
       font-size: 0.65em; /* Adjusted size */
       margin-left: 5px;
       font-weight: bold;
-      color: #ef1315; /* Bright yellow for visibility */
+      color: #ef1315; /* Bright red for visibility */
       vertical-align: super; /* Aligns it slightly above baseline */
     }
   `;
@@ -78,18 +80,18 @@ const Hero = () => {
         onClick={handleDownloadBrochure}
         style={{
           position: "fixed",
-          right: "4%", // Adjust as needed for precise placement after rotation
+          right: "4%", 
           top: "233px",
-          zIndex: 1000, // Ensure it's on top of other content
-          padding: "12px 20px", // Slightly adjusted padding
+          zIndex: 1000, 
+          padding: "12px 20px", 
           backgroundColor: "#198754",
           color: "white",
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-          transformOrigin: "center", // Explicitly set transform origin if needed
-          whiteSpace: "nowrap", // Prevent text from wrapping
+          transformOrigin: "center", 
+          whiteSpace: "nowrap", 
           fontSize: "14px",
         }}>
         Download Smart Saver Plan
@@ -99,18 +101,18 @@ const Hero = () => {
         onClick={handleDownloadBrochure1}
         style={{
           position: "fixed",
-          right: "4%", // Adjust as needed for precise placement after rotation
+          right: "4%", 
           top: "280px",
-          zIndex: 1000, // Ensure it's on top of other content
-          padding: "12px 20px", // Slightly adjusted padding
+          zIndex: 1000, 
+          padding: "12px 20px", 
           backgroundColor: "#198754",
           color: "white",
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-          transformOrigin: "center", // Explicitly set transform origin if needed
-          whiteSpace: "nowrap", // Prevent text from wrapping
+          transformOrigin: "center", 
+          whiteSpace: "nowrap", 
           fontSize: "14px",
         }}>
         Download Money Max Plan
@@ -121,7 +123,8 @@ const Hero = () => {
           <div className="hero-inner">
             <div className="container-fluid">
               <div className="">
-                <div className="row1">
+                {/* Note: You have className="row1" here. Standard Bootstrap is "row". If intentional, it's fine. */}
+                <div className="row1"> 
                   <div className="col-md-6 hero-content">
                     <div data-swiper-parallax="300" className="slide-title-sub">
                       <span>Find Your Perfect Tutor</span>
@@ -167,44 +170,9 @@ const Hero = () => {
                         <div className="shape-2"></div>
                         <div className="shape-3"></div>
                       </div>
-                      {/* <div className="student">
-                        <div className="icon">
-                          <i className="fi flaticon-team"></i>
-                        </div>
-                        <div className="content">
-                          <h3>25k+</h3>
-                          <p>Total Active Students</p>
-                        </div>
-                      </div> */}
-                      {/* <div className="wpo-supporter">
-                        <div className="wpo-supporter-text">
-                          <div className="content">
-                            <h3>200+</h3>
-                            <p>Top Expert Mentors</p>
-                          </div>
-                        </div>
-                        <div className="wpo-supporter-img">
-                          <ul className="wpo-supporter-slide">
-                            <Slider {...settings}>
-                              <li>
-                                <img src={cImg1} alt="" />
-                              </li>
-                              <li>
-                                <img src={cImg2} alt="" />
-                              </li>
-                              <li>
-                                <img src={cImg3} alt="" />
-                              </li>
-                              <li>
-                                <img src={cImg4} alt="" />
-                              </li>
-                              <li>
-                                <img src={cImg1} alt="" />
-                              </li>
-                            </Slider>
-                          </ul>
-                        </div>
-                      </div> */}
+                      {/* Commented out sections from your original code */}
+                      {/* <div className="student"> ... </div> */}
+                      {/* <div className="wpo-supporter"> ... </div> */}
                       <div className="wp-shape-1">
                         <img src={shape1} alt="" />
                       </div>
