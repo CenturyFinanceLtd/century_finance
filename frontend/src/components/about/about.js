@@ -45,7 +45,9 @@ const About = (props) => {
                   <small>About Us</small>
                   <h2>
                     A New Different Way To Improve
-                    <span>  Your Skills.
+                    <span>
+                      {" "}
+                      Your Skills.
                       <i className="shape">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -58,13 +60,23 @@ const About = (props) => {
                   </h2>
                 </div>
                 <p>
-                 We are leading experts in stock advisory and market research. Our mission is to guide you through the world of stock trading by offering in-depth insights and hands-on training, delivered by seasoned professionals.
+                  We are leading experts in stock advisory and market research.
+                  Our mission is to guide you through the world of stock trading
+                  by offering in-depth insights and hands-on training, delivered
+                  by seasoned professionals.
                 </p>
                 <p>
-                  Our trainer holds certification as a registered stock advisor from the Securities and Exchange Board of India (SEBI), ensuring credible and reliable mentorship.
+                  Our trainer holds certification as a registered stock advisor
+                  from the Securities and Exchange Board of India (SEBI),
+                  ensuring credible and reliable mentorship.
                 </p>
-                <p>Whether you're a beginner or looking to advance your journey in the financial markets, our team is committed to equipping you with the skills, understanding, and confidence needed to navigate the market successfully.</p>
-                
+                <p>
+                  Whether you're a beginner or looking to advance your journey
+                  in the financial markets, our team is committed to equipping
+                  you with the skills, understanding, and confidence needed to
+                  navigate the market successfully.
+                </p>
+
                 <div className="wpo-about-features-wrap">
                   <div className="wpo-about-features-item">
                     <div className="wpo-about-features-icon">
