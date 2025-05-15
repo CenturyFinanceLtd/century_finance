@@ -31,6 +31,7 @@ const querySchema = new mongoose.Schema(
     phoneNumber: {
       // Optional field, based on typical contact forms
       type: String,
+      required: [true, "Phone is required."],
       trim: true,
       default: "",
     },

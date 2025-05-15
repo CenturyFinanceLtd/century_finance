@@ -15,7 +15,6 @@ const ContactForm = () => {
     subject: "",
     phoneNumber: "", // Changed from 'phone' to match backend Query model
     message: "",
-    service: "", // Optional: if you have a service dropdown
   });
 
   const [loading, setLoading] = useState(false);
@@ -66,7 +65,6 @@ const ContactForm = () => {
         subject: forms.subject,
         phoneNumber: forms.phoneNumber,
         message: forms.message,
-        service: forms.service, // Include if you have this field
       };
 
       try {
@@ -96,7 +94,6 @@ const ContactForm = () => {
             subject: "",
             phoneNumber: "",
             message: "",
-            service: "",
           });
           validator.current.hideMessages(); // Ensure messages are hidden after successful clear
         } else {
