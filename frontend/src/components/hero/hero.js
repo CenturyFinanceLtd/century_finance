@@ -74,8 +74,7 @@ const Hero = () => {
 
   return (
     <>
-      <style>{blinkAnimation}</style>{" "}
-      {/* Injecting keyframes and class styles */}
+      {/* <style>{blinkAnimation}</style>{" "}
       <button
         onClick={handleDownloadBrochure}
         style={{
@@ -117,7 +116,7 @@ const Hero = () => {
         }}>
         Download Money Max Plan
         <span className="blinking-new-icon">(NEW)</span>
-      </button>
+      </button> */}
       <section className="static-hero">
         <div className="hero-container">
           <div className="hero-inner">

@@ -1595,3 +1595,17 @@
 .fixed-navbar.active .wpo-header-style-1 .shop-header {
   background: #1a384c;
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blinking-new-icon {
+  animation: blink 1.2s infinite;
+  font-size: 0.65em;
+  margin-left: 5px;
+  font-weight: bold;
+  color: #ef1315;
+  vertical-align: super;
+}
