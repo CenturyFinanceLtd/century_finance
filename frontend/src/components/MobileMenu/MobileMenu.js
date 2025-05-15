@@ -36,21 +36,26 @@ const menus = [
             },
             {
                 id: 42,
-                title: 'Portfolio',
+                title: 'Online Courses',
                 link: '/',
             },
             {
                 id: 43,
-                title: 'Finance',
+                title: 'Portfolio',
                 link: '/',
             },
             {
                 id: 44,
+                title: 'Finance',
+                link: '/',
+            },
+            {
+                id: 45,
                 title: 'Investment Plan',
                 link: '/'
             },
             {
-                id: 45,
+                id: 46,
                 title: 'Subscription Plan',
                 link: '/'
             }
