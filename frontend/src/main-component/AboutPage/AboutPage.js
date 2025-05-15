@@ -32,7 +32,7 @@ const AboutPage = () => {
           name="keywords"
           content="About Century Finance, Financial Training, Investment Solutions, Credit Support, Financial Literacy, Stock Advisory, Market Research"
         />
-        
+        <meta name="robots" content="noindex, nofollow"></meta>
       </Helmet>
       <Navbar/>
       <PageTitle pageTitle={"About Us"} pagesub={"About"} />
