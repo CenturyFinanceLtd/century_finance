@@ -332,7 +332,7 @@ exports.login = async (req, res, next) => {
         message: "Email not verified. Please verify your email first.",
       });
     }
-    console.log(`User ${user.email} logged in successfully.`);
+    console.log(`User ${user.email} Signed up successfully.`);
     createSendToken(user, 200, res);
   } catch (error) {
     console.error("Login Controller Error:", error);

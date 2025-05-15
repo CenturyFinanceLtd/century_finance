@@ -83,7 +83,7 @@ const LoginPage = (props) => {
           dispatch(loginSuccess(data.data.user, data.token));
 
           setValue({ email: "", password: "", remember: false }); // Clear form
-          navigate("/home"); // Navigate to home or dashboard
+          navigate("/"); // Navigate to home or dashboard
         } else {
           // Display error message from backend or a generic one
           toast.error(
