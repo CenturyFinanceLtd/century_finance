@@ -47,6 +47,11 @@ import Investment from "../Investment/Investment";
 import FinanceService from "../FinanceService/FinanceService";
 import VerifyOtpPage from "../SignUpPage/VerifyOtpPage";
 import EditProfilePage from "../EditProfilePage";
+import Stocks from "../Stocks/Stocks";
+import Commodities from "../Commodities/Commodities";
+import Crypto from "../Crypto/Crypto";
+import Gold from "../Gold/Gold";
+import Currencies from "../Currencies/Currencies";
 const AllRoute = () => {
 
   return (
@@ -110,9 +115,14 @@ const AllRoute = () => {
             element={<SubscriptionPlan />}
           />
           <Route path="investment" element={<Investment />} />
-          <Route path="finance-service" element={<FinanceService />} />
+          <Route path="finance-services" element={<FinanceService />} />
           <Route path="/verify-otp" element={<VerifyOtpPage />} />
           <Route path="/edit-profile" element={<EditProfilePage />} />
+          <Route path="/stocks" element={<Stocks />} />
+          <Route path="/commodities" element={<Commodities />} />
+          <Route path="/crypto" element={<Crypto />} />
+          <Route path="/gold" element={<Gold />} />
+          <Route path="/currencies" element={<Currencies />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -174,27 +174,27 @@ const Header = (props) => {
                       </Link>
                       <ul className="sub-menu">
                         <li>
-                          <Link onClick={ClickHandler} to="/">
+                          <Link onClick={ClickHandler} to="/stocks">
                             Stocks
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/">
+                          <Link onClick={ClickHandler} to="/commodities">
                             Commodities
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/">
+                          <Link onClick={ClickHandler} to="/crypto">
                             Crypto
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/">
+                          <Link onClick={ClickHandler} to="/gold">
                             Gold
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/">
+                          <Link onClick={ClickHandler} to="/currencies">
                             Currencies
                           </Link>
                         </li>
