@@ -49,6 +49,22 @@ const dropdownHeaderStyles = {
   lineHeight: "1.4",
 };
 
+  // CSS for the blinking animation (this part is fine)
+  const blinkAnimation = `
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .blinking-new-icon {
+      animation: blink 1.2s infinite;
+      font-size: 0.65em; /* Adjusted size */
+      margin-left: 5px;
+      font-weight: bold;
+      color: #ef1315; /* Bright red for visibility */
+      vertical-align: super; /* Aligns it slightly above baseline */
+    }
+  `;
+
 const Header = (props) => {
   const [menuActive, setMenuState] = useState(false); // For your existing search toggle
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -225,10 +241,42 @@ const Header = (props) => {
                         Finance
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link onClick={ClickHandler} to="/blog">
                         Blog
                       </Link>
+                    </li> */}
+                    <li className="menu-item-has-children">
+                      <a href="#">
+                        Download <span className="blinking-new-icon">(NEW)</span>
+                      </a>
+                      <ul className="sub-menu">
+                        <li>
+                          <a href="/pdf/smart-saver.pdf" download>
+                            Smart Saver Plan
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/money-max.pdf" download>
+                            Money Max Plan
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/wealth-boost.pdf" download>
+                            Wealth Boost
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/rich-boast.pdf" download>
+                            Rich Boast
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/fast-track.pdf" download>
+                            Fast Track
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                   </ul>
                 </div>
@@ -241,14 +289,12 @@ const Header = (props) => {
                         onClick={() => setMenuState(!menuActive)}
                         className="search-toggle-btn">
                         <i
-                          className={`fi ti-search ${
-                            menuActive ? "ti-close" : "fi "
-                          }`}></i>
+                          className={`fi ti-search ${menuActive ? "ti-close" : "fi "
+                            }`}></i>
                       </button>
                       <div
-                        className={`header-search-form ${
-                          menuActive ? "header-search-content-toggle" : ""
-                        }`}>
+                        className={`header-search-form ${menuActive ? "header-search-content-toggle" : ""
+                          }`}>
                         <form onSubmit={SubmitHandler}>
                           <div>
                             <input
@@ -319,12 +365,12 @@ const Header = (props) => {
                             onClick={handleEditProfile}
                             style={{ ...dropdownItemStyles }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "#f0f0f0")
+                            (e.currentTarget.style.backgroundColor =
+                              "#f0f0f0")
                             }
                             onMouseLeave={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "transparent")
+                            (e.currentTarget.style.backgroundColor =
+                              "transparent")
                             }>
                             <FaEdit
                               style={{ marginRight: "10px", color: "#555" }}
@@ -338,12 +384,12 @@ const Header = (props) => {
                               borderBottom: "none",
                             }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "#f0f0f0")
+                            (e.currentTarget.style.backgroundColor =
+                              "#f0f0f0")
                             }
                             onMouseLeave={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "transparent")
+                            (e.currentTarget.style.backgroundColor =
+                              "transparent")
                             }>
                             <FaSignOutAlt
                               style={{ marginRight: "10px", color: "#555" }}
