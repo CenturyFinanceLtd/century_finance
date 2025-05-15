@@ -183,27 +183,7 @@ const ContactForm = () => {
             {validator.current.message("subject", forms.subject, "required")}
           </div>
         </div>
-        {/* Optional: Service Dropdown - Uncomment and adapt if needed
-                <div className="col col-lg-12 col-12">
-                    <div className="form-field">
-                        <select
-                            value={forms.service}
-                            name="service"
-                            onBlur={touchMessageHandler}
-                            onChange={changeHandler}
-                        >
-                            <option value="" disabled>Select a Service (Optional)</option>
-                            <option value="Training Program">Training Program</option>
-                            <option value="Portfolio Management">Portfolio Management</option>
-                            <option value="Finance/Loans">Finance/Loans</option>
-                            <option value="Investment Plans">Investment Plans</option>
-                            <option value="Call Subscriptions">Call Subscriptions</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        {validator.current.message("service", forms.service, "")} // No validation rule, just to show message if needed
-                    </div>
-                </div>
-                */}
+       
         <div className="col col-lg-12 col-12">
           <div className="form-field">
             {" "}

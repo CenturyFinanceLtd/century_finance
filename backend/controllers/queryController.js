@@ -9,16 +9,14 @@ const sendEmail = require("../utils/sendEmail"); // Your existing email utility
  */
 exports.submitQuery = async (req, res) => {
   try {
-    const { name, email, subject, message, phoneNumber, service } = req.body;
+    const { name, email, subject, message, phoneNumber } = req.body;
 
     // Basic validation
     if (!name || !email || !subject || !message) {
-      return res
-        .status(400)
-        .json({
-          status: "fail",
-          message: "Please provide name, email, subject, and message.",
-        });
+      return res.status(400).json({
+        status: "fail",
+        message: "Please provide name, email, subject, and message.",
+      });
     }
 
     // Create new query instance
@@ -28,7 +26,6 @@ exports.submitQuery = async (req, res) => {
       subject,
       message,
       phoneNumber: phoneNumber || "", // Handle optional fields
-      service: service || "", // Handle optional fields
     });
 
     // Save query to database
@@ -42,9 +39,7 @@ exports.submitQuery = async (req, res) => {
             Name: ${savedQuery.name}
             Email: ${savedQuery.email}
             Phone Number: ${savedQuery.phoneNumber || "Not provided"}
-            Service of Interest: ${savedQuery.service || "Not specified"}
             Subject: ${savedQuery.subject}
-
             Message:
             ${savedQuery.message}
 
@@ -61,13 +56,14 @@ exports.submitQuery = async (req, res) => {
                 <li><strong>Phone Number:</strong> ${
                   savedQuery.phoneNumber || "Not provided"
                 }</li>
-                <li><strong>Service of Interest:</strong> ${
-                  savedQuery.service || "Not specified"
-                }</li>
+                
                 <li><strong>Subject:</strong> ${savedQuery.subject}</li>
+                <li><strong>Message:</strong> ${savedQuery.message.replace(
+                  /\n/g,
+                  "<br>"
+                )}</li>
             </ul>
-            <p><strong>Message:</strong></p>
-            <p>${savedQuery.message.replace(/\n/g, "<br>")}</p>
+            
             <hr>
             <p><em>Received At: ${new Date(savedQuery.createdAt).toLocaleString(
               "en-IN",
@@ -114,12 +110,10 @@ exports.submitQuery = async (req, res) => {
         .status(400)
         .json({ status: "fail", message: messages.join(". ") });
     }
-    res
-      .status(500)
-      .json({
-        status: "error",
-        message: "Something went wrong while submitting your query.",
-        errorDetails: error.message,
-      });
+    res.status(500).json({
+      status: "error",
+      message: "Something went wrong while submitting your query.",
+      errorDetails: error.message,
+    });
   }
 };

@@ -34,12 +34,6 @@ const querySchema = new mongoose.Schema(
       trim: true,
       default: "",
     },
-    service: {
-      // Optional field, if you have a service dropdown
-      type: String,
-      trim: true,
-      default: "",
-    },
     isResolved: {
       type: Boolean,
       default: false,
