@@ -14,7 +14,7 @@ const HeaderTopbar = ({ topbarClass }) => {
       <h2 className="hidden">some</h2>
       <div className="container-fluid">
         <div className="row">
-          <div className="col col-lg-7 col-md-12 col-12">
+          <div className="col col-lg-7 col-md-12 col-12 d-none d-md-block">
             <div className="contact-intro">
               <ul>
                 <li>

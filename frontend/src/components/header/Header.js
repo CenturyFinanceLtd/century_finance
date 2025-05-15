@@ -114,14 +114,14 @@ const Header = (props) => {
                   <MobileMenu />
                 </div>
               </div>
-              <div className="col-lg-1 col-md-4 col-6">
+              <div className="col-lg-2 col-md-4 col-6">
                 <div className="navbar-header">
                   <Link onClick={ClickHandler} className="navbar-brand" to="/">
                     <img src={Logo} alt="logo" />
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-auto ms-lg-auto col-md-1 col-1">
+              <div className="col-lg-8 col-md-1 col-1">
                 <div
                   id="navbar"
                   className="collapse navbar-collapse navigation-holder">
@@ -129,26 +129,6 @@ const Header = (props) => {
                     <i className="ti-close"></i>
                   </button>
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
-                    <li>
-                      <NavLink
-                        onClick={ClickHandler}
-                        to="/about"
-                        className={({ isActive }) =>
-                          isActive ? "current-menu-item" : ""
-                        }>
-                        About
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={ClickHandler}
-                        to="/contact"
-                        className={({ isActive }) =>
-                          isActive ? "current-menu-item" : ""
-                        }>
-                        Contact
-                      </NavLink>
-                    </li>
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="#">
                         Customer Services <i className="ti-angle-down"></i>
@@ -157,6 +137,11 @@ const Header = (props) => {
                         <li>
                           <Link onClick={ClickHandler} to="/training-program">
                             Training Program
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/online-courses">
+                            Online Courses
                           </Link>
                         </li>
                         <li>
@@ -225,30 +210,77 @@ const Header = (props) => {
                         Finance
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link onClick={ClickHandler} to="/blog">
                         Blog
                       </Link>
+                    </li> */}
+                    <li className="menu-item-has-children">
+                      <Link onClick={ClickHandler} to="#">
+                        Company <i className="ti-angle-down"></i>
+                      </Link>
+                      <ul className="sub-menu">
+                        <li>
+                          <Link onClick={ClickHandler} to="/about">
+                            About
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/contact">
+                            Contact
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                    <li className="menu-item-has-children">
+                      <a href="#">
+                        Download <span className="blinking-new-icon">(NEW)</span>
+                      </a>
+                      <ul className="sub-menu">
+                        <li>
+                          <a href="/pdf/smart-saver.pdf" download>
+                            Smart Saver Plan
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/money-max.pdf" download>
+                            Money Max Plan
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/wealth-boost.pdf" download>
+                            Wealth Boost
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/rich-boast.pdf" download>
+                            Rich Boast
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pdf/fast-track.pdf" download>
+                            Fast Track
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-3 col-2">
+              <div className="col-lg-2 col-md-4 col-6">
                 <div className="header-right">
-                  <div className="header-search-form-wrapper">
+                  {/* <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">
                       <button
                         onClick={() => setMenuState(!menuActive)}
                         className="search-toggle-btn">
                         <i
-                          className={`fi ti-search ${
-                            menuActive ? "ti-close" : "fi "
-                          }`}></i>
+                          className={`fi ti-search ${menuActive ? "ti-close" : "fi "
+                            }`}></i>
                       </button>
                       <div
-                        className={`header-search-form ${
-                          menuActive ? "header-search-content-toggle" : ""
-                        }`}>
+                        className={`header-search-form ${menuActive ? "header-search-content-toggle" : ""
+                          }`}>
                         <form onSubmit={SubmitHandler}>
                           <div>
                             <input
@@ -263,7 +295,7 @@ const Header = (props) => {
                         </form>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {isAuthenticated && authUser ? (
                     <div
                       className="user-profile-section"
@@ -319,12 +351,12 @@ const Header = (props) => {
                             onClick={handleEditProfile}
                             style={{ ...dropdownItemStyles }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "#f0f0f0")
+                            (e.currentTarget.style.backgroundColor =
+                              "#f0f0f0")
                             }
                             onMouseLeave={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "transparent")
+                            (e.currentTarget.style.backgroundColor =
+                              "transparent")
                             }>
                             <FaEdit
                               style={{ marginRight: "10px", color: "#555" }}
@@ -338,12 +370,12 @@ const Header = (props) => {
                               borderBottom: "none",
                             }}
                             onMouseEnter={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "#f0f0f0")
+                            (e.currentTarget.style.backgroundColor =
+                              "#f0f0f0")
                             }
                             onMouseLeave={(e) =>
-                              (e.currentTarget.style.backgroundColor =
-                                "transparent")
+                            (e.currentTarget.style.backgroundColor =
+                              "transparent")
                             }>
                             <FaSignOutAlt
                               style={{ marginRight: "10px", color: "#555" }}
@@ -357,7 +389,8 @@ const Header = (props) => {
                     <div className="close-form" style={{ marginLeft: "15px" }}>
                       <Link
                         onClick={ClickHandler}
-                        className="login"
+                        // className="login"
+                        className="theme-btn"
                         to="/login"
                         style={{ marginRight: "10px" }}>
                         <span className="text">Sign In</span>
@@ -365,7 +398,7 @@ const Header = (props) => {
                           <i className="fi flaticon-charity"></i>
                         </span>
                       </Link>
-                      <Link
+                      {/* <Link
                         onClick={ClickHandler}
                         className="theme-btn"
                         to="/register">
@@ -373,7 +406,7 @@ const Header = (props) => {
                         <span className="mobile">
                           <i className="fi flaticon-charity"></i>
                         </span>
-                      </Link>
+                      </Link> */}
                     </div>
                   )}
                 </div>
