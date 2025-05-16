@@ -1,7 +1,6 @@
 import React from "react";
 import abimg from "../../../images/about/basic.png";
 import shape from "../../../images/about/shape.png";
-// import { Link } from "react-router-dom";
 
 const ClickHandler = () => {
   window.scrollTo(10, 0);

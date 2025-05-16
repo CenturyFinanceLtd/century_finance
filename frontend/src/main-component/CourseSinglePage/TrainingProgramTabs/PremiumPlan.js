@@ -8,6 +8,10 @@ const ClickHandler = () => {
 };
 
 const PremiumPlan = (props) => {
+
+  const { EventsDetails, onBookNow } = props;
+
+
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -40,9 +44,12 @@ const PremiumPlan = (props) => {
                   knowledge, skills, and enable them to navigate the
                   complexities of life.
                 </p>
-                <Link onClick={ClickHandler} to="" className="theme-btn-s2">
-                                Book Now
-                              </Link>
+                <button
+                  onClick={onBookNow} // Use the onBookNow prop from TrainingTab
+                  className="theme-btn-s2" // Your existing button style
+                >
+                  Book Now (Fee: 85,000 INR)
+                </button>
               </div>
             </div>
           </div>
