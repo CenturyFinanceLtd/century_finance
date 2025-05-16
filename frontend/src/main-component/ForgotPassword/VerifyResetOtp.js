@@ -1,5 +1,5 @@
-// frontend/src/main-component/ForgotPassword/VerifyResetOtpPage.js (or your path)
-import React, { useState, useEffect, useRef, Fragment } from "react";
+// frontend/src/main-component/ForgotPassword/VerifyResetOtp.js
+import React, { useState, useEffect, useRef, Fragment } from "react"; // Fragment is now imported
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import SimpleReactValidator from "simple-react-validator";
 
 // Assuming you might have a shared SCSS file or a dedicated one
-// import './style.scss'; // Or link to your loginWrapper/loginForm styles
+// import './style.scss';
 
 const VerifyResetOtpPage = () => {
   const navigate = useNavigate();
@@ -31,16 +31,16 @@ const VerifyResetOtpPage = () => {
   useEffect(() => {
     if (!location.state?.email) {
       toast.warn(
-        "Email not found. Please start the 'Forgot Password' process again or enter your email."
+        "Email not found. Please try the 'Forgot Password' process again or enter your email."
       );
-      // Consider redirecting if email is absolutely required from previous step:
-      // navigate('/forgot-password');
+      // navigate('/forgot-password'); // Optional: redirect if email is missing
     }
   }, [location.state, navigate]);
 
   const otpChangeHandler = (e) => {
     setOtp(e.target.value);
     if (validator.current.fields.otp) {
+      // Show message on change if field was touched
       validator.current.showMessageFor("otp");
     }
   };
@@ -48,6 +48,7 @@ const VerifyResetOtpPage = () => {
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
     if (validator.current.fields.email) {
+      // Show message on change if field was touched
       validator.current.showMessageFor("email");
     }
   };
@@ -55,27 +56,30 @@ const VerifyResetOtpPage = () => {
   const touchMessageHandler = (e) => {
     validator.current.showMessageFor(e.target.name);
     // Force re-render for validator messages by updating the relevant state
-    if (e.target.name === "otp") setOtp((prev) => prev);
-    if (e.target.name === "email") setEmail((prev) => prev);
+    if (e.target.name === "otp") setOtp((prev) => prev + ""); // Minor change to trigger re-render
+    if (e.target.name === "email") setEmail((prev) => prev + ""); // Minor change to trigger re-render
   };
 
   const submitOtpForReset = async (e) => {
     e.preventDefault();
 
+    // Manually trigger validation for all fields before submission attempt
     const isEmailFieldValid = validator.current.check(email, "required|email");
     const isOtpFieldValid = validator.current.check(
       otp,
       "required|numeric|min:6|max:6"
     );
+    validator.current.showMessages(); // Show all messages
 
-    // Show messages for all fields
-    validator.current.showMessages();
     // Force re-render to display messages immediately
-    setEmail((prev) => prev + "");
-    setOtp((prev) => prev + "");
+    // A common trick is to slightly change the state to ensure UI updates with validator messages
+    setEmail((prevEmail) => (prevEmail === email ? email + " " : email)); // Add a space then trim to force update
+    setEmail((prevEmail) => prevEmail.trim());
+    setOtp((prevOtp) => (prevOtp === otp ? otp + " " : otp));
+    setOtp((prevOtp) => prevOtp.trim());
 
     if (!isEmailFieldValid || !isOtpFieldValid || !email || !otp) {
-      toast.error("Please fill in all fields correctly.");
+      toast.error("Please fill in the fields correctly.");
       return;
     }
 
@@ -101,6 +105,7 @@ const VerifyResetOtpPage = () => {
           data.message ||
             "OTP verified successfully! You can now set a new password."
         );
+        // Navigate to the reset password page, passing email and OTP (or a temporary token if backend provides one)
         navigate("/reset-password", { state: { email: email, otp: otp } });
       } else {
         toast.error(
@@ -117,10 +122,18 @@ const VerifyResetOtpPage = () => {
   };
 
   const handleResendPasswordResetOtp = async () => {
-    if (!email || !validator.current.fieldValid("email")) {
+    if (!email) {
       validator.current.showMessageFor("email");
-      setEmail((prev) => prev + ""); // force re-render
-      toast.error("Please enter a valid email address to resend OTP.");
+      setEmail((prev) => prev + (prev.endsWith(" ") ? "" : " "));
+      setEmail((prev) => prev.trim());
+      toast.error("Please enter your email address to resend OTP.");
+      return;
+    }
+    if (!validator.current.fieldValid("email")) {
+      validator.current.showMessageFor("email");
+      setEmail((prev) => prev + (prev.endsWith(" ") ? "" : " "));
+      setEmail((prev) => prev.trim());
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -152,10 +165,11 @@ const VerifyResetOtpPage = () => {
 
   return (
     <Fragment>
-      {/* You might want to include your Navbar and PageTitle components here if this is a full page */}
+      {" "}
+      {/* Using Fragment here */}
+      {/* You might want to include your Navbar and PageTitle components here */}
       {/* <Navbar /> */}
       {/* <PageTitle pageTitle={"Verify Reset Code"} pagesub={"Password Reset"} /> */}
-
       <Grid
         container
         justifyContent="center"
@@ -166,17 +180,18 @@ const VerifyResetOtpPage = () => {
             elevation={3}
             sx={{ padding: { xs: 2, sm: 3, md: 4 }, textAlign: "center" }}>
             <Typography variant="h4" component="h1" gutterBottom>
-              Verify Password Reset OTP
+              Verify OTP
             </Typography>
             <Typography variant="body1" color="textSecondary" paragraph>
-              An OTP has been sent to <strong>{email || "your email"}</strong>.
+              An OTP has been sent to <strong>{email || "your email"}</strong>{" "}
+              to reset your password.
             </Typography>
             <Box
               component="form"
               onSubmit={submitOtpForReset}
               noValidate
               sx={{ mt: 1 }}>
-              {!location.state?.email && ( // Show email input if not passed via state from ForgotPassword page
+              {!location.state?.email && (
                 <TextField
                   margin="normal"
                   required
@@ -216,7 +231,7 @@ const VerifyResetOtpPage = () => {
                 value={otp}
                 onChange={otpChangeHandler}
                 onBlur={touchMessageHandler}
-                autoFocus={!!location.state?.email}
+                autoFocus={!!location.state?.email} // AutoFocus OTP if email is prefilled
                 error={
                   validator.current.message(
                     "otp",
@@ -249,7 +264,7 @@ const VerifyResetOtpPage = () => {
                 fullWidth
                 variant="text"
                 onClick={handleResendPasswordResetOtp}
-                disabled={loading || !email}
+                disabled={loading || !email} // Disable if email field is empty
                 sx={{ mb: 2 }}>
                 {loading ? "Sending..." : "Resend OTP"}
               </Button>

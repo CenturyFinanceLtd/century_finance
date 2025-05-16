@@ -52,6 +52,10 @@ import Commodities from "../Commodities/Commodities";
 import Crypto from "../Crypto/Crypto";
 import Gold from "../Gold/Gold";
 import Currencies from "../Currencies/Currencies";
+import VerifyResetOtp from "../ForgotPassword/VerifyResetOtp";
+import ResetPasswordPage from "../ForgotPassword/ResetPasswordPage";
+
+
 const AllRoute = () => {
 
   return (
@@ -123,6 +127,8 @@ const AllRoute = () => {
           <Route path="/crypto" element={<Crypto />} />
           <Route path="/gold" element={<Gold />} />
           <Route path="/currencies" element={<Currencies />} />
+          <Route path="/verify-reset-otp" element={<VerifyResetOtp />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Routes>
       </BrowserRouter>
     </div>
