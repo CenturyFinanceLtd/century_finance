@@ -33,5 +33,3 @@ module.exports = mongoose.model(
   "PendingCourseBooking",
   pendingCourseBookingSchema
 );
-
-

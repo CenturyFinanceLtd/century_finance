@@ -31,5 +31,3 @@ const courseBookingSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("CourseBooking", courseBookingSchema);
-
-

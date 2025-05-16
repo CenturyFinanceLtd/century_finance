@@ -407,6 +407,3 @@ router.post("/confirm-payment", protect, async (req, res) => {
 });
 
 module.exports = router;
-
-
-
