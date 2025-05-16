@@ -7,11 +7,20 @@ import {
   Col as ReactstrapCol,
 } from "reactstrap";
 import classnames from "classnames";
+import { useSelector } from "react-redux"; // To get authentication status and user data
+import { useNavigate, useLocation } from "react-router-dom"; // To redirect to login
+import { toast } from "react-toastify"; // For notifications
 import BasicPlan from "./BasicPlan";
 import PremiumPlan from "./PremiumPlan";
 import LearningToEarningPlan from "./LearningToEarningPlan";
+// We will create BookingModal.js next. For now, assume it exists.
+import BookingModal from "../BookingModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLightbulb, faCrown, faChartLine } from '@fortawesome/free-solid-svg-icons'; // Or whichever icons you are using
+import {
+  faLightbulb,
+  faCrown,
+  faChartLine,
+} from "@fortawesome/free-solid-svg-icons"; // Or whichever icons you are using
 
 const IconBasicPlan = () => <FontAwesomeIcon icon={faLightbulb} />;
 const IconPremiumPlan = () => <FontAwesomeIcon icon={faCrown} />;
@@ -19,41 +28,85 @@ const IconLearningToEarningPlan = () => <FontAwesomeIcon icon={faChartLine} />;
 
 const TrainingTab = ({ EventsDetails }) => {
   const [activeTab, setActiveTab] = useState("1");
+  const [isBookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedPlanData, setSelectedPlanData] = useState(null);
+
+  const { isAuthenticated, user: authUser } = useSelector(
+    (state) => state.auth
+  );
+  const navigate = useNavigate();
+  const location = useLocation(); // To get current path for redirecting back after login
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  const courseName = "Training Program"; // Static for this specific tab component
+
   // Updated tab data to include descriptions for the tab buttons
+  // Store plan details including price and the component to render
   const tabInfo = [
     {
       id: "1",
       title: "Basic Plan",
       IconComponent: IconBasicPlan,
-      description:
-        "Fee: Just 45,000 INR", // Content for the tab button
-      activeDescription:
-        "Fee: 45,000 INR", // Content for the active tab button
+      description: "Fee: Just 45,000 INR",
+      activeDescription: "Fee: 45,000 INR",
+      price: 45000, // Actual numeric price
+      PlanComponent: BasicPlan, // Component to render for this tab's content
     },
     {
       id: "2",
       title: "Premium Plan",
       IconComponent: IconPremiumPlan,
-      description:
-        "Fee: Just 85,000 INR",
-      activeDescription:
-        "Fee: Just 85,000 INR",
+      description: "Fee: Just 85,000 INR",
+      activeDescription: "Fee: Just 85,000 INR",
+      price: 85000,
+      PlanComponent: PremiumPlan,
     },
     {
       id: "3",
       title: "Learning to Earning Plan",
       IconComponent: IconLearningToEarningPlan,
-      description:
-        "Fee: Just 1,40,000 INR",
-      activeDescription:
-        "Fee: Just 1,40,000 INR",
+      description: "Fee: Just 1,40,000 INR",
+      activeDescription: "Fee: Just 1,40,000 INR",
+      price: 140000,
+      PlanComponent: LearningToEarningPlan,
     },
   ];
+
+  const handleBookNowClick = (planTitle, planPrice) => {
+    if (!isAuthenticated || !authUser) {
+      toast.info("Please log in to book a plan.");
+      // Redirect to login, passing the current path to return to after login
+      navigate("/login", {
+        state: { from: location.pathname + location.search },
+      });
+      return;
+    }
+    // User is logged in, proceed to open modal
+    setSelectedPlanData({
+      courseName: courseName,
+      planName: planTitle,
+      planPrice: planPrice,
+      // Pass relevant user data for pre-filling the form
+      // Ensure authUser contains these fields from your Redux store
+      currentUser: {
+        fullName: authUser.fullName,
+        email: authUser.email,
+        phoneNumber: authUser.phoneNumber,
+        fatherName: authUser.fatherName,
+        universityOrCollege: authUser.universityOrCollege,
+        // Do NOT pass password
+      },
+    });
+    setBookingModalOpen(true);
+  };
+
+  const handleCloseBookingModal = () => {
+    setBookingModalOpen(false);
+    setSelectedPlanData(null); // Clear selected plan data when modal closes
+  };
 
   return (
     // Use <section> and classes from the Features component example
@@ -117,34 +170,42 @@ const TrainingTab = ({ EventsDetails }) => {
           </div>
         </div>
       </div>
-      {/* Tab Content Area - This displays the main content for each tab */}
+      {/* Tab Content Area - Renders the selected plan's component */}
       <div className="wpo-course-details-text" style={{ marginTop: "30px" }}>
-        {" "}
-        {/* Added margin for visual separation */}
         <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <ReactstrapRow>
-              <ReactstrapCol sm="12">
-                <BasicPlan EventsDetails={EventsDetails} />
-              </ReactstrapCol>
-            </ReactstrapRow>
-          </TabPane>
-          <TabPane tabId="2">
-            <ReactstrapRow>
-              <ReactstrapCol sm="12">
-                <PremiumPlan EventsDetails={EventsDetails} />
-              </ReactstrapCol>
-            </ReactstrapRow>
-          </TabPane>
-          <TabPane tabId="3">
-            <ReactstrapRow>
-              <ReactstrapCol sm="12">
-                <LearningToEarningPlan EventsDetails={EventsDetails} />
-              </ReactstrapCol>
-            </ReactstrapRow>
-          </TabPane>
+          {tabInfo.map((tab) => {
+            const PlanComponentToRender = tab.PlanComponent;
+            return (
+              <TabPane tabId={tab.id} key={`content-${tab.id}`}>
+                <ReactstrapRow>
+                  <ReactstrapCol sm="12">
+                    {/* Pass necessary props to the plan component */}
+                    <PlanComponentToRender
+                      EventsDetails={EventsDetails} // Existing prop
+                      planName={tab.title} // Pass plan name
+                      planPrice={tab.price} // Pass plan price
+                      onBookNow={() => handleBookNowClick(tab.title, tab.price)} // Pass booking handler
+                    />
+                  </ReactstrapCol>
+                </ReactstrapRow>
+              </TabPane>
+            );
+          })}
         </TabContent>
       </div>
+      {/* Booking Modal */}
+      {isBookingModalOpen && selectedPlanData && (
+        <BookingModal
+          isOpen={isBookingModalOpen}
+          onClose={handleCloseBookingModal}
+          courseName={selectedPlanData.courseName}
+          planName={selectedPlanData.planName}
+          planPrice={selectedPlanData.planPrice}
+          currentUserData={selectedPlanData.currentUser}
+          // You will also need to pass a function to handle form submission from the modal
+          // onSubmitBooking={handleBookingSubmit}
+        />
+      )}
     </section>
   );
 };
