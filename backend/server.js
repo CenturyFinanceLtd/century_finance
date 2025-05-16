@@ -13,6 +13,8 @@ dotenv.config(); // This ensures .env variables are loaded
 const authRoutes = require("./routes/authRoutes"); // For user authentication
 // const bookingRoutes = require('./routes/bookingRoutes'); // We'll add this back later if needed
 const queryRoutes = require('./routes/queryRoutes'); // Import query routes
+const courseBookingRoutes = require('./routes/courseBookingRoutes'); // Adjust path as needed
+
 
 // Initialize Express app
 const app = express();
@@ -67,6 +69,7 @@ app.get("/", (req, res) => {
 // Authentication routes
 app.use("/api/auth", authRoutes); // All auth routes will be prefixed with /api/auth
 app.use('/api/queries', queryRoutes); // Use query routes, prefixed with /api/queries
+app.use("/api/course-bookings", courseBookingRoutes);
 
 // Booking routes (to be added back later)
 // app.use('/api/bookings', bookingRoutes);
