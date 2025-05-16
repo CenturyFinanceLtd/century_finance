@@ -10,9 +10,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 import { toast } from "react-toastify";
 import SimpleReactValidator from "simple-react-validator";
-import { useSelector } from "react-redux"; // To get auth token if needed for API calls
+import { useSelector } from "react-redux";
 
-// Basic styling for the modal
+// Define your LIVE API base URL
+const API_BASE_URL = "https://api.centuryfinancelimited.com/api"; // UPDATED to live URL
+
 const modalStyle = {
   position: "absolute",
   top: "50%",
@@ -24,9 +26,9 @@ const modalStyle = {
   border: "1px solid #ddd",
   borderRadius: "8px",
   boxShadow: 24,
-  p: { xs: 2, sm: 3, md: 4 }, // Responsive padding
+  p: { xs: 2, sm: 3, md: 4 },
   maxHeight: "90vh",
-  overflowY: "auto", // Enable scroll for long content
+  overflowY: "auto",
 };
 
 const BookingModal = ({
@@ -35,43 +37,33 @@ const BookingModal = ({
   courseName,
   planName,
   planPrice,
-  currentUserData, // Expected: { fullName, email, phoneNumber, universityOrCollege }
+  currentUserData,
 }) => {
-  // State for form data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phoneNumber: "",
     universityOrCollege: "",
   });
-  // State for loading indicator
   const [loading, setLoading] = useState(false);
-  // State for selected payment gateway
   const [paymentGateway, setPaymentGateway] = useState("");
 
-  // Get auth token from Redux store
   const { token: authToken } = useSelector((state) => state.auth);
 
-  // useRef for SimpleReactValidator instance
   const validator = useRef(
     new SimpleReactValidator({
-      className: "errorMessage", // CSS class for error messages
+      className: "errorMessage",
       validators: {
         phone: {
-          // Custom phone number validator
           message: "Please enter a valid 10-digit Indian phone number.",
-          rule: (val, params, validatorInstance) => {
-            return (
-              validatorInstance.helpers.testRegex(val, /^[6-9]\d{9}$/i) &&
-              params.indexOf(val) === -1
-            );
-          },
+          rule: (val, params, validatorInstance) =>
+            validatorInstance.helpers.testRegex(val, /^[6-9]\d{9}$/i) &&
+            params.indexOf(val) === -1,
         },
       },
     })
   );
 
-  // useEffect to handle modal open/close and pre-fill/reset form data
   useEffect(() => {
     if (isOpen) {
       if (currentUserData) {
@@ -96,16 +88,14 @@ const BookingModal = ({
     }
   }, [currentUserData, isOpen]);
 
-  // Handle input field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (validator.current.fields[name]) {
       validator.current.showMessageFor(name);
     }
   };
 
-  // Handle input field blur events for validation
   const touchMessageHandler = (e) => {
     const { name } = e.target;
     if (validator.current.fields[name] || !validator.current.fieldValid(name)) {
@@ -114,7 +104,6 @@ const BookingModal = ({
     }
   };
 
-  // Handle payment gateway selection
   const handlePaymentGatewaySelection = (gateway) => {
     setPaymentGateway(gateway);
     toast.info(
@@ -122,7 +111,6 @@ const BookingModal = ({
     );
   };
 
-  // Handle form submission for booking
   const handleSubmitBooking = async (e) => {
     e.preventDefault();
     if (validator.current.allValid()) {
@@ -136,7 +124,7 @@ const BookingModal = ({
         courseName,
         planName,
         planPrice,
-        amountToPay: planPrice, // CHANGED: Full amount to be paid
+        amountToPay: planPrice, // Full amount
         userName: formData.name,
         userEmail: formData.email,
         userPhoneNumber: formData.phoneNumber,
@@ -148,7 +136,7 @@ const BookingModal = ({
 
       try {
         const response = await fetch(
-          "https://api.centuryfinancelimited.com/api/course-bookings/initiate",
+          `${API_BASE_URL}/course-bookings/initiate`, // Uses the live API_BASE_URL
           {
             method: "POST",
             headers: {
@@ -159,18 +147,69 @@ const BookingModal = ({
           }
         );
 
+        if (!response.ok) {
+          const errorResult = await response
+            .json()
+            .catch(() => ({
+              message: response.statusText || "Failed to initiate booking.",
+            }));
+          console.error(
+            "Booking initiation failed:",
+            response.status,
+            errorResult
+          );
+          toast.error(errorResult.message || `Error: ${response.status}`);
+          setLoading(false);
+          return;
+        }
+
         const result = await response.json();
 
-        if (response.ok && result.status === "success" && result.data) {
-          toast.success("Booking initiated! Proceeding to payment...");
+        if (result.status === "success" && result.data) {
+          toast.success("Booking initiated! Processing payment...");
           console.log("Backend response for booking initiation:", result.data);
 
-          setTimeout(() => {
-            confirmPayment(
-              result.data.bookingId,
-              result.data.paymentGatewayOrderId || `simulatedPgId_${Date.now()}`
+          if (result.data.gateway === "paypal") {
+            console.log(
+              "PayPal selected. Frontend SDK integration needed here to use Order ID:",
+              result.data.gatewayOrderId
             );
-          }, 3000);
+            // TODO: Implement PayPal JS SDK integration here
+            // Example: window.paypal.Buttons({ createOrder: () => result.data.gatewayOrderId, onApprove: (data, actions) => { ... } }).render('#paypal-button-container');
+            // For now, simulating confirmation:
+            setTimeout(() => {
+              confirmPayment(
+                result.data.bookingId,
+                "paypal",
+                result.data.gatewayOrderId,
+                `simulatedPayPalTransaction_${Date.now()}`
+              );
+            }, 3000);
+          } else if (
+            result.data.gateway === "razorpay" &&
+            result.data.razorpayKeyId
+          ) {
+            console.log(
+              "Razorpay selected. Frontend SDK integration needed here."
+            );
+            toast.info(
+              "Razorpay is selected but currently disabled in this example flow."
+            );
+            setLoading(false);
+          } else if (
+            result.data.message &&
+            (result.data.message.includes("not implemented") ||
+              result.data.message.includes("disabled") ||
+              result.data.message.includes("unavailable"))
+          ) {
+            toast.info(result.data.message);
+            setLoading(false);
+          } else {
+            toast.warn(
+              "Payment gateway not fully supported on frontend yet or unexpected response."
+            );
+            setLoading(false);
+          }
         } else {
           setLoading(false);
           toast.error(
@@ -179,7 +218,7 @@ const BookingModal = ({
         }
       } catch (error) {
         setLoading(false);
-        console.error("Booking submission error:", error);
+        console.error("Booking submission error (catch block):", error);
         toast.error(
           "An error occurred while initiating your booking. Please check your connection."
         );
@@ -191,33 +230,58 @@ const BookingModal = ({
     }
   };
 
-  // Simulate confirming payment with the backend
   const confirmPayment = async (
     internalBookingId,
-    paymentGatewayTransactionId
+    gatewayIdentifier,
+    paypalOrderID,
+    paypalTransactionID,
+    razorpayOrderId,
+    razorpayPaymentId,
+    razorpaySignature
   ) => {
+    setLoading(true);
     try {
+      const payload = {
+        internalBookingId,
+        gateway: gatewayIdentifier,
+        paypalOrderID,
+        paypalTransactionID,
+        razorpayOrderId,
+        razorpayPaymentId,
+        razorpaySignature,
+      };
+
       const paymentConfirmationResponse = await fetch(
-        "https://api.centuryfinancelimited.com/api/course-bookings/confirm-payment",
+        `${API_BASE_URL}/course-bookings/confirm-payment`, // Uses the live API_BASE_URL
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${authToken}`,
           },
-          body: JSON.stringify({
-            internalBookingId,
-            transactionId: paymentGatewayTransactionId,
-            paymentStatus: "paid",
-          }),
+          body: JSON.stringify(payload),
         }
       );
+
+      if (!paymentConfirmationResponse.ok) {
+        const errorResult = await paymentConfirmationResponse
+          .json()
+          .catch(() => ({
+            message:
+              paymentConfirmationResponse.statusText ||
+              "Payment confirmation request failed.",
+          }));
+        toast.error(
+          errorResult.message || `Error: ${paymentConfirmationResponse.status}`
+        );
+        setLoading(false);
+        return;
+      }
+
       const paymentResult = await paymentConfirmationResponse.json();
       setLoading(false);
-      if (
-        paymentConfirmationResponse.ok &&
-        paymentResult.status === "success"
-      ) {
+
+      if (paymentResult.status === "success") {
         toast.success(paymentResult.message || "Course booking successful!");
         onClose();
       } else {
@@ -231,7 +295,7 @@ const BookingModal = ({
       toast.error(
         "An error occurred during payment confirmation. Please contact support."
       );
-      console.error("Payment confirmation error:", error);
+      console.error("Payment confirmation error (catch block):", error);
     }
   };
 
@@ -272,7 +336,6 @@ const BookingModal = ({
             sx={{ fontWeight: "bold", color: "primary.main" }}>
             Total Price: ₹{planPrice?.toLocaleString("en-IN")}
           </Typography>
-          {/* CHANGED: Updated payment description text */}
           <Typography
             variant="body2"
             sx={{ color: "success.main", fontWeight: "medium" }}>
@@ -422,7 +485,6 @@ const BookingModal = ({
               </Box>
             </Grid>
 
-            {/* CHANGED: Removed 50% payment text */}
             <Grid item xs={12} sx={{ mt: 1 }}>
               <Typography
                 variant="caption"
@@ -447,7 +509,6 @@ const BookingModal = ({
                 {loading ? (
                   <CircularProgress size={24} color="inherit" />
                 ) : (
-                  // CHANGED: Button text to reflect full payment amount
                   `Pay ₹${planPrice?.toLocaleString("en-IN")} & Book`
                 )}
               </Button>
