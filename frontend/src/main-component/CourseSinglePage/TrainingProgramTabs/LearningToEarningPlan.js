@@ -40,12 +40,9 @@ const LearningToEarningPlan = (props) => {
                   knowledge, skills, and enable them to navigate the
                   complexities of life.
                 </p>
-                <Link
-                  onClick={ClickHandler}
-                  to="/about"
-                  className="theme-btn-s2">
-                  Learn More About Us
-                </Link>
+                <Link onClick={ClickHandler} to="" className="theme-btn-s2">
+                                Book Now
+                              </Link>
               </div>
             </div>
           </div>

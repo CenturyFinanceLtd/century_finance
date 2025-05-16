@@ -17,7 +17,7 @@ const IconBasicPlan = () => <FontAwesomeIcon icon={faLightbulb} />;
 const IconPremiumPlan = () => <FontAwesomeIcon icon={faCrown} />;
 const IconLearningToEarningPlan = () => <FontAwesomeIcon icon={faChartLine} />;
 
-const CoureseTab = ({ EventsDetails }) => {
+const TrainingTab = ({ EventsDetails }) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = (tab) => {
@@ -149,4 +149,4 @@ const CoureseTab = ({ EventsDetails }) => {
   );
 };
 
-export default CoureseTab;
+export default TrainingTab;

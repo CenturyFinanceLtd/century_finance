@@ -252,8 +252,8 @@ Assessment Test
                   </a>
                 </li>
               </ul>
-              <Link onClick={ClickHandler} to="/about" className="theme-btn-s2">
-                Learn More About Basic Plan
+              <Link onClick={ClickHandler} to="" className="theme-btn-s2">
+                Book Now
               </Link>
             </div>
           </div>
