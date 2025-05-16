@@ -282,7 +282,7 @@ router.post("/confirm-payment", protect, async (req, res) => {
     if (pendingBooking.paymentStatus === "paid")
       return res
         .status(200)
-        .json({ status: "success", message: "Payment already confirmed." });
+        .json({ status: "successs", message: "Payment already confirmed." });
 
     let paymentVerified = false;
     let finalTransactionId = null;
