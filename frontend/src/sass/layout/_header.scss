@@ -201,7 +201,8 @@
 }
 
 .row.align-items-center {
-    justify-content: space-between;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 @media (max-width: 991px) {
@@ -1315,7 +1316,7 @@
     img {
       max-width: 110px;
 
-	  width: 110px;
+      width: 110px;
     }
   }
 
@@ -1597,8 +1598,13 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .blinking-new-icon {
