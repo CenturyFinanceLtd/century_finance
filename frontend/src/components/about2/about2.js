@@ -22,6 +22,7 @@ const About2 = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <div className="alert alert-light p-2 border-danger mb-4"><h4 className="mb-4 fw-bold"></h4></div>
                         <div className="col-lg-6 col-md-12 col-12">
                             <div className="wpo-about-text">
                                 <div className="wpo-section-title">

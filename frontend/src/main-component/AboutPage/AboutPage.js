@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import Navbar from "../../components/Navbar/Navbar"; // Adjusted path
 import PageTitle from "../../components/pagetitle/PageTitle"; // Adjusted path
-import FunFact2 from "../../components/FunFact2/FunFact2"; // Adjusted path
+// import FunFact2 from "../../components/FunFact2/FunFact2"; // Adjusted path
 import Scrollbar from "../../components/scrollbar/scrollbar"; // Adjusted path
 import Footer from "../../components/footer/Footer"; // Adjusted path
 
@@ -99,7 +99,7 @@ const AboutPage = () => {
                     final-year graduates stepping into the finance industry, we
                     provide structured, real-world-ready education. Our
                     specialized training programs span Equity, Commodities, and
-                    Global (Foreign) Markets—giving you the tools to thrive in
+                    Global (Foreign) Markets giving you the tools to thrive in
                     competitive environments.
                   </p>
                   <p>
@@ -220,6 +220,7 @@ const AboutPage = () => {
           </div>
 
           {/* Vision and Mission Section */}
+          
           <div className="row " style={{ paddingTop: "60px" }}>
             <div className="col-md-6 mb-4">
               <div className="wpo-section-title">
@@ -228,6 +229,7 @@ const AboutPage = () => {
               <p>
                 To create a financially empowered generation through education,
                 opportunity, and actionable insight.
+                
               </p>
             </div>
             <div className="col-md-6 mb-4">
@@ -244,7 +246,7 @@ const AboutPage = () => {
         </div>{" "}
         {/* .container */}
       </section>
-      <FunFact2 />
+      {/* <FunFact2 /> */}
       <Footer />
       <Scrollbar />
     </Fragment>

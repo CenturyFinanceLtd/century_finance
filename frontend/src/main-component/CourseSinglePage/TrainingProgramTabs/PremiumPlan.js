@@ -1,54 +1,125 @@
 import React from "react";
 import abimg from "../../../images/about/premium.png";
 import shape from "../../../images/about/shape.png";
-import { Link } from "react-router-dom";
 
-const ClickHandler = () => {
-  window.scrollTo(10, 0);
-};
-
-const PremiumPlan = (props) => {
-
-  const { EventsDetails, onBookNow } = props;
-
-
+const PremiumPlan = ({ onBookNow }) => {
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
         <div className="wpo-about-wrap">
           <div className="row align-items-center">
-            <div className="col-lg-6 col-md-12 col-12">
+            {/* Left Image */}
+            <div className="col-lg-6 col-md-12">
               <div className="wpo-about-img">
-                <img src={abimg} alt="" />
+                <img src={abimg} alt="Premium Training Visual" />
                 <div className="back-shape">
-                  <img src={shape} alt="" />
+                  <img src={shape} alt="Background Shape" />
                 </div>
               </div>
             </div>
-            <div className="col-lg-6 col-md-12 col-12">
+
+            {/* Right Content */}
+            <div className="col-lg-6 col-md-12">
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
                   <small>Premium Plan</small>
-                  <h2>A New Different Way To Improve Your Skills.</h2>
+                  <h2>Advanced 2-Day Certified Training in Financial Markets</h2>
                 </div>
-                <p>
-                  Education is one of the most essential and valuable assets
-                  that an individual can possess. It plays a pivotal role in
-                  shaping the future of individuals, societies, and nations. The
-                  importance of education cannot be overstated, individuals
-                  development of nations.
+
+                {/*  Alerts / Highlights */}
+                <div className="alert alert-warning p-3 rounded mb-3">
+                  <strong>Exclusively for Educational Institutions:</strong> Only Colleges & Universities can enroll batches.
+                </div>
+                <div className="alert alert-info p-3 rounded mb-3">
+                  <strong>Eligibility:</strong> Final-Year Students (B.Com, BBA, MBA, BA-Economics, Finance-related streams)
+                </div>
+                <div className="alert alert-success p-3 rounded mb-3">
+                 <strong>Purpose:</strong> Value-added program for placements, career training, and certification.
+                </div>
+                <div className="alert alert-info p-3 rounded mb-3">
+                  <strong>Program Fee:</strong> ₹85,000 per batch +GST(all types of taxes) 
+                  <br />
+                  <strong>Certification:</strong> Digital certificates awarded upon successful assessment
+                </div>
+
+                {/* Why This Program */}
+                <p className="mt-4">
+                  <strong>
+                    Upgrade Learning. Empower Careers. Elevate Campus Placements.
+                  </strong>
                 </p>
                 <p>
-                  One of the primary benefits of education is its ability to
-                  empower individuals. Through education, individuals acquire
-                  knowledge, skills, and enable them to navigate the
-                  complexities of life.
+                  This program is exclusively available for educational institutions
+                  to purchase on behalf of their final-year students. Ideal as a
+                  value-added career program, pre-placement booster, or
+                  industry-aligned certification course.
                 </p>
-                <button
-                  onClick={onBookNow} // Use the onBookNow prop from TrainingTab
-                  className="theme-btn-s2" // Your existing button style
-                >
-                  Book Now (Fee: 85,000 INR)
+
+               
+
+                {/*  Program Structure */}
+                <h4><strong> 2-Day On-Campus Training Structure</strong></h4>
+
+                <h5 className="mt-3"><strong> Day 1: Core Financial Market Training</strong></h5>
+                <ul>
+                  <li><strong>Equity Markets:</strong> Stock market functions, platforms, technical & fundamental analysis</li>
+                  <li><strong>Commodity Markets:</strong> Commodity types, pricing, hedging tools</li>
+                  <li><strong>Foreign Markets:</strong> Global currencies, INR pairs, trade implications</li>
+                </ul>
+
+                <h5 className="mt-3"><strong> Day 2: Applied Investment & Strategy</strong></h5>
+                <ul>
+                  <li><strong>Mutual Funds & SIPs:</strong> Types, return calculations, long-term wealth building</li>
+                  <li><strong>SGP & Banex:</strong> Government gold schemes, bond exchanges</li>
+                  <li><strong>Margin Trading (M.T.F.):</strong> Leverage investing & risk control</li>
+                  <li><strong>Portfolio Planning:</strong> Asset allocation, investment strategy, risk profiles</li>
+                </ul>
+
+                {/*  Benefits in Badges */}
+                <h5 className="mt-4"><strong> Program Highlights</strong></h5>
+                <div className="d-flex flex-wrap gap-2 mb-3">
+                  <span className="badge bg-primary p-2 px-3 rounded-pill">On-Campus Training</span>
+                  <span className="badge bg-success p-2 px-3 rounded-pill">Real Market Simulations</span>
+                  <span className="badge bg-info text-dark p-2 px-3 rounded-pill">One-on-One Mentorship</span>
+                  <span className="badge bg-warning text-dark p-2 px-3 rounded-pill">Strategy Workshops</span>
+                  <span className="badge bg-dark p-2 px-3 rounded-pill">Online Certification Assessment</span>
+                  <span className="badge bg-secondary p-2 px-3 rounded-pill">Recognized Certification</span>
+                </div>
+
+                {/*  Why Students Need This */}
+                <h5 className="mt-4"><strong> Why Students Need This</strong></h5>
+                <ul>
+                  <li>Builds real-world financial & market skills</li>
+                  <li>Prepares for job interviews & placement tests</li>
+                  <li>Introduces investment awareness early</li>
+                  <li>Exposure to tools, strategy, and risk analysis</li>
+                  <li>Earns them a recognized professional certificate</li>
+                </ul>
+
+                {/*  Why Institutions Should Invest */}
+                <h5 className="mt-4"><strong> Why Institutions Should Invest</strong></h5>
+                <ul>
+                  <li>Adds value to your academic offering</li>
+                  <li>Improves placement statistics and reputation</li>
+                  <li>No extra faculty effort – we handle delivery end-to-end</li>
+                  <li>Scalable across batches with long-term impact</li>
+                </ul>
+
+                {/*  Partner Info */}
+                <div className="alert alert-light border mt-4">
+                  <h5><strong>Partner With Us</strong></h5>
+                  <p>
+                    Give your students the <strong>competitive edge</strong> they need in today's finance industry.
+                  </p>
+                   <p><strong>Email:</strong> [Your Email]</p>
+                  <p><strong>Websaite:</strong> [Your Website]</p>
+                  <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
+                     
+                </div>
+
+                {/* CTA */}
+                <button onClick={onBookNow} className="btn btn-outline-dark mt-3">
+                  Book Now (₹85,000 per Batch)
                 </button>
               </div>
             </div>
