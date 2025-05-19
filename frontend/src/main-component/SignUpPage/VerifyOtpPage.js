@@ -327,4 +327,5 @@ const VerifyOtpPage = () => {
   );
 };
 
+
 export default VerifyOtpPage;
