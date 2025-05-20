@@ -1,6 +1,8 @@
 import React from "react";
 import abimg from "../../../images/about/basic.png";
 import shape from "../../../images/about/shape.png";
+import "animate.css";
+
 
 const BasicPlan = ({ onBookNow }) => {
   return (
@@ -104,6 +106,7 @@ const BasicPlan = ({ onBookNow }) => {
                   <li>✔️ Enhanced brand image as a career-focused institute</li>
                   <li>✔️ No added burden — we manage training, assessments, and certification entirely</li>
                 </ul>
+                
 
                 {/* Contact Details */}
                 <h5 className="mt-4"><strong>Get in Touch</strong></h5>
@@ -114,10 +117,7 @@ const BasicPlan = ({ onBookNow }) => {
                   <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
                 </div>
 
-                {/* CTA */}
-                <button onClick={onBookNow} className="btn btn-outline-dark mt-3">
-                  Book Now (Fee: ₹45,000 per Batch)
-                </button>
+               
               </div>
             </div>
           </div>

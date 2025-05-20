@@ -24,7 +24,10 @@ const Portfolio = () => {
 
       <Navbar />
       <PageTitle pageTitle={"Portfolio"} pagesub={"Portfolio"} />
-      <CourseSinglePage />
+      {/*<CourseSinglePage />*/}
+      <div className="portfolio">
+
+      </div>
       <Footer />
       <Scrollbar />
     </Fragment>
