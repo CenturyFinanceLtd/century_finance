@@ -1,0 +1,523 @@
+/* src/components/ExpandingCardGrid/ExpandingCardGrid.css */
+
+/* Original SCSS Variables converted to CSS custom properties or hardcoded */
+:root {
+    --light-gray: #eceef1;
+    --gray: #a7abb1;
+    /* darken(#eceef1, 30%) */
+    --slate: #5d6675;
+    /* darken(#eceef1, 70%) */
+    --turquoise: #1abc9c;
+}
+
+
+
+/* body styles are usually global, apply to .wrapper-custom to scope it */
+.expanding-card-grid-body-styles {
+    /* background: var(--light-gray); */
+    font-family: 'Slabo 27px', serif;
+    /* Make sure to import this font if you use it */
+    color: var(--slate);
+    font-size: 15px;
+}
+
+.wrapper-custom {
+    /* Renamed to avoid global conflicts */
+    margin: 5em auto;
+    max-width: 1320px;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
+}
+
+.header-custom {
+    /* Renamed */
+    padding: 30px 30px 0;
+    text-align: center;
+}
+
+.header-custom__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--slate);
+    /* Added color from body for specificity */
+}
+
+.header-custom__subtitle {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--gray);
+    font-family: 'Yesteryear', cursive;
+    /* Make sure to import this font */
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.cards-custom {
+    /* Renamed */
+    padding: 15px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card-custom {
+    /* Renamed */
+    margin: 15px;
+    width: calc((100% / 3) - 30px);
+    transition: all 0.2s ease-in-out;
+    color: var(--light-gray);
+    /* Default text color for card content */
+}
+
+@media screen and (max-width: 991px) {
+    .card-custom {
+        width: calc((100% / 2) - 30px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .card-custom {
+        width: 100%;
+    }
+}
+
+.card-custom:hover .card-custom__inner {
+    background-color: var(--turquoise);
+    transform: scale(1.05);
+}
+
+.card-custom__inner {
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    cursor: pointer;
+    background-color: var(--gray);
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-custom__inner:after {
+    transition: all 0.3s ease-in-out;
+}
+
+.card-custom__inner .fa {
+    width: 100%;
+    margin-top: .25em;
+}
+
+.card-custom__expander {
+    transition: all 0.2s ease-in-out;
+    background-color: var(--slate);
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    /* color: var(--light-gray); */
+    /* Already set on .card-custom */
+    font-size: 1.5em;
+    padding: 20px;
+    /* Added some padding for content */
+}
+
+.card-custom__expander .description-content {
+    font-size: 0.6em;
+    /* Adjust as needed for description text */
+    text-transform: none;
+    white-space: pre-wrap;
+    color: var(--light-gray);
+    text-align: left;
+}
+
+
+.card-custom__expander .fa {
+    font-size: 0.75em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.card-custom__expander .fa:hover {
+    opacity: 0.9;
+}
+
+.card-custom.is-collapsed .card-custom__inner:after {
+    content: "";
+    opacity: 0;
+}
+
+.card-custom.is-collapsed .card-custom__expander {
+    max-height: 0;
+    min-height: 0;
+    overflow: hidden;
+    margin-top: 0;
+    opacity: 0;
+    padding: 0 20px;
+    /* Ensure padding collapses too */
+}
+
+.card-custom.is-expanded .card-custom__inner {
+    background-color: var(--turquoise);
+}
+
+.card-custom.is-expanded .card-custom__inner:after {
+    content: "";
+    opacity: 1;
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    bottom: -30px;
+    /* Adjusted from -30px if card_inner padding is 30px */
+    left: calc(50% - 15px);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid var(--slate);
+    /* Points to expander bg */
+}
+
+.card-custom.is-expanded .card-custom__inner .fa:before {
+    content: "\f115";
+    /* Font Awesome folder-open icon */
+}
+
+.card-custom.is-expanded .card-custom__expander {
+    max-height: 1000px;
+    /* Adjust as needed */
+    min-height: 200px;
+    /* Adjust as needed */
+    overflow: visible;
+    margin-top: 30px;
+    opacity: 1;
+}
+
+.card-custom.is-expanded:hover .card-custom__inner {
+    transform: scale(1);
+}
+
+.card-custom.is-inactive .card-custom__inner {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.card-custom.is-inactive:hover .card-custom__inner {
+    background-color: var(--gray);
+    transform: scale(1);
+}
+
+/* Expander Widths */
+@media screen and (min-width: 992px) {
+    .card-custom.is-expanded:nth-of-type(3n+2) .card-custom__expander {
+        margin-left: calc(-100% - 30px);
+    }
+
+    .card-custom.is-expanded:nth-of-type(3n+3) .card-custom__expander {
+        margin-left: calc(-200% - 60px);
+    }
+
+    .card-custom:nth-of-type(3n+4) {
+        clear: left;
+    }
+
+    .card-custom.is-expanded .card-custom__expander {
+        width: calc(300% + 60px);
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .card-custom.is-expanded:nth-of-type(2n+2) .card-custom__expander {
+        margin-left: calc(-100% - 30px);
+    }
+
+    .card-custom:nth-of-type(2n+3) {
+        clear: left;
+    }
+
+    .card-custom.is-expanded .card-custom__expander {
+        width: calc(200% + 30px);
+    }
+}
+
+/* Ensure expander content (like description) is visible */
+.card-custom.is-expanded .card-custom__expander .description-content {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out 0.2s;
+    /* Delay opacity transition */
+}
+
+.card-custom.is-collapsed .card-custom__expander .description-content {
+    opacity: 0; }
+
+
+
+
+        /* ExpandingCardGrid.css */
+    
+        /* ... (your existing :root, *, global styles, .wrapper-custom, .header-custom etc. styles remain) ... */
+    
+        .card-custom__inner {
+            width: 100%;
+            padding: 20px;
+            position: relative;
+            cursor: pointer;
+            background-color: var(--gray);
+            color: var(--light-gray);
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            /* justify-content set below based on needs */
+            align-items: center;
+            /* Center children like title, meta, icon horizontally */
+            text-align: center;
+            /* Default text align for children, can be overridden */
+            min-height: 300px;
+            /* Adjust as needed, will likely be determined by content */
+        }
+    
+        .card-custom__inner .card-title-custom {
+            font-size: 1.2em;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+    
+        .card-custom__inner .card-meta-custom {
+            font-size: 0.85em;
+            text-transform: none;
+            margin: 0 0 15px 0;
+            /* Increased bottom margin */
+            line-height: 1.5;
+            display: flex;
+            /* Allows duration and price to be side-by-side if desired */
+            justify-content: center;
+            /* Center duration and price if side-by-side */
+            flex-wrap: wrap;
+            /* Allow them to wrap on small screens */
+            gap: 15px;
+            /* Space between duration and price if side-by-side */
+        }
+    
+        .card-custom__inner .card-meta-custom .card-duration,
+        .card-custom__inner .card-meta-custom .card-price {
+            display: inline-block;
+            /* Or block if you want them stacked by default */
+        }
+    
+        /* --- NEW STYLES for the description inside card-custom__inner --- */
+        .card-custom__inner .card-description-inner-custom {
+            font-size: 0.8em;
+            /* Adjust as needed */
+            text-transform: none;
+            color: var(--light-gray);
+            /* Or a slightly different color for contrast */
+            white-space: pre-wrap;
+            /* This is CRUCIAL for your formatted description */
+            text-align: left;
+            /* Descriptions usually look better left-aligned */
+            margin: 0 0 15px 0;
+            /* Space below description */
+            padding: 0 5px;
+            /* Slight horizontal padding if needed */
+            width: 100%;
+            /* Ensure it uses available width */
+            line-height: 1.5;
+            max-height: 250px;
+            /* Optional: Limit height and make scrollable */
+            overflow-y: auto;
+            /* Optional: Add scroll if content exceeds max-height */
+        }
+    
+        /* Example to hide scrollbar but keep functionality, browser-dependent */
+        .card-custom__inner .card-description-inner-custom::-webkit-scrollbar {
+            display: none;
+            /* For Webkit browsers */
+        }
+    
+        .card-custom__inner .card-description-inner-custom {
+            -ms-overflow-style: none;
+            /* For IE and Edge */
+            scrollbar-width: none;
+            /* For Firefox */
+        }
+    
+    
+        .card-custom__inner .card-icon-custom {
+            font-size: 1.8em;
+            margin-top: auto;
+            /* Pushes the icon to the bottom of the flex container */
+            padding-top: 10px;
+            /* Adds some space above the icon if margin-top:auto isn't enough*/
+        }
+    
+        .card-custom.is-expanded .card-custom__inner .card-icon-custom.fa-folder-o:before {
+            content: "\f115";
+            /* fa-folder-open */
+        }
+    
+        .card-custom:not(.is-expanded):hover .card-custom__inner {
+            background-color: var(--turquoise);
+            transform: scale(1.02);
+            /* Slightly less aggressive scale */
+        }
+    
+        .card-custom.is-expanded .card-custom__inner {
+            background-color: var(--turquoise);
+            transform: scale(1);
+        }
+    
+        /* Styles for the expander - if it's now just a visual cue or empty */
+        .card-custom__expander {
+            transition: all 0.2s ease-in-out;
+            background-color: var(--slate);
+            width: 100%;
+            position: relative;
+            display: flex;
+            /* Kept as flex for the close icon */
+            justify-content: center;
+            align-items: flex-start;
+            /* Align content to top */
+            text-transform: uppercase;
+            color: var(--light-gray);
+            font-size: 1em;
+            /* Adjusted from 1.5em */
+            /* min-height is handled by is-collapsed and is-expanded rules */
+        }
+    
+        .card-custom__expander .fa-close {
+            /* Targeting the close icon specifically */
+            font-size: 1.2em;
+            /* Adjusted from 0.75em of general .fa in expander */
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+    
+        .card-custom__expander .fa-close:hover {
+            opacity: 0.9;
+        }
+    
+    
+        .card-custom.is-collapsed .card-custom__expander {
+            max-height: 0;
+            min-height: 0;
+            overflow: hidden;
+            margin-top: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-top-width: 0;
+            border-bottom-width: 0;
+        }
+    
+        .card-custom.is-expanded .card-custom__expander {
+            max-height: 300px;
+            /* Adjust if it needs to hold significant content */
+            min-height: 60px;
+            /* Minimum height when expanded, e.g., for a CTA button or short message */
+            overflow: auto;
+            /* If content in expander can be long */
+            margin-top: 30px;
+            /* Space between inner card and expander */
+            opacity: 1;
+            padding: 10px;
+            /* Padding for content within the expander */
+        }
+    
+    
+        /* ... (Rest of your CSS including .is-inactive, media queries etc.) ... */
+
+                /* ExpandingCardGrid.css */
+        
+                /* ... (all your existing styles up to .card-custom.is-expanded .card-custom__expander remain) ... */
+        
+                /* Ensure expander has enough padding and styles for its direct children */
+                .card-custom.is-expanded .card-custom__expander {
+                    max-height: 400px;
+                    /* Increased to accommodate more content */
+                    min-height: 100px;
+                    overflow: auto;
+                    margin-top: 30px;
+                    opacity: 1;
+                    padding: 20px;
+                    /* Padding for the expander content area */
+                    display: flex;
+                    /* To center content wrapper if needed, or just use block */
+                    flex-direction: column;
+                    align-items: center;
+                    /* Center content wrapper */
+                    text-align: left;
+                    /* Default text alignment for content */
+                }
+        
+                /* Wrapper for content inside expander for better control */
+                .card-custom__expander .expander-content-wrapper {
+                    width: 100%;
+                    max-width: 90%;
+                    /* Prevent content from touching edges */
+                    margin: 0 auto;
+                    color: var(--light-gray);
+                    /* Default text color for expander content */
+                    text-transform: none;
+                    /* Ensure text is not uppercase by default */
+                }
+        
+                .card-custom__expander .expander-section-title {
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    color: var(--light-gray);
+                    /* Or var(--turquoise) for highlight */
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    text-align: left;
+                }
+        
+                .card-custom__expander .expander-takeaways-list {
+                    list-style: disc;
+                    margin-left: 20px;
+                    /* Indent list items */
+                    padding-left: 0;
+                    /* Reset browser default padding */
+                    font-size: 0.9em;
+                    line-height: 1.6;
+                    margin-bottom: 20px;
+                    /* Space before the button */
+                    text-align: left;
+                }
+        
+                .card-custom__expander .expander-takeaways-list li {
+                    margin-bottom: 8px;
+                }
+        
+                .card-custom__expander .expander-cta-button {
+                    background-color: var(--turquoise);
+                    /* A prominent color */
+                    color: #ffffff;
+                    border: none;
+                    padding: 12px 25px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1em;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    display: inline-block;
+                    /* Or block with margin: auto for centering */
+                    margin-top: 10px;
+                    /* Space above the button */
+                    transition: background-color 0.3s ease, transform 0.2s ease;
+                }
+        
+                .card-custom__expander .expander-cta-button:hover {
+                    background-color: #17a085;
+                    /* Slightly darker turquoise */
+                    transform: translateY(-2px);
+                }
+        
+                /* ... (Rest of your CSS for .is-inactive, media queries etc.) ... */
