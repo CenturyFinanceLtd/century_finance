@@ -1,7 +1,7 @@
 import React from "react";
 import abimg from "../../../images/about/basic.png";
 import shape from "../../../images/about/shape.png";
-import "animate.css";
+
 
 
 const BasicPlan = ({ onBookNow }) => {
