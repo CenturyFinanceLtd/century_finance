@@ -15,7 +15,6 @@ const coursesData = [
     title: "Foundation Blueprint",
     price: "₹1,900 to ₹3,000", // Re-used 'price' for 'priceText'
     duration: "2–3 Weeks",
-<<<<<<< Updated upstream
     level: "Beginner Level",
     installmentOption: "2 Easy EMIs Available",
     whyChoose:
@@ -23,15 +22,6 @@ const coursesData = [
     transformFrom: "“What is Sensex?” → To: “I understand how markets move”",
     tagline: "Begin your path from basics to expert level here.",
     // expandedDetails from previous step - user will update its content later
-=======
-    price: "₹1,900 to ₹3,000",
-    payment: "Easy 2-Part Payment",
-    description: `
-        Transform from: “What is Sensex?” → To: “I understand how markets move”
-
-        
-    `,
->>>>>>> Stashed changes
     expandedDetails: {
       takeaways: [
         "Grasp fundamental market mechanics.",
