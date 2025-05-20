@@ -112,8 +112,12 @@ const BasicPlan = ({ onBookNow }) => {
                 <h5 className="mt-4"><strong>Get in Touch</strong></h5>
                 <div className="alert alert-light border mb-3">
                   <p>Want to bring this certified finance training to your campus?</p>
-                  <p><strong>Email:</strong> [Your Email]</p>
-                  <p><strong>Website:</strong> [Your Website]</p>
+                  <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
+            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
+          </p>
+                  <p style={{ fontSize: "1rem" }}>
+            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
+          </p>
                   <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
                 </div>
 

@@ -106,8 +106,12 @@ const LearningToEarningPlan = ({ onBookNow }) => {
                 <h5 className="mt-4"><strong>Partner With Us</strong></h5>
                 <div className="alert alert-light border">
                   <p>Help your students bridge the gap between academics and employment with our Learning to Earning Plan.</p>
-                  <p><strong>Email:</strong> [Your Email]</p>
-                  <p><strong>Websaite:</strong> [Your Website]</p>
+                  <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
+            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
+          </p>
+                  <p style={{ fontSize: "1rem" }}>
+            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
+          </p>
                   <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
                 </div>
 

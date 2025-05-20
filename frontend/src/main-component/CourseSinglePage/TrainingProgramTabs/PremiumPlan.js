@@ -111,8 +111,12 @@ const PremiumPlan = ({ onBookNow }) => {
                   <p>
                     Give your students the <strong>competitive edge</strong> they need in today's finance industry.
                   </p>
-                   <p><strong>Email:</strong> [Your Email]</p>
-                  <p><strong>Websaite:</strong> [Your Website]</p>
+                   <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
+            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
+          </p>
+                  <p style={{ fontSize: "1rem" }}>
+            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
+          </p>
                   <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
                      
                 </div>
