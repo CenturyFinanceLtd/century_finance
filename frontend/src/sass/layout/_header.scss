@@ -257,6 +257,10 @@
     width: 100%;
   }
 
+  header .row.align-items-center {
+    align-items: center !important;
+}
+
   .wpo-site-header #navbar > ul > li > a.active {
     color: $text-color;
     font-weight: 700;
