@@ -10,19 +10,18 @@ import "./ExpandingCardGrid.css";
 const coursesData = [
   {
     id: "foundation",
+    courseNumber: 1,
+    icon: "🔰",
     title: "Foundation Blueprint",
+    price: "₹1,900 to ₹3,000", // Re-used 'price' for 'priceText'
     duration: "2–3 Weeks",
-    price: "₹1,900 to ₹3,000",
-    description: `
-        Transform from: “What is Sensex?” → To: “I understand how markets move”
-
-        What You’ll Master:
-      * Indian + Global Market Structure — explained simply
-      * Support & Resistance: Identify market turning points like a pro
-      * Price trends, market phases, essential trading lingo
-        Best For: Total beginners who want clarity, not confusion
-        Outcome: You’ll gain confidence to enter the market safely
-    `,
+    level: "Beginner Level",
+    installmentOption: "2 Easy EMIs Available",
+    whyChoose:
+      "Start your trading journey with confidence through step-by-step guidance.",
+    transformFrom: "“What is Sensex?” → To: “I understand how markets move”",
+    tagline: "Begin your path from basics to expert level here.",
+    // expandedDetails from previous step - user will update its content later
     expandedDetails: {
       takeaways: [
         "Grasp fundamental market mechanics.",
@@ -30,25 +29,23 @@ const coursesData = [
         "Understand price trends and market phases.",
         "Speak the language of the markets with essential lingo.",
       ],
-      // callToAction: "Build Your Foundation",
+      callToAction: "Build Your Foundation",
     },
   },
   {
     id: "ignite",
+    courseNumber: 2,
+    icon: "🔥",
     title: "Ignite Trader Mindset",
-    duration: "3 Weeks",
     price: "₹3,000",
-    description: `
-        Transform from: “What’s happening in the market?” → To: “I can track it daily”
-
-        Includes Everything in Foundation Plan, Plus:
-      * Daily Market Digest (India + Global)
-      * Sector Analysis: Auto, Pharma, FMCG, IT etc.
-      * Learn Index Movers, Weightage & Market Dynamics
-      * Deep-Dive into Support & Resistance (with live market examples)
-        Best For: Students & professionals who want market literacy
-        Outcome: Start reading markets with daily clarity and confidence
-    `,
+    duration: "3 Weeks",
+    level: null, // No specific level mentioned in the new format for this one
+    installmentOption: "2 Easy EMIs Available",
+    whyChoose:
+      "Understand daily market dynamics and improve your trading decisions.",
+    transformFrom:
+      "“What’s happening in the market?” → To: “I can track it daily”",
+    tagline: "Confidently analyze market movements every day.",
     expandedDetails: {
       takeaways: [
         "Develop a routine for daily market tracking.",
@@ -56,24 +53,21 @@ const coursesData = [
         "Understand how indices move and why.",
         "Apply support & resistance with live examples.",
       ],
-      // callToAction: "Ignite Your Mindset",
+      callToAction: "Ignite Your Mindset",
     },
   },
   {
     id: "explorer",
+    courseNumber: 3,
+    icon: "🌐",
     title: "Explorer: Derivatives Unlocked",
-    duration: "6 Weeks",
     price: "₹4,100",
-    description: `
-        Transform from: “I’ve heard of Options” → To: “I understand how they work”
-
-        Learn:
-      * Basics of Futures & Options (no confusing jargon)
-      * Macro Trends: RBI Policy, Inflation, Dollar impact
-      * Chart Patterns: Double Tops, Breakouts, Head & Shoulders
-        Best For: Those ready to go beyond buying/selling stocks
-        Outcome: Build knowledge for smarter, leveraged trading
-    `,
+    duration: "6 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose: "Learn derivatives and leverage smart trading strategies.",
+    transformFrom: "“I’ve heard of Options” → To: “I understand how they work”",
+    tagline: "Gain essential knowledge for smarter trading.",
     expandedDetails: {
       takeaways: [
         "Master the basics of Futures & Options without jargon.",
@@ -81,24 +75,22 @@ const coursesData = [
         "Recognize and interpret common chart patterns.",
         "Prepare for leveraged trading opportunities.",
       ],
-      // callToAction: "Explore Derivatives Now",
+      callToAction: "Explore Derivatives Now",
     },
   },
   {
     id: "advance",
+    courseNumber: 4,
+    icon: "🎯",
     title: "Advance Edge",
-    duration: "8 Weeks",
     price: "₹5,200",
-    description: `
-        Transform from: “I read charts” → To: “I understand trader psychology”
-
-        Learn:
-      * Candlestick Interpretation (single & combo patterns)
-      * Psychology of Trading: Emotions, Greed, Fear
-      * Risk Management: 1% Rule, Stop Loss Setup, Position Sizing
-        Best For: Intermediate learners who want safe strategies
-        Outcome: You’ll start making smart, low-risk trading decisions
-    `,
+    duration: "8 Weeks",
+    level: null,
+    installmentOption: "2 Easy EMIs Available",
+    whyChoose:
+      "Master trading psychology and risk management to gain your edge.",
+    transformFrom: "“I read charts” → To: “I understand trader psychology”",
+    tagline: "Control your emotions and make better decisions.",
     expandedDetails: {
       takeaways: [
         "Interpret complex candlestick patterns.",
@@ -106,24 +98,21 @@ const coursesData = [
         "Implement robust risk management strategies.",
         "Make smarter, low-risk trading decisions.",
       ],
-      // callToAction: "Gain Your Edge",
+      callToAction: "Gain Your Edge",
     },
   },
   {
     id: "traderpro",
+    courseNumber: 5,
+    icon: "💼",
     title: "Trader Pro",
-    duration: "10 Weeks",
     price: "₹6,300",
-    description: `
-        Transform from: “I trade on tips” → To: “I create my own strategies”
-
-        Learn:
-      * Sector Rotation + Business Cycles
-      * Monthly Market Forecasting
-      * Personal Watchlist Creation + Gap Theory
-        Best For: Those serious about becoming independent traders
-        Outcome: Strategize your trades with full market awareness
-    `,
+    duration: "10 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose: "Learn strategy building and move beyond trading on tips.",
+    transformFrom: "“I trade on tips” → To: “I create my own strategies”",
+    tagline: "Plan your trades smartly with proven methods.",
     expandedDetails: {
       takeaways: [
         "Learn to identify sector rotation and business cycles.",
@@ -131,24 +120,21 @@ const coursesData = [
         "Create and manage a personal trading watchlist.",
         "Apply Gap Theory to your trading strategies.",
       ],
-      // callToAction: "Go Pro Today",
+      callToAction: "Go Pro Today",
     },
   },
   {
     id: "marketmaster",
+    courseNumber: 6,
+    icon: "📊",
     title: "Market Master",
-    duration: "12 Weeks",
     price: "₹7,400",
-    description: `
-        Transform from: “I guess trends” → To: “I analyze with indicators”
-
-        Learn:
-      * RSI, MACD, Bollinger Bands, Moving Averages
-      * Mock Trading Platforms for real-time learning
-      * Sentiment Tracking: How emotions move the market
-        Best For: Serious learners ready to use pro tools
-        Outcome: Technical charts become your superpower
-    `,
+    duration: "12 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose: "Analyze markets using technical indicators like a pro.",
+    transformFrom: "“I guess trends” → To: “I analyze with indicators”",
+    tagline: "Use charts and tools to trade confidently.",
     expandedDetails: {
       takeaways: [
         "Master technical indicators like RSI, MACD, and Bollinger Bands.",
@@ -156,24 +142,21 @@ const coursesData = [
         "Learn to track and interpret market sentiment.",
         "Make indicators your trading superpower.",
       ],
-      // callToAction: "Conquer the Market",
+      callToAction: "Conquer the Market",
     },
   },
   {
     id: "indexwizard",
+    courseNumber: 7,
+    icon: "💹",
     title: "Index Wizard",
-    duration: "14 Weeks",
     price: "₹8,500",
-    description: `
-        Transform from: “I trade stocks” → To: “I understand global asset flows”
-
-        Learn:
-      * Forex + Commodities: USD-INR, Gold, Oil etc.
-      * Intro to Crypto Market & Global Asset Relations
-      * Deeper Candlestick Patterns & Global Index Analysis
-        Best For: Learners who want international exposure
-        Outcome: Learn to position trades globally with confidence
-    `,
+    duration: "14 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose: "Understand global markets and diversify your portfolio.",
+    transformFrom: "“I trade stocks” → To: “I understand global asset flows”",
+    tagline: "Make your mark in the world of global trading.",
     expandedDetails: {
       takeaways: [
         "Analyze Forex and Commodity markets (USD-INR, Gold, Oil).",
@@ -181,24 +164,22 @@ const coursesData = [
         "Understand global asset interrelations.",
         "Perform in-depth global index analysis.",
       ],
-      // callToAction: "Become a Wizard",
+      callToAction: "Become a Wizard",
     },
   },
   {
     id: "globalanalyst",
+    courseNumber: 8,
+    icon: "🌍",
     title: "Global Analyst",
-    duration: "16 Weeks",
     price: "₹9,600",
-    description: `
-        Transform from: “I follow news” → To: “I analyze global sentiment”
-
-        Learn:
-      * Sentiment Indicators, Open Interest, Put-Call Ratio
-      * Long-Term Portfolio Building (Stocks, Mutual Funds, Index)
-      * Understand correlation between US, Indian, & Asian markets
-        Best For: Strategic investors who want long-term vision
-        Outcome: Build a solid global portfolio with smart entries
-    `,
+    duration: "16 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose:
+      "Become an expert in long-term investing and global market analysis.",
+    transformFrom: "“I follow news” → To: “I analyze global sentiment”",
+    tagline: "Build a strong foundation for strategic investing.",
     expandedDetails: {
       takeaways: [
         "Utilize advanced sentiment indicators (OI, PCR).",
@@ -206,24 +187,21 @@ const coursesData = [
         "Analyze correlations between major international markets.",
         "Develop a strategic long-term investment vision.",
       ],
-      // callToAction: "Analyze Globally",
+      callToAction: "Analyze Globally",
     },
   },
   {
     id: "wealthmentor",
+    courseNumber: 9,
+    icon: "💼", // Re-using icon, can be changed
     title: "Wealth Mentor",
-    duration: "18 Weeks",
     price: "₹10,700",
-    description: `
-        Transform from: “I trade for profit” → To: “I manage risk like a pro”
-
-        Learn:
-      * Advanced Options: Iron Condor, Straddle, Greeks
-      * Capital Protection & Hedging Techniques
-      * Access to Weekly Psychology Labs + Pro Trading Groups
-        Best For: Aspiring full-time traders
-        Outcome: You’ll manage wealth like institutions do
-    `,
+    duration: "18 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose: "Master professional risk management and grow your wealth.",
+    transformFrom: "“I trade for profit” → To: “I manage risk like a pro”",
+    tagline: "Develop institutional-level trading skills.",
     expandedDetails: {
       takeaways: [
         "Implement advanced options strategies (Iron Condor, Straddle).",
@@ -231,24 +209,22 @@ const coursesData = [
         "Understand and apply option Greeks effectively.",
         "Join psychology labs and pro trading communities.",
       ],
-      // callToAction: "Mentor Your Wealth",
+      callToAction: "Mentor Your Wealth",
     },
   },
   {
     id: "premiumvision",
+    courseNumber: 10,
+    icon: "👨‍🏫",
     title: "Premium Vision",
-    duration: "20 Weeks",
     price: "₹11,800",
-    description: `
-        Transform from: “I’m learning solo” → To: “I get personal guidance”
-
-        Learn:
-      * Monthly 1-on-1 Mentorship Calls
-      * Real-time Educational Trade Signals
-      * Live Adjustments to Strategy Based on Your Progress
-        Best For: Dedicated learners needing mentorship
-        Outcome: Accelerate your growth with expert hands-on help
-    `,
+    duration: "20 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose:
+      "Boost your skills with expert mentorship and personalized guidance.",
+    transformFrom: "“I’m learning solo” → To: “I get personal guidance”",
+    tagline: "Grow faster with dedicated support.",
     expandedDetails: {
       takeaways: [
         "Receive personalized 1-on-1 mentorship.",
@@ -256,24 +232,23 @@ const coursesData = [
         "Get live strategy adjustments based on your progress.",
         "Accelerate your trading growth with expert help.",
       ],
-      // callToAction: "Achieve Premium Vision",
+      callToAction: "Achieve Premium Vision",
     },
   },
   {
     id: "ultraprime",
+    courseNumber: 11,
+    icon: "🧠",
     title: "Ultra Prime",
-    duration: "22 Weeks",
     price: "₹14,000",
-    description: `
-        Transform from: “I learn from YouTube” → To: “I access elite tools & knowledge”
-
-        Learn:
-      * Lifetime Material Access + Updates
-      * AI Tools for Market Scanning
-      * Weekly Premium Live Sessions + Elite Trader Circle
-        Best For: Long-term, high-value learners
-        Outcome: Consistent edge in every market cycle
-    `,
+    duration: "22 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose:
+      "Get elite tools, AI support, and exclusive sessions for every market cycle.",
+    transformFrom:
+      "“I learn from YouTube” → To: “I access elite tools & knowledge”",
+    tagline: "Maintain a consistent edge in the market.",
     expandedDetails: {
       takeaways: [
         "Gain lifetime access to course materials and updates.",
@@ -281,24 +256,23 @@ const coursesData = [
         "Participate in weekly premium live sessions.",
         "Join the Elite Trader Circle for networking.",
       ],
-      // callToAction: "Go Ultra Prime",
+      callToAction: "Go Ultra Prime",
     },
   },
   {
     id: "elitelegacy",
+    courseNumber: 12,
+    icon: "🏆",
     title: "Elite Legacy Trader",
-    duration: "24 Weeks",
     price: "₹18,000",
-    description: `
-        Transform from: “I’ve taken many courses” → To: “I’m part of the top 1% community”
-
-        All Benefits from Previous Plans, Plus:
-      * Invite-only Investor Circle Access
-      * Exclusive Networking, Strategy Retreats, Referrals
-      * Long-Term Value + Private Community Access
-        Best For: Wealth-builders, Entrepreneurs & Financial Educators
-        Outcome: Legacy-level wealth skills + high-level exposure
-    `,
+    duration: "24 Weeks",
+    level: null,
+    installmentOption: "3 Easy EMIs Available",
+    whyChoose:
+      "Join the top 1% community with exclusive networking and strategy retreats.",
+    transformFrom:
+      "“I’ve taken many courses” → To: “I’m part of the top 1% community”",
+    tagline: "Build your legacy of financial success.",
     expandedDetails: {
       takeaways: [
         "Access an invite-only Investor Circle.",
@@ -306,7 +280,7 @@ const coursesData = [
         "Build long-term value with a private community.",
         "Develop legacy-level wealth skills and gain high-level exposure.",
       ],
-      // callToAction: "Secure Your Legacy",
+      callToAction: "Secure Your Legacy",
     },
   },
 ];
@@ -325,7 +299,6 @@ const OnlineCourse = () => {
 
   const handleEnrollClick = (courseTitle) => {
     alert(`Proceeding to enrollment for ${courseTitle}...`);
-    // Here you would typically navigate to an enrollment page or open a modal
   };
 
   useEffect(() => {
@@ -386,20 +359,51 @@ const OnlineCourse = () => {
 
             return (
               <div key={course.id} className={cardClasses}>
+                {/* MODIFIED .card-custom__inner for new content structure */}
                 <div
                   className="card-custom__inner"
                   onClick={() => handleCardClick(course.id)}>
-                  <h3 className="card-title-custom">{course.title}</h3>
-                  <div className="card-meta-custom">
-                    <span className="card-duration">⏱️ {course.duration}</span>
-                    <span className="card-price">💰 {course.price}</span>
+                  <div className="card-header-line">
+                    <span className="card-course-icon">{course.icon}</span>
+                    <h3 className="card-title-main">
+                      {course.courseNumber}. <em>{course.title}</em> –{" "}
+                      {course.price}
+                    </h3>
                   </div>
-                  <div className="card-description-inner-custom">
-                    {course.description}
+
+                  <div className="card-details-line">
+                    <span className="card-duration-level">
+                      ⏳ {course.duration}
+                      {course.level && ` | 🧠 ${course.level}`}
+                    </span>
                   </div>
-                  <i className="fa fa-folder-o card-icon-custom"></i>
+
+                  {course.installmentOption && (
+                    <div className="card-installment-line">
+                      💳 <em>{course.installmentOption}</em>
+                    </div>
+                  )}
+
+                  <div className="card-why-choose">
+                    <p>
+                      📌 <em>Why choose this plan?</em>
+                      <br />
+                      {course.whyChoose}
+                    </p>
+                  </div>
+
+                  <div className="card-transform">
+                    <p>
+                      📘 <em>Transform from:</em> {course.transformFrom}
+                    </p>
+                  </div>
+
+                  <div className="card-tagline">
+                    <p>💥 {course.tagline}</p>
+                  </div>
                 </div>
 
+                {/* Expander content remains the same as the previous step, using course.expandedDetails */}
                 <div className="card-custom__expander">
                   <i
                     className="fa fa-close"
@@ -431,7 +435,7 @@ const OnlineCourse = () => {
                         )}
                       </>
                     )}
-                    {!course.expandedDetails && ( // Fallback if expandedDetails is missing for some reason
+                    {!course.expandedDetails && (
                       <p style={{ textAlign: "center", width: "100%" }}>
                         More details coming soon!
                       </p>
