@@ -7,7 +7,11 @@
     /* darken(#eceef1, 30%) */
     --slate: #ffffff;
     /* darken(#eceef1, 70%) */
-    --turquoise: #e1d8e6;
+    --turquoise: #dbcfc6;
+    
+   
+
+
 }
 
 
@@ -25,15 +29,18 @@
     /* Renamed to avoid global conflicts */
     margin: 5em auto;
     max-width: 1320px;
-    background-color: #e80d0d;
+    background-color: #c2e4ac;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
     border-radius: 1cqi;
+    box-shadow: #0e0e01;
+    
 }
 
 .header-custom {
     /* Renamed */
     padding: 30px 30px 0;
     text-align: center;
+    
 }
 
 .header-custom__title {
@@ -101,6 +108,7 @@
     text-align: center;
     transition: all 0.2s ease-in-out;
     border-radius: 1ch;
+    height: 495px;
 }
 
 .card-custom__inner:after {
