@@ -14,7 +14,7 @@ const menus = [
 
   {
     id: 2,
-    title: "Customer Services",
+    title: "Company",
     link: "/",
     submenu: [
       {
