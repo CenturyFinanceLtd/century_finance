@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulb,
   faCrown,
-  faChartLine,
 } from "@fortawesome/free-solid-svg-icons"; // Or whichever icons you are using
 
 const IconBasicPlan = () => <FontAwesomeIcon icon={faLightbulb} />;

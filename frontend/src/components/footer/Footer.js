@@ -133,21 +133,21 @@ const Footer = (props) => {
                       About Us
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/course">
                       Featured Courses
                     </Link>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/teacher">
                       Teachers
                     </Link>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/blog">
                       Latest News
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -162,26 +162,26 @@ const Footer = (props) => {
                       Contact Us
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/course">
                       Courses
                     </Link>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/lesson">
                       Lesson
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link onClick={ClickHandler} to="/register">
                       Sign Up
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/testimonial">
                       Testimonials
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
