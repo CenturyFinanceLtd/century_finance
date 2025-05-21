@@ -3,11 +3,11 @@
 /* Original SCSS Variables converted to CSS custom properties or hardcoded */
 :root {
     --light-gray: #0e0e01;
-    --gray: #d5dae0;
+    --gray: #ffffff;
     /* darken(#eceef1, 30%) */
-    --slate: #dfe8f1;
+    --slate: #ffffff;
     /* darken(#eceef1, 70%) */
-    --turquoise: #88ddd7;
+    --turquoise: #e1d8e6;
 }
 
 
@@ -25,8 +25,9 @@
     /* Renamed to avoid global conflicts */
     margin: 5em auto;
     max-width: 1320px;
-    background-color: #111010;
+    background-color: #e80d0d;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 1cqi;
 }
 
 .header-custom {
@@ -49,10 +50,11 @@
     margin: 0;
     font-size: 1.5em;
     color: var(--gray);
-    font-family: 'Yesteryear', cursive;
+    font-family: 'Yesteryear',    ;
     /* Make sure to import this font */
     font-weight: 500;
     line-height: 1.1;
+
 }
 
 .cards-custom {
@@ -98,6 +100,7 @@
     text-transform: ;
     text-align: center;
     transition: all 0.2s ease-in-out;
+    border-radius: 1ch;
 }
 
 .card-custom__inner:after {
@@ -117,7 +120,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-transform: uppercase;
+    text-transform: ;
     /* color: var(--light-gray); */
     /* Already set on .card-custom */
     font-size: 1.5em;
@@ -272,9 +275,9 @@
             display: flex;
             flex-direction: column;
             /* justify-content set below based on needs */
-            align-items: center;
+            align-items:left;
             /* Center children like title, meta, icon horizontally */
-            text-align: center;
+            text-align: left;
             /* Default text align for children, can be overridden */
             min-height: 300px;
             /* Adjust as needed, will likely be determined by content */
@@ -507,7 +510,7 @@
 }
 
 .learn-btn:hover {
-    background-color: #2f8a8a; /* Slightly darker turquoise */
+    background-color: #737373; /* Slightly darker turquoise */
     transform: translateY(-2px);
 }
 

@@ -11,10 +11,10 @@ const coursesData = [
   {
     id: "foundation",
     courseNumber: 1,
-    icon: "🔰",
+    icon: "",
     title: "Foundation Course",
     price: "₹1,900 to ₹3,000", // Re-used 'price' for 'priceText'
-    duration: "2–3 Weeks",
+    duration: "2 Weeks",
     level: "Beginner Level",
     installmentOption: "2 Easy EMIs Available",
     whyChoose:
@@ -32,7 +32,7 @@ const coursesData = [
   {
     id: "ignite",
     courseNumber: 2,
-    icon: "🔥",
+    icon: "",
     title: "Ignite ",
     price: "₹3,000",
     duration: "3 Weeks",
@@ -54,7 +54,7 @@ const coursesData = [
   {
     id: "explorer",
     courseNumber: 3,
-    icon: "🌐",
+    icon: "",
     title: "Explorer: ",
     price: "₹4,100",
     duration: "6 Weeks",
@@ -74,7 +74,7 @@ const coursesData = [
   {
     id: "advance",
     courseNumber: 4,
-    icon: "🎯",
+    icon: "",
     title: "Advance Edge",
     price: "₹5,200",
     duration: "8 Weeks",
@@ -96,7 +96,7 @@ const coursesData = [
   {
     id: "traderpro",
     courseNumber: 5,
-    icon: "💼",
+    icon: "",
     title: "Trader Pro",
     price: "₹6,300",
     duration: "10 Weeks",
@@ -116,7 +116,7 @@ const coursesData = [
   {
     id: "marketmaster",
     courseNumber: 6,
-    icon: "📊",
+    icon: "",
     title: "Market Master",
     price: "₹7,400",
     duration: "12 Weeks",
@@ -127,7 +127,7 @@ const coursesData = [
     tagline: "Use charts and tools to trade confidently.",
     expandedDetails: {
       takeaways: [
-        "Want to use advanced tools and analyze markets like pros? This course introduces popular technical indicators and real-time mock trading.", "Why enroll?:- Because mastering tools like RSI, MACD, and Bollinger Bands gives you an edge in predicting price moves. Plus, live practice builds confidence before real trades.", "Why this course is unique:- this one combines theory with live practice, giving you hands-on experience to build confidence.", "Flexible Payment Plan:- Enroll with our 3-installment plan  with a small interest fee. This makes your investment in market mastery easier to manage!", "The Trader Pro Plan is designed to give you a broader and more strategic market vision. It helps you understand sector rotation and how the business cycle affects different sectors over time. This knowledge allows you to position your trades based on where the smart money is moving, improving your timing and decision-making.You'll also receive a monthly market outlook that covers both Indian and global trends, helping you stay aligned with macroeconomic shifts and upcoming opportunities. This keeps you updated and prepared for larger market moves.One-on-one support is available to help you create a personalized watchlist tailored to your goals and trading style—making your daily analysis more focused and efficient.Additionally, the course covers gap theory, where you’ll learn why price gaps happen, what they indicate about market sentiment, and how to trade them to your advantage. Overall, the Trader Pro Plan helps you think like a strategist, combining high-level insights with personalized tools and expert guidance."
+        "Want to use advanced tools and analyze markets like pros? This course introduces popular technical indicators and real-time mock trading.", "Why enroll?:- Because mastering tools like RSI, MACD, and Bollinger Bands gives you an edge in predicting price moves. Plus, live practice builds confidence before real trades.", "Why this course is unique:-   this one combines theory with live practice, giving you hands-on experience to build confidence.", "Flexible Payment Plan:- Enroll with our 3-installment plan  with a small interest fee. This makes your investment in market mastery easier to manage!", "The Trader Pro Plan is designed to give you a broader and more strategic market vision. It helps you understand sector rotation and how the business cycle affects different sectors over time. This knowledge allows you to position your trades based on where the smart money is moving, improving your timing and decision-making.You'll also receive a monthly market outlook that covers both Indian and global trends, helping you stay aligned with macroeconomic shifts and upcoming opportunities. This keeps you updated and prepared for larger market moves.One-on-one support is available to help you create a personalized watchlist tailored to your goals and trading style—making your daily analysis more focused and efficient.Additionally, the course covers gap theory, where you’ll learn why price gaps happen, what they indicate about market sentiment, and how to trade them to your advantage. Overall, the Trader Pro Plan helps you think like a strategist, combining high-level insights with personalized tools and expert guidance."
 
       ],
 
@@ -136,7 +136,7 @@ const coursesData = [
   {
     id: "indexwizard",
     courseNumber: 7,
-    icon: "💹",
+    icon: "",
     title: "Index Wizard",
     price: "₹8,500",
     duration: "14 Weeks",
@@ -156,7 +156,7 @@ const coursesData = [
   {
     id: "globalanalyst",
     courseNumber: 8,
-    icon: "🌍",
+    icon: "",
     title: "Global Analyst",
     price: "₹9,600",
     duration: "16 Weeks",
@@ -176,7 +176,7 @@ const coursesData = [
   {
     id: "wealthmentor",
     courseNumber: 9,
-    icon: "💼", // Re-using icon, can be changed
+    icon: "", // Re-using icon, can be changed
     title: "Wealth Mentor",
     price: "₹10,700",
     duration: "18 Weeks",
@@ -196,7 +196,7 @@ const coursesData = [
   {
     id: "premiumPlan",
     courseNumber: 10,
-    icon: "👨‍🏫",
+    icon: "",
     title: "Premium Plan",
     price: "₹11,800",
     duration: "20 Weeks",
@@ -217,7 +217,7 @@ const coursesData = [
   {
     id: "ultraprime",
     courseNumber: 11,
-    icon: "🧠",
+    icon: "",
     title: "Ultra Prime",
     price: "₹14,000",
     duration: "22 Weeks",
@@ -239,7 +239,7 @@ const coursesData = [
   {
     id: "elite",
     courseNumber: 12,
-    icon: "🏆",
+    icon: "",
     title: "Elite ",
     price: "₹18,000",
     duration: "24 Weeks",
@@ -348,20 +348,20 @@ const OnlineCourse = () => {
 
                   <div className="card-details-line">
                     <span className="card-duration-level">
-                      ⏳ {course.duration}
-                      {course.level && ` | 🧠 ${course.level}`}
+                       {course.duration}
+                      {course.level && ` |  ${course.level}`}
                     </span>
                   </div>
 
                   {course.installmentOption && (
                     <div className="card-installment-line">
-                      💳 <em>{course.installmentOption}</em>
+                       <em>{course.installmentOption}</em>
                     </div>
                   )}
 
                   <div className="card-why-choose">
                     <p>
-                      📌 <em>Why choose this plan?</em>
+                       <em>Why choose this plan?</em>
                       <br />
                       {course.whyChoose}
                     </p>
@@ -369,12 +369,12 @@ const OnlineCourse = () => {
 
                   <div className="card-transform">
                     <p>
-                      📘 <em>Transform from:</em> {course.transformFrom}
+                       <em>Transform from:</em> {course.transformFrom}
                     </p>
                   </div>
 
                   <div className="card-tagline">
-                    <p>💥 {course.tagline}</p>
+                    <p>{course.tagline}</p>
                   </div>
 
                   <div className="learn-btn">
