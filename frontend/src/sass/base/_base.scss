@@ -270,3 +270,284 @@ img{
 
 
 
+/* Basic styling for the slider section and images */
+.hero-slider-section { /* Common class for both slider containers */
+    width: 100%;
+    overflow: hidden; /* Good practice for sliders */
+  }
+  
+  .slide-item {
+    width: 100%; /* Ensure slide item takes full width */
+    outline: none; /* Remove outline on focused slide */
+  }
+  
+  .hero-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adjust height as needed. Can be fixed or responsive. */
+    /* min-height: 300px; */ /* Example minimum height */
+    /* max-height: 80vh; */ /* Example maximum height relative to viewport */
+  }
+  
+  .hero-banner-image {
+    width: 100%;            /* Make image responsive within its container */
+    height: auto;           /* Maintain aspect ratio by default */
+    // max-height: 70vh;       /* Example: Prevent image from being excessively tall on large screens */
+    object-fit: cover;      /* 'cover' will fill the container, cropping if necessary. */
+                             /* Use 'contain' to show the whole image, which might leave empty space. */
+    display: block;         /* Remove extra space below image */
+  }
+  
+  /* --- Visibility Rules for Desktop vs. Mobile SLIDER CONTAINERS --- */
+  
+  /* By default (desktop-first approach), hide the mobile slider container */
+  section.hero-slider-section.mobile-slider-container {
+    display: none !important;
+  }
+  
+  /* Ensure the desktop slider container is shown by default */
+  section.hero-slider-section.desktop-slider-container {
+    display: block !important; /* Or 'flex' if its internal layout requires it */
+  }
+  
+  /* Mobile View: Show mobile slider container, hide desktop slider container */
+  /* User's breakpoint: 499px */
+  @media (max-width: 499px) {
+    section.hero-slider-section.desktop-slider-container {
+      display: none !important; /* Fixed: Added !important to ensure override */
+    }
+    section.hero-slider-section.mobile-slider-container {
+      display: block !important;
+    }
+  
+    /* Optional: Adjust image height or other styles specifically for mobile images */
+    /* This rule will apply to images within the .mobile-slider-container */
+    .mobile-slider-container .hero-banner-image {
+      max-height: 50vh; /* Example: Shorter max height for mobile images */
+    }
+    /* If desktop images also need different styling on desktop, you can add: */
+    /* .desktop-slider-container .hero-banner-image { max-height: 70vh; } */
+    /* (though it's already set globally above) */
+  }
+  
+  /* Slick Carousel Specifics to ensure proper display and prevent common issues */
+  /* It's good to have these base slick styles if you're not using the full slick-theme.css */
+  /* or if you need to override them. */
+  
+  .slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .slick-list { /* The track container */
+    position: relative;
+    display: block;
+    overflow: hidden; /* This is important */
+    margin: 0;
+    padding: 0;
+  }
+  .slick-list:focus {
+    outline: none;
+  }
+  .slick-list.dragging {
+    cursor: pointer;
+    /* cursor: hand; */ /* 'hand' is deprecated, use 'pointer' */
+  }
+  
+  .slick-track { /* The wrapper for all slides */
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block !important; /* Ensures slides are laid out correctly by slick */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .slick-track:before,
+  .slick-track:after {
+    display: table;
+    content: '';
+  }
+  .slick-track:after {
+    clear: both;
+  }
+  .slick-loading .slick-track {
+    visibility: hidden;
+  }
+  
+  .slick-slide { /* Individual slide wrapper created by slick */
+    float: left; /* Critical for horizontal layout */
+    height: 100%;
+    min-height: 1px;
+    /* display: none; */ /* This is NOT needed here anymore as visibility is on parent */
+  }
+  [dir='rtl'] .slick-slide {
+    float: right;
+  }
+  .slick-slide img {
+    display: block; /* Good practice for images within slides */
+  }
+  .slick-slide.slick-loading img {
+    display: none;
+  }
+  .slick-slide.dragging img {
+    pointer-events: none;
+  }
+  .slick-initialized .slick-slide {
+     display: block; /* This ensures slides inside an active slider are visible */
+  }
+  .slick-loading .slick-slide {
+    visibility: hidden;
+  }
+  .slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+  }
+  .slick-arrow.slick-hidden {
+    display: none;
+  }
+  
+  /* Ensure the direct child div of .slick-slide (which slick adds) takes up full space */
+  .slick-slide > div {
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Basic styling for default arrows (if arrows: true and not using custom ones) */
+  /* You would typically get these from slick-theme.css or define your own. */
+  .slick-prev,
+  .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+    z-index: 1; /* Ensure arrows are above slides */
+  }
+  .slick-prev:hover,
+  .slick-prev:focus,
+  .slick-next:hover,
+  .slick-next:focus {
+    color: transparent;
+    outline: none;
+    background: transparent;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    font-family: 'slick'; /* Default slick font for arrows */
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: white; /* Example color, change as needed */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 0 0 2px rgba(0,0,0,0.5); /* Example shadow for better visibility on light images */
+  }
+  .slick-prev {
+    left: 25px; /* Adjust position from edge */
+  }
+  [dir='rtl'] .slick-prev {
+    right: 25px;
+    left: auto;
+  }
+  .slick-prev:before {
+    content: '←'; /* Default left arrow */
+  }
+  [dir='rtl'] .slick-prev:before {
+    content: '→';
+  }
+  
+  .slick-next {
+    right: 25px; /* Adjust position from edge */
+  }
+  [dir='rtl'] .slick-next {
+    left: 25px;
+    right: auto;
+  }
+  .slick-next:before {
+    content: '→'; /* Default right arrow */
+  }
+  [dir='rtl'] .slick-next:before {
+    content: '←';
+  }
+  
+  /* Basic styling for dots (if dots: true) */
+  .slick-dots {
+    position: absolute;
+    bottom: 10px; /* Adjust position from bottom */
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+  }
+  .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+  }
+  .slick-dots li button:hover,
+  .slick-dots li button:focus {
+    outline: none;
+  }
+  .slick-dots li button:before {
+    font-family: 'slick'; /* Default slick font for dots */
+    font-size: 10px; /* Adjust dot size */
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•'; /* Default dot character */
+    text-align: center;
+    opacity: .5; /* Increased opacity for better visibility */
+    color: white; /* Example color, change as needed */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 0 0 2px rgba(0,0,0,0.5); /* Example shadow for better visibility */
+  }
+  .slick-dots li.slick-active button:before {
+    opacity: .95; /* Increased opacity for active dot */
+    color: white; /* Example active dot color */
+  }
