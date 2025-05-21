@@ -33,9 +33,9 @@ const Footer = (props) => {
                   </Link>
                 </div>
                 <p>
-                  Smart trading begins with smart learning, gain insights,
-                  build confidence, master strategies, reduce risks, and grow
-                  your financial future.
+                  Smart trading begins with smart learning, gain insights, build
+                  confidence, master strategies, reduce risks, and grow your
+                  financial future.
                 </p>
                 {/* Start: Updated Social Media Section */}
                 <div className="social">
@@ -69,7 +69,7 @@ const Footer = (props) => {
                     <li>
                       {/* Note: The LinkedIn href="/" probably needs updating */}
                       <a
-                        href="/"
+                        href="https://www.linkedin.com/company/century-finance-ltd/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn">

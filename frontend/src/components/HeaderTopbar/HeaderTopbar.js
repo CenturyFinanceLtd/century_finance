@@ -44,7 +44,10 @@ const HeaderTopbar = ({ topbarClass }) => {
                   </a>
                 </li>
                 <li>
-                  <a href="/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/company/century-finance-ltd/"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     <FaLinkedinIn />
                   </a>
                 </li>
