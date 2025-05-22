@@ -90,8 +90,8 @@ const AllRoute = () => {
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="order-received" element={<OrderRecived />} />
           <Route path="faq" element={<FaqPage />} />
-          <Route path="privacy" element={<PrivacyPage />} />
-          <Route path="terms" element={<TermsPage />} />
+          <Route path="privacy-policy" element={<PrivacyPage />} />
+          <Route path="terms&conditions" element={<TermsPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog-left-sidebar" element={<BlogPageLeft />} />
           <Route path="blog-fullwidth" element={<BlogPageFullwidth />} />

@@ -230,15 +230,15 @@ const Footer = (props) => {
               <div className="link">
                 <ul>
                   <li>
-                    <Link onClick={ClickHandler} to="/privacy">
+                    <Link onClick={ClickHandler} to="/terms&conditions">
                       Privace & Policy {/* Typo: Should be Privacy */}
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/terms">
-                      Terms
+                  <li>
+                    <Link onClick={ClickHandler} to="/terms&conditions">
+                      Terms & Conditions
                     </Link>
-                  </li> */}
+                  </li>
                   <li>
                     <Link onClick={ClickHandler} to="/about">
                       About us
