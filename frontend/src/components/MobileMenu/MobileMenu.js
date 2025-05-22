@@ -38,32 +38,32 @@ const menus = [
       {
         id: 31,
         title: "Training Program",
-        link: "/",
+        link: "/training-program",
       },
       {
         id: 32,
         title: "Online Courses",
-        link: "/",
+        link: "/online-courses",
       },
       {
         id: 33,
         title: "Portfolio",
-        link: "/",
+        link: "/portfolio",
       },
       {
         id: 34,
         title: "Finance",
-        link: "/",
+        link: "/finance",
       },
       {
         id: 35,
         title: "Investment Plan",
-        link: "/",
+        link: "/investment-plan",
       },
       {
         id: 36,
         title: "Subscription Plan",
-        link: "/",
+        link: "/calls-subscription-plan",
       },
     ],
   },
@@ -75,27 +75,27 @@ const menus = [
       {
         id: 41,
         title: "Stocks",
-        link: "/lesson",
+        link: "/stocks",
       },
       {
         id: 42,
         title: "Commodities",
-        link: "/",
+        link: "/commodities",
       },
       {
         id: 43,
         title: "Crypto",
-        link: "/",
+        link: "/crypto",
       },
       {
         id: 44,
         title: "Gold",
-        link: "/",
+        link: "/gold",
       },
       {
         id: 45,
         title: "Currencies",
-        link: "/",
+        link: "/currencies",
       },
     ],
   },
@@ -103,13 +103,13 @@ const menus = [
   {
     id: 5,
     title: "Investment",
-    link: "/",
+    link: "/investment",
   },
 
   {
     id: 6,
     title: "Finance",
-    link: "/",
+    link: "/finance-services",
   },
 
   {
@@ -151,12 +151,6 @@ const menus = [
       },
     ],
   },
-
-  //   {
-  //     id: 8,
-  //     title: "Blog",
-  //     link: "/blog",
-  //   },
 ];
 
 

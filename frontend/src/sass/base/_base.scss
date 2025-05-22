@@ -325,7 +325,7 @@ img{
     /* Optional: Adjust image height or other styles specifically for mobile images */
     /* This rule will apply to images within the .mobile-slider-container */
     .mobile-slider-container .hero-banner-image {
-      max-height: 50vh; /* Example: Shorter max height for mobile images */
+      max-height: 30vh; /* Example: Shorter max height for mobile images */
     }
     /* If desktop images also need different styling on desktop, you can add: */
     /* .desktop-slider-container .hero-banner-image { max-height: 70vh; } */
