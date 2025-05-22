@@ -109,19 +109,19 @@ const Header = (props) => {
         <nav className="navigation navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
             <div className="row align-items-center">
-              <div className="col-lg-3 col-md-4 col-3 d-lg-none dl-block">
+              <div className="col-lg-3 col-md-4 col-4 d-lg-none dl-block">
                 <div className="mobail-menu">
                   <MobileMenu />
                 </div>
               </div>
-              <div className="col-lg-2 col-md-4 col-6">
+              <div className="col-lg-2 col-md-4 col-4">
                 <div className="navbar-header">
                   <Link onClick={ClickHandler} className="navbar-brand" to="/">
                     <img src={Logo} alt="logo" />
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-8 col-md-1 col-1">
+              <div className="col-lg-8 col-md-1 col-1 d-small-none">
                 <div
                   id="navbar"
                   className="collapse navbar-collapse navigation-holder">
@@ -234,7 +234,8 @@ const Header = (props) => {
                     </li>
                     <li className="menu-item-has-children">
                       <a href="#">
-                        Download <span className="blinking-new-icon">(NEW)</span>
+                        Download{" "}
+                        <span className="blinking-new-icon">(NEW)</span>
                       </a>
                       <ul className="sub-menu">
                         <li>
@@ -267,7 +268,7 @@ const Header = (props) => {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-2 col-md-4 col-6">
+              <div className="col-lg-2 col-md-4 col-4">
                 <div className="header-right">
                   {/* <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">
@@ -351,12 +352,12 @@ const Header = (props) => {
                             onClick={handleEditProfile}
                             style={{ ...dropdownItemStyles }}
                             onMouseEnter={(e) =>
-                            (e.currentTarget.style.backgroundColor =
-                              "#f0f0f0")
+                              (e.currentTarget.style.backgroundColor =
+                                "#f0f0f0")
                             }
                             onMouseLeave={(e) =>
-                            (e.currentTarget.style.backgroundColor =
-                              "transparent")
+                              (e.currentTarget.style.backgroundColor =
+                                "transparent")
                             }>
                             <FaEdit
                               style={{ marginRight: "10px", color: "#555" }}
@@ -370,12 +371,12 @@ const Header = (props) => {
                               borderBottom: "none",
                             }}
                             onMouseEnter={(e) =>
-                            (e.currentTarget.style.backgroundColor =
-                              "#f0f0f0")
+                              (e.currentTarget.style.backgroundColor =
+                                "#f0f0f0")
                             }
                             onMouseLeave={(e) =>
-                            (e.currentTarget.style.backgroundColor =
-                              "transparent")
+                              (e.currentTarget.style.backgroundColor =
+                                "transparent")
                             }>
                             <FaSignOutAlt
                               style={{ marginRight: "10px", color: "#555" }}

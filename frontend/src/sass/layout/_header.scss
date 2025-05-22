@@ -15,6 +15,10 @@
     text-align: center;
     padding: 0;
   }
+
+  .col-lg-8.col-md-1.col-1.d-small-none {
+    display: none;
+}
 }
 
 @media (max-width: 767px) {
@@ -22,6 +26,10 @@
     text-align: center;
     padding: 20px 0;
   }
+
+  .col-lg-8.col-md-1.col-1.d-small-none {
+    display: none;
+}
 }
 
 .topbar {
@@ -116,6 +124,10 @@
   .topbar ul {
     flex-wrap: wrap;
   }
+
+  .col-lg-8.col-md-1.col-1.d-small-none {
+    display: none;
+}
 }
 
 .topbar .theme-btn-s2 {
@@ -1314,6 +1326,10 @@
     #navbar .navbar-nav {
       margin: 0;
     }
+
+    .col-lg-8.col-md-1.col-1 #navbar {
+      display: none;
+  }
   }
 
   .navbar-header .navbar-brand {
@@ -1627,3 +1643,5 @@
   color: #ef1315;
   vertical-align: super;
 }
+
+
