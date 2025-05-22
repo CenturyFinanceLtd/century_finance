@@ -98,15 +98,56 @@ const plans = [
       </>
     ),
   },
+    {
+    id: "Titanium Wealth  Plan",
+    title: " Titanium Wealth Plan",
+    portfolioSize: "₹50 Lakh – ₹1 Crore",
+    annualFee: "₹85,000 / Year",
+    description: (
+      <>
+        <p><strong>Who It’s For:</strong></p>
+        <ul>
+          <li>Senior executives with surplus deployable capital</li>
+          <li>Successful entrepreneurs seeking multi-asset growth</li>
+          <li>Ultra-strategic planners looking to diversify beyond traditional markets</li>
+          <li>Wealthy individuals wanting deep control + high sophistication</li>
+        </ul>
+        <p><strong>Plan Features:</strong></p>
+        <ul>
+          <li><strong>Ultra-Personalized Investment Architecture- </strong>Ultra-Personalized Investment Architecture</li>
+          <li><strong>Dedicated Family Wealth Officer- </strong>Your own financial expert acting as a personal CFO—bridging tax, legal, and investment advice.</li>
+          <li><strong>Private Market Access & Alternatives- </strong>Entry into exclusive assets like Private Equity, Pre-IPOs, AIFs, Sovereign Funds & Structured Global ETFs.</li>
+          <li><strong>Dynamic Cross-Border Asset Allocation-</strong>Exposure to US/UK/Asia equities, international debt, REITs, and currency-hedged instruments—compliant with RBI’s LRS norms.</li>
+          <li><strong>On-Demand Wealth Reviews- </strong>Get deep insights into your portfolio anytime, including risk stress-tests, goal tracking & market alignment reports.</li>
+          <li><strong>Crisis-Mode Rebalancing Strategy- </strong>Smart alerts + expert intervention to protect your wealth during economic or geopolitical turbulence.</li>
+        </ul>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+          <li>Complete visibility + top-tier discretion over high-value assets</li>
+          <li>Stronger returns through non-retail market opportunities</li>
+          <li>Strategic capital shielding, growth, and tax planning—all in one place</li>
+          <li>Exceptional service without losing autonomy</li>
+        </ul>
+        <p><strong>Best For:</strong> 
+        <li>Investors who want serious capital multiplication without giving up control</li>
+        <li>Individuals preparing for international diversification and succession planning</li>
+        <li>HNIs aiming for global exposure, private market access, and legacy-grade wealth management</li>
+        <li>Visionaries who value confidentiality, depth, and data-driven advisory over generic portfolio handling
+
+</li>
+        </p>
+      </>
+    ),
+  },
 ];
 
 const importantHighlights = [
   "Your money, your control! 75% stays with you, just 25% is utilized by us to create wealthfor you.",
-  "Ethical Wealth Creation: Only 25% of your funds are deployed for active trading/investing.",
-  "Tailored to Your Lifestyle & Income Bracket.",
-  "Pro-Level Portfolio Intelligence Without Complexity.",
-  "Transparent Fee Structure — No Hidden Charges.",
-  "Expertise You Can Rely On, Even in Volatile Markets."
+  "Global-Class Investment Exposure: Access private equity, international markets, and high-yield alternatives—unavailable to retail investors.",
+  "Dedicated Family Wealth Officer: Your own private financial strategist who understands your entire wealth ecosystem.",
+  "Fully Compliant with RBI & SEBI Regulations: Peace of mind with every move—growth without grey zones.",
+  "Live Dashboard & Emergency Rebalancing: Always know your net worth trajectory and activate defense strategies during downturns.",
+  
 ];
 
 const PortfolioContent = () => {
@@ -115,11 +156,11 @@ const PortfolioContent = () => {
   const container = {
     maxWidth: "2000px",
     margin: "3rem auto",
-    backgroundColor: "#fff",
+    backgroundColor: "#dcfcf6",
     color: "#1f2937",
     padding: "2.5rem 3rem",
     borderRadius: "10px",
-    boxShadow: "0 6px 15px rgba(0,0,0,0.1)",
+    boxShadow: "#080a0a",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     lineHeight: 1.6,
   };
@@ -138,9 +179,10 @@ const PortfolioContent = () => {
     color: "#3b82f6",
     marginBottom: "2rem",
     textAlign: "center",
+    
   };
 
-  const sectionTitle = {
+  const sectiontitle = {
     color: "#2563eb",
     fontWeight: "700",
     fontSize: "1.6rem",

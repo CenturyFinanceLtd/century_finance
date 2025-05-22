@@ -120,6 +120,9 @@ const BasicPlan = ({ onBookNow }) => {
           </p>
                   <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
                 </div>
+                 <button onClick={onBookNow} className="btn btn-outline-dark mt-3">
+                  Book Now (₹45,000 per Batch)
+                </button>
 
                
               </div>
