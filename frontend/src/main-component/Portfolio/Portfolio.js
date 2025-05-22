@@ -13,6 +13,8 @@ const plans = [
     annualFee: "₹10,000 / Year",
     description: (
       <>
+      <div className="alert alert-success p-3 rounded mb-4">
+<p><strong>We open and manage your Demat account — for just ₹10,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>First-time investors</li>
@@ -43,6 +45,9 @@ const plans = [
     annualFee: "₹25,000 / Year",
     description: (
       <>
+
+       <div className="alert alert-success p-3 rounded mb-4">
+<p><strong>We open and manage your Demat account — for just ₹25,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>Freelancers, consultants, business owners</li>
@@ -74,6 +79,9 @@ const plans = [
     annualFee: "₹65,000 / Year",
     description: (
       <>
+
+       <div className="alert alert-success p-3 rounded mb-4">
+<p><strong>We open and manage your Demat account — for just ₹65,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>High Net-Worth Individuals (HNIs)</li>
@@ -105,6 +113,9 @@ const plans = [
     annualFee: "₹85,000 / Year",
     description: (
       <>
+
+       <div className="alert alert-success p-3 rounded mb-4">
+<p><strong>We open and manage your Demat account — for just ₹85,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>Senior executives with surplus deployable capital</li>
