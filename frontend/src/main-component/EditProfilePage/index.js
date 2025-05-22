@@ -17,7 +17,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
+import { Helmet } from "react-helmet";
 
 // Assuming you have this action to update user in store after successful API call
 import { loginSuccess } from "../../store/actions/authActions";
@@ -195,7 +195,19 @@ const EditProfilePage = () => {
 
   return (
     <Fragment>
-      <Header hclass={"wpo-header-style-2"} /> {/* Adjust props as needed */}
+      <Helmet>
+              <title>Edit Account - Century Finance Limited</title>
+              <meta
+                name="description"
+                content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
+              />
+              <meta
+                name="keywords"
+                content="Contact, Century Finance, Financial Services, Support, Contact Us"
+              />
+              <meta name="robots" content="noindex, nofollow" />
+            </Helmet>
+      <Header /> {/* Adjust props as needed */}
       <PageTitle pageTitle={"Edit Profile"} pagesub={"My Account"} />
       <Box sx={{ padding: { xs: 2, md: 4 }, marginY: 4 }}>
         <Grid container spacing={4} justifyContent="center">
