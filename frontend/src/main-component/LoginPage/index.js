@@ -1,5 +1,5 @@
 // frontend/src/main-component/LoginPage/index.js
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Fragment } from "react";
 import Grid from "@mui/material/Grid";
 import SimpleReactValidator from "simple-react-validator";
 import { toast } from "react-toastify";
@@ -11,6 +11,11 @@ import { Link, useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch } from "react-redux"; // Import useDispatch
 import { loginSuccess } from "../../store/actions/authActions"; // Import your loginSuccess action
+import Navbar from "../../components/Navbar/Navbar";
+import PageTitle from "../../components/pagetitle/PageTitle";
+import Scrollbar from "../../components/scrollbar/scrollbar";
+import Footer from "../../components/footer/Footer";
+import { Helmet } from "react-helmet";
 
 import "./style.scss"; // Your existing styles
 
@@ -103,111 +108,130 @@ const LoginPage = (props) => {
   };
 
   return (
-    <Grid className="loginWrapper">
-      <Grid className="loginForm">
-        <h2>Sign In</h2>
-        <p>Sign in to your account</p>
-        <form onSubmit={submitForm}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <TextField
-                className="inputOutline"
-                fullWidth
-                placeholder="E-mail"
-                value={value.email}
-                variant="outlined"
-                name="email"
-                label="E-mail"
-                InputLabelProps={{ shrink: true }}
-                onBlur={touchMessageHandler} // Validate on blur
-                onChange={changeHandler}
-                error={
-                  validator.current.message(
-                    "email",
-                    value.email,
-                    "required|email"
-                  )
-                    ? true
-                    : false
-                }
-              />
-              {validator.current.message(
-                "email",
-                value.email,
-                "required|email"
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="inputOutline"
-                fullWidth
-                placeholder="Password"
-                value={value.password}
-                variant="outlined"
-                name="password"
-                type="password"
-                label="Password"
-                InputLabelProps={{ shrink: true }}
-                onBlur={touchMessageHandler} // Validate on blur
-                onChange={changeHandler}
-                error={
-                  validator.current.message(
-                    "password",
-                    value.password,
-                    "required"
-                  )
-                    ? true
-                    : false
-                }
-              />
-              {validator.current.message(
-                "password",
-                value.password,
-                "required"
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <Grid className="formAction">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={value.remember}
-                      onChange={rememberHandler}
-                      color="primary"
-                    />
-                  }
-                  label="Remember Me"
-                />
-                <Link to="/forgot-password">Forgot Password?</Link>
-              </Grid>
-              <Grid className="formFooter">
-                <Button
+    <Fragment>
+      <Helmet>
+        <title>Login - Century Finance Limited</title>
+        <meta
+          name="description"
+          content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
+        />
+        <meta
+          name="keywords"
+          content="Contact, Century Finance, Financial Services, Support, Contact Us"
+        />
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
+      <Navbar />
+      <PageTitle pageTitle={"Login"} pagesub={"Login"} />
+      <Grid className="loginWrapper">
+        <Grid className="loginForm">
+          <h2>Sign In</h2>
+          <p>Sign in to your account</p>
+          <form onSubmit={submitForm}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <TextField
+                  className="inputOutline"
                   fullWidth
-                  className="cBtnTheme cBtnLarge"
-                  type="submit"
-                  disabled={loading}
-                  variant="contained"
-                  color="primary">
-                  {loading ? (
-                    <CircularProgress size={24} style={{ color: "white" }} />
-                  ) : (
-                    "Login"
-                  )}
-                </Button>
+                  placeholder="E-mail"
+                  value={value.email}
+                  variant="outlined"
+                  name="email"
+                  label="E-mail"
+                  InputLabelProps={{ shrink: true }}
+                  onBlur={touchMessageHandler} // Validate on blur
+                  onChange={changeHandler}
+                  error={
+                    validator.current.message(
+                      "email",
+                      value.email,
+                      "required|email"
+                    )
+                      ? true
+                      : false
+                  }
+                />
+                {validator.current.message(
+                  "email",
+                  value.email,
+                  "required|email"
+                )}
               </Grid>
-              <p className="noteHelp">
-                Don't have an account?{" "}
-                <Link to="/register">Create free account</Link>
-              </p>
+              <Grid item xs={12}>
+                <TextField
+                  className="inputOutline"
+                  fullWidth
+                  placeholder="Password"
+                  value={value.password}
+                  variant="outlined"
+                  name="password"
+                  type="password"
+                  label="Password"
+                  InputLabelProps={{ shrink: true }}
+                  onBlur={touchMessageHandler} // Validate on blur
+                  onChange={changeHandler}
+                  error={
+                    validator.current.message(
+                      "password",
+                      value.password,
+                      "required"
+                    )
+                      ? true
+                      : false
+                  }
+                />
+                {validator.current.message(
+                  "password",
+                  value.password,
+                  "required"
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Grid className="formAction">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={value.remember}
+                        onChange={rememberHandler}
+                        color="primary"
+                      />
+                    }
+                    label="Remember Me"
+                  />
+                  <Link to="/forgot-password">Forgot Password?</Link>
+                </Grid>
+                <Grid className="formFooter">
+                  <Button
+                    fullWidth
+                    className="cBtnTheme cBtnLarge"
+                    type="submit"
+                    disabled={loading}
+                    variant="contained"
+                    color="primary">
+                    {loading ? (
+                      <CircularProgress size={24} style={{ color: "white" }} />
+                    ) : (
+                      "Login"
+                    )}
+                  </Button>
+                </Grid>
+                <p className="noteHelp">
+                  Don't have an account?{" "}
+                  <Link to="/register">Create free account</Link>
+                </p>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-        <div className="shape-img">
-          <i className="fi flaticon-honeycomb"></i>{" "}
-          {/* Ensure this flaticon class is available */}
-        </div>
+          </form>
+          <div className="shape-img">
+            <i className="fi flaticon-honeycomb"></i>{" "}
+            {/* Ensure this flaticon class is available */}
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+      <Footer />
+      <Scrollbar />
+    </Fragment>
   );
 };
 

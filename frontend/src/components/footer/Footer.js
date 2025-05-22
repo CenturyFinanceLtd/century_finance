@@ -234,21 +234,21 @@ const Footer = (props) => {
                       Privace & Policy {/* Typo: Should be Privacy */}
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/terms">
                       Terms
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link onClick={ClickHandler} to="/about">
                       About us
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link onClick={ClickHandler} to="/faq">
                       FAQ
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
