@@ -131,6 +131,23 @@ const Header = (props) => {
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="#">
+                        Company <i className="ti-angle-down"></i>
+                      </Link>
+                      <ul className="sub-menu">
+                        <li>
+                          <Link onClick={ClickHandler} to="/about">
+                            About
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/contact">
+                            Contact
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                    <li className="menu-item-has-children">
+                      <Link onClick={ClickHandler} to="#">
                         Customer Services <i className="ti-angle-down"></i>
                       </Link>
                       <ul className="sub-menu">
@@ -149,16 +166,7 @@ const Header = (props) => {
                             Portfolio
                           </Link>
                         </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/finance">
-                            Finance
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/investment-plan">
-                            Investment Plan
-                          </Link>
-                        </li>
+
                         <li>
                           <Link
                             onClick={ClickHandler}
@@ -210,28 +218,7 @@ const Header = (props) => {
                         Finance
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link onClick={ClickHandler} to="/blog">
-                        Blog
-                      </Link>
-                    </li> */}
-                    <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="#">
-                        Company <i className="ti-angle-down"></i>
-                      </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/about">
-                            About
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/contact">
-                            Contact
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
+
                     <li className="menu-item-has-children">
                       <a href="#">
                         Download{" "}

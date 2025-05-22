@@ -52,16 +52,6 @@ const menus = [
       },
       {
         id: 34,
-        title: "Finance",
-        link: "/finance",
-      },
-      {
-        id: 35,
-        title: "Investment Plan",
-        link: "/investment-plan",
-      },
-      {
-        id: 36,
         title: "Subscription Plan",
         link: "/calls-subscription-plan",
       },

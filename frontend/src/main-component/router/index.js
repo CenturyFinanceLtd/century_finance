@@ -40,8 +40,6 @@ import ForgotPassword from '../ForgotPassword';
 import OnlineCourses from '../OnlineCourses/OnlineCourses';
 import TrainingProgram from "../TrainingProgram/TrainingProgram";
 import Portfolio from "../Portfolio/Portfolio";
-import Finance from "../Finance/Finance";
-import InvestmentPlan from "../InvestmentPlan/InvestmentPlan";
 import SubscriptionPlan from "../SubscriptionPlan/SubscriptionPlan";
 import Investment from "../Investment/Investment";
 import FinanceService from "../FinanceService/FinanceService";
