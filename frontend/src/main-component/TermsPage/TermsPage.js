@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Footer from "../../components/footer/Footer";
 import Scrollbar from "../../components/scrollbar/scrollbar";
-import FaqSection from "./FaqSection";
 
 import fagImg1 from "../../images/terms/terms2.jpg";
 import fagImg2 from "../../images/terms/1.jpg";
