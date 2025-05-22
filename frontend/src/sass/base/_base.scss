@@ -294,7 +294,7 @@ img{
   .hero-banner-image {
     width: 100%;            /* Make image responsive within its container */
     height: auto;           /* Maintain aspect ratio by default */
-    max-height: 50vh;       /* Example: Prevent image from being excessively tall on large screens */
+    // max-height: 50vh;       /* Example: Prevent image from being excessively tall on large screens */
     object-fit: cover;      /* 'cover' will fill the container, cropping if necessary. */
                              /* Use 'contain' to show the whole image, which might leave empty space. */
     display: block;         /* Remove extra space below image */
@@ -325,7 +325,7 @@ img{
     /* Optional: Adjust image height or other styles specifically for mobile images */
     /* This rule will apply to images within the .mobile-slider-container */
     .mobile-slider-container .hero-banner-image {
-      max-height: 30vh; /* Example: Shorter max height for mobile images */
+      // max-height: 30vh; /* Example: Shorter max height for mobile images */
     }
     /* If desktop images also need different styling on desktop, you can add: */
     /* .desktop-slider-container .hero-banner-image { max-height: 70vh; } */

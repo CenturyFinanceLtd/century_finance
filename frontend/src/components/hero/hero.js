@@ -50,7 +50,7 @@ const Hero = () => {
     speed: 1200,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3500,
     fade: true,
     cssEase: "linear",
