@@ -1,208 +1,102 @@
 import React from "react";
-import abimg from "../../../images/about/basic.png"; // Assuming this path is correct for your project
-import shape from "../../../images/about/shape.png"; // Assuming this path is correct for your project
 import { Link } from "react-router-dom";
 
+
 const ClickHandler = () => {
-  window.scrollTo(10, 0); // Scrolls near the top of the page on click
+  window.scrollTo(10, 0);
 };
 
-const BasicPlan = (props) => {
+const BasicPlusPlan = () => {
   return (
-    <section className="wpo-about-section-s2 section-padding">
+    <section className="wpo-about-section-s2 section-padding bg-light">
       <div className="container">
         <div className="wpo-about-wrap">
-          <div className="row align-items-center">
-            {/* Image Column - Structure and image sources remain unchanged */}
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="wpo-about-img">
-                <img src={abimg} alt="Premium Market Access Plan Visual" />
-                <div className="back-shape">
-                  <img src={shape} alt="Decorative Background Shape" />
-                </div>
-              </div>
-            </div>
-
-            {/* Text Content Column - Content replaced here */}
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="wpo-about-text">
-                <div className="wpo-section-title">
-                  <small>Premium Subscription Plan</small>
-                  <h2>💼 Premium Market Access Plan</h2>
-                </div>
-                <p>
-                  <strong>Price:</strong> ₹17,000/- <br />
-                  <strong>Duration:</strong> 30 Days <br />
-                  <strong>Total Calls:</strong> Included 45 Calls<br />
-                  <strong>Coverage:</strong> Equity • Commodity • Foreign Market
-                </p>
-
-                <h4>📘 Detailed Plan Description</h4>
-                <p>
-                  The Premium Market Access Plan is built for serious traders
-                  and investors who demand broad market exposure, consistent
-                  accuracy, and real-time execution. It’s a full-spectrum
-                  subscription offering meticulously researched trade calls
-                  across Indian equities, global commodities, and emerging
-                  digital assets.
-                </p>
-                <p>
-                  This plan combines technical analysis, fundamental insights,
-                  and real-time market tracking to deliver 45 actionable calls. Whether you’re focused on intraday, swing, or
-                  positional trading, this plan empowers you with strategic
-                  guidance across the financial landscape.
-                </p>
-              </div>
-            </div>
+          <div className="alert alert-warning text-center" role="alert">
+            <strong>Important Note:</strong> This plan is ideal for traders looking to gain a structured, guided trading approach with minimal risk.
           </div>
-          <div>
-            <h4 className="mt-4">Full Asset Coverage</h4>
-            <h5>🔹 Equity & Index Segment (NSE/BSE)</h5>
-            <ul>
-              <li>Nifty 50 – India's benchmark index for blue-chip stocks.</li>
-              <li>
-                Bank Nifty – High-volatility banking index, great for intraday
-                trades.
-              </li>
-              <li>Fin Nifty – Focused on financial services companies.</li>
-              <li>
-                Midcap Nifty – Mid-sized companies offering growth potential.
-              </li>
-              <li>
-                Sensex – BSE's top 30 companies, a legacy trading benchmark.
-              </li>
-            </ul>
-            <strong>What you get:</strong>
-            <ul>
-              <li>Index option strategies</li>
-              <li>Momentum-based stock picks</li>
-              <li>Sector rotation insights</li>
-            </ul>
-            <h5>🛢 Commodity Market Segment (MCX Focused)</h5>
-            <ul>
-              <li>Gold & Silver – Precious metals for trend-based swings.</li>
-              <li>Crude Oil – Global commodity known for high volatility.</li>
-              <li>Natural Gas – Energy asset with seasonal patterns.</li>
-              <li>
-                Copper, Aluminium, Zinc – Industrial metals, ideal for both
-                short and long-term setups.
-              </li>
-            </ul>
-            <strong>What you get:</strong>
-            <ul>
-              <li>International trend correlation</li>
-              <li>Inventory reports analysis</li>
-              <li>Commodity cycle-based entries</li>
-            </ul>
 
-            <h5>🌍 Global & Crypto Markets</h5>
-            <ul>
-              <li>Bitcoin (BTC) – Market leader in digital currency space.</li>
-              <li>
-                Ethereum (ETH) – Smart contract platform and ecosystem base.
-              </li>
-              <li>Solana (SOL) – High-performance blockchain project.</li>
-              <li>
-                Particle Network – A new-generation Web3 infrastructure token
-                focusing on cross-chain compatibility.
-              </li>
-            </ul>
-            <strong>What you get:</strong>
-            <ul>
-              <li>Blockchain fundamentals + technical triggers</li>
-              <li>Web3, DeFi & NFT trends</li>
-              <li>
-                Entry & exit levels based on volatility and breakout models
-              </li>
-            </ul>
+          <div className="text-center mb-5 p-4 bg-white shadow rounded">
+            <h2 className="text-primary"> Basic Plus Plan – Smart Market Advisory for Confident Traders</h2>
+            <p className="lead"><strong> Plan Fee:</strong> ₹14,000/-</p>
+            <p><strong>Validity:</strong> 16 Active Market Days</p>
+            <p><strong>Total Signals Provided:</strong> 30 Market Calls</p>
+            <blockquote className="blockquote">✅ <em>"Success in trading doesn’t come from guesswork — it comes from expert insight."</em></blockquote>
+          </div>
 
-            <h4>🛠 Core Features of the Plan</h4>
-            <ul>
-              <li>
-                <strong>Calls per Month:</strong> 45 Handpicked opportunities
-                across segments
-              </li>
-              <li>
-                <strong>Duration:</strong> 30 Calendar Days
-              </li>
-              <li>
-                <strong>Trade Types:</strong> Intraday, Positional, Swing
-              </li>
-              <li>
-                <strong>Medium:</strong> Telegram / WhatsApp
-              </li>
-              <li>
-                <strong>Language:</strong> Easy-to-understand format with visual
-                charts (on request)
-              </li>
-              <li>
-                <strong>Support:</strong> Dedicated market hours response
-                support
-              </li>
-              <li>
-                <strong>Accuracy Goal:</strong> 80–90% Target Hit Ratio
-                (historical average)*
-              </li>
-              <li>
-                <strong>Risk Management:</strong> Stop-loss levels included with
-                every trade
-              </li>
-              <li>
-                <strong>Market Timings:</strong> Trades align with Indian and
-                global market sessions
-              </li>
-            </ul>
+          <div className="mb-4 p-3 bg-white shadow-sm rounded">
+            <h4 className="text-success"> What is the Basic Plus Plan?</h4>
+            <p>The <strong>Basic Plus Plan</strong> is a premium market advisory service that offers <strong>30 expert trading calls</strong> across Indian equity, commodities, and international crypto markets – all within just <strong>16 trading days</strong>.</p>
+          </div>
 
-            <h4>🔐 Additional Benefits</h4>
+          <div className="mb-4 p-3 bg-light border rounded">
+            <h4 className="text-success"> Who Is This Plan For?</h4>
             <ul>
-              <li>
-                ✅ Priority Trade Alerts – Early access to high-conviction ideas
-              </li>
-              <li>
-                ✅ Market Trend Reports – Weekly summaries of trends & zones
-              </li>
-              <li>
-                ✅ Education Add-ons – Brief insights into trade logic
-                (optional)
-              </li>
-              <li>
-                ✅ Flexible Risk Profiling – Guidance based on
-                conservative/aggressive preferences
-              </li>
+              <li>Individual traders who want daily guidance</li>
+              <li>Beginners looking to understand where to invest</li>
+              <li>Experienced investors who want to save time and increase accuracy</li>
+              <li>Anyone interested in the Indian stock market, commodity trading, or crypto</li>
             </ul>
+          </div>
 
-            <h4>🧠 Who is This For?</h4>
+          <div className="mb-4 p-3 bg-white shadow-sm rounded">
+            <h4 className="text-info"> Equity Segment – 15 High-Accuracy Calls</h4>
             <ul>
-              <li>Retail traders looking for well-guided, low-risk entries</li>
-              <li>Active investors needing broad asset exposure</li>
-              <li>Busy professionals who want ready-to-use signals</li>
-              <li>
-                Crypto-curious traders who want quality insights beyond the hype
-              </li>
+              <li>Sensex</li>
+              <li>Bank Nifty</li>
+              <li>Nifty</li>
+              <li>Nifty 50</li>
+              <li>Fin Nifty</li>
+              <li>Midcap Nifty</li>
             </ul>
+            <p className="text-muted"> Ideal for intraday and swing traders in the Indian equity market.</p>
+          </div>
 
-            <h4>📦 What Makes This Plan Unique?</h4>
+          <div className="mb-4 p-3 bg-light border rounded">
+            <h4 className="text-info"> Commodity Segment – 10 Profitable Calls</h4>
             <ul>
-              <li>
-                Multi-Asset Coverage — From Indian stock market to
-                cryptocurrencies
-              </li>
-              <li>No Guesswork — Every call is backed by data & rationale</li>
-              <li>
-                Non-Repetitive Trades — No recycled tips; every trade is new and
-                relevant
-              </li>
-              <li>
-                Real-Time Execution — Receive alerts before market move, not
-                after
-              </li>
+              <li>Gold</li>
+              <li>Silver</li>
+              <li>Natural Gas</li>
+              <li>Aluminium</li>
+              <li>Zinc</li>
+              <li>Copper</li>
+              <li>Crude Oil</li>
             </ul>
+            <p className="text-muted"> Great for hedgers, commodity investors, and risk-balanced traders.</p>
+          </div>
 
-            <Link
-              onClick={ClickHandler}
-              to="/about" // Link destination remains unchanged as requested
-              className="theme-btn-s2">
-              Explore Plan Details {/* Updated link text to be more relevant */}
+          <div className="mb-4 p-3 bg-white shadow-sm rounded">
+            <h4 className="text-info">Foreign/Crypto Segment – 5 Global Opportunities</h4>
+            <ul>
+              <li>Bitcoin</li>
+              <li>Ethereum</li>
+              <li>Particle Network</li>
+              <li>Solana</li>
+            </ul>
+            <p className="text-muted"> Perfect for those interested in crypto or diversifying beyond Indian markets.</p>
+          </div>
+
+          <div className="mb-4 p-3 bg-light border rounded">
+            <h4 className="text-success"> Why Choose This Plan?</h4>
+            <ul>
+              <li>✅ Expert-curated signals from professional analysts</li>
+              <li>✅ Fast, reliable calls delivered during market hours</li>
+              <li>✅ Covers 3 powerful markets: Equity, Commodity & Crypto</li>
+              <li>✅ Helps you avoid loss-making trades and take confident actions</li>
+              <li>✅ Affordable and high-value for serious market participants</li>
+            </ul>
+          </div>
+
+          <div className="text-center mb-5 p-3 bg-white shadow rounded">
+            <h4 className="text-primary"></h4>
+            <blockquote className="blockquote">"Stop trading on guesses – start investing with guidance."<br />Let the experts lead you toward profitable decisions.</blockquote>
+          </div>
+
+          <div className="text-center mb-5">
+            <h4 className="text-warning"> Ready to Make Smarter Trades?</h4>
+            <p>Take the first step towards profitable trading.<br /><strong>Join the Basic Plus Plan now</strong> and receive calls that help you win the market.</p>
+            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-3">
+               Pay Now ₹14,000/-
             </Link>
           </div>
         </div>
@@ -211,4 +105,4 @@ const BasicPlan = (props) => {
   );
 };
 
-export default BasicPlan;
+export default BasicPlusPlan;
