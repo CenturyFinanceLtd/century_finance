@@ -24,21 +24,21 @@ const allBanners = [
     type: "desktop",
     imageUrl: desktopBanner2,
     altText: "Desktop Banner 2",
-    link: "https://example.com/form2",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
   {
     id: "mobile-slide-1",
     type: "mobile",
     imageUrl: mobileBanner1,
     altText: "Mobile Banner 1",
-    link: "https://example.com/form3",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
   {
     id: "mobile-slide-2",
     type: "mobile",
     imageUrl: mobileBanner2,
     altText: "Mobile Banner 2",
-    link: "https://example.com/form4",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
 ];
 
