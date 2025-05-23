@@ -134,36 +134,29 @@ const Header = (props) => {
                         About
                       </Link>
                     </li>
-                    <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="#">
-                        Customer Services <i className="ti-angle-down"></i>
+                    <li>
+                      <Link onClick={ClickHandler} to="/training-program">
+                        Training Program
                       </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/training-program">
-                            Training Program
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/online-courses">
-                            Online Courses
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/portfolio">
-                            Portfolio
-                          </Link>
-                        </li>
-
-                        <li>
-                          <Link
-                            onClick={ClickHandler}
-                            to="/calls-subscription-plan">
-                            Calls Subscription Plan
-                          </Link>
-                        </li>
-                      </ul>
                     </li>
+                    <li>
+                      <Link onClick={ClickHandler} to="/online-courses">
+                        Online Courses
+                      </Link>
+                    </li>
+                    <li>
+                      <Link onClick={ClickHandler} to="/portfolio">
+                        Portfolio
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={ClickHandler}
+                        to="/calls-subscription-plan">
+                        Calls Subscription Plan
+                      </Link>
+                    </li>
+                    
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="#">
                         Markets <i className="ti-angle-down"></i>
