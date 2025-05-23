@@ -12,7 +12,7 @@ import {
   FaEdit,
   FaSignOutAlt,
 } from "react-icons/fa";
-import Button from "@mui/material/Button"; // MUI Button import added
+import Button from "@mui/material/Button";
 
 // Styles for the dropdown - consider moving to your SCSS file
 const dropdownStyles = {
