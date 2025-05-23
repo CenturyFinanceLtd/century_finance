@@ -14,20 +14,8 @@ const menus = [
 
   {
     id: 2,
-    title: "Company",
-    link: "/",
-    submenu: [
-      {
-        id: 41,
-        title: "About",
-        link: "/about",
-      },
-      {
-        id: 42,
-        title: "Contact",
-        link: "/contact",
-      },
-    ],
+    title: "About",
+    link: "/about",
   },
 
   {
@@ -140,6 +128,12 @@ const menus = [
         pdfPath: "/pdf/fast-track.pdf", // Example
       },
     ],
+  },
+
+  {
+    id: 8,
+    title: "Contact",
+    link: "/contact",
   },
 ];
 

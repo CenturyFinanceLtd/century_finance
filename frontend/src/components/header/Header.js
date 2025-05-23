@@ -129,22 +129,10 @@ const Header = (props) => {
                     <i className="ti-close"></i>
                   </button>
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
-                    <li className="menu-item-has-children">
-                      <Link onClick={ClickHandler} to="#">
-                        Company <i className="ti-angle-down"></i>
+                    <li>
+                      <Link onClick={ClickHandler} to="/about">
+                        About
                       </Link>
-                      <ul className="sub-menu">
-                        <li>
-                          <Link onClick={ClickHandler} to="/about">
-                            About
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/contact">
-                            Contact
-                          </Link>
-                        </li>
-                      </ul>
                     </li>
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="#">
@@ -218,39 +206,10 @@ const Header = (props) => {
                         Finance
                       </Link>
                     </li>
-
-                    <li className="menu-item-has-children">
-                      <a href="#">
-                        Download{" "}
-                        <span className="blinking-new-icon">(NEW)</span>
-                      </a>
-                      <ul className="sub-menu">
-                        <li>
-                          <a href="/pdf/smart-saver.pdf" download>
-                            Smart Saver Plan
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/pdf/money-max.pdf" download>
-                            Money Max Plan
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/pdf/wealth-boost.pdf" download>
-                            Wealth Boost
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/pdf/rich-boast.pdf" download>
-                            Rich Boast
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/pdf/fast-track.pdf" download>
-                            Fast Track
-                          </a>
-                        </li>
-                      </ul>
+                    <li>
+                      <Link onClick={ClickHandler} to="/contact">
+                        Contact
+                      </Link>
                     </li>
                   </ul>
                 </div>

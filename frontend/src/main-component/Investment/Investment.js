@@ -60,6 +60,19 @@ const Investment = (props) => {
                         {category.title}
                       </a>
                     </h2>
+
+                    <h4 style={{}}>
+                      {/* Changed Link to a tag for download */}
+                      <a
+                        style={{ color: "#000000" }}
+                        onClick={ClickHandler} // This will scroll the page before download starts
+                        href={category.slug2} // Path to your PDF in the public folder
+                        download // This attribute triggers the download
+                        // Optionally, suggest a filename: download={`${category.title.replace(/\s+/g, '_')}.pdf`}
+                      >
+                        Download Here
+                      </a>
+                    </h4>
                     {/* Ensure your CoursesCategory data has a description property */}
                     {/* <p>{category.description}</p> */}
                     {/* If description is commented out in your data, this will show nothing. */}

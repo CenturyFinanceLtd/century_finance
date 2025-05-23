@@ -14,6 +14,7 @@ const CoursesCategory = [
     thumb: "flaticon-user-experience",
     title: "Smart Saver",
     slug: "/pdf/smart-saver.pdf",
+    slug2: "/pdf/smart-saver.pdf",
     //  description:
     //    "We are providing you the best UI/UX design guideline. That help you be professional.",
   },
@@ -23,6 +24,7 @@ const CoursesCategory = [
     thumb: "flaticon-megaphone",
     title: "Money Max",
     slug: "/pdf/money-max.pdf",
+    slug2: "/pdf/money-max.pdf",
     //  description:
     //    "We are providing you the best Digital Marketing guideline. That help you be professional. ",
   },
@@ -32,6 +34,7 @@ const CoursesCategory = [
     thumb: "flaticon-code",
     title: "Money Kick Start",
     slug: "/pdf/fast-track.pdf",
+    slug2: "/pdf/fast-track.pdf",
     //  description:
     //    "We are providing you are the best Development guideline for. That help you be professional.",
   },
@@ -41,6 +44,7 @@ const CoursesCategory = [
     thumb: "flaticon-knowledge",
     title: "Wealth Boost",
     slug: "/pdf/wealth-boost.pdf",
+    slug2: "/pdf/wealth-boost.pdf",
     //  description:
     //    "We are providing you the best Self Improvement guideline. That help you be professional.",
   },
@@ -50,6 +54,7 @@ const CoursesCategory = [
     thumb: "flaticon-video-lesson",
     title: "Risch Boost",
     slug: "/pdf/rich-boast.pdf",
+    slug2: "/pdf/rich-boast.pdf",
     //  description:
     //    "We are providing you the best Video Editing guideline for you. That help you be professional.",
   },
@@ -59,6 +64,7 @@ const CoursesCategory = [
     thumb: "flaticon-paint-palette",
     title: "Fast Track",
     slug: "/pdf/fast-track.pdf",
+    slug2: "/pdf/fast-track.pdf",
     //  description:
     //    "We are providing you the best Graphic Design guideline. That help you be professional.",
   },
