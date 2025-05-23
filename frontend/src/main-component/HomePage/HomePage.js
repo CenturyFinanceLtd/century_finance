@@ -5,7 +5,6 @@ import Hero from "../../components/hero/hero";
 import About from "../../components/about/about";
 import WhyCentury from "../../components/WhyCentury/WhyCentury";
 import WhatdoWeOffer from "../../components/WhatDoWeOffer/WhatDoWeOffer";
-import WhatdoWeOffer2 from "../../components/WhatDoWeOffer2/WhatDoWeOffer2";
 import OurMIssion from "../../components/OurMission/OurMission";
 import FaqSection from "../../components/FaqSection/FaqSection";
 // import Newslatter from "../../components/Newslatter/Newslatter";
@@ -33,7 +32,7 @@ const HomePage = () => {
       <About />
       <WhyCentury />
       <WhatdoWeOffer />
-      <WhatdoWeOffer2 />
+      {/* <WhatdoWeOffer2 /> */}
       <OurMIssion />
       <FaqSection />
       {/* <Newslatter /> */}
