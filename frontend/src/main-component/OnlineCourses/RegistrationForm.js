@@ -48,9 +48,9 @@ const RegistrationForm = () => {
   // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION ---
   // Replace your existing handleFinalPayment function with this one
 
-  const handleFinalPayment = async () => {
-    alert("Step 1: Payment process started."); // First alert
+  // Replace your existing handleFinalPayment function with this final version
 
+  const handleFinalPayment = async () => {
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
@@ -69,28 +69,29 @@ const RegistrationForm = () => {
       }
 
       const session = await response.json();
-      alert(
-        "Step 2: Received response from backend. Checking for session ID..."
-      );
 
       if (session.payment_session_id) {
-        alert(
-          `Step 3: Found payment_session_id: ${session.payment_session_id}`
-        );
-
         if (window.Cashfree) {
-          alert("Step 4: Cashfree SDK is loaded. Initializing checkout...");
           const cashfree = new window.Cashfree(session.payment_session_id);
 
-          cashfree.checkout({
-            paymentStyle: "popup",
-          });
-
-          setIsLoading(false);
+          // This new code handles errors from the Cashfree SDK itself
+          cashfree
+            .checkout({
+              paymentStyle: "popup",
+            })
+            .then((result) => {
+              if (result.error) {
+                // This will show a specific error from Cashfree
+                alert(`Cashfree Error: ${result.error.message}`);
+                setIsLoading(false);
+              }
+              if (result.redirect) {
+                // This case is for non-popup checkouts
+                console.log("Payment needs redirection");
+              }
+            });
         } else {
-          throw new Error(
-            "Cashfree SDK (window.Cashfree) not found. Check public/index.html."
-          );
+          throw new Error("Cashfree SDK (window.Cashfree) not found.");
         }
       } else {
         throw new Error(
@@ -98,11 +99,12 @@ const RegistrationForm = () => {
         );
       }
     } catch (error) {
-      alert(`ERROR: ${error.message}`); // This will catch any errors thrown
+      alert(`Application Error: ${error.message}`);
       setIsLoading(false);
     }
-  };
-
+    };
+    
+    
   return (
     <>
       <button onClick={() => setIsOpen(true)} className="register-now-btn">
