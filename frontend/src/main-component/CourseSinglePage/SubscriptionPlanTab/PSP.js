@@ -95,7 +95,7 @@ const BasicPlusPlan = () => {
           <div className="text-center mb-5">
             <h4 className="text-warning"> Ready to Make Smarter Trades?</h4>
             <p>Take the first step towards profitable trading.<br /><strong>Join the Basic Plus Plan now</strong> and receive calls that help you win the market.</p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-3">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-3">
                Pay Now ₹14,000/-
             </Link>
           </div>

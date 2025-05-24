@@ -42,7 +42,7 @@ const AdvancePremiumPlan = (props) => {
                 </p>
                 <Link
                   onClick={ClickHandler}
-                  to="/about"
+                  to=""
                   className="theme-btn-s2">
                   Learn More About Us
                 </Link>
