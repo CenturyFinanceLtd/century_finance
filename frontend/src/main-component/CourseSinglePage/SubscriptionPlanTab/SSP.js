@@ -7,96 +7,111 @@ const ClickHandler = () => {
   window.scrollTo(10, 0);
 };
 
-const PremiumSubscriptionPlan = (props) => {
+const PremiumSubscriptionPlan = () => {
   return (
-    <section className="wpo-about-section-s2 section-padding">
+    <section className="wpo-about-section-s2 section-padding bg-light">
       <div className="container">
         <div className="wpo-about-wrap">
-          <div className="row align-items-center">
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="wpo-about-img">
-                <img src={abimg} alt="" />
-                <div className="back-shape">
-                  <img src={shape} alt="" />
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="wpo-about-text">
-                <div className="wpo-section-title">
-                  <small>Premium Subscription Plan</small>
-                  <h2>Smart Trading Starts with Smart Decisions</h2>
-                </div>
-                <p>
-                  The <strong>Premium Subscription Plan</strong> is a high-value, multi-market advisory service
-                  designed for traders and investors who want <strong>daily, expert-driven market insights</strong> delivered
-                  with clarity and precision.
-                </p>
-                <p>
-                  For just ₹17,000, subscribers receive:
-                  <ul>
-                    <li>📈 45 expert calls across 30 active market days</li>
-                    <li>🌐 Coverage in Equity, Commodity, and Crypto/Foreign Markets</li>
-                    <li>🧠 Market-tested strategies and risk-managed recommendations</li>
-                  </ul>
-                </p>
-                <Link onClick={ClickHandler} to="/about" className="theme-btn-s2">
-                  Pay Now ₹17,000/-
-                </Link>
-              </div>
-            </div>
+
+          {/* 🔔 Alert Section */}
+          <div className="alert alert-danger text-center fw-bold" role="alert">
+            🚨 <strong>Important:</strong> This Premium Plan is built for <span className="text-warning">serious traders</span> and includes <span className="text-success">daily expert insights</span>, <span className="text-primary">risk-managed calls</span>, and <span className="text-info">full market coverage</span>.
           </div>
 
-          {/* Important Alert */}
-          <div className="alert alert-danger text-center fw-bold py-3 px-4 mt-5 shadow-sm rounded">
-            🚨 <strong>Important:</strong> This Premium Plan is built for <span className="text-warning">serious traders</span>
-            and includes <span className="text-success">daily expert insights</span>, <span className="text-primary">risk-managed calls</span>, and
-            <span className="text-info"> full market coverage</span> (Equity + Commodity + Crypto).
+          {/* 🌟 Hero Info */}
+          <div className="text-center mb-5 p-4 bg-white shadow rounded">
+            <h2 className="text-primary">Premium Subscription Plan – High-Level Advisory Across Markets</h2>
+            <p className="lead"><strong>Plan Fee:</strong> ₹17,000/-</p>
+            <p><strong>Validity:</strong> 30 Active Market Days</p>
+            <p><strong>Total Signals Provided:</strong> 45 Expert Calls</p>
+            <blockquote className="blockquote">✅ <em>"Smart trading begins with smart insights and expert decisions."</em></blockquote>
           </div>
 
-          {/* Highlights Cards */}
-          <div className="row g-4 mt-4">
+          {/* 📌 What Is It */}
+          <div className="mb-4 p-3 bg-white shadow-sm rounded">
+            <h4 className="text-success">What is the Premium Subscription Plan?</h4>
+            <p>
+              The <strong>Premium Subscription Plan</strong> is a high-value, multi-market advisory service designed for traders and investors who want <strong>daily, expert-driven market insights</strong> delivered with clarity and precision.
+            </p>
+          </div>
 
-            {/* Equity */}
-            <div className="col-md-4">
-              <div className="p-4 bg-primary text-white rounded shadow h-100">
-                <h5 className="fw-bold">📊 Equity Calls</h5>
-                <p>24 high-potential trades including Nifty, Sensex, Bank Nifty & more.</p>
-                <p className="mb-0"><strong>Best for:</strong> Day & swing traders</p>
-              </div>
-            </div>
+          {/* 👥 Who Is It For */}
+          <div className="mb-4 p-3 bg-light border rounded">
+            <h4 className="text-success">Who Is This Plan For?</h4>
+            <ul>
+              <li>Day & Swing Traders seeking consistent daily guidance</li>
+              <li>Busy professionals who prefer ready-to-act signals</li>
+              <li>New traders wanting to learn with confidence</li>
+              <li>Crypto enthusiasts and diversified investors</li>
+              <li>Portfolio builders looking to manage risk across sectors</li>
+            </ul>
+          </div>
 
-            {/* Commodity */}
-            <div className="col-md-4">
-              <div className="p-4 bg-success text-white rounded shadow h-100">
-                <h5 className="fw-bold">⚖️ Commodity Calls</h5>
-                <p>15 focused alerts for Gold, Crude, Silver, Copper & more.</p>
-                <p className="mb-0"><strong>Great for:</strong> Global commodity investors</p>
-              </div>
-            </div>
+          {/* 📊 Equity Segment */}
+          <div className="mb-4 p-3 bg-white shadow-sm rounded">
+            <h4 className="text-info">Equity Segment – 24 High-Potential Calls</h4>
+            <ul>
+              <li>Nifty</li>
+              <li>Sensex</li>
+              <li>Bank Nifty</li>
+              <li>Fin Nifty</li>
+              <li>Nifty 50</li>
+              <li>Midcap Nifty</li>
+            </ul>
+            <p className="text-muted">Best for intraday, swing, and short-term equity investors.</p>
+          </div>
 
-            {/* Crypto */}
-            <div className="col-md-4">
-              <div className="p-4 bg-dark text-white rounded shadow h-100">
-                <h5 className="fw-bold">🌍 Crypto/Foreign Markets</h5>
-                <p>6 smart picks including Bitcoin, Ethereum, Solana & Particle.</p>
-                <p className="mb-0"><strong>Ideal for:</strong> Web3 traders & DeFi enthusiasts</p>
-              </div>
-            </div>
+          {/* ⚖️ Commodity Segment */}
+          <div className="mb-4 p-3 bg-light border rounded">
+            <h4 className="text-info">Commodity Segment – 15 Targeted Calls</h4>
+            <ul>
+              <li>Gold</li>
+              <li>Silver</li>
+              <li>Natural Gas</li>
+              <li>Crude Oil</li>
+              <li>Aluminium</li>
+              <li>Zinc</li>
+              <li>Copper</li>
+            </ul>
+            <p className="text-muted">Ideal for those investing in global commodity trends.</p>
+          </div>
 
-            {/* Why Choose */}
-            <div className="col-md-12">
-              <div className="p-4 bg-warning text-dark rounded shadow mt-4">
-                <h5 className="fw-bold">💼 Why Choose the Premium Plan?</h5>
-                <ul className="mb-0">
-                  <li>✔️ Complete coverage: Equity + Commodity + Crypto</li>
-                  <li>✔️ SEBI-certified research team</li>
-                  <li>✔️ Clear entry/exit/stop-loss with every call</li>
-                  <li>✔️ Affordable expert-grade trading guidance</li>
-                </ul>
-              </div>
-            </div>
+          {/* 🌍 Crypto/Foreign */}
+          <div className="mb-4 p-3 bg-white shadow-sm rounded">
+            <h4 className="text-info">Crypto/Foreign Segment – 6 Strategic Picks</h4>
+            <ul>
+              <li>Bitcoin</li>
+              <li>Ethereum</li>
+              <li>Solana</li>
+              <li>Particle Network</li>
+            </ul>
+            <p className="text-muted">Best suited for Web3 investors and market diversifiers.</p>
+          </div>
 
+          {/* 💼 Why Choose */}
+          <div className="mb-4 p-3 bg-warning text-dark rounded shadow-sm">
+            <h4 className="fw-bold">💼 Why Choose the Premium Plan?</h4>
+            <ul>
+              <li>✔️ Full market coverage: Equity + Commodity + Crypto</li>
+              <li>✔️ SEBI-certified research team</li>
+              <li>✔️ Daily calls with clear entry/exit/stop-loss</li>
+              <li>✔️ Affordable, expert-grade guidance</li>
+              <li>✔️ Trusted by traders for performance and reliability</li>
+            </ul>
+          </div>
+
+          {/* ✅ Final CTA */}
+          <div className="text-center mb-5 p-4 bg-light rounded shadow-sm">
+            <blockquote className="blockquote mb-3">
+              "Trade with confidence, guided by experts who understand the market pulse."
+            </blockquote>
+            <h5 className="text-warning">Ready to Level Up Your Trades?</h5>
+            <p>
+              Secure your spot in our <strong>Premium Plan</strong> and receive professionally curated market calls across 30 days.
+            </p>
+            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+              Pay Now ₹17,000/-
+            </Link>
           </div>
         </div>
       </div>
