@@ -170,7 +170,7 @@ const AboutPage = () => {
                   <h2>Market Calls That Matter</h2>
                 </div>
                 <p style={{ fontSize: "1.1em", lineHeight: "1.8" }}>
-                  With tiered Call Subscription Plans—from Premium to VVIP—we
+                  With tiered Call Subscription Plans—from Premium to Platinum —we
                   empower traders with high-accuracy insights across Equity,
                   Commodity, and Crypto segments. From Nifty to Bitcoin, we
                   deliver timely, research-backed calls to help you make

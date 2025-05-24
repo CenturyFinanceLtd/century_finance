@@ -337,8 +337,44 @@ const TermsPage = () => {
                 <h3>69. Multi-Device Access Policy</h3>
                 <p>69.1 Your account may be accessed from multiple devices, but excessive concurrent sessions or suspicious activity may trigger a security review or temporary suspension.</p>
                 <p>69.2 You are responsible for all actions taken under your account, regardless of device.</p>
+                <h3>71. Compliance with SEBI Regulations</h3>
+                <p>71.1 The Company adheres to the rules and regulations prescribed by the Securities and Exchange Board of India (SEBI) in the provision of its financial services, advisory content, and educational material.</p>
+                <p>71.2 All activities conducted through the Website that pertain to investment guidance or financial literacy are reviewed to ensure compliance with SEBI (Investment Advisers) Regulations, 2013.</p>
+                <p>71.3 Users acknowledge and agree that the Company is not a SEBI-registered investment advisor unless explicitly mentioned, and that educational content should not be interpreted as personalized investment advice.</p>
 
-                <h3>70. Contact Information</h3>
+                <h3>72. SEBI Financial Disclosures</h3>
+                <p>72.1 The financial data, investment illustrations, and portfolio simulations provided are developed using publicly available financial indicators and are for informational purposes only.</p>
+                <p>72.2 Users are encouraged to perform independent due diligence and consult registered investment professionals before acting on any information obtained from the Website.</p>
+
+                <h3>73. Compliance with NCPI Regulations</h3>
+                <p>73.1 The Company, where applicable, follows the rules and technological protocols prescribed by the National Payments Corporation of India (NPCI) for secure handling of digital payments, UPI transactions, and other fintech integrations.</p>
+                <p>73.2 Users agree to comply with NPCI guidelines while using any digital payment services linked to the Website, and must ensure that all payment information provided is accurate and valid.</p>
+
+                <h3>74. NAC Oversight and Ethical Conduct</h3>
+                <p>74.1 Century Finance Limited supports ethical business conduct and abides by any oversight mechanisms prescribed by the National Advisory Committee (NAC) or similar financial governance bodies.</p>
+                <p>74.2 The Company takes a proactive role in monitoring compliance, ensuring data transparency, and upholding consumer protection principles.</p>
+
+                <h3>75. Regulatory Changes and Obligations</h3>
+                <p>75.1 The Company reserves the right to modify or update its services, disclosures, or operational procedures in response to amendments or newly introduced directives issued by SEBI, NPCI, NAC, or any applicable authority.</p>
+                <p>75.2 Users are responsible for reviewing these Terms periodically to stay informed of such regulatory changes.</p>
+                <h3>76. Dos and Don’ts for Retail Investors</h3>
+                <p>Please deal with SEBI registered intermediaries only. Ensure that you have complete knowledge of the products and the risks involved before investing.</p>
+                <p>Offering fixed/guaranteed/regular returns/ capital protection schemes in stock markets whether written or oral is not allowed. Brokers or any of their representatives or Authorised Persons cannot enter into any loan agreement to pay interest on the funds/securities offered by you.</p>
+                <p>Do not fall prey to emails, SMSs and online videos luring you to trade in stock/ securities / schemes promising high returns/profits.</p>
+                <p>Ensure to fill all the required details in the 'KYC' document by yourself and receive duly signed copy of your 'KYC' documents from your broker.</p>
+                <p>Trading in derivatives involves high risk and accordingly investors should understand the product well before trading in such segments/products.</p>
+                <p>Opt for electronic (e-mail) contract notes/financial statements only if you are computer savvy and have your own e-mail account.</p>
+                <p>Do not share your login ID, password, OTP, TPIN with any person including employees of the broker or Authorised Person under any circumstances.</p>
+                <p>Ensure that all your trades are executed as per your instructions.</p>
+                <p>Insure you receive the payout of funds and securities within 1 working day of settlement. In case you have chosen running account of funds, ensure your account is settled on first Friday/Saturday of every month / quarter as opted for.</p>
+                <p>Dealing in cash is prohibited. Do not place any securities with the broker or associate of the broker or authorized person of the broker. Do not transfer securities as margin/ collateral to the broker and such securities only must be pledged from the client demat account.</p>
+                <p>Opt for Demat Debit and Pledge Instruction (DDPI) only for transfer of securities for deliveries/settlement obligations, initiating pledging of securities for margins, and for mutual fund/open offer transactions on Exchange platform. DDPI/PoA are optional and should not be insisted on for opening the account.</p>
+                <p>Always keep your mobile number and email id updated with your broker. Don't ignore any SMSs / e-mails with regards to contract notes/trades/funds and securities balances sent by broker/Exchange. Verify the details of the same and report discrepancy, if any, to your broker in writing immediately.</p>
+                <p>Please verify the bank account details of the broker from the website of broker/Exchange before transferring funds to the broker.</p>
+                <p>Claims for funds or securities given to the broker under any arrangement/ agreement of indicative return or claims for funds, without transactions on the Exchange will not be accepted by the Exchange in case of default by your broker.</p>
+                <p>For more details on Investor awareness, please visit <a href="https://www.nseindia.com/invest/investors-home" target="_blank" rel="noopener noreferrer">www.nseindia.com/invest/investors-home</a></p>
+                <p>For more information related to investments in securities market, please visit SEBI Investor Website - <a href="https://investor.sebi.gov.in" target="_blank" rel="noopener noreferrer">https://investor.sebi.gov.in</a> and SEBI Saa₹thi Mobile App.</p>
+                <h3>77. Contact Information</h3>
                 <p>For any questions or grievances, please contact:</p>
                 <p><strong>Century Finance Limited</strong></p>
                 <p>Email:</p>

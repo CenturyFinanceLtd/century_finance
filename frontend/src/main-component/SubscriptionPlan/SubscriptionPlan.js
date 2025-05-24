@@ -5,6 +5,7 @@ import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
 import CourseSinglePage from "../CourseSinglePage/SubscriptionPlanTab/SubscriptionPlanTab";
+import FAQ from "./FaqSection"
 
 const CallsSubscriptionPlan = () => {
   return (
@@ -25,6 +26,7 @@ const CallsSubscriptionPlan = () => {
       <Navbar />
       <PageTitle pageTitle={"Calls Subscription Plan"} pagesub={"Calls Subscription Plan"} />
       <CourseSinglePage />
+      <FAQ />
       <Footer />
       <Scrollbar />
     </Fragment>

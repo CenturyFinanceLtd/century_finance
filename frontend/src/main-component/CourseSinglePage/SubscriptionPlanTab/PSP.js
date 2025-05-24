@@ -11,8 +11,8 @@ const BasicPlusPlan = () => {
     <section className="wpo-about-section-s2 section-padding bg-light">
       <div className="container">
         <div className="wpo-about-wrap">
-          <div className="alert alert-warning text-center" role="alert">
-            <strong>Important Note:</strong> This plan is ideal for traders looking to gain a structured, guided trading approach with minimal risk.
+          <div className="alert alert-danger text-center fw-bold" role="alert">
+            💼 <strong>Basic Plus Plan</strong> – ₹14,000/- Paid
           </div>
 
           <div className="text-center mb-5 p-4 bg-white shadow rounded">
