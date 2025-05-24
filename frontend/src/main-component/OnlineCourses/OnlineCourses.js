@@ -278,6 +278,7 @@ const OnlineCourse = () => {
       document.body.classList.remove("expanding-card-grid-body-styles");
     };
   }, []);
+  
 
   return (
     <Fragment>
@@ -310,6 +311,33 @@ const OnlineCourse = () => {
           <h2 className="header-custom__subtitle">
             Expand Your Financial Knowledge
           </h2>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "15px"
+           
+          }}>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer">
+            <button
+              style={{
+                backgroundColor: "#4CAF50",
+                color: "white",
+                padding: "12px 24px",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}>
+              Register Now
+            </button>
+          </a>
         </div>
 
         <div className="cards-custom">

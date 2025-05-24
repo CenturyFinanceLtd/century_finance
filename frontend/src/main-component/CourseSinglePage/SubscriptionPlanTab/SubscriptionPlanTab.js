@@ -11,6 +11,11 @@ import Premium from "./PSP";
 import Super from "./SSP";
 import Advance from "./APP";
 import VVIP from "./VVIPSSP";
+import CSP from "./CSP";
+import BPP from "./BPP";
+import ADP from "./ADP";
+import ESSP from "./ESSP";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulb,
@@ -33,7 +38,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
   const tabInfo = [
     {
       id: "1",
-      title: "Premium Subscription Plan",
+      title: "Basic Plus Plan",
       IconComponent: IconBasicPlan,
       description:
         "", // Content for the tab button
@@ -42,7 +47,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "2",
-      title: "Super Subscription Plan",
+      title: "premium Subscrpition Plan",
       IconComponent: IconPremiumPlan,
       description:
         "",
@@ -51,7 +56,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "3",
-      title: "Advance Premium Plan",
+      title: "Core Subscrpition Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
@@ -60,13 +65,51 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "4",
-      title: "VVIP Stock Subscription Plan",
+      title: "Super Subscrpition Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
       activeDescription:
         "",
     },
+  
+  {
+      id: "5",
+      title: "Advance Prime Plan",
+      IconComponent: IconLearningToEarningPlan,
+      description:
+        "",
+      activeDescription:
+        "",
+    },
+    {
+      id: "6",
+      title: "Advance Premium Plan",
+      IconComponent: IconLearningToEarningPlan,
+      description:
+        "",
+      activeDescription:
+        "",
+    },
+    {
+      id: "7",
+      title: "Elite Stock Subscrpition Plan",
+      IconComponent: IconLearningToEarningPlan,
+      description:
+        "",
+      activeDescription:
+        "",
+    },
+    {
+      id: "8",
+      title: "VIP Stock Subscrpition Plan",
+      IconComponent: IconLearningToEarningPlan,
+      description:
+        "",
+      activeDescription:
+        "",
+    },
+   
   ];
 
   return (
@@ -161,6 +204,34 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
             <ReactstrapRow>
               <ReactstrapCol sm="12">
                 <VVIP EventsDetails={EventsDetails} />
+              </ReactstrapCol>
+            </ReactstrapRow>
+          </TabPane>
+          <TabPane tabId="5">
+            <ReactstrapRow>
+              <ReactstrapCol sm="12">
+                <CSP EventsDetails={EventsDetails} />
+              </ReactstrapCol>
+            </ReactstrapRow>
+          </TabPane>
+          <TabPane tabId="6">
+            <ReactstrapRow>
+              <ReactstrapCol sm="12">
+                <BPP EventsDetails={EventsDetails} />
+              </ReactstrapCol>
+            </ReactstrapRow>
+          </TabPane>
+          <TabPane tabId="7">
+            <ReactstrapRow>
+              <ReactstrapCol sm="12">
+                <ADP EventsDetails={EventsDetails} />
+              </ReactstrapCol>
+            </ReactstrapRow>
+          </TabPane>
+           <TabPane tabId="8">
+            <ReactstrapRow>
+              <ReactstrapCol sm="12">
+                <ESSP EventsDetails={EventsDetails} />
               </ReactstrapCol>
             </ReactstrapRow>
           </TabPane>

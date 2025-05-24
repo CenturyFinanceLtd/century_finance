@@ -7,7 +7,7 @@ const ClickHandler = () => {
   window.scrollTo(10, 0);
 };
 
-const SuperSubscrpitionPlan = (props) => {
+const AdvancePremiumPlan = (props) => {
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -24,7 +24,7 @@ const SuperSubscrpitionPlan = (props) => {
             <div className="col-lg-6 col-md-12 col-12">
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
-                  <small>Super Subscrpition Plan</small>
+                  <small>Advance Premium Plan</small>
                   <h2>A New Different Way To Improve Your Skills.</h2>
                 </div>
                 <p>
@@ -42,7 +42,7 @@ const SuperSubscrpitionPlan = (props) => {
                 </p>
                 <Link
                   onClick={ClickHandler}
-                  to="/about"
+                  to=""
                   className="theme-btn-s2">
                   Learn More About Us
                 </Link>
@@ -55,4 +55,4 @@ const SuperSubscrpitionPlan = (props) => {
   );
 };
 
-export default SuperSubscrpitionPlan;
+export default AdvancePremiumPlan;

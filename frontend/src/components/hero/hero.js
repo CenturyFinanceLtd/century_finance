@@ -17,24 +17,28 @@ const allBanners = [
     type: "desktop",
     imageUrl: desktopBanner1,
     altText: "Desktop Banner 1",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header", // Replace with actual link
   },
   {
     id: "desktop-slide-2",
     type: "desktop",
     imageUrl: desktopBanner2,
     altText: "Desktop Banner 2",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
   {
     id: "mobile-slide-1",
     type: "mobile",
     imageUrl: mobileBanner1,
     altText: "Mobile Banner 1",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
   {
     id: "mobile-slide-2",
     type: "mobile",
     imageUrl: mobileBanner2,
     altText: "Mobile Banner 2",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
 ];
 
@@ -62,14 +66,14 @@ const Hero = () => {
   // This avoids repetition in the JSX for desktop and mobile sliders
   const renderSlide = (banner) => (
     <div key={banner.id} className="slide-item">
-      {" "}
-      {/* Individual slide item */}
       <div className="hero-image-container">
-        <img
-          src={banner.imageUrl}
-          alt={banner.altText}
-          className="hero-banner-image"
-        />
+        <a href={banner.link} target="_blank" rel="noopener noreferrer">
+          <img
+            src={banner.imageUrl}
+            alt={banner.altText}
+            className="hero-banner-image"
+          />
+        </a>
       </div>
     </div>
   );
