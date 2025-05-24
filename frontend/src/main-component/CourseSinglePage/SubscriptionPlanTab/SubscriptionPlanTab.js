@@ -47,7 +47,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "2",
-      title: "Super Subscription Plan",
+      title: "premium Subscrpition Plan",
       IconComponent: IconPremiumPlan,
       description:
         "",
@@ -56,7 +56,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "3",
-      title: "Advance Premium Plan",
+      title: "Core Subscrpition Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
@@ -65,7 +65,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "4",
-      title: "VVIP Stock Subscription Plan",
+      title: "Super Subscrpition Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
@@ -75,7 +75,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
   
   {
       id: "5",
-      title: "Core Subscription Plan",
+      title: "Advance Prime Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
@@ -84,7 +84,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "6",
-      title: "Basic Plus Plan",
+      title: "Advance Premium Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
@@ -93,7 +93,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "7",
-      title: "Advance premium Plan",
+      title: "Elite Stock Subscrpition Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",
@@ -102,7 +102,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "8",
-      title: "Elite Stock Subscription Plan",
+      title: "VIP Stock Subscrpition Plan",
       IconComponent: IconLearningToEarningPlan,
       description:
         "",

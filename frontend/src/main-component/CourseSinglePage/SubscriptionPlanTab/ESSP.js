@@ -7,7 +7,7 @@ const ClickHandler = () => {
   window.scrollTo(10, 0);
 };
 
-const EliteStockSubscriptionPlan = (props) => {
+const VIPStockSubscrpitionPlan = (props) => {
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -24,7 +24,7 @@ const EliteStockSubscriptionPlan = (props) => {
             <div className="col-lg-6 col-md-12 col-12">
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
-                  <small>Elite Stock Subscription Plan</small>
+                  <small>VIP StockSubscrpition Plan</small>
                   <h2>A New Different Way To Improve Your Skills.</h2>
                 </div>
                 <p>
@@ -55,4 +55,4 @@ const EliteStockSubscriptionPlan = (props) => {
   );
 };
 
-export default EliteStockSubscriptionPlan;
+export default VIPStockSubscrpitionPlan;

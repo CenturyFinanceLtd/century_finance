@@ -7,7 +7,7 @@ const ClickHandler = () => {
   window.scrollTo(10, 0);
 };
 
-const CoreSubscriptionPlan = (props) => {
+const AdvancePrimePlan = (props) => {
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -24,7 +24,7 @@ const CoreSubscriptionPlan = (props) => {
             <div className="col-lg-6 col-md-12 col-12">
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
-                  <small>Core Subscription Plan</small>
+                  <small>Advance Prime Plan</small>
                   <h2>A New Different Way To Improve Your Skills.</h2>
                 </div>
                 <p>
@@ -55,4 +55,4 @@ const CoreSubscriptionPlan = (props) => {
   );
 };
 
-export default CoreSubscriptionPlan;
+export default AdvancePrimePlan;

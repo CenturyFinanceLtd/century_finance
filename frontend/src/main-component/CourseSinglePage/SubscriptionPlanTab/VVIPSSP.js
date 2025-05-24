@@ -7,7 +7,7 @@ const ClickHandler = () => {
   window.scrollTo(10, 0);
 };
 
-const LearningToEarningPlan = (props) => {
+const SuperSubscrpitionPlan = (props) => {
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -24,7 +24,7 @@ const LearningToEarningPlan = (props) => {
             <div className="col-lg-6 col-md-12 col-12">
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
-                  <small>Learning To Earning Plan</small>
+                  <small>Super Subscrpition Plan</small>
                   <h2>A New Different Way To Improve Your Skills.</h2>
                 </div>
                 <p>
@@ -55,4 +55,4 @@ const LearningToEarningPlan = (props) => {
   );
 };
 
-export default LearningToEarningPlan;
+export default SuperSubscrpitionPlan;
