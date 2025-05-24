@@ -1,115 +1,239 @@
-// This file handles the registration form and Cashfree payment integration ONLY.
-const express = require("express");
-const axios = require("axios");
-const crypto = require("crypto");
-const Registration = require("../models/registrationModel");
+import React, { useState } from "react";
+import "./RegistrationForm.css";
 
-const router = express.Router();
+const RegistrationForm = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formStep, setFormStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    mobileNumber: "",
+    email: "",
+    address: "",
+    pinCode: "",
+    state: "",
+    city: "",
+    fatherName: "",
+    collegeName: "",
+    semester: "",
+    degree: "",
+    fieldSpecialization: "",
+  });
 
-const CASHFREE_CLIENT_ID = process.env.CASHFREE_CLIENT_ID;
-const CASHFREE_CLIENT_SECRET = process.env.CASHFREE_CLIENT_SECRET;
-const CASHFREE_API_URL = "https://api.cashfree.com/pg/orders"; // Using Production URL
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-// ROUTE 1: Create a payment order with Cashfree
-router.post("/create-order", async (req, res) => {
-  try {
-    const registrationData = req.body;
-    const orderId = `ORDER_${Date.now()}`;
-    const amount = 500;
+  const resetForm = () => {
+    setIsOpen(false);
+    setFormStep(1);
+    setIsLoading(false);
+  };
 
-    // Save the initial registration data with a 'pending' status
-    const newRegistration = new Registration({ ...registrationData, orderId });
-    await newRegistration.save();
-
-    // Create the order with Cashfree
-    const response = await axios.post(
-      CASHFREE_API_URL,
-      {
-        customer_details: {
-          customer_id: `CUST_${Date.now()}`,
-          customer_email: registrationData.email,
-          customer_phone: registrationData.mobileNumber,
-          customer_name: registrationData.fullName,
-        },
-        // This is the corrected version
-
-        order_meta: {
-          return_url: `https://www.centuryfinancelimited.com/payment-status?order_id={order_id}`, // <-- CORRECTED
-        },
-        order_id: orderId,
-        order_amount: amount,
-        order_currency: "INR",
-        order_note: "Online Course Registration Fee",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-version": "2022-09-01",
-          "x-client-id": CASHFREE_CLIENT_ID,
-          "x-client-secret": CASHFREE_CLIENT_SECRET,
-        },
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    for (const key in formData) {
+      if (formData[key] === "") {
+        const fieldName = key
+          .replace(/([A-Z])/g, " $1")
+          .replace(/^./, (str) => str.toUpperCase());
+        alert(`Please fill out the ${fieldName} field.`);
+        return;
       }
-    );
-
-    res.status(200).json(response.data);
-  } catch (error) {
-    console.error(
-      "Error creating order:",
-      error.response ? error.response.data : error.message
-    );
-    // Handle specific errors like duplicates
-    if (error.code === 11000) {
-      return res
-        .status(409)
-        .json({ message: "This email address has already been registered." });
     }
-    res.status(500).json({ message: "Failed to create payment order" });
-  }
-});
+    setFormStep(2);
+  };
 
-// ROUTE 2: Handle Cashfree Webhook for payment status
-router.post("/webhook", async (req, res) => {
-  try {
-    const signature = req.headers["x-webhook-signature"];
-    const timestamp = req.headers["x-webhook-timestamp"];
-    const payload = JSON.stringify(req.body);
+  // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION ---
+    const handleFinalPayment = async () => {
+        alert("RUNNING NEW PAYMENT CODE..."); 
+    setIsLoading(true);
+    const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
-    // **IMPORTANT**: Verify the webhook signature for security
-    const secret = CASHFREE_CLIENT_SECRET;
-    const stringToSign = timestamp + payload;
-    const expectedSignature = crypto
-      .createHmac("sha256", secret)
-      .update(stringToSign)
-      .digest("base64");
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    if (signature !== expectedSignature) {
-      return res.status(401).send("Invalid signature");
+      if (!response.ok) {
+        const errorResult = await response.json().catch(() => ({}));
+        throw new Error(
+          errorResult.message || "Failed to create payment order."
+        );
+      }
+
+      const session = await response.json();
+
+      // Check if we received the payment_session_id
+      if (session.payment_session_id) {
+        const cashfree = new window.Cashfree(session.payment_session_id);
+
+        // Open the Cashfree payment window
+        cashfree.checkout({
+          paymentStyle: "popup", // or "redirect"
+        });
+
+        // The isLoading state can be reset or handled based on checkout events
+        setIsLoading(false);
+      } else {
+        throw new Error("Could not get payment session ID from server.");
+      }
+    } catch (error) {
+      alert(error.message);
+      setIsLoading(false);
     }
+  };
 
-    const { data } = req.body;
-    const orderId = data.order.order_id;
-    const orderStatus = data.order.order_status;
-    const paymentId = data.payment.cf_payment_id;
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)} className="register-now-btn">
+        Register Now
+      </button>
 
-    let finalStatus = "pending";
-    if (orderStatus === "PAID") {
-      finalStatus = "successful";
-    } else if (["PAYMENT_FAILED", "EXPIRED"].includes(orderStatus)) {
-      finalStatus = "failed";
-    }
+      {isOpen && (
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h2>Online Course Registration</h2>
+              <button onClick={resetForm} className="close-btn">
+                &times;
+              </button>
+            </div>
+            <div className="modal-body">
+              {formStep === 1 && (
+                <form onSubmit={handleNextStep} className="registration-form">
+                  {/* All form inputs remain the same */}
+                  <input
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    placeholder="Full Name *"
+                    required
+                  />
+                  <input
+                    name="mobileNumber"
+                    value={formData.mobileNumber}
+                    onChange={handleInputChange}
+                    placeholder="Mobile Number *"
+                    required
+                  />
+                  <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email ID *"
+                    type="email"
+                    required
+                  />
+                  <textarea
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    placeholder="Address *"
+                    required></textarea>
+                  <input
+                    name="pinCode"
+                    value={formData.pinCode}
+                    onChange={handleInputChange}
+                    placeholder="PIN Code *"
+                    required
+                  />
+                  <input
+                    name="state"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    placeholder="State *"
+                    required
+                  />
+                  <input
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    placeholder="City *"
+                    required
+                  />
+                  <input
+                    name="fatherName"
+                    value={formData.fatherName}
+                    onChange={handleInputChange}
+                    placeholder="Father's Name *"
+                    required
+                  />
+                  <input
+                    name="collegeName"
+                    value={formData.collegeName}
+                    onChange={handleInputChange}
+                    placeholder="College Name *"
+                    required
+                  />
+                  <input
+                    name="degree"
+                    value={formData.degree}
+                    onChange={handleInputChange}
+                    placeholder="Degree (e.g., B.Tech) *"
+                    required
+                  />
+                  <input
+                    name="fieldSpecialization"
+                    value={formData.fieldSpecialization}
+                    onChange={handleInputChange}
+                    placeholder="Field & Specialization (e.g., CSE) *"
+                    required
+                  />
+                  <select
+                    name="semester"
+                    value={formData.semester}
+                    onChange={handleInputChange}
+                    required
+                    className="form-input">
+                    <option value="" disabled>
+                      Select a Semester...
+                    </option>
+                    {[...Array(8)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        Semester {i + 1}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="submit" className="next-btn">
+                    Pay to Register
+                  </button>
+                </form>
+              )}
 
-    // Update the registration document in MongoDB
-    await Registration.findOneAndUpdate(
-      { orderId: orderId },
-      { paymentStatus: finalStatus, paymentId: paymentId || null },
-      { new: true }
-    );
+              {formStep === 2 && (
+                <div className="payment-step">
+                  <h3>Choose Payment Method</h3>
+                  <div className="gateway-option selected">
+                    <div className="gateway-info">
+                      <svg
+                        className="gateway-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"></path>
+                      </svg>
+                      <span>Cashfree Payments</span>
+                    </div>
+                    <span className="gateway-note">Secure Gateway</span>
+                  </div>
+                  <button
+                    onClick={handleFinalPayment}
+                    className="pay-btn"
+                    disabled={isLoading}>
+                    {isLoading ? "Processing..." : "Pay ₹500"}
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
-    res.status(200).send("Webhook received successfully");
-  } catch (error) {
-    console.error("Error handling webhook:", error);
-    res.status(500).send("Error processing webhook");
-  }
-});
-
-module.exports = router;
+export default RegistrationForm;
