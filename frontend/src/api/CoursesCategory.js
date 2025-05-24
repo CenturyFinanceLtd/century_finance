@@ -52,7 +52,7 @@ const CoursesCategory = [
     Id: "5",
     cImg: cimg5,
     thumb: "flaticon-video-lesson",
-    title: "Risch Boost",
+    title: "Rich Boost",
     slug: "/pdf/rich-boast.pdf",
     slug2: "/pdf/rich-boast.pdf",
     //  description:
