@@ -38,7 +38,10 @@ const EnquiryFormPopup = ({ closeModal }) => {
     console.log("Form Data to be sent:", formData);
 
     try {
-      const API_ENDPOINT = "/api/enquiries/submit"; // Your backend endpoint
+      // *** IMPORTANT: Use the full URL to your production backend ***
+      const API_ENDPOINT =
+        "https://api.centuryfinancelimited.com/api/enquiries/submit";
+
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: {
@@ -86,7 +89,7 @@ const EnquiryFormPopup = ({ closeModal }) => {
   return (
     <div
       id="modalOverlay"
-      className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ease-in-out z-[60]"
+      className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ease-in-out z-[60]" // Ensure z-index is high
       onClick={submissionStatus !== "loading" ? closeModal : undefined} // Prevent close on overlay click during loading
     >
       <div

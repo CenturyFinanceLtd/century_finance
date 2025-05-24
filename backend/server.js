@@ -20,7 +20,17 @@ const enquiryRoutes = require("./routes/enquiryRoutes");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+
+
 // Middleware setup
+
+
+// *** Updated CORS Configuration ***
+// This should come BEFORE your API routes are defined
+const corsOptions = {
+  origin: "https://www.centuryfinancelimited.com", // Allow requests from your frontend domain
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 app.use(cors()); // Enable CORS for all origins
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
@@ -84,10 +94,11 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
+// Start the server
 app.listen(PORT, () => {
   console.log(`✅ Backend server is listening on port ${PORT}`);
   console.log(
-    `🔗 API base URL: http://localhost:${PORT} (or your live domain)`
+    `🔗 API base URL: http://localhost:${PORT} (or your live domain, e.g., https://api.centuryfinancelimited.com)`
   );
   console.log(
     `🔑 JWT_SECRET loaded: ${
