@@ -86,7 +86,7 @@ const About = (props) => {
                     </div>
                     <div className="wpo-about-features-text">
                       <h5>
-                        <CountUp end={1250} enableScrollSpy />+ Courses
+                        <CountUp end={150} enableScrollSpy />+ Courses
                       </h5>
                     </div>
                   </div>
@@ -98,7 +98,7 @@ const About = (props) => {
                     </div>
                     <div className="wpo-about-features-text">
                       <h5>
-                        <CountUp end={500} enableScrollSpy />+ Free className
+                        <CountUp end={100} enableScrollSpy />+ Demo Classes
                       </h5>
                     </div>
                   </div>
@@ -110,7 +110,7 @@ const About = (props) => {
                     </div>
                     <div className="wpo-about-features-text">
                       <h5>
-                        <CountUp end={25} enableScrollSpy />k Students
+                        <CountUp end={100} enableScrollSpy />k Students
                       </h5>
                     </div>
                   </div>
@@ -122,7 +122,7 @@ const About = (props) => {
                     </div>
                     <div className="wpo-about-features-text">
                       <h5>
-                        <CountUp end={250} enableScrollSpy />+ Mentors
+                        <CountUp end={50} enableScrollSpy />+ Mentors
                       </h5>
                     </div>
                   </div>
