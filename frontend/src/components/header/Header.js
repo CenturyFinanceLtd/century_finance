@@ -156,7 +156,18 @@ const Header = (props) => {
                         Calls Subscription Plan
                       </Link>
                     </li>
-                    
+
+                    <li>
+                      <Link onClick={ClickHandler} to="/investment">
+                        Investment
+                      </Link>
+                    </li>
+                    <li>
+                      <Link onClick={ClickHandler} to="/finance-services">
+                        Finance
+                      </Link>
+                    </li>
+
                     <li className="menu-item-has-children">
                       <Link onClick={ClickHandler} to="#">
                         Markets <i className="ti-angle-down"></i>
@@ -188,16 +199,6 @@ const Header = (props) => {
                           </Link>
                         </li>
                       </ul>
-                    </li>
-                    <li>
-                      <Link onClick={ClickHandler} to="/investment">
-                        Investment
-                      </Link>
-                    </li>
-                    <li>
-                      <Link onClick={ClickHandler} to="/finance-services">
-                        Finance
-                      </Link>
                     </li>
                     <li>
                       <Link onClick={ClickHandler} to="/contact">

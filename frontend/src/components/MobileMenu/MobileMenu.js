@@ -20,58 +20,67 @@ const menus = [
 
   {
     id: 3,
-    title: "Customer Services",
-    link: "/",
-    submenu: [
-      {
-        id: 31,
-        title: "Training Program",
-        link: "/training-program",
-      },
-      {
-        id: 32,
-        title: "Online Courses",
-        link: "/online-courses",
-      },
-      {
-        id: 33,
-        title: "Portfolio",
-        link: "/portfolio",
-      },
-      {
-        id: 34,
-        title: "Subscription Plan",
-        link: "/calls-subscription-plan",
-      },
-    ],
+    title: "Training Program",
+    link: "/training-program",
   },
+
   {
     id: 4,
+    title: "Online Courses",
+    link: "/online-courses",
+  },
+
+  {
+    id: 5,
+    title: "Portfolio",
+    link: "/portfolio",
+  },
+
+  {
+    id: 6,
+    title: "Subscription Plan",
+    link: "/calls-subscription-plan",
+  },
+
+  {
+    id: 7,
+    title: "Investment",
+    link: "/investment",
+  },
+
+  {
+    id: 8,
+    title: "Finance",
+    link: "/finance-services",
+  },
+
+  {
+    id: 9,
     title: "Markets",
     link: "/",
     submenu: [
       {
-        id: 41,
+        id: 91,
         title: "Stocks",
         link: "/stocks",
       },
       {
-        id: 42,
+        id: 92,
         title: "Commodities",
         link: "/commodities",
       },
       {
-        id: 43,
+        id: 93,
         title: "Crypto",
         link: "/crypto",
       },
       {
-        id: 44,
+        id: 94,
         title: "Gold",
         link: "/gold",
       },
       {
-        id: 45,
+        id: 95,
         title: "Currencies",
         link: "/currencies",
       },
@@ -79,59 +88,7 @@ const menus = [
   },
 
   {
-    id: 5,
-    title: "Investment",
-    link: "/investment",
-  },
-
-  {
-    id: 6,
-    title: "Finance",
-    link: "/finance-services",
-  },
-
-  {
-    id: 7,
-    title: "Download",
-    link: "/", // This is the parent item's link
-    submenu: [
-      // ENSURE THESE pdfPath values are correct and work when you type them in the browser directly
-      // e.g., http://localhost:3000/pdf/smart-saver.pdf (if 'pdf' is in your public folder)
-      {
-        id: 71,
-        title: "Smart Saver Plan",
-        link: "/", // This link is for the NavLink if pdfPath wasn't present
-        pdfPath: "/pdf/smart-saver.pdf", // Example: Assumes 'pdf' folder in 'public'
-      },
-      {
-        id: 72,
-        title: "Money Max Plan",
-        link: "/",
-        pdfPath: "/pdf/money-max.pdf", // Example
-      },
-      {
-        id: 73,
-        title: "Wealth Boost",
-        link: "/",
-        pdfPath: "/pdf/wealth-boost.pdf", // Example
-      },
-      {
-        id: 74,
-        title: "Rich Boast",
-        link: "/",
-        pdfPath: "/pdf/rich-boast.pdf", // Example
-      },
-      {
-        id: 75,
-        title: "Fast Track",
-        link: "", // Link for NavLink if no pdfPath
-        pdfPath: "/pdf/fast-track.pdf", // Example
-      },
-    ],
-  },
-
-  {
-    id: 8,
+    id: 10,
     title: "Contact",
     link: "/contact",
   },
