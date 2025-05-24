@@ -46,9 +46,10 @@ const RegistrationForm = () => {
   };
 
   // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION ---
+  // Replace your existing handleFinalPayment function with this one
+
   const handleFinalPayment = async () => {
-    // ----> ADD THIS TEST ALERT <----
-    alert("ATTEMPTING TO START PAYMENT - SDK VERSION");
+    alert("Step 1: Payment process started."); // First alert
 
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
@@ -68,32 +69,36 @@ const RegistrationForm = () => {
       }
 
       const session = await response.json();
-      console.log("Backend Response for SDK:", session); // Log to see the session details
+      alert(
+        "Step 2: Received response from backend. Checking for session ID..."
+      );
 
-      // Check if we received the payment_session_id
       if (session.payment_session_id) {
-        // Ensure Cashfree SDK is loaded
+        alert(
+          `Step 3: Found payment_session_id: ${session.payment_session_id}`
+        );
+
         if (window.Cashfree) {
+          alert("Step 4: Cashfree SDK is loaded. Initializing checkout...");
           const cashfree = new window.Cashfree(session.payment_session_id);
 
-          // Open the Cashfree payment window
           cashfree.checkout({
-            paymentStyle: "popup", // or "redirect"
+            paymentStyle: "popup",
           });
 
           setIsLoading(false);
         } else {
-          throw new Error("Cashfree SDK not loaded. Please check index.html.");
+          throw new Error(
+            "Cashfree SDK (window.Cashfree) not found. Check public/index.html."
+          );
         }
       } else {
-        console.error(
-          "Payment Session ID missing in backend response:",
-          session
+        throw new Error(
+          "Payment Session ID was NOT found in the backend response."
         );
-        throw new Error("Could not get payment session ID from server.");
       }
     } catch (error) {
-      alert(error.message);
+      alert(`ERROR: ${error.message}`); // This will catch any errors thrown
       setIsLoading(false);
     }
   };
