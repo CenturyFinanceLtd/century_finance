@@ -6,6 +6,7 @@ import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
 import "./ExpandingCardGrid.css";
+import RegistrationForm from "./RegistrationForm";
 
 const coursesData = [
   {
@@ -318,26 +319,9 @@ const OnlineCourse = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "15px"
-           
+            marginTop: "15px",
           }}>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header"
-            target="_blank"
-            rel="noopener noreferrer">
-            <button
-              style={{
-                backgroundColor: "#4CAF50",
-                color: "white",
-                padding: "12px 24px",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontSize: "16px",
-              }}>
-              For Demo Classes Register Now for 500
-            </button>
-          </a>
+          <RegistrationForm />
         </div>
 
         <div className="cards-custom">
