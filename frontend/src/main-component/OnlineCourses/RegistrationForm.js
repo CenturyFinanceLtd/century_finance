@@ -45,9 +45,12 @@ const RegistrationForm = () => {
     setFormStep(2);
   };
 
+  // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION ---
   const handleFinalPayment = async () => {
+    // ----> ADD THIS TEST ALERT <----
+    alert("ATTEMPTING TO START PAYMENT - SDK VERSION");
+
     setIsLoading(true);
-    // The API endpoint URL is now read from the environment variable
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
     try {
@@ -58,17 +61,37 @@ const RegistrationForm = () => {
       });
 
       if (!response.ok) {
-        // This will now show a more specific error if the backend provides one
-        const errorResult = await response
-          .json()
-          .catch(() => ({ message: "Failed to create payment order." }));
+        const errorResult = await response.json().catch(() => ({}));
         throw new Error(
           errorResult.message || "Failed to create payment order."
         );
       }
 
       const session = await response.json();
-      window.location.href = session.payment_link;
+      console.log("Backend Response for SDK:", session); // Log to see the session details
+
+      // Check if we received the payment_session_id
+      if (session.payment_session_id) {
+        // Ensure Cashfree SDK is loaded
+        if (window.Cashfree) {
+          const cashfree = new window.Cashfree(session.payment_session_id);
+
+          // Open the Cashfree payment window
+          cashfree.checkout({
+            paymentStyle: "popup", // or "redirect"
+          });
+
+          setIsLoading(false);
+        } else {
+          throw new Error("Cashfree SDK not loaded. Please check index.html.");
+        }
+      } else {
+        console.error(
+          "Payment Session ID missing in backend response:",
+          session
+        );
+        throw new Error("Could not get payment session ID from server.");
+      }
     } catch (error) {
       alert(error.message);
       setIsLoading(false);
