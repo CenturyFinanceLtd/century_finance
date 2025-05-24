@@ -33,8 +33,8 @@ const CoursesCategory = [
     cImg: cimg3,
     thumb: "flaticon-code",
     title: "Money Kick Start",
-    slug: "/pdf/fast-track.pdf",
-    slug2: "/pdf/fast-track.pdf",
+    slug: "/pdf/money-kickstart.pdf",
+    slug2: "/pdf/money-kickstart.pdf",
     //  description:
     //    "We are providing you are the best Development guideline for. That help you be professional.",
   },
@@ -42,9 +42,9 @@ const CoursesCategory = [
     Id: "4",
     cImg: cimg4,
     thumb: "flaticon-knowledge",
-    title: "Wealth Boost",
-    slug: "/pdf/wealth-boost.pdf",
-    slug2: "/pdf/wealth-boost.pdf",
+    title: "Wealth Boast",
+    slug: "/pdf/wealth-boast.pdf",
+    slug2: "/pdf/wealth-boast.pdf",
     //  description:
     //    "We are providing you the best Self Improvement guideline. That help you be professional.",
   },
