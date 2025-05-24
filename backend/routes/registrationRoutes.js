@@ -31,8 +31,10 @@ router.post("/create-order", async (req, res) => {
           customer_phone: registrationData.mobileNumber,
           customer_name: registrationData.fullName,
         },
+        // This is the corrected version
+
         order_meta: {
-          return_url: `http://your-frontend-url.com/payment-status?order_id={order_id}`, // IMPORTANT: Change this to your actual frontend domain
+          return_url: `https://www.centuryfinancelimited.com/payment-status?order_id={order_id}`, // <-- CORRECTED
         },
         order_id: orderId,
         order_amount: amount,
