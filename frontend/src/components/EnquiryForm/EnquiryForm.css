@@ -1,0 +1,253 @@
+/* EnquiryForm.css */
+
+
+
+/* --- Fixed Enquire Now Button --- */
+.enquire-now-button-fixed {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: #000000;
+    /* Orange */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 999;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.enquire-now-button-fixed:hover {
+    background-color: #383838;
+    /* Darker Orange */
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Form Header --- */
+.form-header {
+    position: relative;
+    background-color: #f01212;
+    /* Dark Blue */
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.form-header h2 {
+    color: #ffffff;
+    /* Orange */
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #ffffff;
+    /* Light Blue */
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+}
+
+.close-button:hover {
+    color: white;
+    background-color: #e12d2d;
+}
+
+.close-button svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* --- Form Body, Content & Inputs --- */
+.form-body {
+    padding: 1.5rem 2rem 2rem 2rem;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.form-input:focus {
+    border-color: #f66060;
+    box-shadow: 0 0 0 3px rgba(246, 59, 59, 0.3);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Styles for disabled inputs */
+.form-input:disabled {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+    color: #6b7280;
+}
+
+/* --- Status Messages --- */
+.status-message {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 6px;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.status-loading {
+    background-color: #e0f2fe;
+    border-color: #ff6060;
+    color: #ff6060;
+}
+
+.status-success {
+    background-color: #dcfce7;
+    border-color: #86efac;
+    color: #15803d;
+}
+
+.status-error {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+/* --- Submit Button --- */
+.submit-button {
+    width: 100%;
+    background-color: transparent;
+    color: #f97316;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0.8rem 1rem;
+    border: 2px solid #f97316;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #f97316;
+    color: white;
+}
+
+/* Style for disabled button */
+.submit-button:disabled {
+    background-color: #fdba74;
+    border-color: #fdba74;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Style for the close button shown on success */
+.success-close-button {
+    background-color: #4b5563;
+    /* Gray */
+    border-color: #4b5563;
+    color: white;
+}
+
+.success-close-button:hover {
+    background-color: #374151;
+    border-color: #374151;
+}
+
+/* --- Loading Spinner Animation --- */
+.spinner {
+    animation: rotate 2s linear infinite;
+    width: 20px;
+    height: 20px;
+}
+
+.spinner .path {
+    stroke: currentColor;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    } }

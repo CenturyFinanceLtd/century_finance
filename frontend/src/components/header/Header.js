@@ -114,14 +114,14 @@ const Header = (props) => {
                   <MobileMenu />
                 </div>
               </div>
-              <div className="col-lg-2 col-md-4 col-4">
+              <div className="col-lg-1 col-md-4 col-4">
                 <div className="navbar-header">
                   <Link onClick={ClickHandler} className="navbar-brand" to="/">
                     <img src={Logo} alt="logo" />
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-8 col-md-1 col-1 d-small-none">
+              <div className="col-lg-10 col-md-1 col-1 d-small-none">
                 <div
                   id="navbar"
                   className="collapse navbar-collapse navigation-holder">
@@ -207,7 +207,7 @@ const Header = (props) => {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-2 col-md-4 col-4">
+              <div className="col-lg-1 col-md-4 col-4">
                 <div className="header-right">
                   {/* <div className="header-search-form-wrapper">
                     <div className="cart-search-contact">

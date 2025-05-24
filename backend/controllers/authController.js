@@ -699,4 +699,4 @@ exports.updateMyPassword = async (req, res, next) => {
 
 // --- PROFILE UPDATE FUNCTIONS --- (Look okay, ensure req.user.id is available from 'protect' middleware)
 exports.updateMyDetails = async (req, res, next) => { /* ... */ };
-exports.updateMyPassword = async (req, res, next) => { /* ... */ };
+exports.updateMyPassword = async (req, res, next) => { /* ... */ };  
