@@ -10,7 +10,6 @@ import FaqSection from "../../components/FaqSection/FaqSection";
 // import Newslatter from "../../components/Newslatter/Newslatter";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
-import EnquiryForm from "../../components/EnquiryForm/EnquiryForm";
 
 const HomePage = () => {
   return (
@@ -32,7 +31,7 @@ const HomePage = () => {
       <Hero />
       <About />
       <WhyCentury />
-      <EnquiryForm />
+      
       <WhatdoWeOffer />
       {/* <WhatdoWeOffer2 /> */}
       <OurMIssion />
