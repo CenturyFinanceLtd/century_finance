@@ -15,7 +15,7 @@ const PremiumSubscriptionPlan = () => {
 
           {/* 🔔 Alert Section */}
           <div className="alert alert-danger text-center fw-bold" role="alert">
-            🚨 <strong>Important:</strong> This Premium Plan is built for <span className="text-warning">serious traders</span> and includes <span className="text-success">daily expert insights</span>, <span className="text-primary">risk-managed calls</span>, and <span className="text-info">full market coverage</span>.
+            💼 <strong>Premium Subscrpition Plan</strong> – 17,000/- Paid
           </div>
 
           {/* 🌟 Hero Info */}
