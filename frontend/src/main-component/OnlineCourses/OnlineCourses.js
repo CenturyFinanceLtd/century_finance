@@ -335,7 +335,7 @@ const OnlineCourse = () => {
                 cursor: "pointer",
                 fontSize: "16px",
               }}>
-              Register Now
+              For Demo Classes Register Now for 500
             </button>
           </a>
         </div>
