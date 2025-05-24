@@ -25,7 +25,7 @@
     background: white;
     border-radius: 8px;
     width: 90%;
-    max-width: 600px;
+    max-width: 500px;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 20px 30px;
     overflow-y: auto;
 }
 
@@ -63,34 +63,20 @@
 }
 
 .registration-form input,
-.registration-form textarea {
+.registration-form textarea,
+.registration-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 15px;
+    font-family: inherit;
 }
 
-.registration-form textarea {
+.registration-form textarea,
+.registration-form select {
     grid-column: 1 / -1;
-    resize: vertical;
-}
-
-.semester-group {
-    grid-column: 1 / -1;
-}
-
-.radio-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-.radio-options label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
 .next-btn,
@@ -105,6 +91,10 @@
     cursor: pointer;
 }
 
+.pay-btn {
+    margin-top: 20px;
+}
+
 .pay-btn:disabled {
     background-color: #aaa;
 }
@@ -113,16 +103,46 @@
     text-align: center;
 }
 
+.payment-step h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
 .gateway-option {
     border: 2px solid #007bff;
+    background-color: #f8f9fa;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px 20px;
     margin: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
 }
 
-.gateway-option img {
-    height: 30px;
+.gateway-option:hover {
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.gateway-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #212529;
+}
+
+.gateway-icon {
+    width: 32px;
+    height: 32px;
+    color: #007bff;
+}
+
+.gateway-note {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
 }

@@ -1,3 +1,4 @@
+// This file handles the registration form and Cashfree payment integration ONLY.
 const express = require("express");
 const axios = require("axios");
 const crypto = require("crypto");
@@ -7,20 +8,20 @@ const router = express.Router();
 
 const CASHFREE_CLIENT_ID = process.env.CASHFREE_CLIENT_ID;
 const CASHFREE_CLIENT_SECRET = process.env.CASHFREE_CLIENT_SECRET;
-const CASHFREE_API_URL = "https://sandbox.cashfree.com/pg/orders"; // Use 'https://api.cashfree.com/pg/orders' for production
+const CASHFREE_API_URL = "https://api.cashfree.com/pg/orders"; // Using Production URL
 
-// ROUTE 1: Create a payment order
+// ROUTE 1: Create a payment order with Cashfree
 router.post("/create-order", async (req, res) => {
   try {
     const registrationData = req.body;
     const orderId = `ORDER_${Date.now()}`;
     const amount = 500;
 
-    // First, save the initial registration data with a 'pending' status
+    // Save the initial registration data with a 'pending' status
     const newRegistration = new Registration({ ...registrationData, orderId });
     await newRegistration.save();
 
-    // Now, create the order with Cashfree
+    // Create the order with Cashfree
     const response = await axios.post(
       CASHFREE_API_URL,
       {
@@ -31,7 +32,7 @@ router.post("/create-order", async (req, res) => {
           customer_name: registrationData.fullName,
         },
         order_meta: {
-          return_url: `http://localhost:3000/payment-status?order_id={order_id}`, // Your frontend success/failure page
+          return_url: `http://your-frontend-url.com/payment-status?order_id={order_id}`, // IMPORTANT: Change this to your actual frontend domain
         },
         order_id: orderId,
         order_amount: amount,
@@ -54,7 +55,13 @@ router.post("/create-order", async (req, res) => {
       "Error creating order:",
       error.response ? error.response.data : error.message
     );
-    res.status(500).json({ error: "Failed to create payment order" });
+    // Handle specific errors like duplicates
+    if (error.code === 11000) {
+      return res
+        .status(409)
+        .json({ message: "This email address has already been registered." });
+    }
+    res.status(500).json({ message: "Failed to create payment order" });
   }
 });
 

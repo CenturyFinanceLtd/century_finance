@@ -29,15 +29,16 @@ const RegistrationForm = () => {
     setIsOpen(false);
     setFormStep(1);
     setIsLoading(false);
-    // Optionally clear form data here
   };
 
   const handleNextStep = (e) => {
     e.preventDefault();
-    // Simple validation: check if all fields are filled
     for (const key in formData) {
       if (formData[key] === "") {
-        alert(`Please fill out the ${key} field.`);
+        const fieldName = key
+          .replace(/([A-Z])/g, " $1")
+          .replace(/^./, (str) => str.toUpperCase());
+        alert(`Please fill out the ${fieldName} field.`);
         return;
       }
     }
@@ -46,22 +47,27 @@ const RegistrationForm = () => {
 
   const handleFinalPayment = async () => {
     setIsLoading(true);
-    try {
-      // Send data to your backend to create an order
-      const response = await fetch(
-        "http://localhost:5000/api/register/create-order",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+    // The API endpoint URL is now read from the environment variable
+    const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
-      if (!response.ok) throw new Error("Failed to create payment order.");
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        // This will now show a more specific error if the backend provides one
+        const errorResult = await response
+          .json()
+          .catch(() => ({ message: "Failed to create payment order." }));
+        throw new Error(
+          errorResult.message || "Failed to create payment order."
+        );
+      }
 
       const session = await response.json();
-
-      // Redirect to Cashfree payment page
       window.location.href = session.payment_link;
     } catch (error) {
       alert(error.message);
@@ -85,10 +91,8 @@ const RegistrationForm = () => {
               </button>
             </div>
             <div className="modal-body">
-              {/* Step 1: Registration Details */}
               {formStep === 1 && (
                 <form onSubmit={handleNextStep} className="registration-form">
-                  {/* All form inputs go here... */}
                   <input
                     name="fullName"
                     value={formData.fullName}
@@ -166,39 +170,44 @@ const RegistrationForm = () => {
                     placeholder="Field & Specialization (e.g., CSE) *"
                     required
                   />
-                  <div className="semester-group">
-                    <label>Semester *</label>
-                    <div className="radio-options">
-                      {[...Array(8)].map((_, i) => (
-                        <label key={i + 1}>
-                          <input
-                            type="radio"
-                            name="semester"
-                            value={i + 1}
-                            onChange={handleInputChange}
-                            required
-                          />{" "}
-                          {i + 1}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+
+                  <select
+                    name="semester"
+                    value={formData.semester}
+                    onChange={handleInputChange}
+                    required
+                    className="form-input">
+                    <option value="" disabled>
+                      Select a Semester...
+                    </option>
+                    {[...Array(8)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        Semester {i + 1}
+                      </option>
+                    ))}
+                  </select>
+
                   <button type="submit" className="next-btn">
                     Pay to Register
                   </button>
                 </form>
               )}
 
-              {/* Step 2: Payment Gateway Selection */}
               {formStep === 2 && (
                 <div className="payment-step">
                   <h3>Choose Payment Method</h3>
                   <div className="gateway-option selected">
-                    <span>Cashfree Payments</span>
-                    <img
-                      src="https://www.cashfree.com/images/press-kit/logo-variant-1.png"
-                      alt="Cashfree Payments"
-                    />
+                    <div className="gateway-info">
+                      <svg
+                        className="gateway-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"></path>
+                      </svg>
+                      <span>Cashfree Payments</span>
+                    </div>
+                    <span className="gateway-note">Secure Gateway</span>
                   </div>
                   <button
                     onClick={handleFinalPayment}
