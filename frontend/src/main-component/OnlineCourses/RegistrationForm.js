@@ -77,7 +77,7 @@ const RegistrationForm = () => {
           // This new code handles errors from the Cashfree SDK itself
           cashfree
             .checkout({
-              paymentStyle: "popup",
+              paymentStyle: "redirect",
             })
             .then((result) => {
               if (result.error) {

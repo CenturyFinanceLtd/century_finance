@@ -103,7 +103,7 @@ const AllRoute = () => {
             element={<BlogDetailsFull />}
           />
           <Route path="404" element={<ErrorPage />} />
-          <Route path="contact" element={<ContactPage />} />
+          <Route path="contact-us" element={<ContactPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<SignUpPage />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
