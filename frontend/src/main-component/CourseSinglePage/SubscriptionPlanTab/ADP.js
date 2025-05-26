@@ -13,12 +13,12 @@ const EliteStockSubscriptionPlan = () => {
       <div className="container">
         <div className="wpo-about-wrap">
 
-          {/* 🔔 Alert Box */}
+          {/*  Alert Box */}
           <div className="alert alert-danger text-center fw-bold" role="alert">
-            👑 <strong>Elite Stock Subscription Plan</strong> – ₹55,000/- Paid
+             <strong>Elite Stock Subscription Plan</strong> – ₹55,000/- Paid
           </div>
 
-          {/* 🌟 Intro */}
+          {/*  Intro */}
           <div className="text-center mb-5 p-4 bg-white shadow rounded">
             <h2 className="text-primary">Premium Market Intelligence for 9 Months of Elite Trading</h2>
             <p className="lead"><strong>Plan Fee:</strong> ₹55,000/-</p>
@@ -27,7 +27,7 @@ const EliteStockSubscriptionPlan = () => {
             <blockquote className="blockquote">✅ <em>"This plan isn't just advanced—it’s elite."</em></blockquote>
           </div>
 
-          {/* 📌 Plan Overview */}
+          {/*  Plan Overview */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-success">What is the Elite Stock Subscription Plan?</h4>
             <p>
@@ -35,7 +35,7 @@ const EliteStockSubscriptionPlan = () => {
             </p>
           </div>
 
-          {/* 👤 Target Audience */}
+          {/*  Target Audience */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-success">Who Is This Plan For?</h4>
             <ul>
@@ -47,7 +47,7 @@ const EliteStockSubscriptionPlan = () => {
             </ul>
           </div>
 
-          {/* 📈 Equity Section */}
+          {/*  Equity Section */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Equity – Unlimited Calls</h4>
             <ul>
@@ -61,7 +61,7 @@ const EliteStockSubscriptionPlan = () => {
             <p className="text-muted">No limits—multiple daily signals tailored for live equity trading opportunities.</p>
           </div>
 
-          {/* ⚖️ Commodity Section */}
+          {/*  Commodity Section */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-info">Commodity – Unlimited Calls</h4>
             <ul>
@@ -76,7 +76,7 @@ const EliteStockSubscriptionPlan = () => {
             <p className="text-muted">Frequent, technical and news-supported commodity calls for precision trades.</p>
           </div>
 
-          {/* 🌍 Crypto/Foreign Section */}
+          {/*  Crypto/Foreign Section */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Crypto/Foreign Market – 65 High-Value Calls</h4>
             <ul>
@@ -88,7 +88,7 @@ const EliteStockSubscriptionPlan = () => {
             <p className="text-muted">Ideal for digital asset traders looking for expert-led blockchain investment calls.</p>
           </div>
 
-          {/* 🧠 Technical Support */}
+          {/*  Technical Support */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-success">Advanced Technical Call Support</h4>
             <ul>
@@ -99,7 +99,7 @@ const EliteStockSubscriptionPlan = () => {
             </ul>
           </div>
 
-          {/* 📘 Bonus Advisory */}
+          {/*  Bonus Advisory */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-success">Bonus Financial Insights</h4>
             <ul>
@@ -111,9 +111,9 @@ const EliteStockSubscriptionPlan = () => {
             </ul>
           </div>
 
-          {/* 💎 Benefits */}
+          {/*  Benefits */}
           <div className="mb-4 p-3 bg-warning text-dark rounded shadow-sm">
-            <h4 className="fw-bold">💎 Why Choose the Elite Plan?</h4>
+            <h4 className="fw-bold"> Why Choose the Elite Plan?</h4>
             <ul>
               <li>✔️ 9 Months of non-stop, full-access advisory</li>
               <li>✔️ Unlimited calls across equity and commodities</li>
@@ -134,7 +134,7 @@ const EliteStockSubscriptionPlan = () => {
             <p>
               Invest in the <strong>Elite Stock Subscription Plan</strong> for ₹55,000 – and enjoy 9 full months of unmatched professional-grade trading insights.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Pay Now ₹55,000/-
             </Link>
           </div>

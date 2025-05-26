@@ -85,7 +85,7 @@ const AdvancePrimePlan = () => {
               <li>Particle Network</li>
               <li>Solana</li>
             </ul>
-            <p className="text-muted">Focused calls for Web3 investors and digital asset enthusiasts.</p>
+            <p className="text-muted"></p>
           </div>
 
           {/* 🧠 Technical + Bonus Tools */}
@@ -124,7 +124,7 @@ const AdvancePrimePlan = () => {
             <p>
               Join the <strong>Advance Prime Plan</strong> now and unlock everything from expert trading signals to premium tools and long-term growth strategies.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Pay Now ₹37,000/-
             </Link>
           </div>

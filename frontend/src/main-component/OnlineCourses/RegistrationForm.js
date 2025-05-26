@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./RegistrationForm.css";
+import "./RegistrationForm.css"; // Make sure this CSS file exists and is correctly styled
 
 const RegistrationForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +20,8 @@ const RegistrationForm = () => {
     fieldSpecialization: "",
   });
 
+  const [selectedGateway, setSelectedGateway] = useState("cashfree"); // Default
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -29,6 +31,21 @@ const RegistrationForm = () => {
     setIsOpen(false);
     setFormStep(1);
     setIsLoading(false);
+    // Optionally reset formData
+    setFormData({
+      fullName: "",
+      mobileNumber: "",
+      email: "",
+      address: "",
+      pinCode: "",
+      state: "",
+      city: "",
+      fatherName: "",
+      collegeName: "",
+      semester: "",
+      degree: "",
+      fieldSpecialization: "",
+    });
   };
 
   const handleNextStep = (e) => {
@@ -42,15 +59,20 @@ const RegistrationForm = () => {
         return;
       }
     }
+    // console.log("Setting formStep to 2"); // For debugging
     setFormStep(2);
   };
 
-  // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION ---
-  // Replace your existing handleFinalPayment function with this one
+  const handleInitiatePayment = () => {
+    // console.log("Initiating payment for:", selectedGateway); // For debugging
+    if (selectedGateway === "razorpay") {
+      handleRazorpayPayment();
+    } else {
+      handleCashfreePayment();
+    }
+  };
 
-  // Replace your existing handleFinalPayment function with this final version
-
-  const handleFinalPayment = async () => {
+  const handleCashfreePayment = async () => {
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
@@ -58,56 +80,148 @@ const RegistrationForm = () => {
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, paymentGateway: "cashfree" }),
       });
 
       if (!response.ok) {
-        const errorResult = await response.json().catch(() => ({}));
-        throw new Error(
-          errorResult.message || "Failed to create payment order."
-        );
+        const errorResult = await response
+          .json()
+          .catch(() => ({
+            message:
+              "Failed to create Cashfree payment order due to server error.",
+          }));
+        throw new Error(errorResult.message);
       }
 
       const session = await response.json();
+      // console.log("Cashfree Backend Response for Redirect:", session); // For debugging
 
-      if (session.payment_session_id) {
-        if (window.Cashfree) {
-          const cashfree = new window.Cashfree(session.payment_session_id);
-
-          // This new code handles errors from the Cashfree SDK itself
-          cashfree
-            .checkout({
-              paymentStyle: "redirect",
-            })
-            .then((result) => {
-              if (result.error) {
-                // This will show a specific error from Cashfree
-                alert(`Cashfree Error: ${result.error.message}`);
-                setIsLoading(false);
-              }
-              if (result.redirect) {
-                // This case is for non-popup checkouts
-                console.log("Payment needs redirection");
-              }
-            });
-        } else {
-          throw new Error("Cashfree SDK (window.Cashfree) not found.");
-        }
+      if (session.payment_link) {
+        window.location.href = session.payment_link;
+        // setIsLoading(false) might not execute if redirect happens quickly
       } else {
         throw new Error(
-          "Payment Session ID was NOT found in the backend response."
+          "Could not get payment link from server for Cashfree redirect."
         );
       }
     } catch (error) {
-      alert(`Application Error: ${error.message}`);
+      alert(`Application Error (Cashfree): ${error.message}`);
       setIsLoading(false);
     }
-    };
-    
-    
+  };
+
+  const handleRazorpayPayment = async () => {
+    setIsLoading(true);
+    const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-razorpay-order`;
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, paymentGateway: "razorpay" }),
+      });
+
+      const order = await response.json();
+      if (!response.ok)
+        throw new Error(order.message || "Failed to create Razorpay order");
+
+      // console.log("Razorpay Backend Response:", order); // For debugging
+
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: order.currency,
+        name: order.name || "Century Finance Limited",
+        description: order.description || "Online Course Registration",
+        order_id: order.order_id,
+        handler: async function (rzpResponse) {
+          try {
+            setIsLoading(true);
+            const verifyResponse = await fetch(
+              `${process.env.REACT_APP_API_URL}/api/register/verify-razorpay-payment`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  razorpay_order_id: rzpResponse.razorpay_order_id,
+                  razorpay_payment_id: rzpResponse.razorpay_payment_id,
+                  razorpay_signature: rzpResponse.razorpay_signature,
+                }),
+              }
+            );
+
+            const verificationResult = await verifyResponse.json();
+            if (!verifyResponse.ok)
+              throw new Error(
+                verificationResult.message || "Payment verification failed."
+              );
+
+            alert(
+              "Payment Successful & Verified! Payment ID: " +
+                rzpResponse.razorpay_payment_id
+            );
+            resetForm();
+          } catch (verifyError) {
+            alert(`Payment Verification Error: ${verifyError.message}`);
+          } finally {
+            setIsLoading(false);
+          }
+        },
+        prefill: {
+          name: order.prefill_name || formData.fullName,
+          email: order.prefill_email || formData.email,
+          contact: order.prefill_contact || formData.mobileNumber,
+        },
+        notes: {
+          address: formData.address,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+        modal: {
+          ondismiss: function () {
+            // console.log("Razorpay modal dismissed"); // For debugging
+            setIsLoading(false);
+          },
+        },
+      };
+
+      if (!window.Razorpay) {
+        alert(
+          "Razorpay SDK not loaded. Please check index.html and your internet connection."
+        );
+        setIsLoading(false);
+        return;
+      }
+      const rzpay = new window.Razorpay(options);
+      rzpay.on("payment.failed", function (paymentResponse) {
+        alert(
+          "Razorpay Payment Failed: " +
+            paymentResponse.error.description +
+            (paymentResponse.error.reason
+              ? ` (Reason: ${paymentResponse.error.reason})`
+              : "")
+        );
+        setIsLoading(false);
+      });
+      rzpay.open();
+    } catch (error) {
+      alert(`Razorpay Initiation Error: ${error.message}`);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="register-now-btn">
+      {/* For debugging state changes */}
+      {/* {console.log("Rendering Form. isOpen:", isOpen, "formStep:", formStep, "isLoading:", isLoading, "selectedGateway:", selectedGateway)} */}
+
+      <button
+        onClick={() => {
+          setIsOpen(true);
+          setFormStep(1); /* Ensure step 1 on open */
+        }}
+        className="register-now-btn">
         Register Now
       </button>
 
@@ -200,7 +314,6 @@ const RegistrationForm = () => {
                     placeholder="Field & Specialization (e.g., CSE) *"
                     required
                   />
-
                   <select
                     name="semester"
                     value={formData.semester}
@@ -216,7 +329,6 @@ const RegistrationForm = () => {
                       </option>
                     ))}
                   </select>
-
                   <button type="submit" className="next-btn">
                     Pay to Register
                   </button>
@@ -226,7 +338,11 @@ const RegistrationForm = () => {
               {formStep === 2 && (
                 <div className="payment-step">
                   <h3>Choose Payment Method</h3>
-                  <div className="gateway-option selected">
+                  <div
+                    className={`gateway-option ${
+                      selectedGateway === "cashfree" ? "selected" : ""
+                    }`}
+                    onClick={() => setSelectedGateway("cashfree")}>
                     <div className="gateway-info">
                       <svg
                         className="gateway-icon"
@@ -239,8 +355,25 @@ const RegistrationForm = () => {
                     </div>
                     <span className="gateway-note">Secure Gateway</span>
                   </div>
+                  <div
+                    className={`gateway-option ${
+                      selectedGateway === "razorpay" ? "selected" : ""
+                    }`}
+                    onClick={() => setSelectedGateway("razorpay")}>
+                    <div className="gateway-info">
+                      <svg
+                        className="gateway-icon"
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor">
+                        <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm-80-216h160v32H176v-32zm0-64h160v32H176v-32z" />
+                      </svg>
+                      <span>Razorpay</span>
+                    </div>
+                    <span className="gateway-note">Cards, UPI, Wallets</span>
+                  </div>
                   <button
-                    onClick={handleFinalPayment}
+                    onClick={handleInitiatePayment}
                     className="pay-btn"
                     disabled={isLoading}>
                     {isLoading ? "Processing..." : "Pay ₹500"}

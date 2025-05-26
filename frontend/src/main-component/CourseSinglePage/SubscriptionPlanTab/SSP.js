@@ -13,9 +13,9 @@ const PremiumSubscriptionPlan = () => {
       <div className="container">
         <div className="wpo-about-wrap">
 
-          {/* 🔔 Alert Section */}
+          {/*  Alert Section */}
           <div className="alert alert-danger text-center fw-bold" role="alert">
-            💼 <strong>Premium Subscrpition Plan</strong> – 17,000/- Paid
+             <strong>Premium Subscrpition Plan</strong> – 17,000/- Paid
           </div>
 
           {/* 🌟 Hero Info */}
@@ -47,7 +47,7 @@ const PremiumSubscriptionPlan = () => {
             </ul>
           </div>
 
-          {/* 📊 Equity Segment */}
+          {/*  Equity Segment */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Equity Segment – 24 High-Potential Calls</h4>
             <ul>
@@ -61,7 +61,7 @@ const PremiumSubscriptionPlan = () => {
             <p className="text-muted">Best for intraday, swing, and short-term equity investors.</p>
           </div>
 
-          {/* ⚖️ Commodity Segment */}
+          {/*  Commodity Segment */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-info">Commodity Segment – 15 Targeted Calls</h4>
             <ul>
@@ -76,7 +76,7 @@ const PremiumSubscriptionPlan = () => {
             <p className="text-muted">Ideal for those investing in global commodity trends.</p>
           </div>
 
-          {/* 🌍 Crypto/Foreign */}
+          {/*  Crypto/Foreign */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Crypto/Foreign Segment – 6 Strategic Picks</h4>
             <ul>
@@ -90,7 +90,7 @@ const PremiumSubscriptionPlan = () => {
 
           {/* 💼 Why Choose */}
           <div className="mb-4 p-3 bg-warning text-dark rounded shadow-sm">
-            <h4 className="fw-bold">💼 Why Choose the Premium Plan?</h4>
+            <h4 className="fw-bold"> Why Choose the Premium Plan?</h4>
             <ul>
               <li>✔️ Full market coverage: Equity + Commodity + Crypto</li>
               <li>✔️ SEBI-certified research team</li>
@@ -109,7 +109,7 @@ const PremiumSubscriptionPlan = () => {
             <p>
               Secure your spot in our <strong>Premium Plan</strong> and receive professionally curated market calls across 30 days.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Pay Now ₹17,000/-
             </Link>
           </div>

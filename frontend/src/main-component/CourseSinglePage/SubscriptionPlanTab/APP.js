@@ -13,12 +13,12 @@ const CoreSubscriptionPlan = () => {
       <div className="container">
         <div className="wpo-about-wrap">
 
-          {/* 🔔 Alert Section */}
+          {/*  Alert Section */}
           <div className="alert alert-info text-center fw-bold" role="alert">
-            🔒 <strong>Core Subscription Plan</strong> – ₹19,000/- Paid
+             <strong>Core Subscription Plan</strong> – ₹19,000/- Paid
           </div>
 
-          {/* 🌟 Hero Info */}
+          {/*  Hero Info */}
           <div className="text-center mb-5 p-4 bg-white shadow rounded">
             <h2 className="text-primary">Empowering Smarter Trades for 2 Full Months</h2>
             <p className="lead"><strong>Plan Fee:</strong> ₹19,000/-</p>
@@ -27,15 +27,15 @@ const CoreSubscriptionPlan = () => {
             <blockquote className="blockquote">✅ <em>"The Core Subscription Plan is a robust, research-backed advisory service offering premium insights in Equity, Commodity, and Crypto markets for ambitious and diversified traders."</em></blockquote>
           </div>
 
-          {/* 📌 What Is It */}
+          {/*  What Is It */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-success">What is the Core Subscription Plan?</h4>
             <p>
-             The *Core Subscription Plan* is a robust, research-backed advisory service that delivers premium trading insights across *Equity, Commodity, and Foreign (Crypto) Markets* for a duration of 2 months (market days only). <strong>60 expert signals</strong> in Equity, Commodity, and Foreign Markets over 2 months to help users build consistent returns.
+             The <strong>Core Subscription Plan</strong> is a robust, research-backed advisory service that delivers premium trading insights across *Equity, Commodity, and Foreign (Crypto) Markets* for a duration of 2 months (market days only). <strong>60 expert signals</strong> in Equity, Commodity, and Foreign Markets over 2 months to help users build consistent returns.
             </p>
           </div>
 
-          {/* 👥 Who Is It For */}
+          {/*  Who Is It For */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-success">Who Is This Plan For?</h4>
             <ul>
@@ -47,7 +47,7 @@ const CoreSubscriptionPlan = () => {
             </ul>
           </div>
 
-          {/* 📊 Equity Segment */}
+          {/*  Equity Segment */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Equity Segment – 30 Actionable Calls</h4>
             <ul>
@@ -61,7 +61,7 @@ const CoreSubscriptionPlan = () => {
             <p className="text-muted">Ideal for index-based traders and equity investors.</p>
           </div>
 
-          {/* ⚖️ Commodity Segment */}
+          {/*  Commodity Segment */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-info">Commodity Segment – 20 Valuable Picks</h4>
             <ul>
@@ -76,7 +76,7 @@ const CoreSubscriptionPlan = () => {
             <p className="text-muted">Best suited for traders following domestic and international commodity movements.</p>
           </div>
 
-          {/* 🌍 Crypto/Foreign */}
+          {/*  Crypto/Foreign */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Crypto/Foreign Segment – 10 Strategic Picks</h4>
             <ul>
@@ -85,12 +85,12 @@ const CoreSubscriptionPlan = () => {
               <li>Particle Network</li>
               <li>Solana</li>
             </ul>
-            <p className="text-muted">Great for crypto-curious traders and long-term Web3 investors.</p>
+            <p className="text-muted"></p>
           </div>
 
-          {/* 💼 Why Choose */}
+          {/*  Why Choose */}
           <div className="mb-4 p-3 bg-warning text-dark rounded shadow-sm">
-            <h4 className="fw-bold">💼 Why Choose the Core Plan?</h4>
+            <h4 className="fw-bold"> Why Choose the Core Plan?</h4>
             <ul>
               <li>✔️ Two months of full-market coverage</li>
               <li>✔️ 60 professionally curated calls (₹300 per signal)</li>
@@ -105,11 +105,11 @@ const CoreSubscriptionPlan = () => {
             <blockquote className="blockquote mb-3">
               "Master every market move with structured expert insights — equity, commodities, and crypto included."
             </blockquote>
-            <h5 className="text-warning">🚀 Ready to Dominate the Market?</h5>
+            <h5 className="text-warning"> Ready to Dominate the Market?</h5>
             <p>
               Join the <strong>Core Subscription Plan</strong> today and receive <strong>60 data-driven signals</strong> across a full 2-month journey.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Subscribe Now ₹19,000/-
             </Link>
           </div>

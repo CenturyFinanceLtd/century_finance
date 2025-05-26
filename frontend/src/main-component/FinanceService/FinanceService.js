@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
+import FinanceServiceTab from "../CourseSinglePage/FinanceServiceTab/FinanceServiceTab";
 const FinanceService = () => {
   return (
     <Fragment>
@@ -22,6 +23,7 @@ const FinanceService = () => {
 
       <Navbar />
       <PageTitle pageTitle={"Finance Service"} pagesub={"Finance Service"} />
+      <FinanceServiceTab />
       <Footer />
       <Scrollbar />
     </Fragment>

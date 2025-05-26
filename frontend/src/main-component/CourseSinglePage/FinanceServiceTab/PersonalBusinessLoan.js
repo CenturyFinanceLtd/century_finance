@@ -7,7 +7,7 @@ const ClickHandler = () => {
   window.scrollTo(10, 0);
 };
 
-const PremiumPlan = (props) => {
+const PersonalBusinessLoan = (props) => {
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -27,24 +27,11 @@ const PremiumPlan = (props) => {
                   <small>Premium Plan</small>
                   <h2>A New Different Way To Improve Your Skills.</h2>
                 </div>
-                <p>
-                  Education is one of the most essential and valuable assets
-                  that an individual can possess. It plays a pivotal role in
-                  shaping the future of individuals, societies, and nations. The
-                  importance of education cannot be overstated, individuals
-                  development of nations.
-                </p>
-                <p>
-                  One of the primary benefits of education is its ability to
-                  empower individuals. Through education, individuals acquire
-                  knowledge, skills, and enable them to navigate the
-                  complexities of life.
-                </p>
                 <Link
                   onClick={ClickHandler}
                   to="/about"
                   className="theme-btn-s2">
-                  Learn More About Us
+                 
                 </Link>
               </div>
             </div>
@@ -55,4 +42,4 @@ const PremiumPlan = (props) => {
   );
 };
 
-export default PremiumPlan;
+export default PersonalBusinessLoan;
