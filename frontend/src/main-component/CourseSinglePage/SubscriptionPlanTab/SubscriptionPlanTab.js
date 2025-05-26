@@ -15,6 +15,7 @@ import CSP from "./CSP";
 import BPP from "./BPP";
 import ADP from "./ADP";
 import ESSP from "./ESSP";
+import "./subscrpitionPlan.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

@@ -13,12 +13,12 @@ const AdvancePremiumPlan = () => {
       <div className="container">
         <div className="wpo-about-wrap">
 
-          {/* 🔔 Alert Box */}
+          {/*  Alert Box */}
           <div className="alert alert-danger text-center fw-bold" role="alert">
-            💼 <strong>Advance Premium Plan</strong> – ₹45,000/- Paid
+             <strong>Advance Premium Plan</strong> – ₹45,000/- Paid
           </div>
 
-          {/* 🌟 Intro */}
+          {/*  Intro */}
           <div className="text-center mb-5 p-4 bg-white shadow rounded">
             <h2 className="text-primary">The Ultimate Long-Term Investment Advisory for Market Leaders</h2>
             <p className="lead"><strong>Plan Fee:</strong> ₹45,000/-</p>
@@ -27,7 +27,7 @@ const AdvancePremiumPlan = () => {
             <blockquote className="blockquote">✅ <em>"Designed to maximize wealth creation, minimize risk, and support long-term strategic trading."</em></blockquote>
           </div>
 
-          {/* 📌 What is the Plan */}
+          {/*  What is the Plan */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-success">What is the Advance Premium Plan?</h4>
             <p>
@@ -37,7 +37,7 @@ const AdvancePremiumPlan = () => {
             </p>
           </div>
 
-          {/* 👤 Who is this for */}
+          {/*  Who is this for */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-success">Who Is This Plan For?</h4>
             <ul>
@@ -49,7 +49,7 @@ const AdvancePremiumPlan = () => {
             </ul>
           </div>
 
-          {/* 📈 Equity */}
+          {/*  Equity */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Equity Coverage – Unlimited Equity Calls</h4>
             <ul>
@@ -63,7 +63,7 @@ const AdvancePremiumPlan = () => {
             <p className="text-muted">Tailored for intraday, swing, and positional equity traders with unrestricted call frequency.</p>
           </div>
 
-          {/* ⚖️ Commodity */}
+          {/*  Commodity */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-info">Commodity Market – Unlimited Commodity Calls</h4>
             <ul>
@@ -78,7 +78,7 @@ const AdvancePremiumPlan = () => {
             <p className="text-muted">Pro-level insights with stop-loss and trend confirmation for maximum impact.</p>
           </div>
 
-          {/* 🌍 Crypto/Foreign */}
+          {/*  Crypto/Foreign */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-info">Foreign / Crypto Market – 45 High-Value Calls</h4>
             <ul>
@@ -90,7 +90,7 @@ const AdvancePremiumPlan = () => {
             <p className="text-muted">Delivered with technical analysis and risk guidelines for short-term and long-term investors.</p>
           </div>
 
-          {/* 🧠 Technical Support */}
+          {/*  Technical Support */}
           <div className="mb-4 p-3 bg-light border rounded">
             <h4 className="text-success">Advance Technical Call Support</h4>
             <ul>
@@ -101,7 +101,7 @@ const AdvancePremiumPlan = () => {
             </ul>
           </div>
 
-          {/* 📘 Financial Guidance */}
+          {/*  Financial Guidance */}
           <div className="mb-4 p-3 bg-white shadow-sm rounded">
             <h4 className="text-success">Additional Financial Guidance Included</h4>
             <ul>
@@ -113,9 +113,9 @@ const AdvancePremiumPlan = () => {
             </ul>
           </div>
 
-          {/* 💎 Benefits */}
+          {/*  Benefits */}
           <div className="mb-4 p-3 bg-warning text-dark rounded shadow-sm">
-            <h4 className="fw-bold">💎 Why Choose the Advance Premium Plan?</h4>
+            <h4 className="fw-bold"> Why Choose the Advance Premium Plan?</h4>
             <ul>
               <li>✔️ Unlimited Equity & Commodity Calls</li>
               <li>✔️ 45 Exclusive Foreign Market Calls</li>
@@ -147,7 +147,7 @@ const AdvancePremiumPlan = () => {
             <p>
               Join the <strong>Advance Premium Plan</strong> for ₹45,000 and elevate your trading and investing strategies for the next 6 months.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Pay Now ₹45,000/-
             </Link>
           </div>

@@ -111,7 +111,7 @@ const SuperSubscriptionPlan = () => {
             <p>
               Join the <strong>Super Subscription Plan</strong> today and unlock <strong>3 months of professional trading guidance</strong> across every major segment.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Pay Now ₹23,000/-
             </Link>
           </div>
