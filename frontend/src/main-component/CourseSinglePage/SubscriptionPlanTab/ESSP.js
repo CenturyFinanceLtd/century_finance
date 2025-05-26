@@ -13,12 +13,12 @@ const VIPStockSubscriptionPlan = () => {
       <div className="container">
         <div className="wpo-about-wrap">
 
-          {/* 🔔 Alert */}
+          {/*  Alert */}
           <div className="alert alert-dark text-center fw-bold" role="alert">
-            👑 <strong>VIP Stock Subscription Plan</strong> – ₹65,000/- Paid
+             <strong>VIP Stock Subscription Plan</strong> – ₹65,000/- Paid
           </div>
 
-          {/* 🌟 Header Block */}
+          {/*  Header Block */}
           <div className="text-center mb-5 p-4 bg-white shadow rounded">
             <h2 className="text-primary">12 Months of Unmatched Market Intelligence, Technical Precision & Financial Power</h2>
             <p className="lead"><strong>Plan Fee:</strong> ₹65,000/-</p>
@@ -131,7 +131,7 @@ const VIPStockSubscriptionPlan = () => {
             <p>
               Join the <strong>VIP Stock Subscription Plan</strong> for ₹65,000 and receive elite signals, tools, and insight for 12 months.
             </p>
-            <Link onClick={ClickHandler} to="/about" className="btn btn-primary btn-lg mt-2">
+            <Link onClick={ClickHandler} to="" className="btn btn-primary btn-lg mt-2">
               Pay Now ₹65,000/-
             </Link>
           </div>
