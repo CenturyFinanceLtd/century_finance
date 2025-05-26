@@ -90,7 +90,7 @@ const menus = [
   {
     id: 10,
     title: "Contact",
-    link: "/contact",
+    link: "/contact-us",
   },
 ];
 

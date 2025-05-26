@@ -15,6 +15,7 @@ const authRoutes = require("./routes/authRoutes"); // For user authentication
 const queryRoutes = require("./routes/queryRoutes"); // Import query routes
 const courseBookingRoutes = require("./routes/courseBookingRoutes"); // Adjust path as needed
 const enquiryRoutes = require("./routes/enquiryRoutes");
+const registrationRoutes = require("./routes/registrationRoutes");
 
 // Initialize Express app
 const app = express();
@@ -69,6 +70,8 @@ app.use("/api/course-bookings", courseBookingRoutes);
 // app.use('/api/bookings', bookingRoutes);
 
 app.use("/api/enquiries", enquiryRoutes);
+// Routes
+app.use('/api/register', registrationRoutes);
 
 // --- Global Error Handler ---
 // This should be defined AFTER all other app.use() and routes calls
