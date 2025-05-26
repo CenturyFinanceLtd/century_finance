@@ -18,7 +18,7 @@ import {
 const IconBasicPlan = () => <FontAwesomeIcon icon={faLightbulb} />;
 const IconPremiumPlan = () => <FontAwesomeIcon icon={faCrown} />;
 
-const PortfolioTab = ({ EventsDetails }) => {
+const FinanceServiceTab = ({ EventsDetails }) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = (tab) => {
@@ -134,4 +134,4 @@ const PortfolioTab = ({ EventsDetails }) => {
   );
 };
 
-export default PortfolioTab;
+export default FinanceServiceTab;
