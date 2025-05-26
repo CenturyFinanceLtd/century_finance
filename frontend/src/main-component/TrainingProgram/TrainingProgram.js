@@ -23,7 +23,7 @@ const TrainingProgram = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={""} pagesub={""} />
+      <PageTitle pageTitle={"Training Program"} pagesub={"Training Program"} />
       <CourseSinglePage />
       <Footer />
       <Scrollbar />

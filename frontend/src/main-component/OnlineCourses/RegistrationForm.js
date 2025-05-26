@@ -20,8 +20,7 @@ const RegistrationForm = () => {
     fieldSpecialization: "",
   });
 
-  // NEW STATE for selecting the payment gateway
-  const [selectedGateway, setSelectedGateway] = useState("cashfree"); // Default to cashfree
+  const [selectedGateway, setSelectedGateway] = useState("cashfree"); // Default
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,8 +31,21 @@ const RegistrationForm = () => {
     setIsOpen(false);
     setFormStep(1);
     setIsLoading(false);
-    // Optionally reset formData if you want the form cleared when reopened
-    // setFormData({ fullName: "", mobileNumber: "", ...etc... });
+    // Optionally reset formData
+    setFormData({
+      fullName: "",
+      mobileNumber: "",
+      email: "",
+      address: "",
+      pinCode: "",
+      state: "",
+      city: "",
+      fatherName: "",
+      collegeName: "",
+      semester: "",
+      degree: "",
+      fieldSpecialization: "",
+    });
   };
 
   const handleNextStep = (e) => {
@@ -47,109 +59,84 @@ const RegistrationForm = () => {
         return;
       }
     }
+    // console.log("Setting formStep to 2"); // For debugging
     setFormStep(2);
   };
 
-  // --- PAYMENT HANDLING FUNCTIONS ---
-
   const handleInitiatePayment = () => {
+    // console.log("Initiating payment for:", selectedGateway); // For debugging
     if (selectedGateway === "razorpay") {
       handleRazorpayPayment();
     } else {
-      // Default to Cashfree if 'cashfree' is selected or if something is wrong
       handleCashfreePayment();
     }
   };
 
   const handleCashfreePayment = async () => {
     setIsLoading(true);
-    // Ensure your .env file in the frontend has REACT_APP_API_URL defined
-    const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`; // This is your Cashfree order endpoint
+    const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
     try {
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, paymentGateway: "cashfree" }), // Send gateway type
+        body: JSON.stringify({ ...formData, paymentGateway: "cashfree" }),
       });
 
       if (!response.ok) {
-        const errorResult = await response.json().catch(() => ({})); // Try to parse error, default if fails
-        throw new Error(
-          errorResult.message || "Failed to create Cashfree payment order."
-        );
+        const errorResult = await response
+          .json()
+          .catch(() => ({
+            message:
+              "Failed to create Cashfree payment order due to server error.",
+          }));
+        throw new Error(errorResult.message);
       }
 
       const session = await response.json();
-      console.log("Cashfree Backend Response:", session);
+      // console.log("Cashfree Backend Response for Redirect:", session); // For debugging
 
-      if (session.payment_session_id) {
-        if (window.Cashfree) {
-          const cashfree = new window.Cashfree(session.payment_session_id);
-          cashfree
-            .checkout({
-              paymentStyle: "popup", // Or "redirect" if you prefer
-            })
-            .then((result) => {
-              if (result.error) {
-                alert(`Cashfree SDK Error: ${result.error.message}`);
-              }
-              // If successful, the user is redirected by Cashfree (for redirect style)
-              // or the popup closes. The webhook will confirm the payment.
-              // You might want to resetForm() here or show a pending message.
-              setIsLoading(false);
-            })
-            .catch((sdkError) => {
-              alert(`Cashfree SDK Promise Error: ${sdkError.message}`);
-              setIsLoading(false);
-            });
-        } else {
-          throw new Error(
-            "Cashfree SDK (window.Cashfree) not found. Check public/index.html."
-          );
-        }
+      if (session.payment_link) {
+        window.location.href = session.payment_link;
+        // setIsLoading(false) might not execute if redirect happens quickly
       } else {
         throw new Error(
-          "Cashfree Payment Session ID was NOT found in the backend response."
+          "Could not get payment link from server for Cashfree redirect."
         );
       }
     } catch (error) {
-      alert(`Application Error: ${error.message}`);
+      alert(`Application Error (Cashfree): ${error.message}`);
       setIsLoading(false);
     }
   };
 
   const handleRazorpayPayment = async () => {
     setIsLoading(true);
-    // Ensure your .env file in the frontend has REACT_APP_API_URL defined
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-razorpay-order`;
 
     try {
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, paymentGateway: "razorpay" }), // Send gateway type
+        body: JSON.stringify({ ...formData, paymentGateway: "razorpay" }),
       });
 
       const order = await response.json();
       if (!response.ok)
         throw new Error(order.message || "Failed to create Razorpay order");
 
-      console.log("Razorpay Backend Response:", order);
+      // console.log("Razorpay Backend Response:", order); // For debugging
 
-      // Ensure your .env file in the frontend has REACT_APP_RAZORPAY_KEY_ID
       const options = {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
-        amount: order.amount, // Amount is in currency subunits. Paisa for INR.
+        amount: order.amount,
         currency: order.currency,
-        name: order.name || "Century Finance Limited", // Your company name
+        name: order.name || "Century Finance Limited",
         description: order.description || "Online Course Registration",
-        order_id: order.order_id, // From the backend
+        order_id: order.order_id,
         handler: async function (rzpResponse) {
-          // This function runs after successful Razorpay payment
-          // Now, verify the payment on your backend
           try {
-            setIsLoading(true); // Show loading for verification
+            setIsLoading(true);
             const verifyResponse = await fetch(
               `${process.env.REACT_APP_API_URL}/api/register/verify-razorpay-payment`,
               {
@@ -173,7 +160,7 @@ const RegistrationForm = () => {
               "Payment Successful & Verified! Payment ID: " +
                 rzpResponse.razorpay_payment_id
             );
-            resetForm(); // Reset form and close modal
+            resetForm();
           } catch (verifyError) {
             alert(`Payment Verification Error: ${verifyError.message}`);
           } finally {
@@ -193,31 +180,48 @@ const RegistrationForm = () => {
         },
         modal: {
           ondismiss: function () {
-            setIsLoading(false); // Reset loading if user closes the Razorpay modal
+            // console.log("Razorpay modal dismissed"); // For debugging
+            setIsLoading(false);
           },
         },
       };
 
+      if (!window.Razorpay) {
+        alert(
+          "Razorpay SDK not loaded. Please check index.html and your internet connection."
+        );
+        setIsLoading(false);
+        return;
+      }
       const rzpay = new window.Razorpay(options);
-      rzpay.on("payment.failed", function (response) {
+      rzpay.on("payment.failed", function (paymentResponse) {
         alert(
           "Razorpay Payment Failed: " +
-            response.error.description +
-            (response.error.reason ? ` (Reason: ${response.error.reason})` : "")
+            paymentResponse.error.description +
+            (paymentResponse.error.reason
+              ? ` (Reason: ${paymentResponse.error.reason})`
+              : "")
         );
         setIsLoading(false);
       });
       rzpay.open();
     } catch (error) {
-      alert(`Razorpay Error: ${error.message}`);
-      setIsLoading(false); // Ensure loading is reset on initial error
+      alert(`Razorpay Initiation Error: ${error.message}`);
+      setIsLoading(false);
     }
-    // Note: setIsLoading(false) is also handled by modal.ondismiss or payment.failed for Razorpay
   };
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="register-now-btn">
+      {/* For debugging state changes */}
+      {/* {console.log("Rendering Form. isOpen:", isOpen, "formStep:", formStep, "isLoading:", isLoading, "selectedGateway:", selectedGateway)} */}
+
+      <button
+        onClick={() => {
+          setIsOpen(true);
+          setFormStep(1); /* Ensure step 1 on open */
+        }}
+        className="register-now-btn">
         Register Now
       </button>
 
@@ -310,7 +314,6 @@ const RegistrationForm = () => {
                     placeholder="Field & Specialization (e.g., CSE) *"
                     required
                   />
-
                   <select
                     name="semester"
                     value={formData.semester}
@@ -326,7 +329,6 @@ const RegistrationForm = () => {
                       </option>
                     ))}
                   </select>
-
                   <button type="submit" className="next-btn">
                     Pay to Register
                   </button>
@@ -336,8 +338,6 @@ const RegistrationForm = () => {
               {formStep === 2 && (
                 <div className="payment-step">
                   <h3>Choose Payment Method</h3>
-
-                  {/* Cashfree Option */}
                   <div
                     className={`gateway-option ${
                       selectedGateway === "cashfree" ? "selected" : ""
@@ -355,8 +355,6 @@ const RegistrationForm = () => {
                     </div>
                     <span className="gateway-note">Secure Gateway</span>
                   </div>
-
-                  {/* Razorpay Option */}
                   <div
                     className={`gateway-option ${
                       selectedGateway === "razorpay" ? "selected" : ""
@@ -374,7 +372,6 @@ const RegistrationForm = () => {
                     </div>
                     <span className="gateway-note">Cards, UPI, Wallets</span>
                   </div>
-
                   <button
                     onClick={handleInitiatePayment}
                     className="pay-btn"
