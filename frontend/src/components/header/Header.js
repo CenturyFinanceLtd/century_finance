@@ -327,13 +327,13 @@ const Header = (props) => {
                       )}
                     </div>
                   ) : (
-                    <div className="close-form" style={{ marginLeft: "15px" }}>
+                    <div className="close-form" style={{ marginLeft: "0px" }}>
                       <Link
                         onClick={ClickHandler}
                         // className="login"
                         className="theme-btn"
                         to="/login"
-                        style={{ marginRight: "10px" }}>
+                        style={{ marginRight: "0px" }}>
                         <span className="text">Sign In</span>
                         <span className="mobile">
                           <i className="fi flaticon-charity"></i>
