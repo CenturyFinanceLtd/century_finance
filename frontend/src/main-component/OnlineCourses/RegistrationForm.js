@@ -45,12 +45,10 @@ const RegistrationForm = () => {
     setFormStep(2);
   };
 
-  // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION ---
-  // Replace your existing handleFinalPayment function with this one
-
-  // Replace your existing handleFinalPayment function with this final version
-
+  // --- THIS IS THE FULLY REVISED PAYMENT FUNCTION WITH DETAILED ALERTS ---
   const handleFinalPayment = async () => {
+    alert("Step 1: Payment process started."); // First alert
+
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
 
@@ -69,29 +67,55 @@ const RegistrationForm = () => {
       }
 
       const session = await response.json();
+      alert(
+        "Step 2: Received response from backend. Checking for session ID..."
+      );
+      console.log("Backend Response for SDK:", session); // Keep this for debugging
 
       if (session.payment_session_id) {
+        alert(
+          `Step 3: Found payment_session_id: ${session.payment_session_id}`
+        );
+
         if (window.Cashfree) {
+          alert("Step 4: Cashfree SDK is loaded. Initializing checkout...");
           const cashfree = new window.Cashfree(session.payment_session_id);
 
-          // This new code handles errors from the Cashfree SDK itself
           cashfree
             .checkout({
-              paymentStyle: "redirect",
+              paymentStyle: "popup", // Changed back to popup as per our previous successful test.
+              // If "popup" fails, try "redirect" again.
             })
             .then((result) => {
               if (result.error) {
                 // This will show a specific error from Cashfree
-                alert(`Cashfree Error: ${result.error.message}`);
+                alert(`Cashfree SDK Error: ${result.error.message}`);
                 setIsLoading(false);
               }
               if (result.redirect) {
-                // This case is for non-popup checkouts
-                console.log("Payment needs redirection");
+                // This case is for non-popup checkouts where Cashfree asks to redirect
+                console.log(
+                  "Cashfree SDK wants to redirect. This is usually handled automatically if style is 'redirect'."
+                );
+                // For popup style, this block might not be directly relevant unless an error forces a redirect.
               }
+              // If result.success, the payment was successful but webhook is primary confirmation.
+              // You might want to reset the form or close the modal here on success from SDK,
+              // but await backend webhook confirmation for actual fulfillment.
+            })
+            .catch((sdkError) => {
+              // Catch errors from the .then() block or the checkout promise itself
+              alert(`Cashfree SDK Checkout Promise Error: ${sdkError.message}`);
+              setIsLoading(false);
             });
+
+          // Note: setIsLoading(false) was moved inside .then() and .catch()
+          // because checkout might be asynchronous. If the popup simply closes
+          // without an error or success, we might need to adjust this.
         } else {
-          throw new Error("Cashfree SDK (window.Cashfree) not found.");
+          throw new Error(
+            "Cashfree SDK (window.Cashfree) not found. Check public/index.html."
+          );
         }
       } else {
         throw new Error(
@@ -102,9 +126,8 @@ const RegistrationForm = () => {
       alert(`Application Error: ${error.message}`);
       setIsLoading(false);
     }
-    };
-    
-    
+  };
+
   return (
     <>
       <button onClick={() => setIsOpen(true)} className="register-now-btn">
