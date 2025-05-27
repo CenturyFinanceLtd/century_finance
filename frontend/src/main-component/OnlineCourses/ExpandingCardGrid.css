@@ -453,7 +453,7 @@
         
                 /* Ensure expander has enough padding and styles for its direct children */
                 .card-custom.is-expanded .card-custom__expander {
-                    max-height: 400px;
+                    max-height: 512px;
                     /* Increased to accommodate more content */
                     min-height: 100px;
                     overflow: auto;

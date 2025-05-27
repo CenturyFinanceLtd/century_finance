@@ -402,7 +402,7 @@ const OnlineCourse = () => {
                           course.expandedDetails.takeaways.length > 0 && (
                             <>
                               <h4 className="expander-section-title">
-                                Discription
+                                Description
                               </h4>
                               <ul className="expander-takeaways-list">
                                 {course.expandedDetails.takeaways.map(
