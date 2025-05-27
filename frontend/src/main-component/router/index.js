@@ -88,7 +88,7 @@ const AllRoute = () => {
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="order-received" element={<OrderRecived />} />
           <Route path="faq" element={<FaqPage />} />
-          <Route path="privacy-policy" element={<PrivacyPage />} />
+          <Route path="privacypolicy" element={<PrivacyPage />} />
           <Route path="terms&conditions" element={<TermsPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog-left-sidebar" element={<BlogPageLeft />} />
@@ -103,7 +103,7 @@ const AllRoute = () => {
             element={<BlogDetailsFull />}
           />
           <Route path="404" element={<ErrorPage />} />
-          <Route path="contact-us" element={<ContactPage />} />
+          <Route path="contactus" element={<ContactPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<SignUpPage />} />
           <Route path="forgot-password" element={<ForgotPassword />} />

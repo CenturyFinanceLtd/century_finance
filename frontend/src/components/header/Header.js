@@ -201,7 +201,7 @@ const Header = (props) => {
                       </ul>
                     </li>
                     <li>
-                      <Link onClick={ClickHandler} to="/contact-us">
+                      <Link onClick={ClickHandler} to="/contactus">
                         Contact
                       </Link>
                     </li>
