@@ -20,7 +20,7 @@ const RegistrationForm = () => {
     fieldSpecialization: "",
   });
 
-  const [selectedGateway, setSelectedGateway] = useState("cashfree"); // Default
+  // No longer need selectedGateway state if only Razorpay is an option
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +31,6 @@ const RegistrationForm = () => {
     setIsOpen(false);
     setFormStep(1);
     setIsLoading(false);
-    // Optionally reset formData
     setFormData({
       fullName: "",
       mobileNumber: "",
@@ -59,57 +58,10 @@ const RegistrationForm = () => {
         return;
       }
     }
-    // console.log("Setting formStep to 2"); // For debugging
     setFormStep(2);
   };
 
-  const handleInitiatePayment = () => {
-    // console.log("Initiating payment for:", selectedGateway); // For debugging
-    if (selectedGateway === "razorpay") {
-      handleRazorpayPayment();
-    } else {
-      handleCashfreePayment();
-    }
-  };
-
-  const handleCashfreePayment = async () => {
-    setIsLoading(true);
-    const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-order`;
-
-    try {
-      const response = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, paymentGateway: "cashfree" }),
-      });
-
-      if (!response.ok) {
-        const errorResult = await response
-          .json()
-          .catch(() => ({
-            message:
-              "Failed to create Cashfree payment order due to server error.",
-          }));
-        throw new Error(errorResult.message);
-      }
-
-      const session = await response.json();
-      // console.log("Cashfree Backend Response for Redirect:", session); // For debugging
-
-      if (session.payment_link) {
-        window.location.href = session.payment_link;
-        // setIsLoading(false) might not execute if redirect happens quickly
-      } else {
-        throw new Error(
-          "Could not get payment link from server for Cashfree redirect."
-        );
-      }
-    } catch (error) {
-      alert(`Application Error (Cashfree): ${error.message}`);
-      setIsLoading(false);
-    }
-  };
-
+  // Renamed to handleRazorpayPayment, as it's the only option now
   const handleRazorpayPayment = async () => {
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-razorpay-order`;
@@ -124,8 +76,6 @@ const RegistrationForm = () => {
       const order = await response.json();
       if (!response.ok)
         throw new Error(order.message || "Failed to create Razorpay order");
-
-      // console.log("Razorpay Backend Response:", order); // For debugging
 
       const options = {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
@@ -180,7 +130,6 @@ const RegistrationForm = () => {
         },
         modal: {
           ondismiss: function () {
-            // console.log("Razorpay modal dismissed"); // For debugging
             setIsLoading(false);
           },
         },
@@ -213,13 +162,10 @@ const RegistrationForm = () => {
 
   return (
     <>
-      {/* For debugging state changes */}
-      {/* {console.log("Rendering Form. isOpen:", isOpen, "formStep:", formStep, "isLoading:", isLoading, "selectedGateway:", selectedGateway)} */}
-
       <button
         onClick={() => {
           setIsOpen(true);
-          setFormStep(1); /* Ensure step 1 on open */
+          setFormStep(1);
         }}
         className="register-now-btn">
         Register Now
@@ -237,6 +183,7 @@ const RegistrationForm = () => {
             <div className="modal-body">
               {formStep === 1 && (
                 <form onSubmit={handleNextStep} className="registration-form">
+                  {/* All form input fields remain the same */}
                   <input
                     name="fullName"
                     value={formData.fullName}
@@ -244,6 +191,7 @@ const RegistrationForm = () => {
                     placeholder="Full Name *"
                     required
                   />
+                  {/* ... other input fields ... */}
                   <input
                     name="mobileNumber"
                     value={formData.mobileNumber}
@@ -335,31 +283,15 @@ const RegistrationForm = () => {
                 </form>
               )}
 
+              {/* SIMPLIFIED STEP 2 - ONLY RAZORPAY */}
               {formStep === 2 && (
                 <div className="payment-step">
-                  <h3>Choose Payment Method</h3>
+                  <h3>Proceed with Razorpay</h3>
                   <div
-                    className={`gateway-option ${
-                      selectedGateway === "cashfree" ? "selected" : ""
-                    }`}
-                    onClick={() => setSelectedGateway("cashfree")}>
-                    <div className="gateway-info">
-                      <svg
-                        className="gateway-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor">
-                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"></path>
-                      </svg>
-                      <span>Cashfree Payments</span>
-                    </div>
-                    <span className="gateway-note">Secure Gateway</span>
-                  </div>
-                  <div
-                    className={`gateway-option ${
-                      selectedGateway === "razorpay" ? "selected" : ""
-                    }`}
-                    onClick={() => setSelectedGateway("razorpay")}>
+                    className="gateway-option selected"
+                    style={{ cursor: "default" }}>
+                    {" "}
+                    {/* No onClick needed now */}
                     <div className="gateway-info">
                       <svg
                         className="gateway-icon"
@@ -373,10 +305,10 @@ const RegistrationForm = () => {
                     <span className="gateway-note">Cards, UPI, Wallets</span>
                   </div>
                   <button
-                    onClick={handleInitiatePayment}
+                    onClick={handleRazorpayPayment}
                     className="pay-btn"
                     disabled={isLoading}>
-                    {isLoading ? "Processing..." : "Pay ₹500"}
+                    {isLoading ? "Processing..." : "Pay ₹500 with Razorpay"}
                   </button>
                 </div>
               )}
