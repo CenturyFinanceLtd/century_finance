@@ -174,8 +174,8 @@ const Header = (props) => {
                       </Link>
                       <ul className="sub-menu">
                         <li>
-                          <Link onClick={ClickHandler} to="/stocks">
-                            Stocks
+                          <Link onClick={ClickHandler} to="/equity">
+                            Equity
                           </Link>
                         </li>
                         <li>

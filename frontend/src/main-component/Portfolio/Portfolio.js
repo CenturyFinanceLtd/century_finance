@@ -117,12 +117,13 @@ const plans = [
        <div className="alert alert-success p-3 rounded mb-4">
 <p><strong>We open and manage your Demat account — for just ₹85,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
         <p><strong>Who It’s For:</strong></p>
-        <ul>
+        <ol>
           <li>Senior executives with surplus deployable capital</li>
           <li>Successful entrepreneurs seeking multi-asset growth</li>
           <li>Ultra-strategic planners looking to diversify beyond traditional markets</li>
           <li>Wealthy individuals wanting deep control + high sophistication</li>
-        </ul>
+        </ol>
+
         <p><strong>Plan Features:</strong></p>
         <ul>
           <li><strong>Ultra-Personalized Investment Architecture- </strong>Ultra-Personalized Investment Architecture</li>
@@ -132,13 +133,15 @@ const plans = [
           <li><strong>On-Demand Wealth Reviews- </strong>Get deep insights into your portfolio anytime, including risk stress-tests, goal tracking & market alignment reports.</li>
           <li><strong>Crisis-Mode Rebalancing Strategy- </strong>Smart alerts + expert intervention to protect your wealth during economic or geopolitical turbulence.</li>
         </ul>
+
         <p><strong>Benefits:</strong></p>
-        <ul>
+        <ol>
           <li>Complete visibility + top-tier discretion over high-value assets</li>
           <li>Stronger returns through non-retail market opportunities</li>
           <li>Strategic capital shielding, growth, and tax planning—all in one place</li>
           <li>Exceptional service without losing autonomy</li>
-        </ul>
+        </ol>
+
         <p><strong>Best For:</strong> 
         <li>Investors who want serious capital multiplication without giving up control</li>
         <li>Individuals preparing for international diversification and succession planning</li>
@@ -167,7 +170,7 @@ const PortfolioContent = () => {
   const container = {
     maxWidth: "2000px",
     margin: "3rem auto",
-    backgroundColor: "#dcfcf6",
+    backgroundColor: "",
     color: "#1f2937",
     padding: "2.5rem 3rem",
     borderRadius: "10px",

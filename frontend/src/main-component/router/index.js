@@ -45,7 +45,7 @@ import Investment from "../Investment/Investment";
 import FinanceService from "../FinanceService/FinanceService";
 import VerifyOtpPage from "../SignUpPage/VerifyOtpPage";
 import EditProfilePage from "../EditProfilePage";
-import Stocks from "../Stocks/Stocks";
+import Equity from "../EquityMarket/Equity";
 import Commodities from "../Commodities/Commodities";
 import Crypto from "../Crypto/Crypto";
 import Gold from "../Gold/Gold";
@@ -118,7 +118,7 @@ const AllRoute = () => {
           <Route path="finance-services" element={<FinanceService />} />
           <Route path="/verify-otp" element={<VerifyOtpPage />} />
           <Route path="/edit-profile" element={<EditProfilePage />} />
-          <Route path="/stocks" element={<Stocks />} />
+          <Route path="/equity" element={<Equity />} />
           <Route path="/commodities" element={<Commodities />} />
           <Route path="/crypto" element={<Crypto />} />
           <Route path="/gold" element={<Gold />} />

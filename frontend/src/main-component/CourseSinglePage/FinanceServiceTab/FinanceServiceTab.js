@@ -9,6 +9,7 @@ import {
 import classnames from "classnames";
 import ApplianceFurnitureLoan from "./ApplianceFurnitureLoan";
 import PersonalBusinessLoan from "./PersonalBusinessLoan";
+import BusinessLoan from "./BusinessLoan";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulb,
@@ -32,18 +33,27 @@ const FinanceServiceTab = ({ EventsDetails }) => {
       title: "Appliance & Finance Loan",
       IconComponent: IconBasicPlan,
       description:
-        "Start your trading journey with foundational knowledge in key markets.", // Content for the tab button
+        "", // Content for the tab button
       activeDescription:
-        "Start your trading journey with foundational knowledge in key markets.", // Content for the active tab button
+        "", // Content for the active tab button
     },
     {
       id: "2",
       title: "Personal & Business Loan",
       IconComponent: IconPremiumPlan,
       description:
-        "Elevate your trading skills with advanced strategies and in-depth insights.",
+        "",
       activeDescription:
-        "Elevate your trading skills with advanced strategies and in-depth insights.",
+        "",
+    },
+     {
+      id: "3",
+      title: " Business Loan",
+      IconComponent: IconPremiumPlan,
+      description:
+        "",
+      activeDescription:
+        "",
     },
   ];
 
@@ -125,6 +135,13 @@ const FinanceServiceTab = ({ EventsDetails }) => {
             <ReactstrapRow>
               <ReactstrapCol sm="12">
                 <PersonalBusinessLoan EventsDetails={EventsDetails} />
+              </ReactstrapCol>
+            </ReactstrapRow>
+          </TabPane>
+          <TabPane tabId="3">
+            <ReactstrapRow>
+              <ReactstrapCol sm="12">
+                <BusinessLoan EventsDetails={EventsDetails} />
               </ReactstrapCol>
             </ReactstrapRow>
           </TabPane>
