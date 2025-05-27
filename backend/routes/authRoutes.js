@@ -13,26 +13,8 @@ const {
   updateMyPassword, // New import
 } = require("../controllers/authController");
 
-// Import both middlewares
-const { protect, verifyTokenOptional } = require("../middleware/authMiddleware"); 
+const { protect } = require("../middleware/authMiddleware"); // Import protect middleware
 
-
-router.get("/check-status", verifyTokenOptional, (req, res) => {
-  // Use verifyTokenOptional here
-  if (req.user) {
-    // Send only necessary, non-sensitive user details
-    res.status(200).json({
-      isLoggedIn: true,
-      user: {
-        id: req.user.id,
-        name: req.user.name, // Or whatever fields are safe to send
-        email: req.user.email,
-      },
-    });
-  } else {
-    res.status(200).json({ isLoggedIn: false });
-  }
-});
 // POST /api/auth/signup
 router.post("/signup", signup);
 
