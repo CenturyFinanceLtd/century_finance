@@ -20,7 +20,7 @@ const RegistrationForm = () => {
     fieldSpecialization: "",
   });
 
-  // No longer need selectedGateway state if only Razorpay is an option
+  // No selectedGateway state needed as only Razorpay is an option
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,9 +61,10 @@ const RegistrationForm = () => {
     setFormStep(2);
   };
 
-  // Renamed to handleRazorpayPayment, as it's the only option now
   const handleRazorpayPayment = async () => {
     setIsLoading(true);
+    // CRITICAL: Ensure REACT_APP_API_URL is correctly set in your /frontend/.env file
+    // AND that your frontend application has been REBUILT and REDEPLOYED if you changed it.
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-razorpay-order`;
 
     try {
@@ -74,9 +75,15 @@ const RegistrationForm = () => {
       });
 
       const order = await response.json();
-      if (!response.ok)
-        throw new Error(order.message || "Failed to create Razorpay order");
+      if (!response.ok) {
+        // This error comes from your backend if it couldn't create the Razorpay order
+        throw new Error(
+          order.message || "Failed to create Razorpay order (backend error)"
+        );
+      }
 
+      // CRITICAL: Ensure REACT_APP_RAZORPAY_KEY_ID is correctly set in your /frontend/.env file
+      // AND that your frontend application has been REBUILT and REDEPLOYED if you changed it.
       const options = {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: order.amount,
@@ -101,11 +108,11 @@ const RegistrationForm = () => {
             );
 
             const verificationResult = await verifyResponse.json();
-            if (!verifyResponse.ok)
+            if (!verifyResponse.ok) {
               throw new Error(
                 verificationResult.message || "Payment verification failed."
               );
-
+            }
             alert(
               "Payment Successful & Verified! Payment ID: " +
                 rzpResponse.razorpay_payment_id
@@ -135,13 +142,15 @@ const RegistrationForm = () => {
         },
       };
 
+      // CRITICAL: Ensure the Razorpay SDK script is loaded in your public/index.html
       if (!window.Razorpay) {
         alert(
-          "Razorpay SDK not loaded. Please check index.html and your internet connection."
+          "Razorpay SDK not loaded. Please check index.html and your internet connection, then hard refresh (Ctrl+Shift+R)."
         );
         setIsLoading(false);
         return;
       }
+
       const rzpay = new window.Razorpay(options);
       rzpay.on("payment.failed", function (paymentResponse) {
         alert(
@@ -153,8 +162,9 @@ const RegistrationForm = () => {
         );
         setIsLoading(false);
       });
-      rzpay.open();
+      rzpay.open(); // This should open the Razorpay payment modal
     } catch (error) {
+      // This catches errors from the fetch call to your backend OR if window.Razorpay was not found.
       alert(`Razorpay Initiation Error: ${error.message}`);
       setIsLoading(false);
     }
@@ -183,7 +193,6 @@ const RegistrationForm = () => {
             <div className="modal-body">
               {formStep === 1 && (
                 <form onSubmit={handleNextStep} className="registration-form">
-                  {/* All form input fields remain the same */}
                   <input
                     name="fullName"
                     value={formData.fullName}
@@ -191,7 +200,6 @@ const RegistrationForm = () => {
                     placeholder="Full Name *"
                     required
                   />
-                  {/* ... other input fields ... */}
                   <input
                     name="mobileNumber"
                     value={formData.mobileNumber}
@@ -269,29 +277,29 @@ const RegistrationForm = () => {
                     required
                     className="form-input">
                     <option value="" disabled>
-                      Select a Semester...
+                      {" "}
+                      Select a Semester...{" "}
                     </option>
                     {[...Array(8)].map((_, i) => (
                       <option key={i + 1} value={i + 1}>
-                        Semester {i + 1}
+                        {" "}
+                        Semester {i + 1}{" "}
                       </option>
                     ))}
                   </select>
                   <button type="submit" className="next-btn">
-                    Pay to Register
+                    {" "}
+                    Pay to Register{" "}
                   </button>
                 </form>
               )}
 
-              {/* SIMPLIFIED STEP 2 - ONLY RAZORPAY */}
               {formStep === 2 && (
                 <div className="payment-step">
                   <h3>Proceed with Razorpay</h3>
                   <div
                     className="gateway-option selected"
                     style={{ cursor: "default" }}>
-                    {" "}
-                    {/* No onClick needed now */}
                     <div className="gateway-info">
                       <svg
                         className="gateway-icon"
