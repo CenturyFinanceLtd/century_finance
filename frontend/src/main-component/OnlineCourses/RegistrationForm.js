@@ -168,7 +168,7 @@ const RegistrationForm = () => {
           setFormStep(1);
         }}
         className="register-now-btn">
-        Register Now
+        Register Now for Rs.500
       </button>
 
       {isOpen && (
