@@ -1,7 +1,24 @@
 import React, { useState } from "react";
-import "./RegistrationForm.css"; // Make sure this CSS file exists and is correctly styled
+import { useNavigate } from "react-router-dom"; // <--- IMPORT useNavigate
+import "./RegistrationForm.css";
+
+// --- Placeholder function for authentication status ---
+// Replace this with your actual logic to check if the user is logged in
+const isUserLoggedIn = () => {
+  // Example: Check if a token exists in local storage
+  // return !!localStorage.getItem("authToken");
+  // For now, let's assume the user is NOT logged in by default for testing.
+  // Change this to 'true' to simulate a logged-in user for testing the form.
+  console.log("Checking login status..."); // For debugging
+  return false; // Simulate NOT logged in
+};
+// --- End of placeholder function ---
 
 const RegistrationForm = () => {
+  // --- HOOKS ---
+  const navigate = useNavigate(); // <--- INITIALIZE useNavigate
+
+  // ... (all your existing useState hooks: isOpen, formStep, isLoading, formData) ...
   const [isOpen, setIsOpen] = useState(false);
   const [formStep, setFormStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,8 +37,14 @@ const RegistrationForm = () => {
     fieldSpecialization: "",
   });
 
-  // No longer need selectedGateway state if only Razorpay is an option
+  // --- AUTHENTICATION-RELATED FUNCTION (Updated) ---
+  const redirectToLogin = () => {
+    console.log("User not logged in. Redirecting to /login...");
+    navigate("/login"); // <--- USE NAVIGATE TO REDIRECT
+  };
+  // --- End of authentication-related function ---
 
+  // ... (handleInputChange, resetForm, handleNextStep functions remain the same) ...
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -61,7 +84,18 @@ const RegistrationForm = () => {
     setFormStep(2);
   };
 
-  // Renamed to handleRazorpayPayment, as it's the only option now
+  // --- NEW FUNCTION TO HANDLE OPENING THE FORM ---
+  const handleOpenForm = () => {
+    if (isUserLoggedIn()) {
+      setIsOpen(true);
+      setFormStep(1); // Ensure form opens at step 1
+    } else {
+      redirectToLogin();
+    }
+  };
+  // --- End of new function ---
+
+  // ... (handleRazorpayPayment function remains the same) ...
   const handleRazorpayPayment = async () => {
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-razorpay-order`;
@@ -163,14 +197,12 @@ const RegistrationForm = () => {
   return (
     <>
       <button
-        onClick={() => {
-          setIsOpen(true);
-          setFormStep(1);
-        }}
+        onClick={handleOpenForm} // MODIFIED: Calls handleOpenForm now
         className="register-now-btn">
         Register Now for Rs.500
       </button>
 
+      {/* ... (rest of your JSX for the modal remains the same) ... */}
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal-container">
@@ -191,7 +223,6 @@ const RegistrationForm = () => {
                     placeholder="Full Name *"
                     required
                   />
-                  {/* ... other input fields ... */}
                   <input
                     name="mobileNumber"
                     value={formData.mobileNumber}
@@ -283,15 +314,12 @@ const RegistrationForm = () => {
                 </form>
               )}
 
-              {/* SIMPLIFIED STEP 2 - ONLY RAZORPAY */}
               {formStep === 2 && (
                 <div className="payment-step">
                   <h3>Proceed with Razorpay</h3>
                   <div
                     className="gateway-option selected"
                     style={{ cursor: "default" }}>
-                    {" "}
-                    {/* No onClick needed now */}
                     <div className="gateway-info">
                       <svg
                         className="gateway-icon"
