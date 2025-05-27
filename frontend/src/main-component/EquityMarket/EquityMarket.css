@@ -1,0 +1,96 @@
+/* EquityMarket.css */
+.equity-market-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-button {
+  flex: 1 1 calc(33.333% - 1rem);
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.tab-button h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.tab-button span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.tab-button:hover {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.tab-button.active {
+  background: #e6f7ff;
+  border-color: #91d5ff;
+}
+
+.tab-content {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  min-height: 200px;
+}
+
+.plan-content h4 {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #0050b3;
+}
+
+.plan-content ul {
+  margin: 0 0 1rem 1.25rem;
+}
+
+.plan-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  .tab-button {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .equity-market-page {
+    padding: 1rem;
+  }
+  .tab-buttons {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .tab-content {
+    padding: 1rem;
+  }
+}
