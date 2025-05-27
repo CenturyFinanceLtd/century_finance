@@ -4,8 +4,7 @@ const registrationSchema = new mongoose.Schema(
   {
     fullName: { type: String, required: true },
     mobileNumber: { type: String, required: true },
-    // Remove unique: true from the email field
-    email: { type: String, required: true }, // <<<< MODIFIED HERE
+    email: { type: String, required: true }, // <<<< ENSURE 'unique: true' IS REMOVED HERE
     address: { type: String, required: true },
     pinCode: { type: String, required: true },
     state: { type: String, required: true },
@@ -17,8 +16,8 @@ const registrationSchema = new mongoose.Schema(
     fieldSpecialization: { type: String, required: true },
     paymentGateway: {
       type: String,
-      enum: ["cashfree", "razorpay"], // Keep this if you might add cashfree back
-      // required: true, // You might make this optional if only one gateway now
+      enum: ["razorpay"], // Only Razorpay if Cashfree was removed
+      required: true,
     },
     orderId: { type: String, required: true },
     paymentStatus: {
