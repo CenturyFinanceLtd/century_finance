@@ -2,7 +2,7 @@
 
 /* Original SCSS Variables converted to CSS custom properties or hardcoded */
 :root {
-    --light-gray: #0e0e01;
+    --light-gray: #000000;
     --gray: #ffffff;
     /* darken(#eceef1, 30%) */
     --slate: #ffffff;
@@ -29,7 +29,7 @@
     /* Renamed to avoid global conflicts */
     margin: 5em auto;
     max-width: 1320px;
-    background-color: #2b2929;
+    background-color: #a6a6a6;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
     border-radius: 1cqi;
     box-shadow: #0e0e01;
