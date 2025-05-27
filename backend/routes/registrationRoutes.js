@@ -4,12 +4,13 @@ const express = require("express");
 const axios = require("axios"); // Kept for potential future use, but not for Razorpay order creation
 const crypto = require("crypto");
 const Registration = require("../models/registrationModel"); // Verify this path is correct
-const Razorpay = require("razorpay"); // Import Razorpay SDK
+const Razorpay = require("razorpay"); // Import Razorpay SDK - DECLARED ONCE
 
 const router = express.Router();
 
 // --- Razorpay Configuration ---
 // Ensure RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET are in your .env file
+// DECLARED ONCE
 const razorpayInstance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
@@ -61,7 +62,8 @@ router.post("/create-razorpay-order", async (req, res) => {
   } catch (error) {
     console.error(
       "Error creating Razorpay order:",
-      error.response ? error.response.data : error.message
+      // Check if error.response exists, otherwise log error.message or the error itself
+      error.response ? error.response.data : (error.message || error) 
     );
     if (error.code === 11000) {
       // MongoDB duplicate key error
