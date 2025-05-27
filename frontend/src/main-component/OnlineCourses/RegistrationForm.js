@@ -1,27 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // <--- IMPORT useNavigate
-import "./RegistrationForm.css";
-
-// --- Placeholder function for authentication status ---
-// Replace this with your actual logic to check if the user is logged in
-const isUserLoggedIn = () => {
-  // Example: Check if a token exists in local storage
-  // return !!localStorage.getItem("authToken");
-  // For now, let's assume the user is NOT logged in by default for testing.
-  // Change this to 'true' to simulate a logged-in user for testing the form.
-  console.log("Checking login status..."); // For debugging
-  return false; // Simulate NOT logged in
-};
-// --- End of placeholder function ---
+import { useNavigate } from "react-router-dom"; // For redirecting to /login
+import "./RegistrationForm.css"; // Make sure this CSS file exists and is correctly styled
 
 const RegistrationForm = () => {
-  // --- HOOKS ---
-  const navigate = useNavigate(); // <--- INITIALIZE useNavigate
-
-  // ... (all your existing useState hooks: isOpen, formStep, isLoading, formData) ...
+  const navigate = useNavigate(); // Initialize navigate for redirection
   const [isOpen, setIsOpen] = useState(false);
   const [formStep, setFormStep] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // For payment processing
+  const [isCheckingAuth, setIsCheckingAuth] = useState(false); // For the backend auth check
   const [formData, setFormData] = useState({
     fullName: "",
     mobileNumber: "",
@@ -37,14 +23,6 @@ const RegistrationForm = () => {
     fieldSpecialization: "",
   });
 
-  // --- AUTHENTICATION-RELATED FUNCTION (Updated) ---
-  const redirectToLogin = () => {
-    console.log("User not logged in. Redirecting to /login...");
-    navigate("/login"); // <--- USE NAVIGATE TO REDIRECT
-  };
-  // --- End of authentication-related function ---
-
-  // ... (handleInputChange, resetForm, handleNextStep functions remain the same) ...
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -84,18 +62,68 @@ const RegistrationForm = () => {
     setFormStep(2);
   };
 
-  // --- NEW FUNCTION TO HANDLE OPENING THE FORM ---
-  const handleOpenForm = () => {
-    if (isUserLoggedIn()) {
-      setIsOpen(true);
-      setFormStep(1); // Ensure form opens at step 1
-    } else {
-      redirectToLogin();
+  // THIS FUNCTION NOW CHECKS LOGIN STATUS WITH THE BACKEND
+  const handleOpenForm = async () => {
+    setIsCheckingAuth(true); // Show loading state for the button
+    try {
+      // Ensure REACT_APP_API_URL is correctly set in your .env file
+      const authCheckEndpoint = `${process.env.REACT_APP_API_URL}/api/auth/check-status`;
+
+      // Prepare fetch options. Include credentials if using cookies.
+      // Add Authorization header if using Bearer tokens.
+      const fetchOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Example: If you use Bearer tokens stored in localStorage:
+          // 'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        },
+        // Example: If your backend uses HttpOnly cookies for auth, you might need this:
+        // credentials: 'include',
+      };
+
+      const response = await fetch(authCheckEndpoint, fetchOptions);
+
+      if (!response.ok) {
+        // If server responds with an error (e.g., 500 for server issue, 401 if middleware wasn't optional and token invalid)
+        // Treat as not logged in or an error occurred.
+        console.error(
+          "Auth check API call failed with status:",
+          response.status
+        );
+        alert(
+          "Could not verify your login status at this time. Please try logging in again."
+        );
+        navigate("/login"); // Redirect to login
+        return;
+      }
+
+      const authData = await response.json();
+
+      if (authData.isLoggedIn) {
+        console.log("User is logged in. Opening form.");
+        setIsOpen(true);
+        setFormStep(1);
+      } else {
+        console.log("User is not logged in. Redirecting to login.");
+        alert(
+          "You need to be logged in to register for a course. Redirecting to login page..."
+        );
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error during authentication check:", error);
+      alert(
+        "An error occurred while checking your login status. Please ensure you are connected and try again, or log in."
+      );
+      // Optionally redirect to login here too, or show a more generic error.
+      // navigate("/login");
+    } finally {
+      setIsCheckingAuth(false); // Hide loading state for the button
     }
   };
-  // --- End of new function ---
 
-  // ... (handleRazorpayPayment function remains the same) ...
+  // Razorpay payment handler (remains the same)
   const handleRazorpayPayment = async () => {
     setIsLoading(true);
     const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/register/create-razorpay-order`;
@@ -197,12 +225,13 @@ const RegistrationForm = () => {
   return (
     <>
       <button
-        onClick={handleOpenForm} // MODIFIED: Calls handleOpenForm now
-        className="register-now-btn">
-        Register Now for Rs.500
+        onClick={handleOpenForm} // This now calls the function with the backend check
+        className="register-now-btn"
+        disabled={isCheckingAuth} // Button is disabled during the auth check
+      >
+        {isCheckingAuth ? "Checking Status..." : "Register Now for Rs.500"}
       </button>
 
-      {/* ... (rest of your JSX for the modal remains the same) ... */}
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal-container">
@@ -215,7 +244,7 @@ const RegistrationForm = () => {
             <div className="modal-body">
               {formStep === 1 && (
                 <form onSubmit={handleNextStep} className="registration-form">
-                  {/* All form input fields remain the same */}
+                  {/* All your input fields for Step 1 */}
                   <input
                     name="fullName"
                     value={formData.fullName}
