@@ -153,7 +153,7 @@ const Asian = () => {
   const [activeTab, setActiveTab] = useState(tabData[0].name);
 
   return (
-    <section className="wpo-about-section-s2 section-padding" style={{ backgroundColor: "#fff" }}>
+    <section className="section-padding" style={{ backgroundColor: "#fff" }}>
       <div className="container">
         <div className="wpo-about-wrap">
           <div className="text-center mb-4">

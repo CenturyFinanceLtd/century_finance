@@ -5,7 +5,6 @@ import CategorySinglePage from '../CategorySinglePage/CategorySinglePage';
 import CoursePage from '../CoursePage/CoursePage';
 import CoursePageS2 from '../CoursePageS2/CoursePageS2';
 import CoursePageS3 from '../CoursePageS3/CoursePageS3';
-import CourseSinglePage from '../CourseSinglePage/CourseSinglePage';
 import HomePage2 from '../HomePage2/HomePage2';
 import HomePage3 from '../HomePage3/HomePage3';
 import HomePage4 from '../HomePage4/HomePage4';
@@ -71,7 +70,6 @@ const AllRoute = () => {
             path="category-single/:slug"
             element={<CategorySinglePage />}
           />
-          <Route path="course-single/:slug" element={<CourseSinglePage />} />
           <Route path="course" element={<CoursePage />} />
           <Route path="course-2" element={<CoursePageS2 />} />
           <Route path="course-3" element={<CoursePageS3 />} />
