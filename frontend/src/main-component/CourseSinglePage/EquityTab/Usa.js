@@ -18,31 +18,51 @@ const tabData = [
           <li><strong>Initial Components:</strong> 30 blue-chip companies.</li>
           <li><strong>Base Value:</strong>  40.94.</li>
           <li><strong>Index Type:</strong> 12 Price-weighted.</li>
-           <li><strong>Maintained by:</strong> S&P Dow Jones Indices, a joint venture of S&P Global</li>
-            <li><strong>All-Time High:</strong> (as of May 2025): Over 39,000 points.</li>
+          <li><strong>Maintained by:</strong> S&P Dow Jones Indices, a joint venture of S&P Global</li>
+          <li><strong>All-Time High:</strong> (as of May 2025): Over 39,000 points.</li>
         </ul>
 
         <h5 className="mt-4 fw-semibold">Key Metrics and Statistics</h5>
         <ul>
-         
+
           <li><strong>Metric:</strong>	Value (approx., May 2025)</li>
           <li><strong>Index Value:</strong>	39,100+ points</li>
           <li><strong>Annualized Return (10 yrs):</strong>	~10.5%</li>
-           <li>Average P/E Ratio<strong></strong></li>
+          <li><strong>Average P/E Ratio</strong>	20–22</li>
+          <li><strong>Dividend Yield</strong>	~2.0%</li>
+          <li><strong>Market Capitalization</strong>		~$10 Trillion+ (combined)</li>
+          <li><strong>Update Frequency</strong>		Every 15 seconds during trading</li>
         </ul>
 
-        <h5 className="mt-4 fw-semibold">Market Significance</h5>
+      </>
+    ),
+  },
+  {
+    name: "Gift Nifty",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}></h4>
+        <p>
+          <strong>Gift Nifty</strong>   – Trade Internationally with India’s Offshore Derivative Product.
+        </p>
+
+        <h5 className="mt-4 fw-semibold"> What is Gift Nifty?</h5>
         <ul>
-          <li><strong>Trading Volume:</strong> Most liquid index on NSE with active derivatives market.</li>
-          <li><strong>Use Case:</strong> Benchmark for mutual funds, index funds, and ETFs.</li>
-          <li><strong>Global Attention:</strong> Tracked by foreign portfolio investors (FPIs) and MSCI indices.</li>
+          <li> Gift Nifty is a rebranded version of the SGX Nifty (Singapore Exchange Nifty), now hosted on the GIFT City.</li>
+          <li> (Gujarat International Finance Tec-City) under the International Financial Services Centre (IFSC) in India. It.</li>
+          <li> represents India’s global face in the derivatives trading ecosystem, allowing international investors to trade Nifty index futures in U.S. dollars outside Indian market hours..</li>
         </ul>
 
-        <h5 className="mt-4 fw-semibold">Sectoral Leadership</h5>
+        <h5 className="mt-4 fw-semibold">Key Features of Gift Nifty</h5>
         <ul>
-          <li><strong>IT & Tech:</strong> Infosys, TCS, Wipro drive export revenues.</li>
-          <li><strong>Banking:</strong> HDFC Bank, ICICI Bank anchor financial exposure.</li>
-          <li><strong>FMCG:</strong> HUL and Nestle provide defensive growth.</li>
+          <li><b>Feature	Description
+            Underlying Index</b>	Nifty 50 (National Stock Exchange of India)</li>
+          <li><b>Location</b>NSE IFSC at GIFT City, Gandhinagar, Gujarat</li>
+          <li><b>Currency Denomination</b>USD (U.S. Dollars)</li>
+          <li><b>Trading Hours</b>Nearly 22 hours, including Asian, European, and U.S. market timings</li>
+          <li><b>Contract Types</b>Index Futures and Options</li>
+          <li><b>Clearing & Settlement</b>Through NSE IFSC Clearing Corporation (NICCL)</li>
+          <li><b>Time Zone Advantage</b>	Bridges the gap between U.S. close and Indian market open</li>
         </ul>
 
 
@@ -50,134 +70,24 @@ const tabData = [
     ),
   },
   {
-    name: "Nifty-50",
+    name: "Dollar Index (DXY)",
     content: (
       <>
-        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Nifty-50: India’s Premier Blue-Chip Index</h4>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}> Learn to track U.S. dollar strength and its effect on global trade and commodities.
+        </h4>
         <p>
-          The <strong>Nifty-50</strong> is a subset of the broader Indian equity market, acting as a key indicator of large-cap stock performance. With 50 high-performing companies from 14 sectors, it accurately mirrors India’s economic growth and industrial diversification.
+          The <strong>Dollar Index (DXY)</strong>Learn to Track U.S. Dollar Strength and Its Effect on Global Trade and Commodities
         </p>
 
-        <h5 className="mt-4 fw-semibold">Features and Composition</h5>
+        <h5 className="mt-4 fw-semibold">What is the Dollar Index (DXY)?</h5>
+        <p> The U.S. Dollar Index (DXY) is a real-time, market-driven financial indicator that measures the value of the U.S. dollar relative to a basket of six major global currencies. It reflects the overall international strength of the dollar and acts as a crucial barometer of U.S. economic competitiveness, investor sentiment, and monetary policy impact.The index was introduced in 1973 by the Intercontinental Exchange (ICE) shortly after the collapse of the Bretton Woods Agreement, which had previously pegged major global currencies to the U.S. dollar.</p>
+
+        <h5 className="mt-4 fw-semibold">Composition of the DXY Basket</h5>
         <ul>
-          <li><strong>Free Float Market Cap:</strong> Ensures real-market exposure by excluding promoter holdings.</li>
-          <li><strong>Liquidity:</strong> Stocks with high trading volumes and consistent delivery percentages.</li>
-          <li><strong>Sector Weighting:</strong> Banking and IT dominate, followed by FMCG and Oil & Gas.</li>
-        </ul>
+          <li>The DXY includes six currencies with weights reflecting their importance in U.S. international trade:</li>
+          <li><b>How is the DXY Calculated?</b>The DXY is a geometrically weighted index, calculated using the exchange rates of the U.S. dollar against each of the basket currencies. It is quoted as a number (e.g., 104.30), with a base value of 100 set in March 1973.
 
-        <h5 className="mt-4 fw-semibold">Role in Investment Strategy</h5>
-        <ul>
-          <li>Ideal for ETFs and Index Mutual Funds</li>
-          <li>Frequently used in technical and fundamental analysis</li>
-          <li>Derivatives: Basis for most traded index options and futures</li>
-        </ul>
-
-
-      </>
-    ),
-  },
-  {
-    name: "Bank Nifty",
-    content: (
-      <>
-        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Bank Nifty: Pulse of Indian Banking</h4>
-        <p>
-          The <strong>Bank Nifty</strong> index comprises the 12 most liquid and large capitalized banking stocks listed on the NSE. It serves as the key indicator for banking sector health and is one of the most traded derivative products in India.
-        </p>
-
-        <h5 className="mt-4 fw-semibold">Constituents and Focus</h5>
-        <ul>
-          <li><strong>Core Banks:</strong> HDFC Bank, ICICI Bank, Axis Bank, SBI</li>
-          <li><strong>Public & Private:</strong> Blended mix offering broad banking exposure</li>
-          <li><strong>Loan Growth & NPAs:</strong> Major impact on index value</li>
-        </ul>
-
-        <h5 className="mt-4 fw-semibold">Importance in Trading</h5>
-        <ul>
-          <li>High beta index, ideal for options and intraday trading</li>
-          <li>Reflects RBI policy impacts quickly</li>
-          <li>Benchmarked by hedge funds and institutional players</li>
-        </ul>
-
-
-      </>
-    ),
-  },
-  {
-    name: "Fin Nifty",
-    content: (
-      <>
-        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Fin Nifty: Beyond Banks</h4>
-        <p>
-          The <strong>Fin Nifty</strong> Index tracks the performance of diversified financial services firms, including NBFCs, insurance companies, AMCs, and more. It captures financial innovation and fintech growth beyond traditional banking.
-        </p>
-
-        <h5 className="mt-4 fw-semibold">Composition Overview</h5>
-        <ul>
-          <li>Includes HDFC Ltd, Bajaj Finance, LIC Housing Finance</li>
-          <li>Focus on consumer credit, life insurance, asset management</li>
-          <li>NBFC and fintech contribution rising steadily</li>
-        </ul>
-
-        <h5 className="mt-4 fw-semibold">Strategic Role</h5>
-        <ul>
-          <li>Captures the full financial services landscape</li>
-          <li>Useful for thematic investing and sector rotation</li>
-          <li>Effective in capturing changing consumption-based financial trends</li>
-        </ul>
-
-
-      </>
-    ),
-  },
-  {
-    name: "Midcap",
-    content: (
-      <>
-        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Midcap Index: Growth with Agility</h4>
-        <p>
-          The <strong>Midcap Index</strong> includes companies that are not large enough to be blue-chip but too big to be classified as small caps. These companies are typically high-growth businesses in niche sectors or fast-developing segments of the Indian economy.
-        </p>
-
-        <h5 className="mt-4 fw-semibold">Profile</h5>
-        <ul>
-          <li>Nifty Midcap 150 / Midcap 100 are the key indices</li>
-          <li>Offer balance of risk and reward</li>
-          <li>Higher volatility than large-caps, but often stronger upcycles</li>
-        </ul>
-
-        <h5 className="mt-4 fw-semibold">Investment Use</h5>
-        <ul>
-          <li>Ideal for long-term investors seeking alpha</li>
-          <li>Preferred by portfolio managers for sectoral plays</li>
-          <li>Momentum-driven, sector-rotation sensitive</li>
-        </ul>
-
-
-      </>
-    ),
-  },
-  {
-    name: "Sensex",
-    content: (
-      <>
-        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Sensex: India’s Oldest Market Barometer</h4>
-        <p>
-          The <strong>S&P BSE Sensex</strong>, launched in 1986, is the oldest stock market index in India. Comprising 30 of the largest and most actively traded stocks on the Bombay Stock Exchange (BSE), it reflects the country’s overall economic strength and market momentum.
-        </p>
-
-        <h5 className="mt-4 fw-semibold">Key Facts</h5>
-        <ul>
-          <li>Free-float market capitalization based</li>
-          <li>Sector-balanced with Finance, IT, Oil & Gas, and Pharma leaders</li>
-          <li>Globally followed and forms the core of many global funds</li>
-        </ul>
-
-        <h5 className="mt-4 fw-semibold">Market Influence</h5>
-        <ul>
-          <li>Acts as a headline index for India</li>
-          <li>Basis for ETFs and BSE F&O contracts</li>
-          <li>Mirrors business cycles and reform sentiments</li>
+            A value above 100 means the U.S. dollar has strengthened compared to its 1973 level; below 100 indicates depreciation.</li>
         </ul>
 
 
