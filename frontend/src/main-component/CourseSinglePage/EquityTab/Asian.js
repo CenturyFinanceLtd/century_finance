@@ -1,132 +1,190 @@
-import React from "react";
-import abimg from "../../../images/about/basic.png";
-import shape from "../../../images/about/shape.png";
+import React, { useState } from "react";
 
+const tabData = [
+  {
+    name: "Nikkei",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Overview of the Nikkei 225</h4>
+        <p>
+          The Nikkei 225 is Japan’s foremost stock market index and a bellwether for the country’s economic health. Composed of 225 leading blue-chip companies listed on the Tokyo Stock Exchange (TSE), the Nikkei provides a comprehensive snapshot of corporate performance across a diverse range of industries—from global technology giants and major automakers to consumer goods producers and financial institutions.
+        </p>
+        <p>
+          As a price-weighted index, movements in higher-priced constituents exert a larger influence on the overall value, making it essential for investors to understand not just market direction, but also the individual stock dynamics driving those changes.
+        </p>
 
+        <h5 className="mt-4 fw-semibold">Historical Context and Evolution</h5>
+        <ol>
+          <li><strong>1950s–1960s:</strong> Rapid industrial expansion saw Japanese exporters gain global market share.</li>
+          <li><strong>1970s–1980s:</strong> Tech and real estate booms drove gains, peaking near 39,000 in 1989.</li>
+          <li><strong>1990s:</strong> Post-bubble stagnation led to policy-led recovery efforts.</li>
+          <li><strong>2000s–Present:</strong> “Abenomics” reforms and globalization supported volatile but positive trends.</li>
+        </ol>
 
-const Asian = ({ onBookNow }) => {
+        <h5 className="mt-4 fw-semibold">Composition and Calculation Methodology</h5>
+        <ul>
+          <li><strong>Selection of Constituents:</strong> Reviewed annually for sector balance and liquidity.</li>
+          <li><strong>Price Aggregation:</strong> Sum of daily closing prices.</li>
+          <li><strong>Divisor Adjustment:</strong> Ensures consistency during splits, mergers, or changes.</li>
+          <li><strong>Final Index Value:</strong> Published as the official Nikkei 225 level.</li>
+        </ul>
+        <p>
+          Because higher-priced stocks carry more weight, their moves disproportionately affect the index.
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Trading Mechanism and Market Hours</h5>
+        <ul>
+          <li><strong>Access:</strong> Through electronic order books and brokerage platforms.</li>
+          <li><strong>Morning Session:</strong> 9:00 AM – 11:30 AM JST</li>
+          <li><strong>Afternoon Session:</strong> 12:30 PM – 3:00 PM JST</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Macro Drivers and Key Influences</h5>
+        <ul>
+          <li><strong>Monetary Policy:</strong> Bank of Japan’s rates and QE programs.</li>
+          <li><strong>Global Economic Climate:</strong> Fed policy, China’s growth, Eurozone factors.</li>
+          <li><strong>Currency Movements:</strong> Yen fluctuations directly impact exporter profitability.</li>
+          <li><strong>Corporate Earnings:</strong> Reports from auto, tech, and finance leaders shape sentiment.</li>
+          <li><strong>Commodity Prices:</strong> Japan’s resource imports affect manufacturing margins.</li>
+          <li><strong>Geopolitical Events:</strong> Trade tensions, crises, and regional issues move the index.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Sectoral Breakdown and Thematic Exposure</h5>
+        <ul>
+          <li><strong>Technology & Electronics:</strong> Semiconductors, automation, consumer devices.</li>
+          <li><strong>Automotive & Transportation:</strong> Export giants, evolving mobility sectors.</li>
+          <li><strong>Financial Services:</strong> Banks, insurance, and investment platforms.</li>
+          <li><strong>Pharmaceuticals & Healthcare:</strong> Aging population and R&D growth.</li>
+          <li><strong>Consumer Goods:</strong> Spanning household products and luxury exports.</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    name: "Hangseng",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Overview of the Hang Seng Index</h4>
+        <p>
+          The <strong>Hang Seng Index (HSI)</strong> is Hong Kong’s premier benchmark for market performance, tracking the free-float market capitalization of the largest and most liquid companies listed on the Hong Kong Stock Exchange (HKEX).
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Historical Context and Evolution</h5>
+        <ol>
+          <li><strong>1970s–1980s:</strong> Export and real estate boom pushed the index upward.</li>
+          <li><strong>1987 & 1997:</strong> Crashes from global and regional crises hit hard.</li>
+          <li><strong>1998–2007:</strong> China’s WTO entry and real estate surge fueled recovery.</li>
+          <li><strong>2008–Now:</strong> Resilience from Stock Connect and Chinese tech strength.</li>
+        </ol>
+
+        <h5 className="mt-4 fw-semibold">Composition and Calculation Methodology</h5>
+        <ol>
+          <li><strong>Constituent Selection:</strong>
+            <ul>
+              <li>Based on market cap, liquidity, and sector balance.</li>
+              <li>Quarterly reviews to ensure diversity and stability.</li>
+            </ul>
+          </li>
+          <li><strong>Free-Float Market Capitalization Weighting:</strong>
+            <ul>
+              <li>Only tradable shares are counted.</li>
+              <li>Weight caps prevent over-concentration.</li>
+            </ul>
+          </li>
+          <li><strong>Index Calculation:</strong>
+            <ul>
+              <li>Free-float market cap ÷ base cap × index base (100).</li>
+              <li>Corporate actions adjusted with a divisor mechanism.</li>
+            </ul>
+          </li>
+          <li><strong>Sector Breakdown:</strong>
+            <ul>
+              <li>Finance, Utilities, Properties & Construction, Commerce & Industry.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h5 className="mt-4 fw-semibold">Trading Mechanism and Market Hours</h5>
+        <ul>
+          <li><strong>Order Types:</strong> Market, limit, conditional orders via brokers.</li>
+          <li><strong>Sessions:</strong> 9:30 AM–12 PM & 1 PM–4 PM HKT.</li>
+          <li><strong>Cross-Border Access:</strong> Stock Connect links with Shanghai and Shenzhen.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Macro Drivers and Key Influences</h5>
+        <ul>
+          <li><strong>Monetary Policy:</strong> Peg to USD ties local rates to U.S. Fed policy.</li>
+          <li><strong>Chinese Data:</strong> GDP, output, and consumer trends drive H-shares.</li>
+          <li><strong>Currency Flows:</strong> Large inflows/outflows impact volatility.</li>
+          <li><strong>Earnings & Regulation:</strong> Key sectors respond to reports and policy shifts.</li>
+          <li><strong>Global Events:</strong> Trade tensions, safe-haven flows affect market mood.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Sectoral Exposure and Thematic Opportunities</h5>
+        <ol>
+          <li><strong>Finance:</strong> Dominated by banks, insurers, securities firms.</li>
+          <li><strong>Utilities:</strong> Water, gas, power with steady income.</li>
+          <li><strong>Properties & Construction:</strong> Developers serving urbanization demand.</li>
+          <li><strong>Commerce & Industry:</strong> Tech, retail, industrial firms shaping the future.</li>
+        </ol>
+
+        <h5 className="mt-4 fw-semibold">Investment Strategies and Vehicles</h5>
+        <ul>
+          <li><strong>Direct Equity:</strong> Active trading on HKEX.</li>
+          <li><strong>ETFs & Index Funds:</strong> Broad and affordable market access.</li>
+          <li><strong>Derivatives:</strong> Use of futures and options for leverage and hedging.</li>
+          <li><strong>Thematic Portfolios:</strong> Tilt toward ESG, fintech, or growth sectors.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Global Significance</h5>
+        <ul>
+          <li><strong>Signals Asia Risk:</strong> Often leads emerging market moves.</li>
+          <li><strong>Time Advantage:</strong> Bridges Asian and European/US markets.</li>
+          <li><strong>China Proxy:</strong> Primary vehicle for international China exposure.</li>
+        </ul>
+
+    
+      </>
+    ),
+  },
+];
+
+const Asian = () => {
+  const [activeTab, setActiveTab] = useState(tabData[0].name);
+
   return (
-    <section className="wpo-about-section-s2 section-padding">
+    <section className="wpo-about-section-s2 section-padding" style={{ backgroundColor: "#fff" }}>
       <div className="container">
         <div className="wpo-about-wrap">
-          <div className="row align-items-center">
-            {/* Left Image */}
-            <div className="col-lg-6 col-md-12 col-12 ">
-              <div className="wpo-about-img position-relative text-center">
-                <img
-                  src={abimg}
-                  alt="Basic Finance Training"
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                    borderRadius: "12px",
-                    objectFit: "cover",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                  }}
-                />
-                <div
-                  className="back-shape position-absolute"
-                  style={{ bottom: "-30px", right: "-30px", zIndex: -1, opacity: 0.5 }}
-                >
-                  <img
-                    src={shape}
-                    alt="Decorative Shape"
-                    style={{ maxWidth: "150px", height: "auto" }}
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="text-center mb-4">
+            <h2 className="fw-bold" style={{ color: "#111" }}>Explore Asia’s Leading Indices</h2>
+            <p style={{ color: "#555" }}>
+              Gain strategic insights into Asia’s most influential stock market indices. Switch between Nikkei and Hang Seng to understand their role in global finance.
+            </p>
+          </div>
 
-            {/* Right Content */}
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="wpo-about-text">
-                <div className="wpo-section-title">
-                  <small>Asian</small>
-                  <h2>One-Day On-Campus Certified Financial Market Training</h2>
-                </div>
+          {/* Tabs */}
+          <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            {tabData.map((tab) => (
+              <button
+                key={tab.name}
+                onClick={() => setActiveTab(tab.name)}
+                className={`px-4 py-2 fw-semibold border rounded-pill ${
+                  activeTab === tab.name ? "bg-danger text-white border-danger" : "bg-light text-dark border-secondary"
+                }`}
+                style={{
+                  transition: "0.3s",
+                  boxShadow: activeTab === tab.name ? "0 4px 12px rgba(224,0,0,0.2)" : "none",
+                }}
+              >
+                {tab.name}
+              </button>
+            ))}
+          </div>
 
-                {/* Key Notes */}
-                <div className="alert alert-warning p-3 rounded mb-3">
-                  <strong>Exclusively for Educational Institutions:</strong> Only Colleges & Universities can enroll batches.
-                </div>
-                <div className="alert alert-info p-3 rounded mb-3">
-                  <strong>Eligibility:</strong> Final-Year Students (B.Com, BBA, MBA, BA-Economics, Finance-related streams)
-                </div>
-
-                <div className="alert alert-info p-3 rounded mb-3">
-                  <strong>Program Fee:</strong> ₹45,000 per batch +GST(all types of taxes)
-                  <br />
-                  <strong>Certification:</strong> Digital certificates awarded upon successful assessment
-                </div>
-
-                {/* Overview */}
-                <div className="alert alert-success p-3 rounded mb-4">
-                  <strong>Objective:</strong> Designed to bridge the gap between theoretical academic learning and real-world finance industry practices — ideal for final-year students preparing for placements and certifications.
-                </div>
-
-                {/* Course Content */}
-                <h5><strong>Program Modules & Learning Outcomes</strong></h5>
-                <table className="table table-bordered mt-2">
-                  <thead className="table-light">
-                    <tr>
-                      <th>Module</th>
-                      <th>Learning Outcome</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Equity Market</td>
-                      <td>Deep dive into stock exchanges, trading systems, and investment strategies</td>
-                    </tr>
-                    <tr>
-                      <td>Commodity Market</td>
-                      <td>Understanding pricing factors and trading in agri, metals, and energy commodities</td>
-                    </tr>
-                    <tr>
-                      <td>Foreign Exchange</td>
-                      <td>Essentials of currency markets, INR pairs, and international influences</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                {/* Student Benefits */}
-                <h5 className="mt-4"><strong>Why Should Students Attend?</strong></h5>
-                <ul className="mb-3">
-                  <li>✅ Real-time exposure to the workings of financial markets</li>
-                  <li>✅ Interview-focused knowledge for final-year placement preparation</li>
-                  <li>✅ Digital certificate to add credibility to resumes & LinkedIn profiles</li>
-                  <li>✅ Awareness of top finance careers — CFA, Research Analyst, Investment Advisor, and more</li>
-                </ul>
-
-                {/* Institution Benefits */}
-                <h5 className="mt-4"><strong>What Institutions Gain</strong></h5>
-                <ul className="mb-3">
-                  <li>✔️ Industry-driven training to strengthen your academic offerings</li>
-                  <li>✔️ Better placement results with job-oriented exposure</li>
-                  <li>✔️ Enhanced brand image as a career-focused institute</li>
-                  <li>✔️ No added burden — we manage training, assessments, and certification entirely</li>
-                </ul>
-                
-
-                {/* Contact Details */}
-                <h5 className="mt-4"><strong>Get in Touch</strong></h5>
-                <div className="alert alert-light border mb-3">
-                  <p>Want to bring this certified finance training to your campus?</p>
-                  <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
-            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
-          </p>
-                  <p style={{ fontSize: "1rem" }}>
-            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
-          </p>
-                  <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
-                </div>
-                 <button onClick={onBookNow} className="btn btn-outline-dark mt-3">
-                  Book Now (₹45,000 per Batch)
-                </button>
-
-               
-              </div>
-            </div>
+          {/* Tab Content */}
+          <div className="p-4 shadow rounded" style={{ backgroundColor: "#fdfdfd", borderLeft: "5px solid #E00000", color: "#222" }}>
+            {tabData.find((tab) => tab.name === activeTab)?.content}
           </div>
         </div>
       </div>
