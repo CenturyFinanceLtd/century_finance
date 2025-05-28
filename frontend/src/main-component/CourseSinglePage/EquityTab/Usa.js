@@ -1,130 +1,231 @@
-import React from "react";
-import abimg from "../../../images/about/basic.png";
-import shape from "../../../images/about/shape.png";
+import React, { useState } from "react";
+
+const tabData = [
+  {
+    name: "Dow Jones",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Study the backbone of U.S. stock performance.</h4>
+        <p>
+          The Dow Jones Industrial Average (DJIA) is one of the most recognized and oldest stock indices in the world. It represents 30 of the largest and most influential publicly traded companies in the United States and serves as a barometer of the U.S. stock market’s health.
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Historical Context and Evolution</h5>
+        <ul>
+          <li><strong> Founded: May:</strong> 26, 1896: .</li>
+          <li><strong>Created by:</strong> Charles Dow and Edward Jones.</li>
+          <li><strong>Current Components:</strong> 12 industrial companies.</li>
+          <li><strong>Initial Components:</strong> 30 blue-chip companies.</li>
+          <li><strong>Base Value:</strong>  40.94.</li>
+          <li><strong>Index Type:</strong> 12 Price-weighted.</li>
+           <li><strong>Maintained by:</strong> S&P Dow Jones Indices, a joint venture of S&P Global</li>
+            <li><strong>All-Time High:</strong> (as of May 2025): Over 39,000 points.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Key Metrics and Statistics</h5>
+        <ul>
+         
+          <li><strong>Metric:</strong>	Value (approx., May 2025)</li>
+          <li><strong>Index Value:</strong>	39,100+ points</li>
+          <li><strong>Annualized Return (10 yrs):</strong>	~10.5%</li>
+           <li>Average P/E Ratio<strong></strong></li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Market Significance</h5>
+        <ul>
+          <li><strong>Trading Volume:</strong> Most liquid index on NSE with active derivatives market.</li>
+          <li><strong>Use Case:</strong> Benchmark for mutual funds, index funds, and ETFs.</li>
+          <li><strong>Global Attention:</strong> Tracked by foreign portfolio investors (FPIs) and MSCI indices.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Sectoral Leadership</h5>
+        <ul>
+          <li><strong>IT & Tech:</strong> Infosys, TCS, Wipro drive export revenues.</li>
+          <li><strong>Banking:</strong> HDFC Bank, ICICI Bank anchor financial exposure.</li>
+          <li><strong>FMCG:</strong> HUL and Nestle provide defensive growth.</li>
+        </ul>
 
 
+      </>
+    ),
+  },
+  {
+    name: "Nifty-50",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Nifty-50: India’s Premier Blue-Chip Index</h4>
+        <p>
+          The <strong>Nifty-50</strong> is a subset of the broader Indian equity market, acting as a key indicator of large-cap stock performance. With 50 high-performing companies from 14 sectors, it accurately mirrors India’s economic growth and industrial diversification.
+        </p>
 
-const Usa = ({ onBookNow }) => {
+        <h5 className="mt-4 fw-semibold">Features and Composition</h5>
+        <ul>
+          <li><strong>Free Float Market Cap:</strong> Ensures real-market exposure by excluding promoter holdings.</li>
+          <li><strong>Liquidity:</strong> Stocks with high trading volumes and consistent delivery percentages.</li>
+          <li><strong>Sector Weighting:</strong> Banking and IT dominate, followed by FMCG and Oil & Gas.</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Role in Investment Strategy</h5>
+        <ul>
+          <li>Ideal for ETFs and Index Mutual Funds</li>
+          <li>Frequently used in technical and fundamental analysis</li>
+          <li>Derivatives: Basis for most traded index options and futures</li>
+        </ul>
+
+
+      </>
+    ),
+  },
+  {
+    name: "Bank Nifty",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Bank Nifty: Pulse of Indian Banking</h4>
+        <p>
+          The <strong>Bank Nifty</strong> index comprises the 12 most liquid and large capitalized banking stocks listed on the NSE. It serves as the key indicator for banking sector health and is one of the most traded derivative products in India.
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Constituents and Focus</h5>
+        <ul>
+          <li><strong>Core Banks:</strong> HDFC Bank, ICICI Bank, Axis Bank, SBI</li>
+          <li><strong>Public & Private:</strong> Blended mix offering broad banking exposure</li>
+          <li><strong>Loan Growth & NPAs:</strong> Major impact on index value</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Importance in Trading</h5>
+        <ul>
+          <li>High beta index, ideal for options and intraday trading</li>
+          <li>Reflects RBI policy impacts quickly</li>
+          <li>Benchmarked by hedge funds and institutional players</li>
+        </ul>
+
+
+      </>
+    ),
+  },
+  {
+    name: "Fin Nifty",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Fin Nifty: Beyond Banks</h4>
+        <p>
+          The <strong>Fin Nifty</strong> Index tracks the performance of diversified financial services firms, including NBFCs, insurance companies, AMCs, and more. It captures financial innovation and fintech growth beyond traditional banking.
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Composition Overview</h5>
+        <ul>
+          <li>Includes HDFC Ltd, Bajaj Finance, LIC Housing Finance</li>
+          <li>Focus on consumer credit, life insurance, asset management</li>
+          <li>NBFC and fintech contribution rising steadily</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Strategic Role</h5>
+        <ul>
+          <li>Captures the full financial services landscape</li>
+          <li>Useful for thematic investing and sector rotation</li>
+          <li>Effective in capturing changing consumption-based financial trends</li>
+        </ul>
+
+
+      </>
+    ),
+  },
+  {
+    name: "Midcap",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Midcap Index: Growth with Agility</h4>
+        <p>
+          The <strong>Midcap Index</strong> includes companies that are not large enough to be blue-chip but too big to be classified as small caps. These companies are typically high-growth businesses in niche sectors or fast-developing segments of the Indian economy.
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Profile</h5>
+        <ul>
+          <li>Nifty Midcap 150 / Midcap 100 are the key indices</li>
+          <li>Offer balance of risk and reward</li>
+          <li>Higher volatility than large-caps, but often stronger upcycles</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Investment Use</h5>
+        <ul>
+          <li>Ideal for long-term investors seeking alpha</li>
+          <li>Preferred by portfolio managers for sectoral plays</li>
+          <li>Momentum-driven, sector-rotation sensitive</li>
+        </ul>
+
+
+      </>
+    ),
+  },
+  {
+    name: "Sensex",
+    content: (
+      <>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Sensex: India’s Oldest Market Barometer</h4>
+        <p>
+          The <strong>S&P BSE Sensex</strong>, launched in 1986, is the oldest stock market index in India. Comprising 30 of the largest and most actively traded stocks on the Bombay Stock Exchange (BSE), it reflects the country’s overall economic strength and market momentum.
+        </p>
+
+        <h5 className="mt-4 fw-semibold">Key Facts</h5>
+        <ul>
+          <li>Free-float market capitalization based</li>
+          <li>Sector-balanced with Finance, IT, Oil & Gas, and Pharma leaders</li>
+          <li>Globally followed and forms the core of many global funds</li>
+        </ul>
+
+        <h5 className="mt-4 fw-semibold">Market Influence</h5>
+        <ul>
+          <li>Acts as a headline index for India</li>
+          <li>Basis for ETFs and BSE F&O contracts</li>
+          <li>Mirrors business cycles and reform sentiments</li>
+        </ul>
+
+
+      </>
+    ),
+  },
+];
+
+const Usa = () => {
+  const [activeTab, setActiveTab] = useState(tabData[0].name);
+
   return (
-    <section className="wpo-about-section-s2 section-padding">
+    <section className="wpo-about-section-s2 section-padding" style={{ backgroundColor: "#fff" }}>
       <div className="container">
         <div className="wpo-about-wrap">
-          <div className="row align-items-center">
-            {/* Left Image */}
-            <div className="col-lg-6 col-md-12 col-12 ">
-              <div className="wpo-about-img position-relative text-center">
-                <img
-                  src={abimg}
-                  alt="Basic Finance Training"
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                    borderRadius: "12px",
-                    objectFit: "cover",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                  }}
-                />
-                <div
-                  className="back-shape position-absolute"
-                  style={{ bottom: "-30px", right: "-30px", zIndex: -1, opacity: 0.5 }}
-                >
-                  <img
-                    src={shape}
-                    alt="Decorative Shape"
-                    style={{ maxWidth: "150px", height: "auto" }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Right Content */}
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="wpo-about-text">
-                <div className="wpo-section-title">
-                  <small>Usa</small>
-                  <h2>One-Day On-Campus Certified Financial Market Training</h2>
+          <div className="row justify-content-center">
+            <div className="col-lg-10 col-md-12 col-12">
+              <div className="wpo-about-text text-center">
+                <div className="wpo-section-title mb-4">
+                  <h2 className="fw-bold mb-2" style={{ color: "#111" }}>USA Markets</h2>
+                  <p style={{ color: "#555" }}>
+                    Understand how the world’s most powerful financial markets operate and influence global movements.
+                  </p>
                 </div>
 
-                {/* Key Notes */}
-                <div className="alert alert-warning p-3 rounded mb-3">
-                  <strong>Exclusively for Educational Institutions:</strong> Only Colleges & Universities can enroll batches.
+                {/* Tabs */}
+                <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                  {tabData.map((tab) => (
+                    <button
+                      key={tab.name}
+                      onClick={() => setActiveTab(tab.name)}
+                      className={`px-4 py-2 fw-semibold border rounded-pill ${activeTab === tab.name ? "bg-danger text-white border-danger" : "bg-light text-dark border-secondary"
+                        }`}
+                      style={{
+                        transition: "0.3s",
+                        boxShadow: activeTab === tab.name ? "0 4px 12px rgba(224,0,0,0.2)" : "none",
+                      }}
+                    >
+                      {tab.name}
+                    </button>
+                  ))}
                 </div>
-                <div className="alert alert-info p-3 rounded mb-3">
-                  <strong>Eligibility:</strong> Final-Year Students (B.Com, BBA, MBA, BA-Economics, Finance-related streams)
+
+                {/* Content */}
+                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #E00000" }}>
+                  {tabData.find((tab) => tab.name === activeTab)?.content}
                 </div>
 
-                <div className="alert alert-info p-3 rounded mb-3">
-                  <strong>Program Fee:</strong> ₹45,000 per batch +GST(all types of taxes)
-                  <br />
-                  <strong>Certification:</strong> Digital certificates awarded upon successful assessment
-                </div>
-
-                {/* Overview */}
-                <div className="alert alert-success p-3 rounded mb-4">
-                  <strong>Objective:</strong> Designed to bridge the gap between theoretical academic learning and real-world finance industry practices — ideal for final-year students preparing for placements and certifications.
-                </div>
-
-                {/* Course Content */}
-                <h5><strong>Program Modules & Learning Outcomes</strong></h5>
-                <table className="table table-bordered mt-2">
-                  <thead className="table-light">
-                    <tr>
-                      <th>Module</th>
-                      <th>Learning Outcome</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Equity Market</td>
-                      <td>Deep dive into stock exchanges, trading systems, and investment strategies</td>
-                    </tr>
-                    <tr>
-                      <td>Commodity Market</td>
-                      <td>Understanding pricing factors and trading in agri, metals, and energy commodities</td>
-                    </tr>
-                    <tr>
-                      <td>Foreign Exchange</td>
-                      <td>Essentials of currency markets, INR pairs, and international influences</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                {/* Student Benefits */}
-                <h5 className="mt-4"><strong>Why Should Students Attend?</strong></h5>
-                <ul className="mb-3">
-                  <li>✅ Real-time exposure to the workings of financial markets</li>
-                  <li>✅ Interview-focused knowledge for final-year placement preparation</li>
-                  <li>✅ Digital certificate to add credibility to resumes & LinkedIn profiles</li>
-                  <li>✅ Awareness of top finance careers — CFA, Research Analyst, Investment Advisor, and more</li>
-                </ul>
-
-                {/* Institution Benefits */}
-                <h5 className="mt-4"><strong>What Institutions Gain</strong></h5>
-                <ul className="mb-3">
-                  <li>✔️ Industry-driven training to strengthen your academic offerings</li>
-                  <li>✔️ Better placement results with job-oriented exposure</li>
-                  <li>✔️ Enhanced brand image as a career-focused institute</li>
-                  <li>✔️ No added burden — we manage training, assessments, and certification entirely</li>
-                </ul>
-                
-
-                {/* Contact Details */}
-                <h5 className="mt-4"><strong>Get in Touch</strong></h5>
-                <div className="alert alert-light border mb-3">
-                  <p>Want to bring this certified finance training to your campus?</p>
-                  <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
-            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
-          </p>
-                  <p style={{ fontSize: "1rem" }}>
-            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
-          </p>
-                  <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
-                </div>
-                 <button onClick={onBookNow} className="btn btn-outline-dark mt-3">
-                  Book Now (₹45,000 per Batch)
-                </button>
-
-               
               </div>
             </div>
           </div>
