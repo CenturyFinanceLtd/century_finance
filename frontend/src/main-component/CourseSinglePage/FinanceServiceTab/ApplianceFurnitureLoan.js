@@ -1,6 +1,5 @@
 import React from "react";
 import abimg from "../../../images/about/appliance.png";
-import shape from "../../../images/about/shape.png";
 import { Link } from "react-router-dom";
 
 const ClickHandler = () => {
@@ -17,9 +16,6 @@ const ApplianceFurnitureLoan = () => {
             <div className="col-lg-6 col-md-12">
               <div className="wpo-about-img position-relative text-center">
                 <img src={abimg} alt="Appliance Loan" className="img-fluid rounded shadow" />
-                <div className="back-shape position-absolute top-0 end-0">
-                  <img src={shape} alt="" />
-                </div>
               </div>
             </div>
 
