@@ -186,7 +186,7 @@ const PersonalBusinessLoan = (props) => {
                     </li>
                   </ol>
                 </div>
-                <div className="text-center mt-4">
+                {/* <div className="text-center mt-4">
                   <Link
                     onClick={ClickHandler}
                     to="/apply-loan"
@@ -197,7 +197,7 @@ const PersonalBusinessLoan = (props) => {
 
                 <p className="text-muted mt-3 text-center small">
                   Transparent charges • No hidden fees • Market-linked interest • 100% online process
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

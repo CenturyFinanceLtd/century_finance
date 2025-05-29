@@ -74,7 +74,7 @@ const ApplianceFurnitureLoan = () => {
                   </ol>
                 </div>
 
-                <div className="text-center mt-4">
+                {/* <div className="text-center mt-4">
                   <Link
                     onClick={ClickHandler}
                     to="/apply-loan"
@@ -85,7 +85,7 @@ const ApplianceFurnitureLoan = () => {
 
                 <p className="text-muted mt-3 text-center small">
                   Transparent charges • No hidden fees • Market-linked interest • 100% online process
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

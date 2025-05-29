@@ -73,7 +73,7 @@ const FinanceServiceTab = ({ EventsDetails }) => {
             {/* Bootstrap-like row for grid */}
             {tabInfo.map((tab) => (
               // Ensure all column classes from Features example are used
-              <div className="col col-lg-6 col-md-6 col-12" key={tab.id}>
+              <div className="col col-lg-4 col-md-6 col-6" key={tab.id}>
                 <div
                   // Add 'item' as a base class for styling, 'active' when selected
                   className={classnames(
