@@ -5,44 +5,74 @@ const tabData = [
         name: "Nifty",
         content: (
             <>
-                <h2 className="fw-bold mb-3" style={{ color: "#222" }}>Overview of the Nifty 50 Index</h2>
+                <h2 className="fw-bold mb-3" style={{ color: "#222" }}>Overview of the Nifty Index</h2>
                 <p>
-                    The <strong>Nifty 50</strong> is the flagship benchmark index of the National Stock Exchange of India (NSE), representing the performance of the top 50 large-cap Indian companies across multiple sectors. It captures approximately 65% of the total market capitalization of listed companies on NSE, making it one of the most comprehensive indicators of the Indian equity market's health and economic sentiment.
+                    The <strong>Nifty</strong>, shorthand for the NSE’s flagship equity benchmark, represents the broad performance of India’s most actively traded, high-quality companies. It spans a diverse array of sectors—from banking and information technology to energy, consumer goods, and pharmaceuticals—providing investors with a comprehensive gauge of domestic market health. As a free-float, market-capitalization-weighted index, the Nifty dynamically adjusts to changes in corporate structure and investor participation, making it a preferred benchmark for both institutional and retail participants.
                 </p>
 
-                <h4 className="mt-4 fw-semibold">Historical Context and Evolution</h4>
+                <h4 className="mt-4 fw-semibold">Historical Evolution</h4>
                 <ul>
-                    <li><strong>1990s:</strong> Launched in April 1996, Nifty emerged alongside NSE’s rise during the liberalization phase of the Indian economy.</li>
-                    <li><strong>2000s:</strong> The index gained traction with the IT boom and strong reforms under successive governments.</li>
-                    <li><strong>2010s–2020s:</strong> Continued dominance with the emergence of e-commerce, fintech, and digital infrastructure. The index surpassed 20,000 in 2023 amid domestic consumption and infrastructure push.</li>
+                    <li><strong>Early Years:</strong> Post-liberalization reforms and increased foreign interest set the stage for robust early growth, as new capital flowed into privatized and emerging enterprises.</li>
+                    <li><strong>Technology Era:</strong> The boom in software exports and digital services in the late 1990s and early 2000s propelled the index’s rise, showcasing India’s emergence as a global IT hub.</li>
+                    <li><strong>Global Crisis Response:</strong> Periods of global turbulence—such as the financial crisis of the late 2000s and more recent pandemic-related shocks—tested the market, but timely policy interventions by regulators and the central bank enabled swift recoveries.</li>
+                    <li><strong>Modern Expansion:</strong> Broad-based reforms in taxation, infrastructure spending, and corporate governance throughout the 2010s have underpinned the Nifty’s steady ascent, even amid intermittent volatility tied to global policy shifts.</li>
                 </ul>
 
-                <h4 className="mt-4 fw-semibold">Composition and Calculation</h4>
+                <h4 className="mt-4 fw-semibold">Composition and Maintenance</h4>
                 <ul>
-                    <li><strong>No. of Companies:</strong> 50</li>
-                    <li><strong>Methodology:</strong> Free-float market capitalization</li>
-                    <li><strong>Sectors:</strong> Banking, IT, FMCG, Oil & Gas, Construction, Auto</li>
-                    <li><strong>Review Cycle:</strong> Semi-annual</li>
+                    <li><strong>Constituent Selection:</strong> Companies must demonstrate strong governance, consistent earnings growth, and sufficient trading volumes to qualify.</li>
+                    <li><strong>Sector Balance:</strong> Periodic reviews ensure that the index remains representative of emerging themes while preserving core exposures in financial services, manufacturing, and consumer staples.</li>
+                    <li><strong>Review Cycle:</strong> An independent committee meets quarterly to add or remove constituents, based on updated market data and evolving sector dynamics.</li>
                 </ul>
 
-                <h4 className="mt-4 fw-semibold">Market Significance</h4>
+                <h4 className="mt-4 fw-semibold">Weighting Methodology</h4>
                 <ul>
-                    <li><strong>Trading Volume:</strong> Most liquid index on NSE with active derivatives market.</li>
-                    <li><strong>Use Case:</strong> Benchmark for mutual funds, index funds, and ETFs.</li>
-                    <li><strong>Global Attention:</strong> Tracked by foreign portfolio investors (FPIs) and MSCI indices.</li>
+                    <li><strong>Free-Float Market Capitalization:</strong> Only shares available for public trading are counted, excluding promoter holdings and strategic blocks.</li>
+                    <li><strong>Dynamic Rebalancing:</strong> Adjustments for corporate events—stock splits, bonus issues, and rights offerings—maintain continuity and comparability.</li>
                 </ul>
 
-                <h4 className="mt-4 fw-semibold">Sectoral Leadership</h4>
+                <h4 className="mt-4 fw-semibold">Trading Framework and Market Sessions</h4>
                 <ul>
-                    <li><strong>IT & Tech:</strong> Infosys, TCS, Wipro drive export revenues.</li>
-                    <li><strong>Banking:</strong> HDFC Bank, ICICI Bank anchor financial exposure.</li>
-                    <li><strong>FMCG:</strong> HUL and Nestle provide defensive growth.</li>
+                    <li><strong>Cash Market:</strong> Direct equity trades executed through the NSE’s platform, offering real-time price discovery.</li>
+                    <li><strong>Derivatives Market:</strong> Futures and options on the Nifty enable leveraged exposure and risk management.</li>
+                    <li><strong>Trading Hours:</strong> Includes Pre-Open Window, Continuous Session, and Post-Close Activities.</li>
                 </ul>
 
+                <h4 className="mt-4 fw-semibold">Drivers of Nifty Performance</h4>
+                <ul>
+                    <li><strong>Monetary Policy:</strong> Decisions by RBI directly influence borrowing costs and investor sentiment.</li>
+                    <li><strong>Economic Indicators:</strong> GDP, industrial output, and fiscal announcements guide market trends.</li>
+                    <li><strong>Corporate Earnings:</strong> Sectoral shifts are often sparked by earnings reports of key companies.</li>
+                    <li><strong>Global Trends:</strong> External policies and commodity cycles impact domestic markets.</li>
+                    <li><strong>Foreign Investment:</strong> FPIs’ capital flows cause short-term volatility and longer-term growth.</li>
+                    <li><strong>Geopolitical Events:</strong> Major global developments often induce cautious optimism or risk aversion.</li>
+                </ul>
 
+                <h4 className="mt-4 fw-semibold">Sectoral Composition</h4>
+                <ul>
+                    <li><strong>Financial Services:</strong> Banks, NBFCs, and insurers reflecting credit growth and rate cycles.</li>
+                    <li><strong>Information Technology:</strong> Software firms tied to global digital demand and currency hedges.</li>
+                    <li><strong>Energy and Utilities:</strong> Power and integrated producers capturing infrastructure trends.</li>
+                    <li><strong>Consumer Goods:</strong> FMCG and retail companies tracking income and lifestyle changes.</li>
+                    <li><strong>Healthcare:</strong> Pharma and diagnostics firms offering defensive and innovative growth.</li>
+                </ul>
+
+                <h4 className="mt-4 fw-semibold">Investment Vehicles and Strategies</h4>
+                <ul>
+                    <li><strong>Passive Approaches:</strong> Index funds, ETFs, and Nifty derivatives for low-cost exposure and hedging.</li>
+                    <li><strong>Active Approaches:</strong> Fundamental analysis, sector rotation, and algorithmic strategies.</li>
+                </ul>
+
+                <h4 className="mt-4 fw-semibold">Global Context and Correlations</h4>
+                <ul>
+                    <li><strong>Intermarket Linkages:</strong> U.S., Europe, and Asia indices help forecast or mirror Nifty moves.</li>
+                    <li><strong>Currency Dynamics:</strong> INR–USD relationships impact exports, FPIs, and profit margins.</li>
+                    <li><strong>Emerging-Market Sentiment:</strong> Global appetite for EM exposure often drives large swings in the Nifty.</li>
+                </ul>
             </>
-        ),
+        )
     },
+
     {
         name: "Nifty-50",
         content: (
