@@ -31,7 +31,7 @@ const PersonalBusinessLoan = (props) => {
                 </div>
 
                 <h2 className="text-success mb-3">
-                  Get access to *instant funds* to meet your *personal needs  goals* without the hassle of heavy paperwork or long wait times.
+                    Get access to *instant funds* to meet your *personal needs  goals* without the hassle of heavy paperwork or long wait times.
                 </h2>
 
                 <div className="p-3 mb-4 bg-white shadow-sm rounded border-start border-success border-5">
