@@ -1,0 +1,119 @@
+/* src/pages/ErrorPage/ErrorPage.css (or adjust path as needed) */
+
+/* Ensure 'Arvo' font is loaded. You can link it in your public/index.html:
+   <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+*/
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: 'Arvo', serif;
+  display: flex; /* Added to help center content if needed */
+  justify-content: center; /* Added to center the container */
+  align-items: center; /* Added to vertically center if page_404 takes full height */
+  min-height: 100vh; /* Make section take at least full viewport height */
+  box-sizing: border-box;
+}
+
+/* The original CSS had .page_404 img { width:100%; }
+   This might not be needed if the GIF is a background.
+   If you intend to have an <img> tag, you can add this rule back. */
+
+.container_404 { /* Renamed to avoid conflict with Bootstrap if you use it elsewhere */
+  width: 100%;
+  max-width: 800px; /* Or your preferred max width */
+  text-align: center; /* Center inner content */
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat; /* Good to add for background images */
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+  margin: 0; /* Reset margin for h1 inside this div */
+  padding-top: 80px; /* Adjust as needed to position within the GIF */
+  color: #333; /* Added a color, can be adjusted */
+}
+
+/* The original CSS had .four_zero_four_bg h3 - this might be a typo for h1 styling or if an h3 was planned here */
+/* .four_zero_four_bg h3 {
+  font-size: 80px;
+} */
+
+.contant_box_404 {
+  margin-top: -50px; /* This will pull the content box up over the GIF area */
+  padding: 20px;
+  background: #fff; /* Ensure it has a background if it overlaps */
+  border-radius: 5px; /* Optional: for softer edges */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: for some depth */
+}
+
+.contant_box_404 .h2 { /* Targeting the h3 tag with class 'h2' */
+  font-size: 28px; /* Adjust size as needed */
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.contant_box_404 p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.link_404:hover {
+  background: #2d8627; /* Darken on hover */
+}
+
+/* Basic responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .four_zero_four_bg {
+    height: 300px; /* Reduce height of GIF background */
+  }
+  .four_zero_four_bg h1 {
+    font-size: 60px;
+    padding-top: 60px;
+  }
+  .contant_box_404 .h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page_404 {
+    padding: 20px 0;
+  }
+  .four_zero_four_bg {
+    height: 200px; /* Further reduce height */
+  }
+  .four_zero_four_bg h1 {
+    font-size: 40px;
+    padding-top: 40px;
+  }
+  .contant_box_404 {
+    margin-top: -30px;
+  }
+  .contant_box_404 .h2 {
+    font-size: 20px;
+  }
+  .contant_box_404 p {
+    font-size: 14px;
+  }
+  .link_404 {
+    padding: 8px 15px;
+  }
+}

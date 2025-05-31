@@ -88,7 +88,7 @@ const AllRoute = () => {
             path="blog-single-fullwidth/:slug"
             element={<BlogDetailsFull />}
           />
-          <Route path="404" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} />
           <Route path="contactus" element={<ContactPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<SignUpPage />} />
