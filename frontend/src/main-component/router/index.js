@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Homepage from '../HomePage/HomePage'
-import CategorySinglePage from '../CategorySinglePage/CategorySinglePage';
 import CoursePage from '../CoursePage/CoursePage';
 import CoursePageS2 from '../CoursePageS2/CoursePageS2';
 import CoursePageS3 from '../CoursePageS3/CoursePageS3';
@@ -10,7 +9,6 @@ import HomePage3 from '../HomePage3/HomePage3';
 import HomePage4 from '../HomePage4/HomePage4';
 import HomePage5 from '../HomePage5/HomePage5';
 import AboutPage from '../AboutPage/AboutPage';
-import TestimonialPage from '../TestimonialPage/TestimonialPage';
 import TeamPage from '../TeamPage/TeamPage';
 import TeamSinglePage from '../TeamSinglePage/TeamSinglePage';
 import EventSinglePage from '../EventSinglePage/EventSinglePage';
@@ -27,7 +25,6 @@ import BlogDetails from '../BlogDetails/BlogDetails'
 import BlogDetailsFull from '../BlogDetailsFull/BlogDetailsFull'
 import BlogDetailsLeftSiide from '../BlogDetailsLeftSiide/BlogDetailsLeftSiide'
 import ContactPage from '../ContactPage/ContactPage';
-import FaqPage from '../FaqPage';
 import BeComeTeacherPage from '../BeComeTeacherPage/BeComeTeacherPage';
 import LessonPage from '../LessonPage/LessonPage';
 import PrivacyPage from '../PrivacyPage/PrivacyPage';
@@ -66,16 +63,11 @@ const AllRoute = () => {
           <Route path="home-4" element={<HomePage4 />} />
           <Route path="home-5" element={<HomePage5 />} />
           <Route path="about" element={<AboutPage />} />
-          <Route
-            path="category-single/:slug"
-            element={<CategorySinglePage />}
-          />
           <Route path="course" element={<CoursePage />} />
           <Route path="course-2" element={<CoursePageS2 />} />
           <Route path="course-3" element={<CoursePageS3 />} />
           <Route path="lesson" element={<LessonPage />} />
           <Route path="gallery" element={<GalleryPage />} />
-          <Route path="testimonial" element={<TestimonialPage />} />
           <Route path="teacher" element={<TeamPage />} />
           <Route path="team-single/:slug" element={<TeamSinglePage />} />
           <Route path="event-single/:slug" element={<EventSinglePage />} />
@@ -85,7 +77,6 @@ const AllRoute = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="order-received" element={<OrderRecived />} />
-          <Route path="faq" element={<FaqPage />} />
           <Route path="privacypolicy" element={<PrivacyPage />} />
           <Route path="terms&conditions" element={<TermsPage />} />
           <Route path="blog" element={<BlogPage />} />
