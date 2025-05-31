@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Homepage from '../HomePage/HomePage'
-import CoursePage from '../CoursePage/CoursePage';
-import CoursePageS2 from '../CoursePageS2/CoursePageS2';
-import CoursePageS3 from '../CoursePageS3/CoursePageS3';
+// import CoursePage from '../CoursePage/CoursePage';
 import HomePage2 from '../HomePage2/HomePage2';
 import HomePage3 from '../HomePage3/HomePage3';
 import HomePage4 from '../HomePage4/HomePage4';
@@ -63,9 +61,7 @@ const AllRoute = () => {
           <Route path="home-4" element={<HomePage4 />} />
           <Route path="home-5" element={<HomePage5 />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="course" element={<CoursePage />} />
-          <Route path="course-2" element={<CoursePageS2 />} />
-          <Route path="course-3" element={<CoursePageS3 />} />
+          {/* <Route path="course" element={<CoursePage />} /> */}
           <Route path="lesson" element={<LessonPage />} />
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="teacher" element={<TeamPage />} />
