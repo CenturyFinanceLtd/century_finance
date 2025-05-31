@@ -235,6 +235,11 @@ const Footer = (props) => {
                     </Link>
                   </li>
                   <li>
+                    <Link onClick={ClickHandler} to="/refund-policy">
+                      Refund-Policy {/* Typo: Should be Privacy */}
+                    </Link>
+                  </li>
+                  <li>
                     <Link onClick={ClickHandler} to="/terms&conditions">
                       Terms & Conditions
                     </Link>

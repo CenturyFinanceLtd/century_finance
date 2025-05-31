@@ -46,6 +46,7 @@ import Gold from "../Gold/Gold";
 import Currencies from "../Currencies/Currencies";
 import VerifyResetOtp from "../ForgotPassword/VerifyResetOtp";
 import ResetPasswordPage from "../ForgotPassword/ResetPasswordPage";
+import RefundPolicy from "../RefundPolicy/RefundPolicy"
 
 
 const AllRoute = () => {
@@ -110,6 +111,7 @@ const AllRoute = () => {
           <Route path="/currencies" element={<Currencies />} />
           <Route path="/verify-reset-otp" element={<VerifyResetOtp />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
         </Routes>
       </BrowserRouter>
     </div>
