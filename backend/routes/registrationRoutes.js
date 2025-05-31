@@ -17,14 +17,11 @@ const razorpayInstance = new Razorpay({
 // --- PayU Configuration ---
 const PAYU_KEY = process.env.PAYU_MERCHANT_KEY;
 const PAYU_SALT = process.env.PAYU_MERCHANT_SALT;
-// Note: PAYU_SURL and PAYU_FURL from .env are used directly in frontend-facing data.
-// The actual endpoints will be defined below.
 
-// Helper function to calculate PayU hash
+// Helper function to calculate PayU hash (remains the same)
 const calculatePayUHash = (params, salt) => {
   let hashString = "";
   const hashSequence = [
-    // As per PayU documentation for request hash
     "key",
     "txnid",
     "amount",
@@ -42,7 +39,6 @@ const calculatePayUHash = (params, salt) => {
     "udf9",
     "udf10",
   ];
-
   hashSequence.forEach((key) => {
     hashString += (params[key] || "") + "|";
   });
@@ -50,57 +46,13 @@ const calculatePayUHash = (params, salt) => {
   return crypto.createHash("sha512").update(hashString).digest("hex");
 };
 
-// Helper function to verify PayU response hash
+// Helper function to verify PayU response hash (remains the same)
 const verifyPayUHash = (params, salt) => {
-  let hashString = salt + "|"; // Salt is prepended for response hash
-  const hashSequence = [
-    // As per PayU documentation for response hash
-    "status",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "", // udf10 to udf6 are usually empty in response
-    "udf5",
-    "udf4",
-    "udf3",
-    "udf2",
-    "udf1",
-    "email",
-    "firstname",
-    "productinfo",
-    "amount",
-    "txnid",
-    "key", // key is the last one
-  ];
-  // Important: For response hash, the parameters are in a specific order,
-  // and it's often easier to build the string from the actual POSTed data
-  // ensuring you pick them in the documented reverse order from 'status' down to 'key'.
-  // The `params` object here should be the direct `req.body` from PayU.
-
-  const availableParams = { ...params }; // Clone to avoid modifying original
-
-  hashSequence.forEach((key) => {
-    hashString += (availableParams[key] || "") + "|";
-  });
-  hashString = hashString.slice(0, -1); // Remove trailing '|'
-
-  // Let's rebuild hashString strictly based on PayU's documented response order
-  // salt|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key
-  // The empty pipes are for fields that might not be present or are fixed empty.
-  // It's critical that all fields PayU includes in its POST for hash calculation are included here in the right order.
   let newHashString = salt + "|" + (params.status || "");
   for (let i = 0; i < 10; i++) {
-    // For potential additionalparams, udf10 down to udf6
     newHashString +=
-      "|" + (params["additionalCharges"] || params[`udf${10 - i}`] || ""); // This part is tricky; PayU docs say these are part of it. Usually additionalCharges might be used by PayU if applicable.
+      "|" + (params["additionalCharges"] || params[`udf${10 - i}`] || "");
   }
-  // The UDFs are generally from udf5 down to udf1
   newHashString += "|" + (params.udf5 || "");
   newHashString += "|" + (params.udf4 || "");
   newHashString += "|" + (params.udf3 || "");
@@ -112,7 +64,6 @@ const verifyPayUHash = (params, salt) => {
   newHashString += "|" + (params.amount || "");
   newHashString += "|" + (params.txnid || "");
   newHashString += "|" + (params.key || "");
-
   return crypto.createHash("sha512").update(newHashString).digest("hex");
 };
 
@@ -140,38 +91,15 @@ router.post("/create-razorpay-order", async (req, res) => {
       return res.status(500).json({ message: "Error creating Razorpay order" });
     }
 
-    // Check if already registered with this email FOR THIS GATEWAY (or overall if that's the policy)
-    const existingRegistration = await Registration.findOne({
-      email: registrationData.email,
-      // paymentGateway: "razorpay", // Optional: scope uniqueness to gateway
-      // paymentStatus: "successful" // Optional: only consider successful ones
+    // MODIFICATION: Always create a new registration document
+    const newRegistration = new Registration({
+      ...registrationData, // This should include all form fields
+      orderId: order.id,
+      paymentGateway: "razorpay",
+      amount: amount, // Store course amount
+      paymentStatus: "pending", // Initial status
     });
-    if (
-      existingRegistration &&
-      existingRegistration.paymentStatus === "successful"
-    ) {
-      return res
-        .status(409)
-        .json({ message: "This email is already successfully registered." });
-    }
-
-    // If an order was previously created but not completed, you might want to update it or handle it.
-    // For simplicity, we create a new one or update if found by email and status pending.
-    const newRegistration = await Registration.findOneAndUpdate(
-      {
-        email: registrationData.email,
-        paymentStatus: { $ne: "successful" },
-        paymentGateway: "razorpay",
-      },
-      {
-        ...registrationData,
-        orderId: order.id,
-        paymentGateway: "razorpay",
-        amount: amount, // Store course amount
-        paymentStatus: "pending", // Initial status
-      },
-      { upsert: true, new: true, setDefaultsOnInsert: true }
-    );
+    await newRegistration.save(); // Save the new document
 
     res.status(200).json({
       key_id: process.env.RAZORPAY_KEY_ID,
@@ -189,7 +117,16 @@ router.post("/create-razorpay-order", async (req, res) => {
       "Error creating Razorpay order:",
       error.response ? error.response.data : error.message || error
     );
-    // Removed the generic 11000 check as we are handling specific email duplication logic above.
+    // Handle specific MongoDB duplicate key errors if you have other unique indexes
+    if (error.code === 11000) {
+      // Example: If orderId + paymentGateway should be unique for pending orders
+      return res
+        .status(409)
+        .json({
+          message:
+            "A registration with this order ID might already exist or another unique constraint was violated.",
+        });
+    }
     res
       .status(500)
       .json({
@@ -199,7 +136,7 @@ router.post("/create-razorpay-order", async (req, res) => {
   }
 });
 
-// ROUTE 2: Verify Razorpay Payment Signature
+// ROUTE 2: Verify Razorpay Payment Signature (remains largely the same, ensures it finds the correct pending order)
 router.post("/verify-razorpay-payment", async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
@@ -222,21 +159,52 @@ router.post("/verify-razorpay-payment", async (req, res) => {
 
     const updateFields = {
       paymentId: razorpay_payment_id,
-      paymentSignature: razorpay_signature, // Store signature
+      paymentSignature: razorpay_signature,
     };
+
+    // Find the specific pending registration to update
+    // It's important that orderId is unique for pending transactions for a gateway
+    const registrationToUpdate = await Registration.findOne({
+      orderId: razorpay_order_id,
+      paymentGateway: "razorpay",
+      paymentStatus: "pending", // Ensure we are updating a pending one
+    });
+
+    if (!registrationToUpdate) {
+      console.log(
+        `No pending registration found for Razorpay orderId: ${razorpay_order_id} to verify.`
+      );
+      // This could happen if the payment is verified twice, or if the initial record wasn't saved.
+      // Or if a successful/failed payment is being re-verified. Check existing status.
+      const existingRegistration = await Registration.findOne({
+        orderId: razorpay_order_id,
+        paymentGateway: "razorpay",
+      });
+      if (
+        existingRegistration &&
+        existingRegistration.paymentStatus === "successful"
+      ) {
+        return res
+          .status(200)
+          .json({ message: "Payment already verified successfully." });
+      }
+      return res
+        .status(404)
+        .json({ message: "No matching pending registration found to verify." });
+    }
 
     if (isAuthentic) {
       updateFields.paymentStatus = "successful";
-      await Registration.findOneAndUpdate(
-        { orderId: razorpay_order_id, paymentGateway: "razorpay" },
+      await Registration.findByIdAndUpdate(
+        registrationToUpdate._id,
         updateFields,
         { new: true }
       );
       res.status(200).json({ message: "Payment verified successfully." });
     } else {
       updateFields.paymentStatus = "failed";
-      await Registration.findOneAndUpdate(
-        { orderId: razorpay_order_id, paymentGateway: "razorpay" },
+      await Registration.findByIdAndUpdate(
+        registrationToUpdate._id,
         updateFields,
         { new: true }
       );
@@ -255,8 +223,8 @@ router.post("/verify-razorpay-payment", async (req, res) => {
 // ROUTE 3: Create PayU Order Details (Generate Hash)
 router.post("/create-payu-order", async (req, res) => {
   try {
-    const registrationData = req.body; // { fullName, email, mobileNumber, amount (string "500.00"), productinfo ... }
-    const amount = parseFloat(registrationData.amount || "500.00").toFixed(2); // Ensure it's string with 2 decimals
+    const registrationData = req.body;
+    const amount = parseFloat(registrationData.amount || "500.00").toFixed(2);
     const productinfo =
       registrationData.productinfo || "Online Course Registration (PayU)";
     const firstname = registrationData.fullName
@@ -265,42 +233,20 @@ router.post("/create-payu-order", async (req, res) => {
     const email = registrationData.email;
     const phone = registrationData.mobileNumber;
 
-    const txnid = uuidv4(); // Generate a unique transaction ID
+    const txnid = uuidv4();
 
-    // Check if already registered with this email
-    const existingRegistration = await Registration.findOne({
-      email: registrationData.email,
-      // paymentGateway: "payu",
-      // paymentStatus: "successful"
+    // MODIFICATION: Always create a new registration document
+    const newRegistration = new Registration({
+      ...registrationData,
+      orderId: txnid, // Using txnid as orderId for PayU
+      paymentGateway: "payu",
+      amount: parseFloat(amount),
+      paymentStatus: "pending",
+      productinfo: productinfo,
+      firstname: firstname,
+      phone: phone,
     });
-    if (
-      existingRegistration &&
-      existingRegistration.paymentStatus === "successful"
-    ) {
-      return res
-        .status(409)
-        .json({ message: "This email is already successfully registered." });
-    }
-
-    // Save initial registration attempt for PayU
-    await Registration.findOneAndUpdate(
-      {
-        email: registrationData.email,
-        paymentStatus: { $ne: "successful" },
-        paymentGateway: "payu",
-      },
-      {
-        ...registrationData, // This should include all form fields
-        orderId: txnid, // Using txnid as orderId for PayU
-        paymentGateway: "payu",
-        amount: parseFloat(amount),
-        paymentStatus: "pending", // Initial status
-        productinfo: productinfo,
-        firstname: firstname,
-        phone: phone,
-      },
-      { upsert: true, new: true, setDefaultsOnInsert: true }
-    );
+    await newRegistration.save(); // Save the new document
 
     const payUParams = {
       key: PAYU_KEY,
@@ -309,11 +255,10 @@ router.post("/create-payu-order", async (req, res) => {
       productinfo: productinfo,
       firstname: firstname,
       email: email,
-      phone: phone, // Make sure this is included if used in hash
-      surl: process.env.PAYU_SURL, // From .env
-      furl: process.env.PAYU_FURL, // From .env
-      // You can add udf1 to udf5 if needed, remember to include them in hash calculation
-      udf1: "", // Example User Defined Field
+      phone: phone,
+      surl: process.env.PAYU_SURL,
+      furl: process.env.PAYU_FURL,
+      udf1: "",
       udf2: "",
       udf3: "",
       udf4: "",
@@ -327,12 +272,18 @@ router.post("/create-payu-order", async (req, res) => {
       amount: amount.toString(),
       productinfo: productinfo,
       hash: hash,
-      // key: PAYU_KEY, // Frontend already has this from env
-      // surl: process.env.PAYU_SURL, // Frontend has this
-      // furl: process.env.PAYU_FURL, // Frontend has this
     });
   } catch (error) {
     console.error("Error creating PayU order details:", error);
+    // Handle specific MongoDB duplicate key errors if you have other unique indexes
+    if (error.code === 11000) {
+      return res
+        .status(409)
+        .json({
+          message:
+            "A registration with this transaction ID might already exist or another unique constraint was violated.",
+        });
+    }
     res
       .status(500)
       .json({
@@ -342,50 +293,70 @@ router.post("/create-payu-order", async (req, res) => {
   }
 });
 
-// ROUTE 4: PayU Success Callback (surl)
-// IMPORTANT: PayU will POST data to this URL.
+// ROUTE 4: PayU Success Callback (surl) (Ensure it finds the correct pending order)
 router.post("/payu-success", async (req, res) => {
   try {
-    const payuResponse = req.body; // This contains all parameters POSTed by PayU
-    // Parameters include: status, txnid, amount, productinfo, firstname, email, hash, payuMoneyId, etc.
-
+    const payuResponse = req.body;
     console.log("PayU Success Callback Received:", payuResponse);
 
-    const key = PAYU_KEY; // Use your merchant key
-    const salt = PAYU_SALT; // Use your merchant salt
+    const key = PAYU_KEY;
+    const salt = PAYU_SALT;
 
-    // Verify the hash returned by PayU
-    // The hash string should be constructed using: salt|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key
-    const paramsForHash = { ...payuResponse, key: key }; // Add key to params if not already there from response for verification
+    const paramsForHash = { ...payuResponse, key: key };
     const calculatedHash = verifyPayUHash(paramsForHash, salt);
 
     let redirectUrl = `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&error=verification_failed`;
 
+    // Find the specific pending registration to update
+    const registrationToUpdate = await Registration.findOne({
+      orderId: payuResponse.txnid, // txnid is stored as orderId for PayU
+      paymentGateway: "payu",
+      paymentStatus: "pending",
+    });
+
+    if (!registrationToUpdate) {
+      console.log(
+        `No pending registration found for PayU txnid: ${payuResponse.txnid} to verify.`
+      );
+      const existingRegistration = await Registration.findOne({
+        orderId: payuResponse.txnid,
+        paymentGateway: "payu",
+      });
+      if (
+        existingRegistration &&
+        existingRegistration.paymentStatus === "successful"
+      ) {
+        return res.redirect(
+          `${process.env.FRONTEND_URL}/payment-success?txnid=${payuResponse.txnid}&paymentId=${existingRegistration.paymentId}&status=already_verified`
+        );
+      }
+      return res.redirect(
+        `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&error=no_pending_registration_found`
+      );
+    }
+
     if (calculatedHash === payuResponse.hash) {
       if (payuResponse.status === "success") {
-        // Payment successful and hash verified
-        await Registration.findOneAndUpdate(
-          { orderId: payuResponse.txnid, paymentGateway: "payu" },
+        await Registration.findByIdAndUpdate(
+          registrationToUpdate._id,
           {
             paymentStatus: "successful",
-            paymentId: payuResponse.payuMoneyId, // PayU's payment ID
-            mode: payuResponse.mode, // Payment mode (e.g., CC, NB, UPI)
+            paymentId: payuResponse.payuMoneyId,
+            mode: payuResponse.mode,
             bankcode: payuResponse.bankcode,
             pg_TYPE: payuResponse.PG_TYPE,
             bank_ref_num: payuResponse.bank_ref_num,
-            // Store other relevant details from payuResponse as needed
-            rawResponse: JSON.stringify(payuResponse), // Storing raw response can be useful for debugging
+            rawResponse: JSON.stringify(payuResponse),
           },
           { new: true }
         );
         console.log(`Payment successful for txnid: ${payuResponse.txnid}`);
         redirectUrl = `${process.env.FRONTEND_URL}/payment-success?txnid=${payuResponse.txnid}&paymentId=${payuResponse.payuMoneyId}`;
       } else {
-        // Payment status is not 'success' (e.g., 'pending' or 'failure' directly from PayU)
-        await Registration.findOneAndUpdate(
-          { orderId: payuResponse.txnid, paymentGateway: "payu" },
+        await Registration.findByIdAndUpdate(
+          registrationToUpdate._id,
           {
-            paymentStatus: payuResponse.status || "failed", // Use status from PayU
+            paymentStatus: payuResponse.status || "failed",
             paymentId: payuResponse.payuMoneyId,
             rawResponse: JSON.stringify(payuResponse),
           },
@@ -397,22 +368,20 @@ router.post("/payu-success", async (req, res) => {
         redirectUrl = `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&status=${payuResponse.status}`;
       }
     } else {
-      // Hash mismatch - potential tampering
       console.error("PayU Hash Mismatch for txnid:", payuResponse.txnid);
-      // Optionally update status to reflect hash mismatch
-      await Registration.findOneAndUpdate(
-        { orderId: payuResponse.txnid, paymentGateway: "payu" },
+      await Registration.findByIdAndUpdate(
+        registrationToUpdate._id,
         {
-          paymentStatus: "tampered", // Or another status indicating hash mismatch
+          paymentStatus: "tampered",
           rawResponse: JSON.stringify(payuResponse),
         },
         { new: true }
       );
+      redirectUrl = `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&error=hash_mismatch`;
     }
     res.redirect(redirectUrl);
   } catch (error) {
     console.error("Error in PayU success callback:", error);
-    // Generic failure redirect if something goes very wrong
     const txnid = req.body.txnid || "unknown";
     res.redirect(
       `${process.env.FRONTEND_URL}/payment-failure?txnid=${txnid}&error=server_error`
@@ -420,8 +389,7 @@ router.post("/payu-success", async (req, res) => {
   }
 });
 
-// ROUTE 5: PayU Failure Callback (furl)
-// IMPORTANT: PayU will POST data to this URL.
+// ROUTE 5: PayU Failure Callback (furl) (Ensure it finds the correct pending order)
 router.post("/payu-failure", async (req, res) => {
   try {
     const payuResponse = req.body;
@@ -435,13 +403,40 @@ router.post("/payu-failure", async (req, res) => {
 
     let redirectUrl = `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&error=unknown_failure`;
 
+    const registrationToUpdate = await Registration.findOne({
+      orderId: payuResponse.txnid,
+      paymentGateway: "payu",
+      paymentStatus: "pending", // Or handle if it's already failed/tampered
+    });
+
+    if (!registrationToUpdate) {
+      console.log(
+        `No pending registration found for PayU txnid: ${payuResponse.txnid} on failure callback.`
+      );
+      const existingRegistration = await Registration.findOne({
+        orderId: payuResponse.txnid,
+        paymentGateway: "payu",
+      });
+      if (
+        existingRegistration &&
+        (existingRegistration.paymentStatus === "failed" ||
+          existingRegistration.paymentStatus === "tampered_failure")
+      ) {
+        return res.redirect(
+          `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&status=${existingRegistration.paymentStatus}&info=already_processed_as_failure`
+        );
+      }
+      return res.redirect(
+        `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&error=no_matching_registration_on_failure`
+      );
+    }
+
     if (calculatedHash === payuResponse.hash) {
-      // Hash is fine, payment genuinely failed or was cancelled by user
-      await Registration.findOneAndUpdate(
-        { orderId: payuResponse.txnid, paymentGateway: "payu" },
+      await Registration.findByIdAndUpdate(
+        registrationToUpdate._id,
         {
-          paymentStatus: payuResponse.status || "failed", // Use status from PayU, typically 'failure'
-          paymentId: payuResponse.payuMoneyId, // May or may not be present
+          paymentStatus: payuResponse.status || "failed",
+          paymentId: payuResponse.payuMoneyId,
           rawResponse: JSON.stringify(payuResponse),
         },
         { new: true }
@@ -451,15 +446,14 @@ router.post("/payu-failure", async (req, res) => {
       );
       redirectUrl = `${process.env.FRONTEND_URL}/payment-failure?txnid=${payuResponse.txnid}&status=${payuResponse.status}`;
     } else {
-      // Hash mismatch on failure - less critical but good to log
       console.error(
         "PayU Hash Mismatch on failure for txnid:",
         payuResponse.txnid
       );
-      await Registration.findOneAndUpdate(
-        { orderId: payuResponse.txnid, paymentGateway: "payu" },
+      await Registration.findByIdAndUpdate(
+        registrationToUpdate._id,
         {
-          paymentStatus: "tampered_failure", // Or another status
+          paymentStatus: "tampered_failure",
           rawResponse: JSON.stringify(payuResponse),
         },
         { new: true }
