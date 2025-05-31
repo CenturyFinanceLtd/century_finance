@@ -21,7 +21,7 @@ const Crypto = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Crypto"} pagesub={"Crypto"} />
+      <PageTitle pageTitle={"Foreign Market"} pagesub={"Foreign Market"} />
       <Footer />
       <Scrollbar />
     </Fragment>
