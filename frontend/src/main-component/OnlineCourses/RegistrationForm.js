@@ -242,6 +242,8 @@ const RegistrationForm = () => {
         // service_provider: 'payu_paisa', // Usually not needed if you have only one PG type with PayU
       };
 
+      console.log("Parameters being sent to PayU:", params); // Add this line
+
       for (const key in params) {
         if (params[key]) {
           // Add only if value exists
