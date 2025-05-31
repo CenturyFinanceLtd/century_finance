@@ -185,7 +185,7 @@ const Header = (props) => {
                         </li>
                         <li>
                           <Link onClick={ClickHandler} to="/crypto">
-                            Crypto
+                            Foreign Market
                           </Link>
                         </li>
                         <li>
