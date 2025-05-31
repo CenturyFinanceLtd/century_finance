@@ -190,7 +190,7 @@ const Header = (props) => {
                         </li>
                         <li>
                           <Link onClick={ClickHandler} to="/gold">
-                            Gold
+                            Gold Petal
                           </Link>
                         </li>
                         <li>
