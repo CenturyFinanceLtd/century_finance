@@ -259,7 +259,7 @@ const PortfolioContent = () => {
       href="https://www.centuryfinancelimited.com/portfolio-trial"
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-red-600 hover:bg-red-700 text-red  font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 text-lg rounded"
+      className="bg-red-600 hover:bg-red-700 text-red  font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 text-lg "
     >
        Start ₹2000 Trial Now
     </a>
