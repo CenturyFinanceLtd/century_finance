@@ -42,7 +42,7 @@ import EditProfilePage from "../EditProfilePage";
 import Equity from "../EquityMarket/Equity";
 import Commodities from "../Commodities/Commodities";
 import Crypto from "../Crypto/Crypto";
-import Gold from "../Gold/Gold";
+
 import Currencies from "../Currencies/Currencies";
 import VerifyResetOtp from "../ForgotPassword/VerifyResetOtp";
 import ResetPasswordPage from "../ForgotPassword/ResetPasswordPage";
@@ -107,7 +107,6 @@ const AllRoute = () => {
           <Route path="/equity" element={<Equity />} />
           <Route path="/commodities" element={<Commodities />} />
           <Route path="/crypto" element={<Crypto />} />
-          <Route path="/gold" element={<Gold />} />
           <Route path="/currencies" element={<Currencies />} />
           <Route path="/verify-reset-otp" element={<VerifyResetOtp />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
