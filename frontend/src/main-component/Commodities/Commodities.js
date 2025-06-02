@@ -96,11 +96,11 @@ const Commodities = () => {
                         </div>
 
                         <ul className="list-disc pl-6 space-y-3 text-gray-800 text-sm max-w-2xl mx-auto mb-8">
-                          <li><strong>🌍 Global Store of Value:</strong> Gold is universally accepted and trusted—immune to local economic instability.</li>
-                          <li><strong>💸 Inflation Hedge:</strong> Gold retains purchasing power even as fiat currency weakens.</li>
-                          <li><strong>📉 Market Crash Protection:</strong> Often performs well when stock markets decline—great for diversification.</li>
-                          <li><strong>💰 Portfolio Balancer:</strong> Non-correlated to equities, offering stability in high-volatility times.</li>
-                          <li><strong>🪙 Easy to Liquidate:</strong> Gold ETFs and sovereign gold bonds offer exit flexibility without heavy loss.</li>
+                          <li><strong> Global Store of Value:</strong> Gold is universally accepted and trusted—immune to local economic instability.</li>
+                          <li><strong> Inflation Hedge:</strong> Gold retains purchasing power even as fiat currency weakens.</li>
+                          <li><strong> Market Crash Protection:</strong> Often performs well when stock markets decline—great for diversification.</li>
+                          <li><strong> Portfolio Balancer:</strong> Non-correlated to equities, offering stability in high-volatility times.</li>
+                          <li><strong>Easy to Liquidate:</strong> Gold ETFs and sovereign gold bonds offer exit flexibility without heavy loss.</li>
                         </ul>
 
                         <div className="bg-gray-50 border-l-4 border-red-400 p-6 rounded-xl shadow-inner mb-8">

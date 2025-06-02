@@ -255,14 +255,17 @@ const PortfolioContent = () => {
 
   {/* CTA Button */}
   <div className="text-center mt-6">
-    <a
-      href="https://www.centuryfinancelimited.com/portfolio-trial"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="bg-red-600 hover:bg-red-700 text-red  font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 text-lg "
-    >
-       Start ₹2000 Trial Now
-    </a>
+   <div className="bg-white border-4 border-red-500 rounded-2xl shadow-xl p-8 max-w-xl mx-auto my-8 text-center">
+  <a
+    href="https://www.centuryfinancelimited.com/portfolio-trial"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-red-400 hover:bg-red-700 text-black font-bold py-3 px-10 rounded-full shadow-md text-lg transition-all duration-300 inline-block"
+  >
+     Start ₹2000 Trial Now
+  </a>
+</div>
+
   </div>
 </div>
 
