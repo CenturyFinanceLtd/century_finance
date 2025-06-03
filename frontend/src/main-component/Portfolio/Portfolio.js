@@ -230,42 +230,32 @@ const PortfolioContent = () => {
           <strong>Your Money. Your Control. Our Expertise.</strong><br />
           We specialize in professionally-managed, transparent, and growth-focused portfolio handling for all investors.
         </p>
-        <div className="bg-gradient-to-r from-yellow-50 via-white to-yellow-50 text-gray-800 p-8 rounded-2xl shadow-2xl border-2 border-yellow-400 mb-12 max-w-5xl mx-auto animate-fade-in relative">
-  
+        <div className="bg-white border-4 border-yellow-400 rounded-3xl shadow-2xl px-6 py-10 md:px-10 md:py-14 max-w-6xl mx-auto my-12 transition-all duration-300 hover:scale-[1.01]">
+
   {/* Heading */}
-  <div className="flex flex-col items-center text-center">
-    
-    <p className="max-w-2xl text-base text-gray-700 leading-relaxed mb-4">
-      At <span className="font-semibold text-gray-900">Century Finance Limited</span>, we believe in *trust before transaction*. Try a fully managed investment experience before opening your Demat account.
+  <div className="text-center mb-6">
+    <p className="text-base text-gray-700 leading-relaxed max-w-2xl mx-auto">
+      At <span className="font-semibold text-gray-900">Century Finance Limited</span>, we believe in <em>trust before transaction</em>. Try a fully managed investment experience before opening your Demat account.
     </p>
   </div>
 
-  {/* Details */}
-  <ul className="list-disc pl-5 space-y-2 text-sm text-gray-800 max-w-xl mx-auto">
-    <li>
-      💼 <strong>Fully Managed Demo Portfolio:</strong> Try our professional handling for just ₹2000, valid for 15 days.
-    </li>
-    <li>
-      🔍 <strong>Transparency First:</strong> No commitment required—move to full service only if satisfied.
-    </li>
-    <li>
-      ✅ <strong>Clarity Guaranteed:</strong> We help you understand how real investment management works—without risk.
-    </li>
+  {/* Key Details */}
+  <ul className="list-disc pl-6 space-y-3 text-sm text-gray-800 max-w-xl mx-auto mb-8">
+    <li>💼 <strong>Fully Managed Demo Portfolio:</strong> Try our professional handling for just ₹2000, valid for 15 days.</li>
+    <li>🔍 <strong>Transparency First:</strong> No commitment required—move to full service only if satisfied.</li>
+    <li>✅ <strong>Clarity Guaranteed:</strong> We help you understand how real investment management works—without risk.</li>
   </ul>
 
-  {/* CTA Button */}
-  <div className="text-center mt-6">
-   <div className="bg-white border-4 border-red-500 rounded-2xl shadow-xl p-8 max-w-xl mx-auto my-8 text-center">
-  <a
-    href="https://www.centuryfinancelimited.com/portfolio-trial"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="bg-red-400 hover:bg-red-700 text-black font-bold py-3 px-10 rounded-full shadow-md text-lg transition-all duration-300 inline-block"
-  >
-     Start ₹2000 Trial Now
-  </a>
-</div>
-
+  {/* CTA Button in Red Box */}
+  <div className="bg-gradient-to-br from-red-100 via-white to-red-50 border-2 border-red-500 rounded-2xl shadow-lg p-6 max-w-xl mx-auto text-center">
+    <a
+      href="https://www.centuryfinancelimited.com/portfolio-trial"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-red-600 hover:bg-red-700 text-black font-bold py-3 px-10 rounded-full shadow-md text-lg transition-all duration-300 inline-block"
+    >
+      🎯 Start ₹2000 Trial Now
+    </a>
   </div>
 </div>
 
