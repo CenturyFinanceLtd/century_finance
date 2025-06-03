@@ -246,18 +246,18 @@ const PortfolioContent = () => {
     <li>✅ <strong>Clarity Guaranteed:</strong> We help you understand how real investment management works—without risk.</li>
   </ul>
 
-  {/* CTA Button in Red Box */}
-  <div className="bg-gradient-to-br from-red-100 via-white to-red-50 border-2 border-red-500 rounded-2xl shadow-lg p-6 max-w-xl mx-auto text-center">
-    <a
-      href="https://www.centuryfinancelimited.com/portfolio-trial"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="bg-red-600 hover:bg-red-700 text-black font-bold py-3 px-10 rounded-full shadow-md text-lg transition-all duration-300 inline-block"
-    >
-      🎯 Start ₹2000 Trial Now
-    </a>
-  </div>
+  
 </div>
+<div className="text-center mb-12">
+        <a
+          href="https://www.centuryfinancelimited.com/register"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-blue-600 hover:bg-blue-700 text-black font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ease-in-out"
+        >
+          📝 Register Now
+        </a>
+      </div>
 
 
         {/* Tabs */}
