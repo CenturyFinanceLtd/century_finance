@@ -38,6 +38,30 @@ const currenciesData = [
     description:
       <i> "Currency Name: Swiss Franc, Symbol: CHF or Fr. / SFr, Code: CHF, Subunit: 1 Franc = 100 Rappen (German) / Centimes (French) / Centesimi (Italian), Coins: 5¢, 10¢, 20¢, 50¢, 1 Fr, 2 Fr, 5 Fr, Banknotes: 10, 20, 50, 100, 200, 1000 CHF, Issued by: Swiss National Bank (SNB).", </i>
   },
+   {
+    name: "🇮🇳 Indian Rupee",
+    symbol: "₹",
+    description:
+      <i> "The Indian currency system is managed by the Reserve Bank of India (RBI),. / Notes	₹2 to ₹2,000	Most active; ₹2,000 phased /Coins	₹1 to ₹10	Active and in use, Withdrawn	₹500, ₹1,000,  Banknotes: 10, 20, 50, 100, 200, 2000, Digital	Digital Rupee (e₹)	Pilot phase in progress", </i>
+  },
+   {
+    name: "United Arab Emirates  (AED)",
+    symbol: " د.إ",
+    description:
+      <i> "Currency Code (ISO): AED., /Common Symbol: د.إ or Dh / Centimes,Subunit: 1 Dirham = 100 Fils,25 Fils	1/4 Dirham,50 Fils	1/2 Dirham	Widely used,1 Dirham	1 Dirham	Most common coin ,Issued by: Central Bank of the UAE.", </i>
+  },
+   {
+    name: " Kuwaiti Dinar (KWD)",
+    symbol: "د.ك or KD",
+    description:
+      <i> "Currency Code (ISO): KWD, Symbol: Symbol: د.ك or KD./Subunit: 1 Dinar = 1,000 Fils, 5 Fils	0.005 KWD	Rare, low value /10 Fils	0.01 KWD	Rare, low value, 25 Fils	0.025 KWD	Rare, low value, , 50 Fils	0.05 KWD	Rare, low value. Central Bank: Central Bank of Kuwait (established in 1969)", </i>
+  },
+   {
+    name: "Saudi Arabia’s  (SAR)",
+    symbol: "	ر.س Arabic ",
+    description:
+      <i> "Currency Name: Currency Name	Saudi Riyal. / SFr,Currency Code (ISO)	SAR /Symbol	ر.س (Arabic) or SR,Subunit	1 Riyal = 100 Halalas, Fixed Peg	1 USD = 3.75 SAR, Issued by:Saudi Central Bank (SAMA).", </i>
+  },
 ];
 
 const Currencies = () => {
