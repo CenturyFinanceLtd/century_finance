@@ -53,6 +53,12 @@ const tabData = [
         <p>
           <b>Pairs:</b>Major (EUR/USD, USD/JPY), Minor, Exotic.
         </p>
+        <p>
+          <b>Participants Influencing Market-:</b>Banks (e.g., Citi, JPMorgan) , major liquidity providers Central banks , affect liquidity during interventions Hedge funds / proprietary traders , can cause sudden demand/supply shifts Corporates , large transactions for trade/hedging Retail traders,small,scale influence, but volume adds up via brokers
+        </p>
+        <p>
+          <b>Factors Affecting FX Market-:</b> Time of day-Highest during London/NY overlap. Currency pair-:Majors (EUR/USD) have more depth Economic news releases-:Can thin out the book temporarily
+        </p>
       </>
     ),
   },
@@ -68,6 +74,26 @@ const tabData = [
           <li>London Stock Exchange,.</li>
           <li>Hong Kong Stock Exchange..</li>
         </ul>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Market Trends & Influencing Factors.
+        </h4>
+        <h5 className="mt-4 fw-semibold">Trade Tensions: U.S. President Donald Trump's recent tariff announcements have led to significant:</h5>
+        <ul>
+          <li>market volatility. The delay of a 50% tariff on the European Union provided temporary relief, but uncertainty remains high</li>
+          <li>Asian Markets: Asian indices showed resilience, with Japan's Nikkei 225 and Hong Kong's Hang Seng leading gains, while Australia's S&P/ASX 200 faced declines.</li>
+          <li>European Markets: European indices like the DAX and FTSE 100 are showing positive movement, reflecting investor optimism despite global challenges.</li>
+        </ul>
+        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Global Stock Market Overview.
+        </h4>
+        <h5 className="mt-4 fw-semibold"></h5>
+        <ul>
+          <li>🇺🇸 United States-: S&P 500 (SPY): Currently at $592.71, up 0.55%
+            Dow Jones Industrial Average (DIA): Currently at $423.71, up 0.21%
+            Nasdaq 100 (QQQ): Currently at $523.21, up 0.79%</li>
+          <li>🇩🇪 Germany-:DAX: Currently at 23,344.54, up 1.12%.</li>
+          <li>🇬🇧 United Kingdom-:FTSE 100: Currently at 8,596.35, up 1.17%.</li>
+          <li>🇯🇵 Japan-: Nikkei 225: Currently at 37,503.33, up 1.56%.</li>
+          <li>🇮🇳 India-:Nifty 50: Currently at 24,461.15, up 0.47% .</li>
+        </ul>
       </>
     ),
   },
@@ -77,6 +103,12 @@ const tabData = [
       <>
         <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Includes sovereign bonds, foreign corporate bonds, and Eurobonds (issued in a currency not native to the issuer's country)..</h4>
         <p>Important for debt financing in international trade....</p>
+         <h4 className="fw-bold mb-3" style={{ color: "#222" }}>What are Global Bond Markets?</h4>
+        <p>Global bond markets are financial markets where debt securities (bonds) issued by governments, corporations, and other entities from around the world are bought and sold. These markets provide a platform for raising capital, investment opportunities, and risk management.</p>
+         <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Trends and Issues</h4>
+        <p>Low Interest Rate Environment: Many developed markets have experienced historically low yields, Quantitative Easing: Central banks’ bond-buying programs affect prices and yields,Globalization: Cross-border investment in bonds has increased.
+
+.</p>
       </>
 
     ),
@@ -101,6 +133,18 @@ const tabData = [
         <p>Purpose: Hedging against currency, interest rate, or price risks....</p>
         <p>Popular platforms: CME Group, Euronext, and Eurex
           ....</p>
+           <h4 className="fw-bold mb-3" style={{ color: "#222" }}> What Are Derivatives?.
+          ...</h4>
+        <p>Stocks, Bonds, Commodities (e.g., oil, gold),Currencies.</p>
+        <p>Interest rates, Indexes.</p>
+        <p>Derivatives are contracts that derive their value from an underlying asset such as
+          ....</p>
+           <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Uses of Derivatives.
+          ...</h4>
+        <p>Hedging: Protecting against price fluctuations (e.g., airlines hedging fuel costs).</p>
+        <p>Speculation: Profiting from price movements.</p>
+        <p>Arbitrage: Exploiting price differences across markets
+          ....</p>
       </>
 
     ),
@@ -115,8 +159,8 @@ const tabData = [
         <p>U.S.: SEC, CFTC</p>
         <p>U.K.: FCA
         </p>
-         <p>EU: ESMA</p>
-          <p>India: SEBI, RBI (for foreign currency control)</p>
+        <p>EU: ESMA</p>
+        <p>India: SEBI, RBI (for foreign currency control)</p>
       </>
 
     ),
