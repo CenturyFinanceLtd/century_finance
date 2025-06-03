@@ -81,16 +81,16 @@ const tabData = [
 
     ),
   },
-  {
-    name: "Commodity Markets",
-    content: (
-      <>
-        <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Traded globally: crude oil, gold, agricultural goods...</h4>
-        <p>Exchanges like NYMEX, LME, and ICE are key players....</p>
-      </>
+  // {
+  //   name: "Commodity Markets",
+  //   content: (
+  //     <>
+  //       <h4 className="fw-bold mb-3" style={{ color: "#222" }}>Traded globally: crude oil, gold, agricultural goods...</h4>
+  //       <p>Exchanges like NYMEX, LME, and ICE are key players....</p>
+  //     </>
 
-    ),
-  },
+  //   ),
+  // },
   {
     name: " Derivatives Markets",
     content: (
