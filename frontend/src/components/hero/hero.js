@@ -10,13 +10,19 @@ import desktopBanner2 from "../../images/d1 (2).png";
 import desktopBanner3 from "../../images/d1 (3).png";
 import desktopBanner4 from "../../images/d1 (4).png"; 
 import desktopBanner5 from "../../images/d1 (5).png";
-import desktopBanner6 from "../../images/d1 (6).png"; 
+import desktopBanner6 from "../../images/d1 (6).png";
+import desktopBanner7 from "../../images/d1 (7).png"; 
+import desktopBanner8 from "../../images/d1 (8).png"; 
+import desktopBanner9 from "../../images/d1 (9).png"; 
 import mobileBanner1 from "../../images/m1 (1).png"; 
 import mobileBanner2 from "../../images/m1 (2).png"; 
 import mobileBanner3 from "../../images/m1 (3).png";
 import mobileBanner4 from "../../images/m1 (4).png"; 
 import mobileBanner5 from "../../images/m1 (5).png";
-import mobileBanner6 from "../../images/m1 (6).png"; 
+import mobileBanner6 from "../../images/m1 (6).png";
+import mobileBanner7 from "../../images/m1 (7).png"; 
+import mobileBanner8 from "../../images/m1 (8).png"; 
+import mobileBanner9 from "../../images/m1 (9).png";  
 
 // Define the main banners array.
 const allBanners = [
@@ -63,6 +69,27 @@ const allBanners = [
     link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
   {
+    id: "desktop-slide-4",
+    type: "desktop",
+    imageUrl: desktopBanner7,
+    altText: "Desktop Banner 4",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
+  },
+  {
+    id: "desktop-slide-5",
+    type: "desktop",
+    imageUrl: desktopBanner8,
+    altText: "Desktop Banner 5",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header", // Replace with actual link
+  },
+  {
+    id: "desktop-slide-6",
+    type: "desktop",
+    imageUrl: desktopBanner9,
+    altText: "Desktop Banner 6",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
+  },
+  {
     id: "mobile-slide-1",
     type: "mobile",
     imageUrl: mobileBanner1,
@@ -104,7 +131,27 @@ const allBanners = [
     altText: "Mobile Banner 6",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
   },
-
+  {
+    id: "mobile-slide-6",
+    type: "mobile",
+    imageUrl: mobileBanner7,
+    altText: "Mobile Banner 6",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
+  },
+  {
+    id: "mobile-slide-6",
+    type: "mobile",
+    imageUrl: mobileBanner8,
+    altText: "Mobile Banner 6",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
+  },
+  {
+    id: "mobile-slide-6",
+    type: "mobile",
+    imageUrl: mobileBanner9,
+    altText: "Mobile Banner 6",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSe0W0Pj4uAVfQLDJqiR9QPdJMlqVYwWSyFpSWEWlh3mVGIPGA/viewform?usp=header",
+  },
 ];
 
 // Filter banners for desktop and mobile views

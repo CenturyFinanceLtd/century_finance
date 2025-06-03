@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
+import "./Portfolio.css"
 
 const plans = [
   {
@@ -227,38 +228,45 @@ const PortfolioContent = () => {
           Century Finance Limited — Comprehensive Portfolio Management Solutions
         </h2>
         <p style={subtitle}>
-          <strong>Your Money. Your Control. Our Expertise.</strong><br />
-          We specialize in professionally-managed, transparent, and growth-focused portfolio handling for all investors.
+          <strong>Your Money. Your Control. Our Expertise.</strong>
+          <br />
+          We specialize in professionally-managed, transparent, and
+          growth-focused portfolio handling for all investors.
         </p>
         <div className="bg-white border-4 border-yellow-400 rounded-3xl shadow-2xl px-6 py-10 md:px-10 md:py-14 max-w-6xl mx-auto my-12 transition-all duration-300 hover:scale-[1.01]">
+          {/* Heading */}
+          <div className="text-center mb-6">
+            <p className="text-base text-gray-700 leading-relaxed max-w-2xl mx-auto">
+              At{" "}
+              <span className="font-semibold text-gray-900">
+                Century Finance Limited
+              </span>
+              , we believe in <em>trust before transaction</em>. Try a fully
+              managed investment experience before opening your Demat account.
+            </p>
+          </div>
 
-  {/* Heading */}
-  <div className="text-center mb-6">
-    <p className="text-base text-gray-700 leading-relaxed max-w-2xl mx-auto">
-      At <span className="font-semibold text-gray-900">Century Finance Limited</span>, we believe in <em>trust before transaction</em>. Try a fully managed investment experience before opening your Demat account.
-    </p>
-  </div>
-
-  {/* Key Details */}
-  <ul className="list-disc pl-6 space-y-3 text-sm text-gray-800 max-w-xl mx-auto mb-8">
-    <li>💼 <strong>Fully Managed Demo Portfolio:</strong> Try our professional handling for just ₹2000, valid for 15 days.</li>
-    <li>🔍 <strong>Transparency First:</strong> No commitment required—move to full service only if satisfied.</li>
-    <li>✅ <strong>Clarity Guaranteed:</strong> We help you understand how real investment management works—without risk.</li>
-  </ul>
-
-  
-</div>
-<div className="text-center mb-12">
-        <a
-          href="https://www.centuryfinancelimited.com/register"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-blue-600 hover:bg-blue-700 text-black font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ease-in-out"
-        >
-          📝 Register Now
-        </a>
-      </div>
-
+          {/* Key Details */}
+          <ul className="list-disc pl-6 space-y-3 text-sm text-gray-800 max-w-xl mx-auto mb-8">
+            <li>
+              💼 <strong>Fully Managed Demo Portfolio:</strong> Try our
+              professional handling for just ₹2000, valid for 15 days.
+            </li>
+            <li>
+              🔍 <strong>Transparency First:</strong> No commitment
+              required—move to full service only if satisfied.
+            </li>
+            <li>
+              ✅ <strong>Clarity Guaranteed:</strong> We help you understand how
+              real investment management works—without risk.
+            </li>
+          </ul>
+        </div>
+        <div className="text-center mb-12" style={{padding:"15px 0px"}}>
+          <a href="" className="book-now-btn">
+            Book Now
+          </a>
+        </div>
 
         {/* Tabs */}
         <div
@@ -267,8 +275,7 @@ const PortfolioContent = () => {
             justifyContent: "center",
             marginBottom: "35px",
             borderBottom: "2px solid #e1e1e1",
-          }}
-        >
+          }}>
           {plans.map((plan) => (
             <button
               key={plan.id}
@@ -278,7 +285,10 @@ const PortfolioContent = () => {
                 padding: "15px 35px",
                 margin: "0 12px",
                 border: "none",
-                borderBottom: activePlan === plan.id ? "4px solid #007bff" : "4px solid transparent",
+                borderBottom:
+                  activePlan === plan.id
+                    ? "4px solid #007bff"
+                    : "4px solid transparent",
                 backgroundColor: "transparent",
                 fontWeight: activePlan === plan.id ? "700" : "500",
                 fontSize: "18px",
@@ -286,8 +296,7 @@ const PortfolioContent = () => {
                 transition: "all 0.3s ease",
                 outline: "none",
                 borderRadius: "0 0 8px 8px",
-              }}
-            >
+              }}>
               {plan.title}
             </button>
           ))}
@@ -304,18 +313,32 @@ const PortfolioContent = () => {
             boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
             fontSize: "16px",
             color: "#1f2937",
-          }}
-        >
+          }}>
           {plans.map(
             (plan) =>
               activePlan === plan.id && (
                 <div key={plan.id}>
-                  <h3 style={{ color: "#004085", marginBottom: "15px", fontWeight: "700", fontSize: "1.9rem" }}>{plan.title}</h3>
+                  <h3
+                    style={{
+                      color: "#004085",
+                      marginBottom: "15px",
+                      fontWeight: "700",
+                      fontSize: "1.9rem",
+                    }}>
+                    {plan.title}
+                  </h3>
                   <p style={{ fontWeight: "600", fontSize: "1.1rem" }}>
-                    Portfolio Size: <span style={{ color: "#555" }}>{plan.portfolioSize}</span>
+                    Portfolio Size:{" "}
+                    <span style={{ color: "#555" }}>{plan.portfolioSize}</span>
                   </p>
-                  <p style={{ fontWeight: "600", fontSize: "1.1rem", marginBottom: "20px" }}>
-                    Annual Fee: <span style={{ color: "#555" }}>{plan.annualFee}</span>
+                  <p
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "1.1rem",
+                      marginBottom: "20px",
+                    }}>
+                    Annual Fee:{" "}
+                    <span style={{ color: "#555" }}>{plan.annualFee}</span>
                   </p>
                   <div>{plan.description}</div>
                 </div>
@@ -338,12 +361,23 @@ const PortfolioContent = () => {
             maxWidth: "1000px",
             marginLeft: "auto",
             marginRight: "auto",
-          }}
-        >
-          <h3 style={{ marginBottom: "15px", fontWeight: "700", fontSize: "1.8rem", borderBottom: "2px solid #007bff", paddingBottom: "8px" }}>
+          }}>
+          <h3
+            style={{
+              marginBottom: "15px",
+              fontWeight: "700",
+              fontSize: "1.8rem",
+              borderBottom: "2px solid #007bff",
+              paddingBottom: "8px",
+            }}>
             Important Highlights
           </h3>
-          <ul style={{ paddingLeft: "20px", marginTop: "10px", listStyleType: "disc" }}>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              marginTop: "10px",
+              listStyleType: "disc",
+            }}>
             {importantHighlights.map((point, idx) => (
               <li key={idx} style={{ marginBottom: "10px" }}>
                 {point}
@@ -366,19 +400,36 @@ const PortfolioContent = () => {
             maxWidth: "1000px",
             marginLeft: "auto",
             marginRight: "auto",
-          }}
-        >
-          <h3 style={{ fontWeight: "700", fontSize: "2rem", marginBottom: "15px" }}>
+          }}>
+          <h3
+            style={{
+              fontWeight: "700",
+              fontSize: "2rem",
+              marginBottom: "15px",
+            }}>
             📞 Ready to Start Your Wealth Journey?
           </h3>
           <p style={{ marginBottom: "10px" }}>
-            Mail us or book a consultation to understand which plan aligns best with your portfolio and future goals.
+            Mail us or book a consultation to understand which plan aligns best
+            with your portfolio and future goals.
           </p>
           <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
-            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "#ffd966", textDecoration: "underline" }}>info@centuryfinance.com</a>
+            📧 <strong>Email:</strong>{" "}
+            <a
+              href="customerservice@centuryfinancelimited.com"
+              style={{ color: "#ffd966", textDecoration: "underline" }}>
+              info@centuryfinance.com
+            </a>
           </p>
           <p style={{ fontSize: "1rem" }}>
-            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "#ffd966", textDecoration: "underline" }}>www.centuryfinance.com</a>
+            🌐 <strong>Website:</strong>{" "}
+            <a
+              href="https://www.centuryfinancelimited.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#ffd966", textDecoration: "underline" }}>
+              www.centuryfinance.com
+            </a>
           </p>
         </div>
       </div>

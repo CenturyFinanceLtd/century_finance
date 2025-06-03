@@ -1,0 +1,17 @@
+.book-now-btn {
+    display: inline-block;
+    background-color: #e63946;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.book-now-btn:hover {
+    background-color: #c92a3a;
+    transform: translateY(-2px);
+    color: #ffffff !important;
+}
