@@ -23,7 +23,7 @@ const EquityMarket = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Equity Market"} pagesub={"Equity Market"} />
+      <PageTitle pageTitle={"Equity Market"} pagesub={"Equity Market"} bgImage="/bg-image/equity.png" />
       <CourseSinglePage />
       <Footer />
       <Scrollbar />

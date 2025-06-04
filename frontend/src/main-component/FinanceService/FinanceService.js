@@ -22,7 +22,7 @@ const FinanceService = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Finance Service"} pagesub={"Finance Service"} />
+      <PageTitle pageTitle={"Finance Service"} pagesub={"Finance Service"} bgImage="/bg-image/finance.png" />
       <FinanceServiceTab />
       <Footer />
       <Scrollbar />

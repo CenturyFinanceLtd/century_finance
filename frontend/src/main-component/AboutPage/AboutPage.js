@@ -35,7 +35,7 @@ const AboutPage = () => {
         <meta name="robots" content="noindex, nofollow"></meta>
       </Helmet>
       <Navbar/>
-      <PageTitle pageTitle={"About Us"} pagesub={"About"} />
+      <PageTitle pageTitle={"About Us"} pagesub={"About"} bgImage="/bg-image/about.png" />
       <section className="wpo-about-section section-padding">
         <div className="container">
           <div className="wpo-about-wrap">

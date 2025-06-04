@@ -221,7 +221,7 @@ const PortfolioContent = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Portfolio"} pagesub={"Portfolio"} />
+      <PageTitle pageTitle={"Portfolio"} pagesub={"Portfolio"} bgImage="/bg-image/portfolio.png" />
 
       <div style={container}>
         <h2 style={header}>

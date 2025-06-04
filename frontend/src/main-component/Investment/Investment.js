@@ -33,7 +33,7 @@ const Investment = (props) => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Investment"} pagesub={"Investment"} />
+      <PageTitle pageTitle={"Investment"} pagesub={"Investment"} bgImage="/bg-image/investment.png" />
       <section
         className={`wpo-courses-section-s2 section-padding ${props.cClass}`}>
         <div className="container">
