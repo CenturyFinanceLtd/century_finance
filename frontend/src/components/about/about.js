@@ -44,11 +44,10 @@ const About = (props) => {
                 <div className="wpo-section-title">
                   <small>About Us</small>
                   <h2>
-                   Century Finance-
+                    A New Different Way To Improve
                     <span>
                       {" "}
-                     Your Trusted Partner in Stock Market Education & Advisory
-
+                      Your Skills.
                       <i className="shape">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -61,18 +60,22 @@ const About = (props) => {
                   </h2>
                 </div>
                 <p>
-                 Century Finance Limited,helps people approach financial markets with clarity and confidence.Our training is based on practical experience and real-world scenarios, led by a SEBI-certified stock advisor. 
-
+                  We are leading experts in stock advisory and market research.
+                  Our mission is to guide you through the world of stock trading
+                  by offering in-depth insights and hands-on training, delivered
+                  by seasoned professionals.
                 </p>
                 <p>
-                 Our mission is to guide you through the world of stocks by offering personalized training, live trading simulations, and actionable investment insights. We guarantee that each learner acquires practical skills, a thorough awareness of the market, and the self-assurance to make wise judgements by going beyond theory.
-
+                  Our trainer holds certification as a registered stock advisor
+                  from the Securities and Exchange Board of India (SEBI),
+                  ensuring credible and reliable mentorship.
                 </p>
                 <p>
-                 We are proudly headquartered at Dubai, with our main branch in Mumbai,India. Our presence across diverse financial hubs allows us to better serve our diverse clients and strengthen our commitment towards financial education and services. 
+                  Whether you're a beginner or looking to advance your journey
+                  in the financial markets, our team is committed to equipping
+                  you with the skills, understanding, and confidence needed to
+                  navigate the market successfully.
                 </p>
-                <p>At Century Finance, we believe in shared success- our values lie in your growth. No matter if you are just starting out or want to improve your strategies, our programs are designed to meet every skill level.
-</p>
 
                 <div className="wpo-about-features-wrap">
                   <div className="wpo-about-features-item">
