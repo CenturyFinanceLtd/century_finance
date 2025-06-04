@@ -398,13 +398,23 @@ const Commodities = () => {
     <Fragment>
       <Helmet>
         <title>Commodities - Century Finance Limited</title>
-        <meta name="description" content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs." />
-        <meta name="keywords" content="Contact, Century Finance, Financial Services, Support, Contact Us" />
+        <meta
+          name="description"
+          content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
+        />
+        <meta
+          name="keywords"
+          content="Contact, Century Finance, Financial Services, Support, Contact Us"
+        />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Commodities"} pagesub={"Commodities"} />
+      <PageTitle
+        pageTitle={"Commodities"}
+        pagesub={"Commodities"}
+        bgImage="/bg-image/commodity.png"
+      />
 
       <section className="section-padding" style={{ backgroundColor: "#fff" }}>
         <div className="container">
@@ -413,8 +423,13 @@ const Commodities = () => {
               <div className="col-lg-10 col-md-12 col-12">
                 <div className="wpo-about-text text-center">
                   <div className="wpo-section-title mb-4">
-                    <h2 className="fw-bold mb-2" style={{ color: "#111" }}>Explore Key Commodity Contracts</h2>
-                    <p style={{ color: "#555" }}>Tap on each commodity tab to understand lot sizes, trading hours, and market benefits.</p>
+                    <h2 className="fw-bold mb-2" style={{ color: "#111" }}>
+                      Explore Key Commodity Contracts
+                    </h2>
+                    <p style={{ color: "#555" }}>
+                      Tap on each commodity tab to understand lot sizes, trading
+                      hours, and market benefits.
+                    </p>
                   </div>
 
                   <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
@@ -422,21 +437,42 @@ const Commodities = () => {
                       <button
                         key={tab.name}
                         onClick={() => setActiveTab(tab.name)}
-                        className={`px-4 py-2 fw-semibold border rounded-pill ${activeTab === tab.name ? "bg-danger text-white border-danger" : "bg-light text-dark border-secondary"}`}
-                        style={{ transition: "0.3s", boxShadow: activeTab === tab.name ? "0 4px 12px rgba(224,0,0,0.2)" : "none" }}
-                      >
+                        className={`px-4 py-2 fw-semibold border rounded-pill ${
+                          activeTab === tab.name
+                            ? "bg-danger text-white border-danger"
+                            : "bg-light text-dark border-secondary"
+                        }`}
+                        style={{
+                          transition: "0.3s",
+                          boxShadow:
+                            activeTab === tab.name
+                              ? "0 4px 12px rgba(224,0,0,0.2)"
+                              : "none",
+                        }}>
                         {tab.name}
                       </button>
                     ))}
                   </div>
 
-                  <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #E00000", minHeight: "300px" }}>
-                    <h4 className="fw-bold mb-3" style={{ color: "#e65410" }}>{activeTab} Overview</h4>
+                  <div
+                    className="text-start p-4 shadow rounded"
+                    style={{
+                      backgroundColor: "#FDFDFD",
+                      borderLeft: "5px solid #E00000",
+                      minHeight: "300px",
+                    }}>
+                    <h4 className="fw-bold mb-3" style={{ color: "#e65410" }}>
+                      {activeTab} Overview
+                    </h4>
                     {contentMap[activeTab] || (
-                      <p>Content for <strong>{activeTab}</strong> will be displayed here. You can replace this block with detailed contract specifications, trading rules, or analysis as needed.</p>
+                      <p>
+                        Content for <strong>{activeTab}</strong> will be
+                        displayed here. You can replace this block with detailed
+                        contract specifications, trading rules, or analysis as
+                        needed.
+                      </p>
                     )}
                   </div>
-
                 </div>
               </div>
             </div>

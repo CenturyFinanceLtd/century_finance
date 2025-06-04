@@ -34,8 +34,12 @@ const AboutPage = () => {
         />
         <meta name="robots" content="noindex, nofollow"></meta>
       </Helmet>
-      <Navbar/>
-      <PageTitle pageTitle={"About Us"} pagesub={"About"} />
+      <Navbar />
+      <PageTitle
+        pageTitle={"About Us"}
+        pagesub={"About"}
+        bgImage="/bg-image/1.png"
+      />
       <section className="wpo-about-section section-padding">
         <div className="container">
           <div className="wpo-about-wrap">
@@ -170,8 +174,8 @@ const AboutPage = () => {
                   <h2>Market Calls That Matter</h2>
                 </div>
                 <p style={{ fontSize: "1.1em", lineHeight: "1.8" }}>
-                  With tiered Call Subscription Plans—from Premium to Platinum —we
-                  empower traders with high-accuracy insights across Equity,
+                  With tiered Call Subscription Plans—from Premium to Platinum
+                  —we empower traders with high-accuracy insights across Equity,
                   Commodity, and Crypto segments. From Nifty to Bitcoin, we
                   deliver timely, research-backed calls to help you make
                   confident decisions in real time.
@@ -220,7 +224,7 @@ const AboutPage = () => {
           </div>
 
           {/* Vision and Mission Section */}
-          
+
           <div className="row " style={{ paddingTop: "60px" }}>
             <div className="col-md-6 mb-4">
               <div className="wpo-section-title">
@@ -229,7 +233,6 @@ const AboutPage = () => {
               <p>
                 To create a financially empowered generation through education,
                 opportunity, and actionable insight.
-                
               </p>
             </div>
             <div className="col-md-6 mb-4">
