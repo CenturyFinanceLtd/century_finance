@@ -76,10 +76,10 @@ const AboutPage = () => {
                   <div className="wpo-section-title">
                     <small>About Century Finance Company</small>
                     <h2>
-                      Empowering Futures,
+                     Empowering futures in the 
                       <span>
                         {" "}
-                        One Portfolio at a Time.
+                      Financial Market
                         {/* You can keep or remove the SVG shape as per your design preference */}
                         {/* <i className="shape">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 53" fill="none">
@@ -90,29 +90,18 @@ const AboutPage = () => {
                     </h2>
                   </div>
                   <p>
-                    At Century Finance Company, we believe financial literacy is
-                    not a luxury—it’s a necessity. Founded with the mission to
-                    democratize access to world-class financial training,
-                    investment solutions, and credit support, we’ve built an
-                    ecosystem where knowledge meets opportunity, and learning
-                    leads to earning.
+                    At Century Finance Limited, we think financial literacy forms the base of true financial freedom. As a growing and reliable name in finance education and stock market training, We work hard to turn beginners into skilled investors and traders. With a team that includes experienced market experts and a SEBI-certified advisor, We provide programs suited to individuals at any level of knowledge or experience.
                   </p>
                   <p>
-                    In a rapidly evolving financial world, we act as your
-                    compass. From college students exploring the markets to
-                    final-year graduates stepping into the finance industry, we
-                    provide structured, real-world-ready education. Our
-                    specialized training programs span Equity, Commodities, and
-                    Global (Foreign) Markets giving you the tools to thrive in
-                    competitive environments.
+                   Our goal is clear. We aim to deliver useful and trustworthy learning that connects financial concepts to their practical uses. Whether it’s equity, commodities, forex, or mutual funds, our focused and hands-on methods help you make smart choices and grow long-term wealth.
+
                   </p>
                   <p>
-                    Through interactive online classes, personal mentorship,
-                    placement support, and live market exposure, we transform
-                    academic interest into professional competence. Our
-                    “Learning to Earning” model is more than a course—it's a
-                    launchpad for ambitious minds.
+                   Century Finance Limited is proudly headquartered in Dubai, with our main branch located in Mumbai, India. This strong presence across prominent financial hubs enables us to connect with a wider audience and deliver high-quality financial training and services with greater efficiency and impact.
+
                   </p>
+                  <p>Century Finance Limited stands out by offering a complete package. It mixes technical training with personal growth lessons answering your questions and giving career advice. Whether you're just starting out or want to improve your abilities, we aim to help you at every point.
+</p>
                 </div>
               </div>
             </div>
@@ -127,17 +116,12 @@ const AboutPage = () => {
             <div className="row">
               <div className="col-lg-10 offset-lg-1 text-center">
                 <div className="wpo-section-title">
-                  <h2>Financial Solutions That Work for You</h2>
+                  <h2>Financial Solutions That Match Your Goals
+</h2>
                 </div>
                 <p style={{ fontSize: "1.1em", lineHeight: "1.8" }}>
-                  We offer more than training—we offer trust. Whether you’re
-                  seeking a strategic investment plan, an expertly managed
-                  portfolio, or tailored financial products like personal,
-                  business, or appliance loans our team ensures transparency,
-                  flexibility, and reliability every step of the way. With
-                  options ranging from ₹20,000 to ₹5,00,000, we serve salaried
-                  professionals, self-employed individuals, and budding
-                  entrepreneurs alike.
+                 We extend beyond training—we generate outcomes. Our services match your goals through custom investment plans, expert-managed portfolios, and easy loan options. Whether you work a job, manage a business, or start something new, we offer flexible loans ranging from ₹20,000 to ₹5,00,000. We ensure total transparency and trust.
+
                 </p>
               </div>
             </div>
@@ -150,15 +134,12 @@ const AboutPage = () => {
             <div className="row">
               <div className="col-lg-10 offset-lg-1 text-center">
                 <div className="wpo-section-title">
-                  <h2>Smart Investing Made Simple</h2>
+                  <h2>Straightforward & Strategic Investment Plans
+</h2>
                 </div>
                 <p style={{ fontSize: "1.1em", lineHeight: "1.8" }}>
-                  Our diverse investment plans—from Smart Saver to Wealth
-                  Boost—cater to all financial goals and risk appetites. With
-                  fixed returns, bonus benefits, and quarterly perks, we help
-                  your money work smarter, not harder. Every plan is backed by
-                  transparent interest rates, clearly defined timelines, and a
-                  vision for wealth creation that aligns with your life goals.
+                 Century Finance Limited makes investing simple and focused on clear goals.Our tailored investment options—including the Smart Saver for dependable income and the Wealth Boost for accelerated returns—cater to varying financial objectives and risk appetites. Through competitive interest rates, clear timeframes, and professional support, we optimize your financial growth. Whether you're saving for a specific target or beginning to invest, We provide you  a dependable, profitable, and well-defined wealth-building journey.
+
                 </p>
               </div>
             </div>
@@ -171,14 +152,20 @@ const AboutPage = () => {
             <div className="row">
               <div className="col-lg-10 offset-lg-1 text-center">
                 <div className="wpo-section-title">
-                  <h2>Market Calls That Matter</h2>
+                  <h2>Precise Market Call Subscriptions
+</h2>
                 </div>
                 <p style={{ fontSize: "1.1em", lineHeight: "1.8" }}>
+<<<<<<< Updated upstream
                   With tiered Call Subscription Plans—from Premium to Platinum
                   —we empower traders with high-accuracy insights across Equity,
                   Commodity, and Crypto segments. From Nifty to Bitcoin, we
                   deliver timely, research-backed calls to help you make
                   confident decisions in real time.
+=======
+                 Through structured plans like Premium and Platinum, we deliver instant, analysis-driven recommendations across Equity, Commodity, and Foreign markets. From Nifty to Bitcoin, Century Finance provides traders with crucial data for confident decisions.
+
+>>>>>>> Stashed changes
                 </p>
               </div>
             </div>

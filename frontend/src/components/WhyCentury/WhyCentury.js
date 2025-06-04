@@ -32,7 +32,7 @@ const CategorySection = (props) => {
                 Why
                 <span>
                   {" "}
-                  Century Finance
+                  Century Finance?
                   <i className="shape">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -56,22 +56,15 @@ const CategorySection = (props) => {
               {" "}
               {/* Added some top margin for spacing */}
               <p>
-                We are a premier team of stock market advisors and market
-                research professionals dedicated to empowering individuals with
-                the knowledge and skills needed to succeed in the world of
-                trading and investments. Our training programs are led by
-                seasoned experts, including SEBI-certified Century Finance
-                Limited, ensuring you receive accurate, trustworthy, and
-                practical guidance.
+               Choosing the right partner for financial learning and services plays a huge role in shaping your future, and Century Finance Limited understands that . We stand out by combining expert professional knowledge, hands-on experiences, and full financial assistance. With SEBI-certified advisors, we offer expert-guided programs, and practical workshops tailored to suit everyone—whether you're just starting or already experienced in trading.
+
               </p>
               <p>
-                Whether you're a complete beginner or someone looking to take
-                your first confident step into the stock market, we provide
-                structured, in-depth education tailored to all experience
-                levels. Our goal is to build your confidence and competence so
-                you can navigate the financial markets with clarity and
-                strategy.
+              Our “Learning to Earning” model isn’t just an idea,it’s a philosophy. It’s a straightforward approach focused on turning education into real-world opportunities. Along with learning, we provide high-quality call subscription plans for equity, commodities, and crypto markets giving traders the tools to make smart timely decisions.
+.
               </p>
+              <p>We offer tailored portfolio services,  investment options, and easy financial solutions like personal, business, and appliance loans. At Century Finance, we’re built on values like trust, transparency, and a genuine commitment to your success. Whether you’re looking to learn, invest, or start your journey in finance, we’re here to support you every step of the way.
+</p>
             </div>
           </div>
         </div>

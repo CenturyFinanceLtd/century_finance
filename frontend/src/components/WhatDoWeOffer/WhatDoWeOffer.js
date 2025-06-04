@@ -17,7 +17,7 @@ const CourseSection = (props) => {
           <h2>
             What do &nbsp;
             <span>
-              We Offer
+              We Offer?
               <i className="shape">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -37,39 +37,67 @@ const CourseSection = (props) => {
                 <div className="col-lg-6 col-md-12 col-12">
                   <div className="wpo-about-text">
                     <p>
-                      We provide a comprehensive training program designed to
-                      give you a strong foundation in the stock market. Our
-                      curriculum covers a wide range of trading segments,
-                      including:
+                     Century Finance Limited provides complete financial services. It includes expert-led training online courses, market advice, investment strategies, and adjustable loan plans. The company helps people learn and seize opportunities to gain confidence in finance.
                       <ol className="mt-4">
                         <li>
-                          <strong>Equity Trading</strong> – Learn how to invest
-                          in company shares with confidence and strategy.
+                          <strong>Training Programs</strong> –SEBI-certified experts conduct well-organized stock market and finance courses. These courses cater to students at all levels, from those just starting out to more advanced learners.
+
                         </li>
                         <li>
-                          <strong>Commodity Trading</strong> – Understand the
-                          dynamics of trading commodities like gold, silver,
-                          oil, and more.
+                          <strong>Call Subscription Plans</strong> –Get research-based trading calls in Equity, Commodity markets delivered in real-time. Subscription options, including Premium and Platinum, let you choose a plan that fits your trading style.
+
                         </li>
                         <li>
-                          <strong>Foreign Market Trading</strong> – Get insights
-                          into international markets and learn how to trade
-                          across global platforms.
+                          <strong>Online Classes</strong> –Learn with flexibility through Century Finance online classes. These sessions offer an accessible and interactive way to dive into financial topics anytime, from anywhere.
+
+                        </li>
+                         <li>
+                          <strong>Portfolio Services</strong> -Get professional support to create, handle, and improve your investment portfolio. These services aim to help you achieve steady financial growth.
+
+
+                        </li>
+                         <li>
+                          <strong>Investment Plans</strong> –Find fixed-return plans like Smart Saver and Wealth Boost crafted to align with specific financial goals and personal risk tolerance.
+.
+
+                        </li>
+                         <li>
+                          <strong>Finance Solutions</strong> –Access various customized financial services designed to address individual finance needs and objectives. Loans with clear terms and adaptable options—from personal needs to business and appliances—ranging between ₹20,000 and ₹5,00,000 designed to suit both salaried and self-employed people.
+
+
+                        </li>
+                        <li>
+                          <strong>Comprehensive market training: </strong> –Learn stock market basics and trading methods through a planned course made to teach both new and mid-level learners.
+
+
+                        </li>
+                        <li>
+                          <strong>Personality Development for traders:</strong> –Develop confidence and decision-making skills through focused training. 
+
+
+                        </li>
+                        <li>
+                          <strong>Paid Demo Sessions:</strong> –Experience a live trading environment guided by experts.
+
+
+                        </li>
+                        <li>
+                          <strong>Finance Solutions</strong> –Access various customized financial services designed to address individual finance needs and objectives. Loans with clear terms and adaptable options—from personal needs to business and appliances—ranging between ₹20,000 and ₹5,00,000 designed to suit both salaried and self-employed people.
+
+
+                        </li>
+                        <li>
+                          <strong>Exposure to broader financial markets:</strong>
+                          <ul>
+                           <li>Study capital markets, mutual funds, forex trading, and derivatives.
+</li>
+                           <li>Broaden your knowledge outside of stocks to explore other financial possibilities.
+</li></ul>
+
+
                         </li>
                       </ol>
-                      In addition to financial training, we also offer a{" "}
-                      <strong>personality development program</strong> aimed at
-                      helping you build confidence, discipline, and the right
-                      mindset required for successful trading. To help you get
-                      started, we provide Paid demo sessions that offer a
-                      real-time experience of how stock trading works, guided by
-                      experienced trainers. These sessions are perfect for
-                      beginners who want to explore before fully committing. We
-                      also believe in personal attention and support, which is
-                      why we dedicate specific time for{" "}
-                      <strong>doubt-clearing sessions.</strong> Whether it's a
-                      technical question or a conceptual one, our experts are
-                      available to ensure you understand every topic thoroughly.
+                     
                     </p>
                     <div className="more-btn mt-5">
                       <Link
