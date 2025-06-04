@@ -130,7 +130,7 @@ const Header = (props) => {
                   </button>
                   <ul className="nav navbar-nav mb-2 mb-lg-0">
                     <li>
-                      <Link onClick={ClickHandler} to="/about">
+                      <Link onClick={ClickHandler} to="/about-us">
                         About
                       </Link>
                     </li>
@@ -184,7 +184,7 @@ const Header = (props) => {
                           </Link>
                         </li>
                         <li>
-                          <Link onClick={ClickHandler} to="/crypto">
+                          <Link onClick={ClickHandler} to="/foreign-market">
                             Foreign Market
                           </Link>
                         {/* </li>

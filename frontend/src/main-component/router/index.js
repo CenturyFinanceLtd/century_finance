@@ -41,7 +41,7 @@ import VerifyOtpPage from "../SignUpPage/VerifyOtpPage";
 import EditProfilePage from "../EditProfilePage";
 import Equity from "../EquityMarket/Equity";
 import Commodities from "../Commodities/Commodities";
-import Crypto from "../Crypto/Crypto";
+import ForeignMarket from "../Crypto/Crypto";
 
 import Currencies from "../Currencies/Currencies";
 import VerifyResetOtp from "../ForgotPassword/VerifyResetOtp";
@@ -61,7 +61,7 @@ const AllRoute = () => {
           <Route path="home-3" element={<HomePage3 />} />
           <Route path="home-4" element={<HomePage4 />} />
           <Route path="home-5" element={<HomePage5 />} />
-          <Route path="about" element={<AboutPage />} />
+          <Route path="about-us" element={<AboutPage />} />
           {/* <Route path="course" element={<CoursePage />} /> */}
           <Route path="lesson" element={<LessonPage />} />
           <Route path="gallery" element={<GalleryPage />} />
@@ -75,7 +75,7 @@ const AllRoute = () => {
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="order-received" element={<OrderRecived />} />
           <Route path="privacy-policy" element={<PrivacyPage />} />
-          <Route path="terms&conditions" element={<TermsPage />} />
+          <Route path="terms-and-conditions" element={<TermsPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog-left-sidebar" element={<BlogPageLeft />} />
           <Route path="blog-fullwidth" element={<BlogPageFullwidth />} />
@@ -106,7 +106,7 @@ const AllRoute = () => {
           <Route path="/edit-profile" element={<EditProfilePage />} />
           <Route path="/equity" element={<Equity />} />
           <Route path="/commodities" element={<Commodities />} />
-          <Route path="/crypto" element={<Crypto />} />
+          <Route path="/foreign-market" element={<ForeignMarket />} />
           <Route path="/currencies" element={<Currencies />} />
           <Route path="/verify-reset-otp" element={<VerifyResetOtp />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />

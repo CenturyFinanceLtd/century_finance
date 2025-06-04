@@ -1,5 +1,6 @@
 // src/pages/ErrorPage/ErrorPage.js (or adjust path as needed)
-import React from "react";
+import React, { Fragment } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom"; // Import Link for internal navigation
 import "./ErrorPage.css"; // Import the CSS file
 
@@ -8,6 +9,19 @@ import "./ErrorPage.css"; // Import the CSS file
 
 const ErrorPage = () => {
   return (
+    <Fragment>
+      <Helmet>
+        <title>Error 404 - Century Finance Limited</title>
+        <meta
+          name="description"
+          content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
+        />
+        <meta
+          name="keywords"
+          content="Contact, Century Finance, Financial Services, Support, Contact Us"
+        />
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
     <section className="page_404">
       <div className="container_404">
         {" "}
@@ -37,7 +51,8 @@ const ErrorPage = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+      </Fragment>
   );
 };
 

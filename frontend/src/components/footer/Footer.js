@@ -240,12 +240,12 @@ const Footer = (props) => {
                     </Link>
                   </li>
                   <li>
-                    <Link onClick={ClickHandler} to="/terms&conditions">
+                    <Link onClick={ClickHandler} to="/terms-and-conditions">
                       Terms & Conditions
                     </Link>
                   </li>
                   <li>
-                    <Link onClick={ClickHandler} to="/about">
+                    <Link onClick={ClickHandler} to="/about-us">
                       About us
                     </Link>
                   </li>
