@@ -187,7 +187,6 @@ const Usa = () => {
     </section>
   );
 };
-
 // --- Main Crypto Page ---
 const Crypto = () => {
   return (

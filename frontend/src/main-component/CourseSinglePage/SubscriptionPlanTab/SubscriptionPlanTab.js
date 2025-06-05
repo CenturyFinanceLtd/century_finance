@@ -48,7 +48,7 @@ const SubscriptionPlanTab = ({ EventsDetails }) => {
     },
     {
       id: "2",
-      title: "premium Subscrpition Plan",
+      title: "Premium Subscrpition Plan",
       IconComponent: IconPremiumPlan,
       description:
         "",
