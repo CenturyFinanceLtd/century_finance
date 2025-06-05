@@ -110,7 +110,7 @@ const FaqSection = (props) => {
     // The class names like "wpo-benefits-section" are from your snippet.
     // You might want to adjust them if this is part of a larger themed section.
     
-    <div className={`containerwpo-benefits-section ${props.sectionClass || ""}`}>
+    <div className={`container wpo-benefits-section ${props.sectionClass || ""}`}>
       <div className="row">
         <div className="col-lg-12 col-12">
           <div className="wpo-benefits-item">
