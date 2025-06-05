@@ -304,7 +304,7 @@ const OnlineCourse = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Online Courses"} pagesub={"Courses"} />
+      <PageTitle pageTitle={"Online Courses"} pagesub={"Courses"} bgImage="/bg-image/online.png" />
 
       <div className="wrapper-custom">
         <div className="header-custom">

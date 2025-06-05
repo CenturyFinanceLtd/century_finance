@@ -24,7 +24,7 @@ const CallsSubscriptionPlan = () => {
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle={"Calls Subscription Plan"} pagesub={"Calls Subscription Plan"} />
+      <PageTitle pageTitle={"Calls Subscription Plan"} pagesub={"Calls Subscription Plan"} bgImage="/bg-image/call.png" />
       <CourseSinglePage />
       <FAQ />
       <Footer />

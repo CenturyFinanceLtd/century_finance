@@ -57,12 +57,12 @@
 
                 h2 {
                     font-style: normal;
-                    font-size: 30px;
+                    font-size: 25px;
                     font-style: normal;
                     font-weight: 600;
 
                     @media(max-width:991px) {
-                        font-size: 25px;
+                        font-size: 20px;
                     }
 
                     a {
@@ -366,8 +366,8 @@
         top: 0;
         margin-bottom: 60px;
 
-        img{
-            @media(max-width:575px){
+        img {
+            @media(max-width:575px) {
                 min-height: 200px;
                 object-fit: cover;
             }
@@ -378,7 +378,7 @@
         padding: 0;
         margin: 0 -40px;
 
-        @media(max-width:1399px){
+        @media(max-width:1399px) {
             margin: 0 -15px;
         }
 
@@ -386,21 +386,22 @@
             width: 25%;
             padding: 0 40px;
 
-            @media(max-width:1399px){
+            @media(max-width:1399px) {
                 padding: 0 15px;
             }
 
-            @media(max-width:991px){
+            @media(max-width:991px) {
                 width: 50%;
             }
-            @media(max-width:575px){
+
+            @media(max-width:575px) {
                 width: 100%;
             }
 
             .info {
                 max-width: 270px;
 
-                @media(max-width:575px){
+                @media(max-width:575px) {
                     margin: 0 auto;
                 }
             }
@@ -413,6 +414,7 @@
 
 .wpo-subscribe-section-s2 {
     padding-bottom: 0;
+
     .container-fluid {
         padding: 0;
 
@@ -423,7 +425,7 @@
 }
 
 @media (min-width: 768px) {
-    .border-right{
+    .border-right {
         border-right: 1px solid red;
     }
 }

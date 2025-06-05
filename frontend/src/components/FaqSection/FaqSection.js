@@ -14,44 +14,40 @@ const faqData = [
   {
     id: "panel1",
     question:
-      "Is this training suitable for beginners with no prior experience?",
+      " Is this training suitable for beginners with no prior experience?",
     answerLines: [
-      "Absolutely! Our training modules are designed to guide beginners step-by-step. We start with the basics of stock trading and gradually introduce advanced strategies, making sure you understand each concept before moving forward.",
+      "Absolutely! At Century Finance, we create training programs to help everyone, even those who are just starting out. We begin by teaching the basics and expand your understanding using practical exercises, live market simulations, and clear instructions from trainers certified by SEBI.",
     ],
   },
   {
     id: "panel2",
     question: "What makes your stock market training different from others?",
     answerLines: [
-      "We combine expert market research with practical, hands-on learning. Our sessions are led by SEBI-certified advisors who bring real-time insights, trading strategies, and personalized mentoring to help you build both confidence and skill in stock trading.",
+      "Century Finance Limited takes a hands-on approach that focuses on results. We mix classroom concepts with real-world market exposure, live question-solving sessions, and one-on-one guidance. Supported by SEBI-certified experts, we aim to turn knowledge into income using our special “Learning to Earning” method.",
     ],
   },
   {
     id: "panel3",
-    question: "What is the difference between trading and investing?",
+    question: "What is the difference between trading and investment?",
     answerLines: [
-      "Trading involves buying and selling stocks frequently to take advantage of short-term market movements.",
-      "Investing is a long-term approach focused on building wealth over time by holding assets for years.",
-      "Both require different strategies, risk tolerance, and levels of market knowledge.",
+      "Trading means selling and purchasing things like stocks, or commodities to make profits. Investment takes a longer approach where people buy and keep assets like mutual funds or stocks to grow wealth over a longer time.",
+      
     ],
   },
   {
     id: "panel4",
-    question: "How can I start investing in the stock market as a beginner?",
+    question: "How can investing be started in the stock market as a beginner  ?",
     answerLines: [
-      "To start investing, you'll need to:",
-      "Open a brokerage account.",
-      "Set your investment goals.",
-      "Research and choose the stocks or funds you want to invest in.",
-      "Monitor your investments regularly.",
-      "Start small and diversify to manage risk effectively.",
+      "For investing, you need to open a Demat and trading account through a registered stockbroker. Understand how the stock market works and figure out your financial goals. Start investing small amounts across a variety of options.",
+      
     ],
   },
   {
     id: "panel5",
-    question: "What is the stock market, and how does it work?",
+    question: "What is the stock market & how does it work?",
     answerLines: [
-      "The stock market is a platform where investors can buy and sell shares of publicly traded companies. It works through a network of exchanges—such as the New York Stock Exchange (NYSE) or NASDAQ—where companies list their shares through an initial public offering (IPO), and investors trade those shares based on market demand.",
+      "The stock market is a platform where investors buy and sell shares of the publicly listed company.",
+      "When companies require capital, they raise it by issuing shares through an IPO. These shares get traded on stock exchanges such as NSE or BSE. Share prices change based on demand, news events, and company performance. Investors can gain profits either by selling shares at a higher price or by earning dividends. The stock market helps grow the economy by funding companies and opening up chances to create wealth.",
     ],
   },
 ];
