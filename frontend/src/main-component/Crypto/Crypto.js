@@ -192,7 +192,7 @@ const Crypto = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Crypto - Century Finance Limited</title>
+        <title>Foreign Markets - Century Finance Limited</title>
         <meta
           name="description"
           content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
