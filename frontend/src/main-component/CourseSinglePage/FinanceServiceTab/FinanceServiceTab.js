@@ -9,7 +9,7 @@ import {
 import classnames from "classnames";
 import ApplianceFurnitureLoan from "./ApplianceFurnitureLoan";
 import PersonalBusinessLoan from "./PersonalBusinessLoan";
-import BusinessLoan from "./BusinessLoan";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulb,
@@ -46,15 +46,7 @@ const FinanceServiceTab = ({ EventsDetails }) => {
       activeDescription:
         "",
     },
-     {
-      id: "3",
-      title: " Business Loan",
-      IconComponent: IconPremiumPlan,
-      description:
-        "",
-      activeDescription:
-        "",
-    },
+    
   ];
 
   return (
@@ -138,13 +130,7 @@ const FinanceServiceTab = ({ EventsDetails }) => {
               </ReactstrapCol>
             </ReactstrapRow>
           </TabPane>
-          <TabPane tabId="3">
-            <ReactstrapRow>
-              <ReactstrapCol sm="12">
-                <BusinessLoan EventsDetails={EventsDetails} />
-              </ReactstrapCol>
-            </ReactstrapRow>
-          </TabPane>
+         
         </TabContent>
       </div>
     </section>
