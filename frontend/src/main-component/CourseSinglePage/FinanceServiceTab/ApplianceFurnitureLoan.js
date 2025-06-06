@@ -57,6 +57,7 @@ const ApplianceFurnitureLoan = () => {
                     <li><strong>Salaried or Self-Employed</strong> </li>
                     <li> <strong>1 year residential stability</strong></li>
                     <li><strong>CIBIL score 750+</strong> </li>
+                     <li><strong>Processing Fee.</strong> ₹500 (📎 *one-time only)</li>
                   </ol>
                 </div>
 

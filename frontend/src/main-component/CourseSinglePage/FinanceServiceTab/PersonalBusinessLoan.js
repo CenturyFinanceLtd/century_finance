@@ -15,7 +15,7 @@ const PersonalBusinessLoan = (props) => {
             {/* Left Image Side */}
             <div className="col-lg-6 col-md-12">
               <div className="wpo-about-img position-relative text-center">
-                <img src={abimg} alt="Appliance Loan" className="img-fluid rounded shadow" />
+                <img src={abimg} alt="Loan" className="img-fluid rounded shadow" />
               </div>
             </div>
 
@@ -23,166 +23,60 @@ const PersonalBusinessLoan = (props) => {
             <div className="col-lg-6 col-md-12 mt-4 mt-lg-0">
               <div className="wpo-about-text">
                 <div className="alert alert-primary text-center fw-bold fs-5 shadow">
-                  Personal  – Quick Financing Made Simple
+                  Personal & Business Loans – Finance Made Simple, Fast & Flexible
                 </div>
 
                 <h2 className="text-success mb-3">
-                  Get access to *instant funds* to meet your *personal needs  goals* without the hassle of heavy paperwork or long wait times.
+                  Whether you're managing personal priorities or expanding your business, Century Finance provides seamless, quick, and flexible loan options — without the paperwork headaches.
                 </h2>
 
                 <div className="p-3 mb-4 bg-white shadow-sm rounded border-start border-success border-5">
-                  <h5 className="mb-3 text-primary">💡 Loan Overview:</h5>
-                  <ol className="list-unstyled mb-0">
-                    <li> <strong>Loan Amount:</strong>  ₹30,000 to ₹90,000</li>
-                    <li> <strong>Interest Rate: Starts from **9% to 27% annually* (based on your credit score):</strong></li>
-                    <li> <strong>*Loan Type*:</strong>  Unsecured – no collateral needed</li>
-                    <li> <strong>Purpose:</strong>Personal Expenses (wedding, travel, education, etc.)</li>
-                  </ol>
+                  <h5 className="mb-3 text-primary">👨‍💼 Personal Loan Highlights</h5>
+                  <ul className="list-unstyled mb-0">
+                    <li><strong>Loan Amount:</strong> ₹50,000 – ₹5,00,000</li>
+                    <li><strong>Tenure:</strong> Up to 60 months</li>
+                    <li><strong>Interest Rate:</strong> Starting at 10.5%*</li>
+                    <li><strong>Eligibility:</strong> Salaried or self-employed individuals with stable income</li>
+                    <li><strong>Approval Speed:</strong> 24–48 hours with minimal documentation</li>
+                    <li><strong>Common Uses:</strong> 🩺 Medical Bills | 🎓 Education | 💒 Weddings | 💳 Credit Card Consolidation | ✈️ Travel</li>
+                  </ul>
                 </div>
 
-                <div className="bg-light p-3 rounded border-start border-warning border-5 mb-4">
-                  <h6 className="text-warning mb-2"> ✅Why Choose This Loan</h6>
-                  <ol>
-                    <li><strong>*Fast Approval:</strong> Quick processing & disbursal</li>
-                    <li><strong>₹Flexible Repayment</strong>Choose EMIs that suit your budget</li>
-                    <li> <strong>Credit-Score Based Rates</strong> Better credit = lower interest</li>
-                    <li> <strong>No Collateral</strong> * Completely unsecured loan
-                    </li>
-                  </ol>
+                <div className="p-3 mb-4 bg-white shadow-sm rounded border-start border-primary border-5">
+                  <h5 className="mb-3 text-primary">🏢 Business Loan Benefits</h5>
+                  <ul className="list-unstyled mb-0">
+                    <li><strong>Loan Range:</strong> ₹1 Lakh – ₹25 Lakhs</li>
+                    <li><strong>Usage:</strong> Working capital, marketing, inventory, renovation, vendor payouts</li>
+                    <li><strong>Tenure:</strong> Up to 5 years</li>
+                    <li><strong>Interest Rate:</strong> Starts at 11.75%*</li>
+                    <li><strong>Eligibility:</strong> Proprietors, startups, and SMEs with business proof</li>
+                    <li><strong>Quick Disbursal:</strong> Fast-track approval and minimal documentation</li>
+                    <li><strong>No Collateral Needed:</strong> Up to ₹10 Lakhs</li>
+                  </ul>
                 </div>
 
-                <div className="bg-white p-3 rounded shadow-sm mb-4 border-start border-info border-5">
-                  <h6 className="text-info mb-2">✅*Who Is It For?</h6>
-                  <ol>
-                    <li> <strong>Salaried Individuals</strong>looking for quick funds</li>
-                    <li><strong>*Self-Employed Professionals</strong>* needing working capital
-                    </li>
-                  </ol>
+                <div className="bg-white p-3 rounded shadow-sm border-start border-info border-5">
+                  <h6 className="text-info mb-2">📄 Documents Required (For All Loans)</h6>
+                  <ul>
+                    <li>✅ PAN Card</li>
+                    <li>✅ Aadhaar Card</li>
+                    <li>✅ 6 Months Bank Statement</li>
+                    <li>✅ Salary Slips / ITR (if self-employed)</li>
+                    <li>✅ Business Proof (for Business Loans)</li>
+                  </ul>
                 </div>
 
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">Pro Tip:</h4>
-                  <ol>
-                    <li><strong>Maintain a *CIBIL score of 750 or above* to unlock lower interest rates and higher loan amounts.</strong> </li>
-                    <li><strong>*Personal Loan – Your Quick Solution for Urgent Needs</strong>
-                      Whether it’s managing an emergency, planning a big event, or consolidating debt, a *Personal Loan* offers a fast and flexible way to access funds—*without collateral*.
-                    </li>
-                  </ol>
+                <div className="bg-light p-3 rounded border-start border-warning border-5 mt-4">
+                  <h6 className="text-warning mb-2">🔐 Why Choose Century Finance?</h6>
+                  <ul>
+                    <li>✔️ Transparent Interest Rates – no hidden charges</li>
+                    <li>✔️ Flexible EMI Options – personalized to your repayment capacity</li>
+                    <li>✔️ Fast Online Process – fully digital, minimal waiting</li>
+                    <li>✔️ Support-Driven Team – we guide, not push</li>
+                  </ul>
                 </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">Loan Overview:</h4>
-                  <ol>
-                    <li><strong>*Loan Amount.</strong> ₹30,000 to ₹90,000</li>
-                    <li><strong>Interest Rate</strong>
-                      From 9% to 27% per annum (depends on your *CIBIL score*).
-                    </li>
-                    <li><strong>Processing Fee.</strong> ₹500 (📎 *one-time only)</li>
-                    <li><strong>Loan Type.</strong> Unsecured loan – no need to pledge any asset</li>
-                  </ol>
-                </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">✅ *Eligibility Criteria – Who Can Apply?:</h4>
-                  <ol>
-                    <li><strong>*Loan Amount.</strong> ₹30,000 to ₹90,000</li>
-                    <li><strong>Interest Rate</strong>
-                      From 9% to 27% per annum (depends on your *CIBIL score*).
-                    </li>
-                    <li><strong>*Age: Must be between.</strong>21 to 60 years</li>
-                    <li><strong>*Minimum Monthly Income.</strong> ₹15,000 or more</li>
-                    <li><strong>Employment Status.</strong>Salaried: At least **6 months* with your current employer</li>
-                    <li><strong>Self-Employed.</strong> (individual professionals/traders): *Minimum 1 year* of stable income</li>
-                    <li><strong>Credit Score.</strong>CIBIL score of 750+* is required for approval and best interest rates</li>
-                    <li><strong>Residential Stability.</strong>Must have lived at your *current address for at least 1 year</li>
-                  </ol>
-                </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">✅*Documents Required – What You’ll Need:</h4>
-                  <ol>
-                    <li><strong>Identity Proof.</strong> Aadhaar Card & PAN Card</li>
-                    <li><strong>Income Proof</strong>
-                      Last *3–6 months of salary slips* (for salaried)
-                      OR *bank statements* (for self-employed)
-                      :
-                    </li>
-                    <li><strong>Address Proof.</strong> Utility bill (electricity/water)
-                      * OR *Rent agreement*, etc.</li>
-                    <li><strong>*Minimum Monthly Income.</strong> ₹15,000 or more</li>
-                    <li><strong>Employment Status.</strong>Salaried: At least **6 months* with your current employer</li>
-                    <li><strong>Self-Employed.</strong> (individual professionals/traders): *Minimum 1 year* of stable income</li>
-                    <li><strong>Credit Score.</strong>CIBIL score of 750+* is required for approval and best interest rates</li>
-                    <li><strong>Residential Stability.</strong>Must have lived at your *current address for at least 1 year</li>
-                  </ol>
-                </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">✅Why Credit Score Matters?</h4>
-                  <ol>
-                    <li><strong>Your *CIBIL score* determines:.</strong></li>
-                    <li><strong>eligibility</strong>
-                      Your
-                    </li>
-                    <li><strong>The *interest rate* you’ll get.</strong>
-                    </li>
-                    <li><strong>* The *loan amount* you can access
-                      .</strong></li>
-                    <li><strong>A *higher score (750+).</strong>Lower interest & higher approval chance</li>
-                    <li><strong> A *low score.</strong> Higher rejection risk or costly interest rates</li>
-                  </ol>
-                </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">✅Things to Keep in Mind</h4>
-                  <ol>
-                    <li><strong>This is a *personal-use loan* – use it for emergencies, education, travel, wedding, etc..</strong></li>
-                    <li><strong></strong>
-                      Your
-                    </li>
-                    <li><strong>No guarantor or security required.</strong>* All loans are subject to verification and lender approval
-                    </li>
-                    <li><strong>Apply Now
-                      .</strong>and take control of your finances—*quickly, safely, and hassle-free</li>
-                    <li><strong>Late Payment Terms – What Happens If You Miss Your EMI.</strong>
-                      Missing your EMI (Equated Monthly Installment) can lead to extra charges and affect your credit history. Here's a breakdown of what you need to know:
-                    </li>
-                    <li><strong>Grace Period.</strong>*  A *2-day grace period* is provided after your EMI due date
-                      * This allows you *time to pay without penalty*, in case of minor delays
-                    </li>
-                  </ol>
-                </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">✅Late Payment Charges</h4>
-                  <ol>
-                    <li><strong>If you miss the 2-day grace period:
-                      ..</strong></li>
-                    <li><strong></strong>
-                      Your
-                    </li>
-                    <li><strong>Late Fee.</strong>
-                    </li>
-                    <li><strong> A *flat charge of ₹500
-                      .</strong> is added to your outstanding amount</li>
-                    <li><strong>*Daily Interest Penalty.</strong>
-                      A *10% compound interest per day* is applied on the *overdue EMI amount*This continues until full payment is made
-                    </li>
-                  </ol>
-                </div>
-                <div className="bg-white p-3 rounded border-start border-secondary border-5">
-                  <h4 className="text-secondary mb-2">✅Impact of Late Payment</h4>
-                  <ol>
-                    <li><strong>Your *CIBIL score may drop:
-                      ..</strong></li>
-                    <li><strong>Future loan approvals</strong>
-                      may be affected
-                    </li>
-                    <li><strong>You may face *higher interest rates.</strong>on future borrowings
-                    </li>
-                    <li><strong>Tip to Get Approved
-                      .</strong>
-                      Maintain a *high CIBIL score, ensure **stable income, and provide **complete, verifiable documents* to boost your chances.</li>
-                    <li><strong>*Daily Interest Penalty.</strong>
-                      A *10% compound interest per day* is applied on the *overdue EMI amount*This continues until full payment is made
-                    </li>
-                  </ol>
-                </div>
-                {/* <div className="text-center mt-4">
+
+                <div className="text-center mt-4">
                   <Link
                     onClick={ClickHandler}
                     to="/apply-loan"
@@ -193,9 +87,10 @@ const PersonalBusinessLoan = (props) => {
 
                 <p className="text-muted mt-3 text-center small">
                   Transparent charges • No hidden fees • Market-linked interest • 100% online process
-                </p> */}
+                </p>
               </div>
             </div>
+
           </div>
         </div>
       </div>
