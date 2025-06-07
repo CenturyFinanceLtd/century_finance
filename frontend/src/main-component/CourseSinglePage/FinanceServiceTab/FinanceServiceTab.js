@@ -48,7 +48,7 @@ const FinanceServiceTab = ({ EventsDetails }) => {
         <div className="features-wrap w-100">
           <div className="row mx-0">
             {tabInfo.map((tab) => (
-              <div className="col-lg-4 col-md-6 col-6 px-2" key={tab.id}>
+              <div className="col-lg-6 col-md-6 col-6 px-6" key={tab.id}>
                 <div
                   className={classnames(
                     "feature-item-wrap item",
