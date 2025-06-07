@@ -31,32 +31,52 @@ const PersonalBusinessLoan = (props) => {
                 </h2>
 
                 <div className="p-3 mb-4 bg-white shadow-sm rounded border-start border-success border-5">
-                  <h5 className="mb-3 text-primary">👨‍💼 Personal Loan Highlights</h5>
+                  <h5 className="mb-3 text-primary"> Personal Loan Highlights</h5>
                   <ul className="list-unstyled mb-0">
                     <li><strong>Loan Amount:</strong> ₹50,000 – ₹5,00,000</li>
                     <li><strong>Tenure:</strong> Up to 60 months</li>
-                    <li><strong>Interest Rate:</strong> Starting at 10.5%*</li>
+                    <li><strong>Interest Rate:</strong> Starting at 10.5%</li>
                     <li><strong>Eligibility:</strong> Salaried or self-employed individuals with stable income</li>
                     <li><strong>Approval Speed:</strong> 24–48 hours with minimal documentation</li>
-                    <li><strong>Common Uses:</strong> 🩺 Medical Bills | 🎓 Education | 💒 Weddings | 💳 Credit Card Consolidation | ✈️ Travel</li>
+                    <li><strong>Common Uses:</strong>  Medical Bills |  Education |  Weddings |  Credit Card Consolidation |  Travel</li>
                   </ul>
                 </div>
 
                 <div className="p-3 mb-4 bg-white shadow-sm rounded border-start border-primary border-5">
-                  <h5 className="mb-3 text-primary">🏢 Business Loan Benefits</h5>
+                  <h5 className="mb-3 text-primary"> Business Loan Benefits</h5>
                   <ul className="list-unstyled mb-0">
                     <li><strong>Loan Range:</strong> ₹1 Lakh – ₹25 Lakhs</li>
                     <li><strong>Usage:</strong> Working capital, marketing, inventory, renovation, vendor payouts</li>
                     <li><strong>Tenure:</strong> Up to 5 years</li>
-                    <li><strong>Interest Rate:</strong> Starts at 11.75%*</li>
+                    <li><strong>Interest Rate:</strong> Starts at 11.75%</li>
                     <li><strong>Eligibility:</strong> Proprietors, startups, and SMEs with business proof</li>
                     <li><strong>Quick Disbursal:</strong> Fast-track approval and minimal documentation</li>
                     <li><strong>No Collateral Needed:</strong> Up to ₹10 Lakhs</li>
                   </ul>
                 </div>
+                 <div className="bg-white p-3 rounded shadow-sm mb-4 border-start border-info border-5">
+                  <h6 className="text-info mb-2"> Eligibility Criteria:</h6>
+                  <ol>
+                    <li> <strong>Age 21–60 years</strong></li>
+                    <li><strong> Salaried or Self-Employed</strong></li>
+                    <li><strong>Salaried or Self-Employed</strong> </li>
+                    <li> <strong>1 year residential stability</strong></li>
+                    <li><strong>CIBIL score 750+</strong> </li>
+                     <li><strong>Processing Fee.</strong> ₹500 (one-time only)</li>
+                  </ol>
+                </div>
+                 <div className="bg-light p-3 rounded border-start border-warning border-5 mb-4">
+                  <h6 className="text-warning mb-2"> Late Payment Terms</h6>
+                  <ol>
+                    <li><strong>Grace Period:</strong> 2 days post due date</li>
+                    <li><strong>₹500 flat late fee</strong></li>
+                    <li> <strong>10% daily compound interest on overdue EMI</strong></li>
+                  </ol>
+                  <p className="text-danger fw-bold mb-0"> Late payments affect your credit score!</p>
+                </div>
 
                 <div className="bg-white p-3 rounded shadow-sm border-start border-info border-5">
-                  <h6 className="text-info mb-2">📄 Documents Required (For All Loans)</h6>
+                  <h6 className="text-info mb-2"> Documents Required (For All Loans)</h6>
                   <ul>
                     <li>✅ PAN Card</li>
                     <li>✅ Aadhaar Card</li>
@@ -67,7 +87,7 @@ const PersonalBusinessLoan = (props) => {
                 </div>
 
                 <div className="bg-light p-3 rounded border-start border-warning border-5 mt-4">
-                  <h6 className="text-warning mb-2">🔐 Why Choose Century Finance?</h6>
+                  <h6 className="text-warning mb-2"> Why Choose Century Finance?</h6>
                   <ul>
                     <li>✔️ Transparent Interest Rates – no hidden charges</li>
                     <li>✔️ Flexible EMI Options – personalized to your repayment capacity</li>
