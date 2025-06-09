@@ -6,7 +6,7 @@ import Scrollbar from "../../components/scrollbar/scrollbar";
 import CourseSinglePage from "../CourseSinglePage/TrainingProgramTabs/TrainingTab";
 import Footer from "../../components/footer/Footer";
 import { Container, Row, Col, Card, CardBody, Button, Table } from "reactstrap";
-import "./Training.css"
+import "./Training.css";
 
 const plans = {
   basic: {
@@ -55,6 +55,7 @@ const plans = {
 
 const TrainingProgram = () => {
   const [selectedPlans, setSelectedPlans] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false); // for toggling the additional content visibility
 
   const handleToggle = (id) => {
     if (selectedPlans.includes(id)) {
@@ -104,108 +105,128 @@ const TrainingProgram = () => {
       <Navbar />
       <PageTitle pageTitle="Training Program" pagesub="Compare Plans" bgImage="/bg-image/training.png" />
       <section
-  style={{
-    width: "100%",
-    background: "linear-gradient(135deg, #ffffff 0%, #f4f4f4 100%)",
-    padding: "0",
-    borderBottom: "8px solid #E22728",
-  }}
->
-  <div
-    style={{
-      width: "100%",
-      padding: "0",
-      backgroundColor: "#fff",
-      boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
-      borderRadius: "0px",
-      textAlign: "center",
-    }}
-  >
-    <h1
-      style={{
-        fontSize: "3rem",
-        fontWeight: "800",
-        color: "#1C1C1C",
-        marginBottom: "16px",
-      }}
-    >
-      Master the Market with Century Finance Training Programs
-    </h1>
+        style={{
+          width: "100%",
+         
+          padding: "20",
+         
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            padding: "0",
+            backgroundColor: "#fff",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+            borderRadius: "0px",
+            textAlign: "center",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "3rem",
+              fontWeight: "800",
+              color: "#1C1C1C",
+              marginBottom: "16px",
+            }}
+          >
+            Master the Market with Century Finance Training Programs
+          </h1>
 
-    {/* Elegant Red Divider */}
-    <div
-      style={{
-        width: "100px",
-        height: "6px",
-        backgroundColor: "#E22728",
-        margin: "0 auto 30px auto",
-        borderRadius: "4px",
-        animation: "dividerSlide 1.2s ease-out",
-      }}
-    />
+          {/* Elegant Red Divider */}
+          <div
+            style={{
+              width: "100px",
+              height: "6px",
+              backgroundColor: "#E22728",
+              margin: "0 auto 30px auto",
+              borderRadius: "4px",
+              animation: "dividerSlide 1.2s ease-out",
+            }}
+          />
 
-    <p
-      style={{
-        fontSize: "1.25rem",
-        color: "#444",
-        maxWidth: "900px",
-        margin: "0 auto 30px auto",
-        lineHeight: "1.7",
-      }}
-    >
-      <strong>
-        Expert-led training programs designed to turn beginners into confident,
-        skilled traders and investors.
-      </strong>
-    </p>
+          <p
+            style={{
+              fontSize: "1.25rem",
+              color: "#444",
+              maxWidth: "900px",
+              margin: "0 auto 30px auto",
+              lineHeight: "1.7",
+            }}
+          >
+            <strong>
+              Expert-led training programs designed to turn beginners into confident,
+              skilled traders and investors.
+            </strong>
+          </p>
 
-    <h2
-      style={{
-        fontSize: "2.2rem",
-        fontWeight: "700",
-        color: "#1C1C1C",
-        marginTop: "40px",
-      }}
-    >
-      About Century Finance Training Program
-    </h2>
-    <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "0 auto" }}>
-      At Century Finance Limited, we believe successful trading begins with the right education.
-      Our programs are curated for final-year college students, offering core financial literacy in
-      <strong> Equity, Commodity, and Forex markets</strong> — guided by SEBI-certified trainers.
-    </p>
+          <h2
+            style={{
+              fontSize: "2.2rem",
+              fontWeight: "700",
+              color: "#1C1C1C",
+              marginTop: "40px",
+            }}
+          >
+            About Century Finance Training Program
+          </h2>
+          <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "0 auto" }}>
+            At Century Finance Limited, we believe successful trading begins with the right education.
+            Our programs are curated for final-year college students, offering core financial literacy in
+            <strong> Equity, Commodity, and Forex markets</strong> — guided by SEBI-certified trainers.
+          </p>
 
-    <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "20px auto" }}>
-      Through real-time simulations, market exposure, and personalized mentorship,
-      we prepare you to navigate global finance with confidence and competence.
-    </p>
+          <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "20px auto" }}>
+            Through real-time simulations, market exposure, and personalized mentorship,
+            we prepare you to navigate global finance with confidence and competence.
+          </p> <Button
+            color="primary"
+            onClick={() => setIsExpanded(!isExpanded)}
+            style={{
+              marginTop: "30px",
+              marginbottom: "30px",
+              padding: "12px 25px",
+              fontSize: "1.1rem",
+              fontWeight: "bold",
+              borderRadius: "25px",
+              transition: "background-color 0.3s",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            {isExpanded ? "Show Less" : "Read More"}
+          </Button>
 
-    <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
-     Our Objective
-    </h3>
-    <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "0 auto" }}>
-      We bridge academic learning and real-world finance, empowering students with
-      job-ready skills, certification, and career clarity.
-    </p>
+         
 
-    <ul
-      style={{
-        listStyle: "none",
-        padding: 0,
-        maxWidth: "1000px",
-        margin: "40px auto",
-        textAlign: "left",
-        fontSize: "1.05rem",
-        color: "#333",
-        lineHeight: "1.7",
-      }}
-    >
-      <li>✅ <strong>Basic Plan:</strong> Bridge classroom concepts with financial market realities.</li>
-      <li>✅ <strong>Premium Plan:</strong> Career-focused training with hands-on workshops and certification.</li>
-      <li>✅ <strong>Learning to Earning:</strong> A full roadmap to finance careers via internship & direct hiring.</li>
-    </ul>
+          {/* Expandable Button */}
+          
 
-    <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
+          {isExpanded && (
+            <div style={{ marginTop: "20px" }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 20,
+                  maxWidth: "1000px",
+                  margin: "40px auto",
+                  textAlign: "left",
+                  fontSize: "1.05rem",
+                  color: "#333",
+                  lineHeight: "1.7",
+                }}
+              >
+                 <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
+            Our Objective
+          </h3>
+          <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "0 auto" }}>
+            We bridge academic learning and real-world finance, empowering students with
+            job-ready skills, certification, and career clarity.
+          </p>
+                <li>✅ <strong>Basic Plan:</strong> Bridge classroom concepts with financial market realities.</li>
+                <li>✅ <strong>Premium Plan:</strong> Career-focused training with hands-on workshops and certification.</li>
+                <li>✅ <strong>Learning to Earning:</strong> A full roadmap to finance careers via internship & direct hiring.</li>
+              </ul>
+              <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
        What You’ll Learn
     </h3>
     <ol
@@ -252,30 +273,13 @@ const TrainingProgram = () => {
         Century Finance equips you with the tools, clarity, and certification to launch your finance career confidently.
       </strong>
     </div>
-
     <div className="alert alert-warning p-4 rounded" style={{ fontSize: "1.05rem" }}>
       <strong>Take your first step toward financial mastery with Century Finance Limited — where education meets opportunity.</strong>
     </div>
-  </div>
-
-  {/* Animation Keyframes */}
-  <style>
-    {`
-      @keyframes dividerSlide {
-        from {
-          transform: scaleX(0);
-          opacity: 0;
-        }
-        to {
-          transform: scaleX(1);
-          opacity: 1;
-        }
-      }
-    `}
-  </style>
-</section>
-
-      {/* existing content remains unchanged */}
+            </div>
+          )}
+        </div>
+      </section>
 
       <Container className="py-5">
         <h2 className="text-center mb-4 fw-bold text-primary">Select Plans to Compare</h2>
@@ -309,12 +313,8 @@ const TrainingProgram = () => {
           </div>
         )}
       </Container>
-      
 
-      {/* Show comparison table below everything */}
       {renderCompareTable()}
-      
-
       <CourseSinglePage />
       <Footer />
       <Scrollbar />
