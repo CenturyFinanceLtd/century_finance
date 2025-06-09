@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import abimg from "../../../images/about/basic.png";
 import shape from "../../../images/about/shape.png";
 
-
-
 const BasicPlan = ({ onBookNow }) => {
+  const [isExpanded, setIsExpanded] = useState(false); // State to handle content toggle
+
+  const toggleContent = () => {
+    setIsExpanded(!isExpanded); // Toggle the expanded content
+  };
+
   return (
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
@@ -42,7 +46,7 @@ const BasicPlan = ({ onBookNow }) => {
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
                   <small>Basic Plan</small>
-                  <h2>One-Day On-Campus Certified Financial Market Training</h2>
+                  <h3>One-Day On-Campus Certified Financial Market Training</h3>
                 </div>
 
                 {/* Key Notes */}
@@ -52,8 +56,7 @@ const BasicPlan = ({ onBookNow }) => {
                 <div className="alert alert-info p-3 rounded mb-3">
                   <strong>Eligibility:</strong> Final-Year Students (B.Com, BBA, MBA, BA-Economics, Finance-related streams)
                 </div>
-
-                <div className="alert alert-info p-3 rounded mb-3">
+                 <div className="alert alert-info p-3 rounded mb-3">
                   <strong>Program Fee:</strong> ₹45,000 per batch +GST(all types of taxes)
                   <br />
                   <strong>Certification:</strong> Digital certificates awarded upon successful assessment
@@ -64,8 +67,29 @@ const BasicPlan = ({ onBookNow }) => {
                   <strong>Objective:</strong> Designed to bridge the gap between theoretical academic learning and real-world finance industry practices — ideal for final-year students preparing for placements and certifications.
                 </div>
 
-                {/* Course Content */}
-                <h5><strong>Program Modules & Learning Outcomes</strong></h5>
+                
+               
+                         {/* Show More / Show Less Button */}
+                <div className="text-center">
+                  <button
+                    onClick={toggleContent}
+                    className="btn btn-outline-primary rounded-pill px-4 mt-3"
+                    style={{ padding: "10px 20px", fontSize: "1rem" }}
+                  >
+                    {isExpanded ? "Show Less" : "Read More"}
+                  </button>
+                </div>
+
+                {/* Visible Content (Partial) */}
+               
+
+       
+
+                {/* Expanded Content */}
+                {isExpanded && (
+                  <>
+                 
+                   <h5><strong>Program Modules & Learning Outcomes</strong></h5>
                 <table className="table table-bordered mt-2">
                   <thead className="table-light">
                     <tr>
@@ -97,34 +121,43 @@ const BasicPlan = ({ onBookNow }) => {
                   <li>✅ Digital certificate to add credibility to resumes & LinkedIn profiles</li>
                   <li>✅ Awareness of top finance careers — CFA, Research Analyst, Investment Advisor, and more</li>
                 </ul>
+                    {/* Institution Benefits */}
+                    <h5 className="mt-4"><strong>What Institutions Gain</strong></h5>
+                    <ul className="mb-3">
+                      <li>✔️ Industry-driven training to strengthen your academic offerings</li>
+                      <li>✔️ Better placement results with job-oriented exposure</li>
+                      <li>✔️ Enhanced brand image as a career-focused institute</li>
+                      <li>✔️ No added burden — we manage training, assessments, and certification entirely</li>
+                    </ul>
 
-                {/* Institution Benefits */}
-                <h5 className="mt-4"><strong>What Institutions Gain</strong></h5>
-                <ul className="mb-3">
-                  <li>✔️ Industry-driven training to strengthen your academic offerings</li>
-                  <li>✔️ Better placement results with job-oriented exposure</li>
-                  <li>✔️ Enhanced brand image as a career-focused institute</li>
-                  <li>✔️ No added burden — we manage training, assessments, and certification entirely</li>
-                </ul>
-                
-
-                {/* Contact Details */}
+                                   {/* Contact Details */}
                 <h5 className="mt-4"><strong>Get in Touch</strong></h5>
                 <div className="alert alert-light border mb-3">
                   <p>Want to bring this certified finance training to your campus?</p>
                   <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
-            📧 <strong>Email:</strong> <a href="customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
-          </p>
+                    📧 <strong>Email:</strong> <a href="mailto:customerservice@centuryfinancelimited.com" style={{ color: "grey", textDecoration: "underline" }}>customerservice@centuryfinancelimited.com</a>
+                  </p>
                   <p style={{ fontSize: "1rem" }}>
-            🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
-          </p>
+                    🌐 <strong>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={{ color: "grey", textDecoration: "underline" }}>https://www.centuryfinancelimited.com/</a>
+                  </p>
                   <p className="text-danger"><em>Note: Limited slots available — advance booking is highly recommended.</em></p>
                 </div>
-                 <button onClick={onBookNow} className="btn btn-outline-dark mt-3">
-                  Book Now (₹45,000 per Batch)
-                </button>
-
-               
+                   
+                  </>
+                )}
+                   
+                      
+                      {/* Payment Button */}
+                      <button
+                        onClick={onBookNow}
+                        className="btn btn-outline-dark mt-3"
+                        style={{ padding: "12px 25px" }}
+                      >
+                        Pay Now (₹45,000 per Batch)
+                      </button>
+                  
+                
+                
               </div>
             </div>
           </div>
