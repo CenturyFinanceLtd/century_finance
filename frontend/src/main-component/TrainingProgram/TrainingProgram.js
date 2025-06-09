@@ -1,14 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
-import Footer from "../../components/footer/Footer";
 import CourseSinglePage from "../CourseSinglePage/TrainingProgramTabs/TrainingTab";
-import { Container, Row, Col, Table, Button } from "reactstrap";
+import Footer from "../../components/footer/Footer";
+import { Container, Row, Col, Card, CardBody, Button, Table } from "reactstrap";
+import "./Training.css"
 
 const plans = {
   basic: {
+    id: "basic",
     name: "Basic Plan",
     duration: "1 Day",
     eligibility: "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
@@ -22,21 +24,21 @@ const plans = {
     benefits: "Strengthens curriculum, boosts placement outcomes",
   },
   premium: {
+    id: "premium",
     name: "Premium Plan",
     duration: "2 Days",
     eligibility: "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
     exclusivity: "Only for College & Universities",
     fees: "₹85,000 + GST",
-    topics:
-      "Equity, Commodity, Foreign Exchange Market, Mutual Funds, MTF, Banex, SGP, Portfolio Planning",
+    topics: "Equity, Commodity, Foreign Exchange Market, Mutual Funds, MTF, Banex, SGP, Portfolio Planning",
     certification: "Digital Certification (Post-Assessment)",
-    features:
-      "Strategy Workshops, Real Market Simulations, 1:1 Mentorship, Assessment",
+    features: "Strategy Workshops, Real Market Simulations, 1:1 Mentorship, Assessment",
     internship: "No",
     placement: "No",
     benefits: "Adds value to academics, improves placement reputation",
   },
   learning: {
+    id: "learning",
     name: "Learning to Earning Model",
     duration: "Multi Phase: 2 Days + 2 month internship + Placement Support",
     eligibility: "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
@@ -44,8 +46,7 @@ const plans = {
     fees: "₹1,40,000 + GST",
     topics: "All modules from Premium plan in depth + Internship + Placement Training",
     certification: "Digital Certification + Certified Internship Certificate",
-    features:
-      "Internship, Live Trading, Placement Guidance, Advanced Training, Direct Hiring Opportunities",
+    features: "Internship, Live Trading, Placement Guidance, Advanced Training, Direct Hiring Opportunities",
     internship: "2 Month Internship with Weekly Mentorship",
     placement: "Yes + Interview Round + Direct Hiring for Top Performers",
     benefits: "Long-term career impact, campus-to-corporate model",
@@ -53,61 +54,67 @@ const plans = {
 };
 
 const TrainingProgram = () => {
-  const [selectedPlans, setSelectedPlans] = React.useState(["basic", "premium"]);
+  const [selectedPlans, setSelectedPlans] = useState([]);
 
-  const handleSelect = (index, planKey) => {
-    const newSelection = [...selectedPlans];
-    newSelection[index] = planKey;
-    setSelectedPlans(newSelection);
+  const handleToggle = (id) => {
+    if (selectedPlans.includes(id)) {
+      setSelectedPlans(selectedPlans.filter((plan) => plan !== id));
+    } else if (selectedPlans.length < 3) {
+      setSelectedPlans([...selectedPlans, id]);
+    }
   };
 
-  const renderComparisonRow = (label, field) => (
-    <tr key={label}>
-      <th style={{ backgroundColor: "#F4F4F4", color: "#1C1C1C" }}>{label}</th>
-      <td style={{ color: "#333" }}>{plans[selectedPlans[0]][field]}</td>
-      <td style={{ color: "#333" }}>{plans[selectedPlans[1]][field]}</td>
-    </tr>
-  );
+  const renderCompareTable = () => {
+    if (selectedPlans.length < 1) return null;
+
+    return (
+      <div style={{ background: "#fff", padding: "0", marginTop: "60px", boxShadow: "0px 10px 40px rgba(0,0,0,0.1)", borderTop: "6px solid #E22728" }}>
+        <h2 className="text-center text-danger fw-bold mb-4">Detailed Comparison of Selected Plans</h2>
+        <Table bordered responsive hover>
+          <thead className="table-dark">
+            <tr>
+              <th>Feature</th>
+              {selectedPlans.map((planId) => (
+                <th key={planId}>{plans[planId].name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>Duration</th>{selectedPlans.map((id) => <td key={id}>{plans[id].duration}</td>)}</tr>
+            <tr><th>Eligibility</th>{selectedPlans.map((id) => <td key={id}>{plans[id].eligibility}</td>)}</tr>
+            <tr><th>Exclusivity</th>{selectedPlans.map((id) => <td key={id}>{plans[id].exclusivity}</td>)}</tr>
+            <tr><th>Fees</th>{selectedPlans.map((id) => <td key={id}>{plans[id].fees}</td>)}</tr>
+            <tr><th>Topics</th>{selectedPlans.map((id) => <td key={id}>{plans[id].topics}</td>)}</tr>
+            <tr><th>Certification</th>{selectedPlans.map((id) => <td key={id}>{plans[id].certification}</td>)}</tr>
+            <tr><th>Features</th>{selectedPlans.map((id) => <td key={id}>{plans[id].features}</td>)}</tr>
+            <tr><th>Internship</th>{selectedPlans.map((id) => <td key={id}>{plans[id].internship}</td>)}</tr>
+            <tr><th>Placement</th>{selectedPlans.map((id) => <td key={id}>{plans[id].placement}</td>)}</tr>
+            <tr><th>Benefits</th>{selectedPlans.map((id) => <td key={id}>{plans[id].benefits}</td>)}</tr>
+          </tbody>
+        </Table>
+      </div>
+    );
+  };
 
   return (
     <Fragment>
       <Helmet>
         <title>Training Program - Century Finance Limited</title>
-        <meta
-          name="description"
-          content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
-        />
-        <meta
-          name="keywords"
-          content="Contact, Century Finance, Financial Services, Support, Contact Us"
-        />
-        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-
       <Navbar />
-      <PageTitle
-        pageTitle={"Training Program"}
-        pagesub={"Training Program"}
-        bgImage="/bg-image/training.png"
-      />
-
-      {/* === Introductory Text Block === */}
-     {/* === Branded Hero Content Section === */}
-{/* === Enhanced Branded Hero Content Section === */}
-{/* === Marvelously Styled Hero Content Section === */}
-{/* === Full-Width Marvelous Hero Section === */}
-<section
+      <PageTitle pageTitle="Training Program" pagesub="Compare Plans" bgImage="/bg-image/training.png" />
+      <section
   style={{
     width: "100%",
     background: "linear-gradient(135deg, #ffffff 0%, #f4f4f4 100%)",
-    padding: "90px 0",
+    padding: "0",
     borderBottom: "8px solid #E22728",
   }}
 >
   <div
     style={{
       width: "100%",
-      padding: "60px 8vw",
+      padding: "0",
       backgroundColor: "#fff",
       boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
       borderRadius: "0px",
@@ -268,63 +275,45 @@ const TrainingProgram = () => {
   </style>
 </section>
 
+      {/* existing content remains unchanged */}
 
-
-
-
-      {/* === Plan Comparison Table === */}
-      <Container className="my-5">
-        <h2 className="text-center mb-4" style={{ color: "#1C1C1C", fontWeight: "bold" }}>
-          Compare Our Training Plans
-        </h2>
-
-        <Row className="mb-4">
-          {[0, 1].map((index) => (
-            <Col md="6" className="text-center" key={index}>
-              <h5 style={{ color: "#888888" }}>Select Plan {index + 1}</h5>
-              {Object.keys(plans).map((key) => (
-                <Button
-                  key={key}
-                  style={{
-                    backgroundColor: selectedPlans[index] === key ? "#E22728" : "#888888",
-                    border: "none",
-                    margin: "5px",
-                    color: "#fff",
-                    fontWeight: "500",
-                    padding: "10px 20px",
-                    borderRadius: "6px",
-                  }}
-                  onClick={() => handleSelect(index, key)}
-                >
-                  {plans[key].name}
-                </Button>
-              ))}
+      <Container className="py-5">
+        <h2 className="text-center mb-4 fw-bold text-primary">Select Plans to Compare</h2>
+        <Row className="g-4 justify-content-center">
+          {Object.values(plans).map((plan) => (
+            <Col md={4} key={plan.id}>
+              <Card className={`shadow-sm ${selectedPlans.includes(plan.id) ? 'border border-danger' : ''}`}>
+                <CardBody>
+                  <div className="form-check mb-2">
+                    <input
+                      type="checkbox"
+                      id={plan.id}
+                      className="form-check-input"
+                      checked={selectedPlans.includes(plan.id)}
+                      onChange={() => handleToggle(plan.id)}
+                    />
+                    <label htmlFor={plan.id} className="form-check-label fw-bold">Compare</label>
+                  </div>
+                  <h5 className="text-success fw-bold">{plan.name}</h5>
+                </CardBody>
+              </Card>
             </Col>
           ))}
         </Row>
 
-        <Table bordered responsive hover style={{ borderColor: "#E22728" }}>
-          <thead>
-            <tr style={{ backgroundColor: "#E22728", color: "#fff" }}>
-              <th>Feature</th>
-              <th>{plans[selectedPlans[0]].name}</th>
-              <th>{plans[selectedPlans[1]].name}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {renderComparisonRow("Duration", "duration")}
-            {renderComparisonRow("Eligibility", "eligibility")}
-            {renderComparisonRow("Exclusivity", "exclusivity")}
-            {renderComparisonRow("Program Fees", "fees")}
-            {renderComparisonRow("Topics Covered", "topics")}
-            {renderComparisonRow("Certification", "certification")}
-            {renderComparisonRow("Key Features", "features")}
-            {renderComparisonRow("Internship Included", "internship")}
-            {renderComparisonRow("Placement Assistance", "placement")}
-            {renderComparisonRow("Institutional Benefits", "benefits")}
-          </tbody>
-        </Table>
+        {selectedPlans.length > 0 && (
+          <div className="text-center mt-4">
+            <Button color="danger" className="px-5 rounded-pill">
+              Compare Plans ({selectedPlans.length})
+            </Button>
+          </div>
+        )}
       </Container>
+      
+
+      {/* Show comparison table below everything */}
+      {renderCompareTable()}
+      
 
       <CourseSinglePage />
       <Footer />

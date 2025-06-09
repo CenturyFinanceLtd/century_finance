@@ -28,7 +28,7 @@ const FinanceServiceTab = ({ EventsDetails }) => {
   const tabInfo = [
     {
       id: "1",
-      title: "Appliance & Finance Loan",
+      title: "Appliance & Furniture Loan",
       IconComponent: IconBasicPlan,
       description: "",
       activeDescription: "",
