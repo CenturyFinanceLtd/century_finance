@@ -12,23 +12,19 @@ const authRoutes = require("./routes/authRoutes");
 const queryRoutes = require("./routes/queryRoutes");
 const courseBookingRoutes = require("./routes/courseBookingRoutes");
 const enquiryRoutes = require("./routes/enquiryRoutes");
-const registrationRoutes = require("./routes/registrationRoutes"); // This is your original route
-const trainingplanRoutes = require("./routes/trainingplanRoutes"); // This is the new route for our form
+const registrationRoutes = require("./routes/registrationRoutes");
+const trainingplanRoutes = require("./routes/trainingplanRoutes");
 
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 // --- Middleware setup ---
-
-// CORS Configuration
 const corsOptions = {
   origin: "https://www.centuryfinancelimited.com",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-
-// Increase the request body size limit
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
@@ -38,7 +34,6 @@ if (!MONGODB_URI) {
   console.error("🔴 CRITICAL: MongoDB URI not found in your .env file.");
   process.exit(1);
 }
-
 mongoose
   .connect(MONGODB_URI)
   .then(() => console.log("✅ Successfully connected to MongoDB Atlas!"))
@@ -51,17 +46,11 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Century Finance Backend Server is Live and Running!");
 });
-
-// Other application routes
 app.use("/api/auth", authRoutes);
 app.use("/api/queries", queryRoutes);
 app.use("/api/course-bookings", courseBookingRoutes);
 app.use("/api/enquiries", enquiryRoutes);
-
-// 👇 RESTORED: Your original registration route is now active
 app.use("/api/register", registrationRoutes);
-
-// The new endpoint for the training plan registration form
 app.use("/api/trainingregister", trainingplanRoutes);
 
 // --- Global Error Handler ---

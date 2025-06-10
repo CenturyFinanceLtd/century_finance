@@ -48,6 +48,14 @@ exports.registerForCourse = async (req, res, next) => {
       });
     }
 
+    // This handles multer-specific errors, like the file being too large
+    if (error instanceof multer.MulterError) {
+      return res.status(400).json({
+        status: "fail",
+        message: `File Upload Error: ${error.message}. Please upload a smaller file.`,
+      });
+    }
+
     res.status(500).json({
       status: "error",
       message: "Server error: Could not process your registration.",

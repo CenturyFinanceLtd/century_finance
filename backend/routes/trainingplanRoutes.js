@@ -23,7 +23,14 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+// --- Initialize Multer with File Size Limit ---
+// THIS IS THE FIX: We are adding a 'limits' object to multer's configuration.
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 20, // 20 MB file size limit
+  },
+});
 
 // --- Define The Route ---
 router.post(
