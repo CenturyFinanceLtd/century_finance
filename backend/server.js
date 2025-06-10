@@ -74,7 +74,9 @@ app.use("/api/queries", queryRoutes); // Use query routes, prefixed with /api/qu
 app.use("/api/course-bookings", courseBookingRoutes);
 app.use("/api/enquiries", enquiryRoutes);
 app.use('/api/register', registrationRoutes);
-app.use("/api/trainingregister", trainingplanRoutes);
+// The endpoint for your form
+app.use('/api/trainingregister', trainingplanRoutes);
+console.log("✅ Route /api/trainingregister is now active.");
 
 // --- Global Error Handler ---
 // This should be defined AFTER all other app.use() and routes calls

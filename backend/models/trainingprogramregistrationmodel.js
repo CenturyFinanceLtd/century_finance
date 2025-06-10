@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Define the schema for the registration form
 const registrationSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Full name is required."] },
   universityName: {
@@ -32,7 +31,6 @@ const registrationSchema = new mongoose.Schema({
   registrationDate: { type: Date, default: Date.now },
 });
 
-// The collection name in MongoDB will be 'trainingprogramregistrationforms'
 const Registration = mongoose.model(
   "TrainingProgramRegistrationForm",
   registrationSchema

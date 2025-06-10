@@ -1,51 +1,83 @@
-// 👇 IMPORTANT: Update this require statement to use the new model filename
-const Registration = require("../models/trainingprogramregistrationmodel.js");
+const Registration = require("../models/trainingprogramregistrationmodel");
 
-// This is the main function to handle the registration logic
 exports.registerForCourse = async (req, res, next) => {
+  console.log("--> Entered registerForCourse controller function.");
+
+  // Log the text fields received from the form
+  console.log("Form Data (req.body):", req.body);
+
   try {
-    // Check if the file was uploaded by multer/cloudinary middleware
-    if (!req.file) {
+    // Log file information if it exists.
+    if (req.file) {
+      console.log("File Upload Data (req.file):", {
+        fieldname: req.file.fieldname,
+        originalname: req.file.originalname,
+        mimetype: req.file.mimetype,
+        path: req.file.path,
+        size: req.file.size,
+      });
+    } else {
+      // This is a critical error if no file is found after the upload middleware.
+      console.error(
+        "🔴 ERROR: No file was found in req.file. The upload may have failed silently."
+      );
       return res.status(400).json({
         status: "fail",
-        message: "Transaction screenshot is required. Please upload the image.",
+        message: "Transaction screenshot file is missing. Upload failed.",
       });
     }
 
-    // Create a new registration document
+    console.log("Attempting to create new registration in database...");
     const newRegistration = await Registration.create({
-      ...req.body,
+      name: req.body.name,
+      universityName: req.body.universityName,
+      email: req.body.email,
+      mobileNumber: req.body.mobileNumber,
+      degree: req.body.degree,
+      year: req.body.year,
+      branch: req.body.branch,
+      address: req.body.address,
+      planName: req.body.planName,
+      transactionId: req.body.transactionId,
       transactionScreenshotUrl: req.file.path,
       transactionScreenshotId: req.file.filename,
     });
 
-    // Send a success response
+    console.log(
+      "✅ Successfully saved registration to database. ID:",
+      newRegistration._id
+    );
     res.status(201).json({
       status: "success",
       message: "Registration successful! We will be in touch shortly.",
       data: newRegistration,
     });
   } catch (error) {
-    // Handle specific errors, like a duplicate email
+    // This will catch any database errors (validation, duplicate keys, etc.)
+    console.error(
+      "� CATCH BLOCK: An error occurred during registration creation."
+    );
+    console.error("Error Name:", error.name);
+    console.error("Error Message:", error.message);
+    console.error("Full Error Object:", error);
+
     if (error.code === 11000) {
       return res.status(409).json({
-        // 409 Conflict
         status: "fail",
-        message: "This email address has already been registered.",
+        message: `Duplicate field error: ${
+          Object.keys(error.keyValue)[0]
+        } is already registered.`,
       });
     }
 
-    // Handle Mongoose validation errors
     if (error.name === "ValidationError") {
       const messages = Object.values(error.errors).map((val) => val.message);
       return res.status(400).json({
         status: "fail",
-        message: messages.join(" "),
+        message: `Validation Error: ${messages.join(" ")}`,
       });
     }
 
-    // For any other errors, send a generic server error response
-    console.error("REGISTRATION_CONTROLLER_ERROR", error);
     res.status(500).json({
       status: "error",
       message: "Server error: Could not process your registration.",
