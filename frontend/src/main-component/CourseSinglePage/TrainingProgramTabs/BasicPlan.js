@@ -243,12 +243,12 @@ const BasicPlan = ({ onBookNow }) => {
                 </div>
 
                 {/* Payment Button stays at the end */}
-                <button
+                {/* <button
                   onClick={onBookNow}
                   className="btn btn-outline-dark mt-3"
                   style={{ padding: "12px 25px" }}>
                   Pay Now (₹45,000 per Batch)
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
