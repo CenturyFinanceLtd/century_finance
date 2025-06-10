@@ -115,13 +115,13 @@ const BasicPlan = ({ onBookNow }) => {
                       </strong></h4>
                     <ul className="mb-3">
                       <li>Designed for Final Year Students, only for Colleges and Universities
-  </li>
+                      </li>
                       <li>BBA,B.Com, BA-Economics, MBA or Finance related streams are eligible   </li>
                       <li>Program fees:- Rs.45,000 per batch + GST</li>
                       <li>Digital  Certificate awarded on completion of Training.</li>
                     </ul>
 
-                    <h5><strong></strong></h5>
+                    {/* <h5><strong></strong></h5>
                     <table className="table table-bordered mt-2">
                       <thead className="table-light">
                         <tr>
@@ -136,31 +136,70 @@ const BasicPlan = ({ onBookNow }) => {
                           <td>What You’ll Learn</td>
                         </tr>
                         <tr>
-                          <td></td>
-                          <td>Understanding pricing factors and trading in agri, metals, and energy commodities</td>
+                          <td>Equity
+
+                          </td>
+                          <td>Understanding of stock exchange, trading mechanism and investment strategies.</td>
                         </tr>
                         <tr>
-                          <td>Foreign Exchange</td>
-                          <td>Essentials of currency markets, INR pairs, and international influences</td>
+                          <td>Commodity
+
+                          </td>
+                          <td>Insights into commodity pricing and trading dynamics across agriculture, metals and energy sector.
+
+                          </td>
+                          <td>Forex Market
+                          </td>Key concepts of currency market, derivatives market and global economic influences.
+                          <td>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table> */}
+                    <h5><strong>Program Curriculum</strong></h5>
+                    <table className="table table-bordered mt-2">
+                      <thead className="table-light">
+                        <tr>
+                          <th>Program</th>
+                          <th> Module What You’ll Learn</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Equity</td>
+                          <td>Understanding of stock exchange, trading mechanism and investment strategies.</td>
+                        </tr>
+                        <tr>
+                          <td>Commodity</td>
+                          <td>Insights into commodity pricing and trading dynamics across agriculture, metals and energy sector.</td>
+                        </tr>
+                        <tr>
+                          <td>Forex Market</td>
+                          <td>Key concepts of currency market, derivatives market and global economic influences.</td>
                         </tr>
                       </tbody>
                     </table>
 
+
                     {/* Student Benefits */}
-                    <h5 className="mt-4"><strong>Why Should Students Attend?</strong></h5>
+                    <h5 className="mt-4"><strong>Why Should Students Enroll?</strong></h5>
                     <ul className="mb-3">
-                      <li>✅ Real-time exposure to the workings of financial markets</li>
-                      <li>✅ Interview-focused knowledge for final-year placement preparation</li>
-                      <li>✅ Digital certificate to add credibility to resumes & LinkedIn profiles</li>
-                      <li>✅ Awareness of top finance careers — CFA, Research Analyst, Investment Advisor, and more</li>
+                      <li> Get real-time knowledge to financial market
+                      </li>
+                      <li>Build Interview ready knowledge to boost placement process</li>
+                      <li>Earn a recognized digital certificate to enhance your resume and linkedin
+                      </li>
+                      <li>Explore the career paths like CFA, advisor and research analyst.</li>
                     </ul>
                     {/* Institution Benefits */}
-                    <h5 className="mt-4"><strong>What Institutions Gain</strong></h5>
+                    <h5 className="mt-4"><strong>Benefits For Educational Institutes:
+                    </strong></h5>
                     <ul className="mb-3">
-                      <li>✔️ Industry-driven training to strengthen your academic offerings</li>
-                      <li>✔️ Better placement results with job-oriented exposure</li>
-                      <li>✔️ Enhanced brand image as a career-focused institute</li>
-                      <li>✔️ No added burden — we manage training, assessments, and certification entirely</li>
+                      <li>Offer industry-relevant training that complements academic learning.
+                      </li>
+                      <li>Improve student placements outcomes through practical exposure.</li>
+                      <li>Strengthen your institute’s reputation as a career-focused education provider.</li>
+                      <li>Hassle free execution- we handle all the aspects of training and certification.
+                      </li>
                     </ul>
 
                     {/* Contact Details */}
