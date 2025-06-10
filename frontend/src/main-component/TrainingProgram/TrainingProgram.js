@@ -107,7 +107,6 @@ const TrainingProgram = () => {
       <section
         style={{
           width: "100%",
-         
           padding: "20",
          
         }}
@@ -184,7 +183,7 @@ const TrainingProgram = () => {
             onClick={() => setIsExpanded(!isExpanded)}
             style={{
               marginTop: "30px",
-              marginbottom: "30px",
+              marginBottom: "30px",
               padding: "12px 25px",
               fontSize: "1.1rem",
               fontWeight: "bold",
@@ -193,6 +192,7 @@ const TrainingProgram = () => {
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
             }}
           >
+            
             {isExpanded ? "Show Less" : "Read More"}
           </Button>
 
@@ -281,6 +281,11 @@ const TrainingProgram = () => {
         </div>
       </section>
 
+     
+
+      {renderCompareTable()}
+      <CourseSinglePage />
+      
       <Container className="py-5">
         <h2 className="text-center mb-4 fw-bold text-primary">Select Plans to Compare</h2>
         <Row className="g-4 justify-content-center">
@@ -313,9 +318,6 @@ const TrainingProgram = () => {
           </div>
         )}
       </Container>
-
-      {renderCompareTable()}
-      <CourseSinglePage />
       <Footer />
       <Scrollbar />
     </Fragment>

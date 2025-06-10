@@ -43,7 +43,6 @@ const ApplianceFurnitureLoan = () => {
                   <ol className="list-unstyled mb-0">
                     <li><strong>Loan Amount:</strong> ₹20,000 – ₹1,40,000</li>
                     <li><strong>Interest Rate:</strong> 9% – 27% Annually</li>
-                    <li><strong>Tenure:</strong> 6 – 24 months</li>
                   </ol>
                 </div>
 
