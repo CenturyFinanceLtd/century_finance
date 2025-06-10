@@ -26,9 +26,9 @@ const corsOptions = {
   origin: "https://www.centuryfinancelimited.com",
   optionsSuccessStatus: 200,
 };
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // *** NEW *** Make the 'uploads' directory accessible
 // This will allow your frontend to display the uploaded screenshots
