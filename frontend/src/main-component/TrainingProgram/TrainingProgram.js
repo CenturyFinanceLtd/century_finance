@@ -13,7 +13,8 @@ const plans = {
     id: "basic",
     name: "Basic Plan",
     duration: "1 Day",
-    eligibility: "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
+    eligibility:
+      "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
     exclusivity: "Only for College & Universities",
     fees: "₹45,000 + GST",
     topics: "Equity, Commodity, Foreign Exchange Market",
@@ -27,12 +28,15 @@ const plans = {
     id: "premium",
     name: "Premium Plan",
     duration: "2 Days",
-    eligibility: "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
+    eligibility:
+      "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
     exclusivity: "Only for College & Universities",
     fees: "₹85,000 + GST",
-    topics: "Equity, Commodity, Foreign Exchange Market, Mutual Funds, MTF, Banex, SGP, Portfolio Planning",
+    topics:
+      "Equity, Commodity, Foreign Exchange Market, Mutual Funds, MTF, Banex, SGP, Portfolio Planning",
     certification: "Digital Certification (Post-Assessment)",
-    features: "Strategy Workshops, Real Market Simulations, 1:1 Mentorship, Assessment",
+    features:
+      "Strategy Workshops, Real Market Simulations, 1:1 Mentorship, Assessment",
     internship: "No",
     placement: "No",
     benefits: "Adds value to academics, improves placement reputation",
@@ -41,12 +45,15 @@ const plans = {
     id: "learning",
     name: "Learning to Earning Model",
     duration: "Multi Phase: 2 Days + 2 month internship + Placement Support",
-    eligibility: "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
+    eligibility:
+      "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
     exclusivity: "Only for College & Universities",
     fees: "₹1,40,000 + GST",
-    topics: "All modules from Premium plan in depth + Internship + Placement Training",
+    topics:
+      "All modules from Premium plan in depth + Internship + Placement Training",
     certification: "Digital Certification + Certified Internship Certificate",
-    features: "Internship, Live Trading, Placement Guidance, Advanced Training, Direct Hiring Opportunities",
+    features:
+      "Internship, Live Trading, Placement Guidance, Advanced Training, Direct Hiring Opportunities",
     internship: "2 Month Internship with Weekly Mentorship",
     placement: "Yes + Interview Round + Direct Hiring for Top Performers",
     benefits: "Long-term career impact, campus-to-corporate model",
@@ -69,8 +76,17 @@ const TrainingProgram = () => {
     if (selectedPlans.length < 1) return null;
 
     return (
-      <div style={{ background: "#fff", padding: "0", marginTop: "60px", boxShadow: "0px 10px 40px rgba(0,0,0,0.1)", borderTop: "6px solid #E22728" }}>
-        <h2 className="text-center text-danger fw-bold mb-4">Detailed Comparison of Selected Plans</h2>
+      <div
+        style={{
+          background: "#fff",
+          padding: "0",
+          marginTop: "60px",
+          boxShadow: "0px 10px 40px rgba(0,0,0,0.1)",
+          borderTop: "6px solid #E22728",
+        }}>
+        <h2 className="text-center text-danger fw-bold mb-4">
+          Detailed Comparison of Selected Plans
+        </h2>
         <Table bordered responsive hover>
           <thead className="table-dark">
             <tr>
@@ -81,16 +97,66 @@ const TrainingProgram = () => {
             </tr>
           </thead>
           <tbody>
-            <tr><th>Duration</th>{selectedPlans.map((id) => <td key={id}>{plans[id].duration}</td>)}</tr>
-            <tr><th>Eligibility</th>{selectedPlans.map((id) => <td key={id}>{plans[id].eligibility}</td>)}</tr>
-            <tr><th>Exclusivity</th>{selectedPlans.map((id) => <td key={id}>{plans[id].exclusivity}</td>)}</tr>
-            <tr><th>Fees</th>{selectedPlans.map((id) => <td key={id}>{plans[id].fees}</td>)}</tr>
-            <tr><th>Topics</th>{selectedPlans.map((id) => <td key={id}>{plans[id].topics}</td>)}</tr>
-            <tr><th>Certification</th>{selectedPlans.map((id) => <td key={id}>{plans[id].certification}</td>)}</tr>
-            <tr><th>Features</th>{selectedPlans.map((id) => <td key={id}>{plans[id].features}</td>)}</tr>
-            <tr><th>Internship</th>{selectedPlans.map((id) => <td key={id}>{plans[id].internship}</td>)}</tr>
-            <tr><th>Placement</th>{selectedPlans.map((id) => <td key={id}>{plans[id].placement}</td>)}</tr>
-            <tr><th>Benefits</th>{selectedPlans.map((id) => <td key={id}>{plans[id].benefits}</td>)}</tr>
+            <tr>
+              <th>Duration</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].duration}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Eligibility</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].eligibility}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Exclusivity</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].exclusivity}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Fees</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].fees}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Topics</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].topics}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Certification</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].certification}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Features</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].features}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Internship</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].internship}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Placement</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].placement}</td>
+              ))}
+            </tr>
+            <tr>
+              <th>Benefits</th>
+              {selectedPlans.map((id) => (
+                <td key={id}>{plans[id].benefits}</td>
+              ))}
+            </tr>
           </tbody>
         </Table>
       </div>
@@ -103,32 +169,32 @@ const TrainingProgram = () => {
         <title>Training Program - Century Finance Limited</title>
       </Helmet>
       <Navbar />
-      <PageTitle pageTitle="Training Program" pagesub="Compare Plans" bgImage="/bg-image/training.png" />
+      <PageTitle
+        pageTitle="Training Program"
+        pagesub="Compare Plans"
+        bgImage="/bg-image/training.png"
+      />
       <section
         style={{
           width: "100%",
           padding: "20",
-         
-        }}
-      >
+        }}>
         <div
           style={{
             width: "100%",
-            padding: "0",
+            padding: "40px 0",
             backgroundColor: "#fff",
             boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
             borderRadius: "0px",
             textAlign: "center",
-          }}
-        >
+          }}>
           <h1
             style={{
               fontSize: "3rem",
               fontWeight: "800",
               color: "#1C1C1C",
               marginBottom: "16px",
-            }}
-          >
+            }}>
             Master the Market with Century Finance Training Programs
           </h1>
 
@@ -151,11 +217,10 @@ const TrainingProgram = () => {
               maxWidth: "900px",
               margin: "0 auto 30px auto",
               lineHeight: "1.7",
-            }}
-          >
+            }}>
             <strong>
-              Expert-led training programs designed to turn beginners into confident,
-              skilled traders and investors.
+              Expert-led training programs designed to turn beginners into
+              confident, skilled traders and investors.
             </strong>
           </p>
 
@@ -165,20 +230,159 @@ const TrainingProgram = () => {
               fontWeight: "700",
               color: "#1C1C1C",
               marginTop: "40px",
-            }}
-          >
+            }}>
             About Century Finance Training Program
           </h2>
-          <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "0 auto" }}>
-            At Century Finance Limited, we believe successful trading begins with the right education.
-            Our programs are curated for final-year college students, offering core financial literacy in
-            <strong> Equity, Commodity, and Forex markets</strong> — guided by SEBI-certified trainers.
+
+          <p
+            style={{
+              fontSize: "1.1rem",
+              color: "#444",
+              lineHeight: "1.8",
+              maxWidth: "1000px",
+              margin: "0 auto",
+            }}>
+            At Century Finance Limited, we believe successful trading begins
+            with the right education. Our programs are curated for final-year
+            college students, offering core financial literacy in
+            <strong> Equity, Commodity, and Forex markets</strong> — guided by
+            SEBI-certified trainers.
           </p>
 
-          <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "20px auto" }}>
-            Through real-time simulations, market exposure, and personalized mentorship,
-            we prepare you to navigate global finance with confidence and competence.
-          </p> <Button
+          <p
+            style={{
+              fontSize: "1.1rem",
+              color: "#444",
+              lineHeight: "1.8",
+              maxWidth: "1000px",
+              margin: "20px auto",
+            }}>
+            Through real-time simulations, market exposure, and personalized
+            mentorship, we prepare you to navigate global finance with
+            confidence and competence.
+          </p>
+
+          {/* Expandable Content */}
+          {isExpanded && (
+            <div style={{ marginTop: "20px" }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 20,
+                  maxWidth: "1000px",
+                  margin: "0px auto 40px auto",
+                  textAlign: "left",
+                  fontSize: "1.05rem",
+                  color: "#333",
+                  lineHeight: "1.7",
+                }}>
+                <h3
+                  style={{
+                    fontSize: "1.8rem",
+                    fontWeight: "bold",
+                    color: "#1C1C1C",
+                  }}>
+                  Our Objective
+                </h3>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    color: "#444",
+                    lineHeight: "1.8",
+                    maxWidth: "1000px",
+                    margin: "0 auto",
+                  }}>
+                  We bridge academic learning and real-world finance, empowering
+                  students with job-ready skills, certification, and career
+                  clarity.
+                </p>
+                <li>
+                  ✅ <strong>Basic Plan:</strong> Bridge classroom concepts with
+                  financial market realities.
+                </li>
+                <li>
+                  ✅ <strong>Premium Plan:</strong> Career-focused training with
+                  hands-on workshops and certification.
+                </li>
+                <li>
+                  ✅ <strong>Learning to Earning:</strong> A full roadmap to
+                  finance careers via internship & direct hiring.
+                </li>
+              </ul>
+
+              <h3
+                style={{
+                  fontSize: "1.8rem",
+                  fontWeight: "bold",
+                  color: "#1C1C1C",
+                  marginTop: "50px",
+                }}>
+                What You’ll Learn
+              </h3>
+              <ol
+                style={{
+                  textAlign: "left",
+                  maxWidth: "1000px",
+                  margin: "20px auto",
+                  fontSize: "1.05rem",
+                  color: "#333",
+                  lineHeight: "1.6",
+                }}>
+                <li>Fundamentals of Stock Market Trading and Investment</li>
+                <li>Equity, Commodity & Forex Market Dynamics</li>
+                <li>Technical & Fundamental Analysis</li>
+                <li>Emotional Discipline and Trading Psychology</li>
+                <li>Risk Management & Portfolio Building</li>
+                <li>Interview Prep & Placement-Ready Confidence</li>
+              </ol>
+
+              <h3
+                style={{
+                  fontSize: "1.8rem",
+                  fontWeight: "bold",
+                  color: "#1C1C1C",
+                  marginTop: "50px",
+                }}>
+                Key Features
+              </h3>
+              <ul
+                style={{
+                  textAlign: "left",
+                  maxWidth: "1000px",
+                  margin: "20px auto",
+                  fontSize: "1.05rem",
+                  color: "#333",
+                  lineHeight: "1.6",
+                }}>
+                <li>✅ Learn from SEBI-certified trainers</li>
+                <li>✅ Live market simulations & demos</li>
+                <li>✅ Industry-level financial tool exposure</li>
+                <li>✅ Recognized Certifications</li>
+                <li>✅ Internship & placement guidance (for eligible plans)</li>
+              </ul>
+
+              <div
+                className="alert alert-success p-4 rounded mb-3"
+                style={{ fontSize: "1.05rem", marginTop: "40px" }}>
+                <strong>
+                  Whether you're interested in Equity, Commodity, or Foreign
+                  Exchange — Century Finance equips you with the tools, clarity,
+                  and certification to launch your finance career confidently.
+                </strong>
+              </div>
+              <div
+                className="alert alert-warning p-4 rounded"
+                style={{ fontSize: "1.05rem" }}>
+                <strong>
+                  Take your first step toward financial mastery with Century
+                  Finance Limited — where education meets opportunity.
+                </strong>
+              </div>
+            </div>
+          )}
+
+          {/* Read More / Show Less Button - Always at Bottom */}
+          <Button
             color="primary"
             onClick={() => setIsExpanded(!isExpanded)}
             style={{
@@ -190,108 +394,26 @@ const TrainingProgram = () => {
               borderRadius: "25px",
               transition: "background-color 0.3s",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            
+            }}>
             {isExpanded ? "Show Less" : "Read More"}
           </Button>
-
-         
-
-          {/* Expandable Button */}
-          
-
-          {isExpanded && (
-            <div style={{ marginTop: "20px" }}>
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 20,
-                  maxWidth: "1000px",
-                  margin: "40px auto",
-                  textAlign: "left",
-                  fontSize: "1.05rem",
-                  color: "#333",
-                  lineHeight: "1.7",
-                }}
-              >
-                 <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
-            Our Objective
-          </h3>
-          <p style={{ fontSize: "1.1rem", color: "#444", lineHeight: "1.8", maxWidth: "1000px", margin: "0 auto" }}>
-            We bridge academic learning and real-world finance, empowering students with
-            job-ready skills, certification, and career clarity.
-          </p>
-                <li>✅ <strong>Basic Plan:</strong> Bridge classroom concepts with financial market realities.</li>
-                <li>✅ <strong>Premium Plan:</strong> Career-focused training with hands-on workshops and certification.</li>
-                <li>✅ <strong>Learning to Earning:</strong> A full roadmap to finance careers via internship & direct hiring.</li>
-              </ul>
-              <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
-       What You’ll Learn
-    </h3>
-    <ol
-      style={{
-        textAlign: "left",
-        maxWidth: "1000px",
-        margin: "20px auto",
-        fontSize: "1.05rem",
-        color: "#333",
-        lineHeight: "1.6",
-      }}
-    >
-      <li>Fundamentals of Stock Market Trading and Investment</li>
-      <li>Equity, Commodity & Forex Market Dynamics</li>
-      <li>Technical & Fundamental Analysis</li>
-      <li>Emotional Discipline and Trading Psychology</li>
-      <li>Risk Management & Portfolio Building</li>
-      <li>Interview Prep & Placement-Ready Confidence</li>
-    </ol>
-
-    <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#1C1C1C", marginTop: "50px" }}>
-       Key Features
-    </h3>
-    <ul
-      style={{
-        textAlign: "left",
-        maxWidth: "1000px",
-        margin: "20px auto",
-        fontSize: "1.05rem",
-        color: "#333",
-        lineHeight: "1.6",
-      }}
-    >
-      <li>✅ Learn from SEBI-certified trainers</li>
-      <li>✅ Live market simulations & demos</li>
-      <li>✅ Industry-level financial tool exposure</li>
-      <li>✅ Recognized Certifications</li>
-      <li>✅ Internship & placement guidance (for eligible plans)</li>
-    </ul>
-
-    <div className="alert alert-success p-4 rounded mb-3" style={{ fontSize: "1.05rem", marginTop: "40px" }}>
-      <strong>
-        Whether you're interested in Equity, Commodity, or Foreign Exchange —
-        Century Finance equips you with the tools, clarity, and certification to launch your finance career confidently.
-      </strong>
-    </div>
-    <div className="alert alert-warning p-4 rounded" style={{ fontSize: "1.05rem" }}>
-      <strong>Take your first step toward financial mastery with Century Finance Limited — where education meets opportunity.</strong>
-    </div>
-            </div>
-          )}
         </div>
       </section>
 
-     
-
       {renderCompareTable()}
       <CourseSinglePage />
-      
+
       <Container className="py-5">
-        <h2 className="text-center mb-4 fw-bold text-primary">Select Plans to Compare</h2>
+        <h2 className="text-center mb-4 fw-bold text-primary">
+          Select Plans to Compare
+        </h2>
         <Row className="g-4 justify-content-center">
           {Object.values(plans).map((plan) => (
             <Col md={4} key={plan.id}>
-              <Card className={`shadow-sm ${selectedPlans.includes(plan.id) ? 'border border-danger' : ''}`}>
+              <Card
+                className={`shadow-sm ${
+                  selectedPlans.includes(plan.id) ? "border border-danger" : ""
+                }`}>
                 <CardBody>
                   <div className="form-check mb-2">
                     <input
@@ -301,7 +423,11 @@ const TrainingProgram = () => {
                       checked={selectedPlans.includes(plan.id)}
                       onChange={() => handleToggle(plan.id)}
                     />
-                    <label htmlFor={plan.id} className="form-check-label fw-bold">Compare</label>
+                    <label
+                      htmlFor={plan.id}
+                      className="form-check-label fw-bold">
+                      Compare
+                    </label>
                   </div>
                   <h5 className="text-success fw-bold">{plan.name}</h5>
                 </CardBody>

@@ -110,7 +110,7 @@ const TrainingTab = ({ EventsDetails }) => {
 
   return (
     // Use <section> and classes from the Features component example
-    <section className="wpo-features-area section-padding">
+    <section className="wpo-features-area section-padding training-tab">
       {" "}
       {/* section-padding from original CourseTab */}
       <div className="container-fluid">
