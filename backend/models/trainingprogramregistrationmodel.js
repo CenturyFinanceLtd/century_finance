@@ -31,9 +31,11 @@ const registrationSchema = new mongoose.Schema({
   registrationDate: { type: Date, default: Date.now },
 });
 
+// This will save to the 'trainingplan_registration' collection in MongoDB
 const Registration = mongoose.model(
-  "TrainingProgramRegistrationForm",
-  registrationSchema
+  "TrainingPlanRegistration",
+  registrationSchema,
+  "trainingplan_registration"
 );
 
 module.exports = Registration;
