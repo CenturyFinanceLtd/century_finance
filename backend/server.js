@@ -21,14 +21,20 @@ const trainingRegisterRoutes = require("./routes/trainingRegister"); // *** NEW 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+// --- START: CORRECTED MIDDLEWARE CONFIGURATION ---
+
 // Middleware setup
 const corsOptions = {
   origin: "https://www.centuryfinancelimited.com",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+// Set body parser limits for large file uploads
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+
+// --- END: CORRECTED MIDDLEWARE CONFIGURATION ---
 
 // *** NEW *** Make the 'uploads' directory accessible
 // This will allow your frontend to display the uploaded screenshots
