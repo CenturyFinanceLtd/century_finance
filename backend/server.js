@@ -36,9 +36,12 @@ const corsOptions = {
   origin: "https://www.centuryfinancelimited.com", // Allow requests from your frontend domain
   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors()); // Enable CORS for all origins
-app.use(bodyParser.json()); // Parse JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+app.use(cors(corsOptions));
+
+// 👇 THE FIX IS HERE: Increase the request body size limit to 50MB
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -69,16 +72,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes); // All auth routes will be prefixed with /api/auth
 app.use("/api/queries", queryRoutes); // Use query routes, prefixed with /api/queries
 app.use("/api/course-bookings", courseBookingRoutes);
-
-// Booking routes (to be added back later)
-// app.use('/api/bookings', bookingRoutes);
-
 app.use("/api/enquiries", enquiryRoutes);
-// Routes
 app.use('/api/register', registrationRoutes);
-
-// 👇 CHANGE THIS LINE: use the new variable, but keep the API endpoint the same
-// The frontend will still post to '/api/register'
 app.use("/api/trainingregister", trainingplanRoutes);
 
 // --- Global Error Handler ---
