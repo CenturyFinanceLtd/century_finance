@@ -17,6 +17,10 @@ const courseBookingRoutes = require("./routes/courseBookingRoutes"); // Adjust p
 const enquiryRoutes = require("./routes/enquiryRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
 
+// 👇 CHANGE THIS LINE: from registrationRoutes to trainingplanRoutes
+const trainingplanRoutes = require("./routes/trainingplanRoutes"); // Use the new filename
+
+
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -72,6 +76,10 @@ app.use("/api/course-bookings", courseBookingRoutes);
 app.use("/api/enquiries", enquiryRoutes);
 // Routes
 app.use('/api/register', registrationRoutes);
+
+// 👇 CHANGE THIS LINE: use the new variable, but keep the API endpoint the same
+// The frontend will still post to '/api/register'
+app.use('/api/register', trainingplanRoutes);
 
 // --- Global Error Handler ---
 // This should be defined AFTER all other app.use() and routes calls

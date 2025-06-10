@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import abimg from "../../../images/about/basic.png";
 import shape from "../../../images/about/shape.png";
+import RegistrationFormModal from "./RegistrationBasicFormModal";
 
 const BasicPlan = ({ onBookNow }) => {
-  const [isExpanded, setIsExpanded] = useState(false); // State to handle content toggle
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleContent = () => {
-    setIsExpanded(!isExpanded); // Toggle the expanded content
+    setIsExpanded(!isExpanded);
   };
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+
   return (
+    <>
     <section className="wpo-about-section-s2 section-padding">
       <div className="container">
         <div className="wpo-about-wrap">
@@ -249,12 +261,29 @@ const BasicPlan = ({ onBookNow }) => {
                   style={{ padding: "12px 25px" }}>
                   Pay Now (₹45,000 per Batch)
                 </button> */}
+
+<div className="text-center">
+                    <button
+                      onClick={handleOpenModal} // <-- This is the change
+                      className="btn btn-dark mt-4" // Centered and styled
+                      style={{
+                        padding: "12px 25px",
+                        fontSize: "1.2rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Enroll & Pay Now
+                    </button>
+                  </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+      {/* The Modal is now a sibling to the section, inside the fragment */}
+  <RegistrationFormModal show={showModal} onClose={handleCloseModal} />
+  </>
   );
 };
 
