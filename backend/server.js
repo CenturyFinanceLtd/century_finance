@@ -79,7 +79,7 @@ app.use('/api/register', registrationRoutes);
 
 // 👇 CHANGE THIS LINE: use the new variable, but keep the API endpoint the same
 // The frontend will still post to '/api/register'
-app.use('/api/register', trainingplanRoutes);
+app.use("/api/trainingregister", trainingplanRoutes);
 
 // --- Global Error Handler ---
 // This should be defined AFTER all other app.use() and routes calls

@@ -111,11 +111,15 @@ const RegistrationFormModal = ({ show, onClose }) => {
     submissionData.append("transactionScreenshot", screenshot);
 
     try {
-      await axios.post("http://localhost:5001/api/register", submissionData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+        await axios.post(
+          "https://api.centuryfinancelimited.com/api/trainingregister",
+          submissionData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       alert("Registration Successful! We will get in touch with you shortly.");
       onClose();
       // Reset form state
