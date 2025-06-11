@@ -24,7 +24,7 @@ const PremiumPlan = ({ onBookNow }) => {
       padding: '0', // Inner padding will be handled by sub-sections
       borderRadius: '8px',
       width: '100%',
-      maxWidth: '850px', // Adjusted max width to be slightly narrower like the edX content
+      maxWidth: '100%', // Adjusted max width to be slightly narrower like the edX content
       margin: '20px auto', // Margin top/bottom for wrap within section
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
       overflow: 'hidden', // Ensure border-radius clips children
