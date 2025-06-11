@@ -79,10 +79,10 @@ const TrainingProgram = () => {
       <div
         style={{
           background: "#fff",
-          padding: "0",
-          marginTop: "60px",
-          boxShadow: "0px 10px 40px rgba(0,0,0,0.1)",
-          borderTop: "6px solid #E22728",
+          padding: "39px",
+          marginTop: "0",
+         
+          
         }}>
         <h2 className="text-center text-danger fw-bold mb-4">
           Detailed Comparison of Selected Plans

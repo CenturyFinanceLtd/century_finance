@@ -149,7 +149,7 @@ const PremiumPlan = ({ onBookNow }) => {
       color: '#3498db',
     },
     alertSuccess: {
-      backgroundColor: '#2a4a2a', // Darker success tone
+      backgroundColor: '#', // Darker success tone
       color: '#2ecc71',
     },
     alertLight: {
@@ -170,15 +170,15 @@ const PremiumPlan = ({ onBookNow }) => {
         marginBottom: '25px',
     },
     badgeCommon: {
-      padding: '0.6em 1em',
-      fontSize: '0.9em',
-      fontWeight: '600',
-      borderRadius: '4px',
-      display: 'inline-block',
-      color: '#ffffff',
-      textTransform: 'uppercase',
-      letterSpacing: '0.5px',
-      backgroundColor: '#4a4a4a', // General dark badge background
+      padding: "1em 1em",
+      fontSize: "0.8em",
+      fontWeight: "600",
+      borderRadius: "4px",
+      display: "inline-block",
+      color: "#ffffff",
+      textTransform: "",
+      letterSpacing: "0.5px",
+      backgroundColor: "#black", // General dark badge background
     },
     // Specific badge colors (can map existing ones to dark theme)
     badgePrimary: { backgroundColor: '#6a6a6a' },
@@ -237,11 +237,22 @@ const PremiumPlan = ({ onBookNow }) => {
             <div style={{ ...styles.alertCommon, ...styles.alertInfo, marginBottom: '0' }} className="alert alert-info">
                 <strong style={styles.strongText}>Join with Century Finance Limited</strong>
                 <br />
-                <ul style={styles.unorderedList} className="mt-2 mb-0">
-                    <li style={styles.listItem}>✔️ <strong style={styles.strongText}>2-Day Training Session</strong></li>
-                    <li style={styles.listItem}>✔️ Learn about <strong style={styles.strongText}>Core & Advanced Market</strong></li>
-                    <li style={styles.listItem}>✔️ <strong style={styles.strongText}>SEBI-Certified Certification</strong></li>
-                </ul>
+                <br />
+               <div style={styles.badgesContainer}>
+                 <span
+                    style={{ ...styles.badgeCommon, ...styles.badgePrimary }}>
+                     2 Day training Session+Live Trading Session 
+                  </span>
+                   <span
+                    style={{ ...styles.badgeCommon, ...styles.badgePrimary }}>
+                      Learn about Core & Advanced Market  
+
+                  </span>
+                    <span
+                    style={{ ...styles.badgeCommon, ...styles.badgePrimary }}>
+                       SEBI-Certified Certification
+                  </span>
+                </div>
             </div>
           </div>
 

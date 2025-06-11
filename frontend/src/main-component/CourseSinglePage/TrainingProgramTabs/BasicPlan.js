@@ -171,15 +171,15 @@ const BasicPlan = ({ onBookNow }) => {
       marginBottom: "25px",
     },
     badgeCommon: {
-      padding: "0.6em 1em",
-      fontSize: "0.9em",
+      padding: "1em 1em",
+      fontSize: "0.8em",
       fontWeight: "600",
       borderRadius: "4px",
       display: "inline-block",
       color: "#ffffff",
-      textTransform: "uppercase",
+      textTransform: "",
       letterSpacing: "0.5px",
-      backgroundColor: "#4a4a4a", // General dark badge background
+      backgroundColor: "#black", // General dark badge background
     },
     // Specific badge colors (can map existing ones to dark theme)
     badgePrimary: { backgroundColor: "#6a6a6a" },
@@ -227,7 +227,8 @@ const BasicPlan = ({ onBookNow }) => {
           <div style={styles.headerPriceSection}>
             <small style={styles.smallTitle}>BASIC PLAN</small>
             <h1 style={styles.mainTitle}>
-              Advanced 2-Day Certified Training in Financial Markets
+             One Day On-Campus Certified Financial Marketing Training
+
             </h1>
 
             <div style={styles.priceContainer}>
@@ -248,26 +249,20 @@ const BasicPlan = ({ onBookNow }) => {
                 Join with Century Finance Limited
               </strong>
               <br />
-              <ul style={styles.unorderedList} className="mt-2 mb-0">
-                <li style={styles.listItem}>
-                  ✔{" "}
-                  <strong style={styles.strongText}>
-                    2-Day Training Session
-                  </strong>
-                </li>
-                <li style={styles.listItem}>
-                  ✔ Learn about{" "}
-                  <strong style={styles.strongText}>
-                    Core & Advanced Market
-                  </strong>
-                </li>
-                <li style={styles.listItem}>
-                  ✔{" "}
-                  <strong style={styles.strongText}>
-                    SEBI-Certified Certification
-                  </strong>
-                </li>
-              </ul>
+               <div style={styles.badgesContainer}>
+                 <span
+                    style={{ ...styles.badgeCommon, ...styles.badgePrimary }}>
+                     1 Day training Session+Live Trading Session 
+                  </span>
+                   <span
+                    style={{ ...styles.badgeCommon, ...styles.badgePrimary }}>
+                      Learn about Equity,Commodity & Foreign Exchange 
+                  </span>
+                    <span
+                    style={{ ...styles.badgeCommon, ...styles.badgePrimary }}>
+                       SEBI-Certified Certification
+                  </span>
+                </div>
             </div>
           </div>
 
@@ -275,12 +270,8 @@ const BasicPlan = ({ onBookNow }) => {
           <div style={styles.contentSection}>
             <h2 style={styles.sectionHeading}>Objective</h2>
             <p style={styles.paragraph}>
-              This value-driven training is meticulously designed to bridge the
-              gap between academic knowledge and real-world financial acumen. It
-              focuses on equipping final-year students with in-depth market
-              insights, effective trading strategies, and career-focused live
-              training sessions - empowering them to excel in financial
-              placements and confidently step into the job market.
+             To seamlessly connect academic-learning with real-world  financial market practices by offering students hand-on-hands exposure to trading concepts, market structure and industry tools. It aims to build a solid foundation for their transition into the professional world of finance. 
+
             </p>
           </div>
 
@@ -293,26 +284,27 @@ const BasicPlan = ({ onBookNow }) => {
               <ul style={styles.unorderedList} className="mb-0">
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>{" "}
-                  <strong style={styles.strongText}>Target Audience:</strong>{" "}
-                  Exclusively for Final Year Students of Colleges and
-                  Universities.
+                  <strong style={styles.strongText}>Designed for Final Year Students, only for Colleges and Universities
+</strong>{" "}
+                 
                 </li>
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>{" "}
-                  <strong style={styles.strongText}>Eligibility:</strong>{" "}
-                  Students from BBA, B.Com, BA-Economics, MBA, or other
-                  Finance-related streams.
+                  <strong style={styles.strongText}>BBA,B.Com, BA-Economics, MBA or Finance related streams are eligible </strong>{" "}
+                  
+
                 </li>
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>{" "}
-                  <strong style={styles.strongText}>Program Fee:</strong>{" "}
-                  ₹85,000 per batch + GST (all applicable taxes).
+                  <strong style={styles.strongText}>Program fees:- Rs.45,000 per batch + GST
+</strong>{" "}
+                 
                 </li>
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>{" "}
-                  <strong style={styles.strongText}>Certification:</strong> A
-                  Digital Certificate will be awarded upon successful completion
-                  of the training.
+                  <strong style={styles.strongText}>Digital  Certificate awarded on completion of Training.
+</strong> 
+                  
                 </li>
               </ul>
             </div>
@@ -320,16 +312,12 @@ const BasicPlan = ({ onBookNow }) => {
 
           {/* Program Overview (with Read More/Show Less) */}
           <div style={styles.contentSection}>
-            <h2 style={styles.sectionHeading}>Program Overview</h2>
+            <h2 style={styles.sectionHeading}>About Basic Plan
+</h2>
             <p style={styles.paragraph}>
-              This <strong style={styles.strongText}>Premium Plan</strong>{" "}
-              offers a two-day, intensive on-campus training program crafted
-              exclusively for final-year students. It provides a practical deep
-              dive into the fundamentals of the stock market, coupled with
-              advanced insights into practical investment strategies and
-              comprehensive portfolio planning. The program is led by seasoned
-              trainers, dedicated to equipping students with the essential
-              skills to thrive in the dynamic financial market.
+               <strong style={styles.strongText}></strong>{" "}
+            Basic Plan is a one day, on-campus training program exclusively tailored for final-year students. It offers a practical exposure to equity, commodity and foreign exchange markets, delivered by experienced trainers. 
+
             </p>
 
             {!isExpanded && (
@@ -340,79 +328,75 @@ const BasicPlan = ({ onBookNow }) => {
 
             {isExpanded && (
               <>
-                <h3
-                  style={{
-                    ...styles.sectionHeading,
-                    fontSize: "1.5em",
-                    marginTop: "30px",
-                    marginBottom: "15px",
-                  }}>
-                  Day 1: Core Financial Market Training
-                </h3>
-                <ul style={styles.unorderedList}>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>Equity:</strong>{" "}
-                    Understand the fundamentals of the stock market, navigate
-                    trading platforms, and explore various investing methods.
-                  </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>Commodity:</strong> Gain
-                    insights into different commodity types, factors influencing
-                    pricing, and how to hedge through future contracts.
-                  </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>Foreign Exchange:</strong>{" "}
-                    Examine major currency pairs, analyze INR movements, and
-                    grasp the dynamics of the global forex market.
-                  </li>
-                </ul>
+            
+<div style={styles.contentSection}>
+  <h2 style={styles.sectionHeading}>Program Modules and Learning Outcomes</h2>
+  <table style={{
+    width: "100%",
+    borderCollapse: "collapse",
+    marginTop: "20px",
+    fontFamily: '"Open Sans", sans-serif',
+  }}>
+    <thead>
+      <tr style={{ backgroundColor: "#333333" }}>
+        <th style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#ffffff",
+          fontSize: "1em",
+          textAlign: "left"
+        }}>Module</th>
+        <th style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#ffffff",
+          fontSize: "1em",
+          textAlign: "left"
+        }}>What You’ll Learn</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style={{ backgroundColor: "#2a2a2a", transition: "0.3s" }}>
+        <td style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#cccccc",
+        }}>Equity</td>
+        <td style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#cccccc",
+        }}>Understanding of stock exchange, trading mechanism and investment strategies.</td>
+      </tr>
+      <tr style={{ backgroundColor: "#1f1f1f", transition: "0.3s" }}>
+        <td style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#cccccc",
+        }}>Commodity</td>
+        <td style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#cccccc",
+        }}>Insights into commodity pricing and trading dynamics across agriculture, metals and energy sector.</td>
+      </tr>
+      <tr style={{ backgroundColor: "#2a2a2a", transition: "0.3s" }}>
+        <td style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#cccccc",
+        }}>Forex Market</td>
+        <td style={{
+          padding: "12px",
+          border: "1px solid #444",
+          color: "#cccccc",
+        }}>Key concepts of currency market, derivatives market and global economic influences.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-                <h3
-                  style={{
-                    ...styles.sectionHeading,
-                    fontSize: "1.5em",
-                    marginTop: "30px",
-                    marginBottom: "15px",
-                  }}>
-                  Day 2: Applied Investment & Strategy
-                </h3>
-                <ul style={styles.unorderedList}>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>
-                      Mutual Funds & SIP:
-                    </strong>{" "}
-                    Learn about long-term investment planning, the advantages of
-                    SIPs, and how mutual funds work.
-                  </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>SGP & Banex:</strong>{" "}
-                    Comprehend the nuances of Sovereign Gold Bonds and bond
-                    exchanges.
-                  </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>Margin Trading:</strong>{" "}
-                    Delve into margin requirements, associated risks,
-                    positioning strategies, and leveraged trading.
-                  </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>Financial Tools:</strong>{" "}
-                    Learn to analyze live charts and utilize price action tools
-                    for making strategic trading decisions.
-                  </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span>{" "}
-                    <strong style={styles.strongText}>Investment Tools:</strong>{" "}
-                    Discover how to use SIP calculators, portfolio trackers, and
-                    mutual fund screeners for efficient wealth planning.
-                  </li>
-                </ul>
+
 
                 <h3
                   style={{
@@ -433,19 +417,14 @@ const BasicPlan = ({ onBookNow }) => {
                     Real Market Simulations
                   </span>
                   <span style={{ ...styles.badgeCommon, ...styles.badgeInfo }}>
-                    One-on-One Mentorship
+                     Online Certification Assessment
                   </span>
                   <span
                     style={{ ...styles.badgeCommon, ...styles.badgeWarning }}>
                     Strategy Workshops
                   </span>
-                  <span style={{ ...styles.badgeCommon, ...styles.badgeDark }}>
-                    Online Certification Assessment
-                  </span>
-                  <span
-                    style={{ ...styles.badgeCommon, ...styles.badgeSecondary }}>
-                    Recognized Certification
-                  </span>
+                 
+                  
                 </div>
 
                 <h3
@@ -459,28 +438,20 @@ const BasicPlan = ({ onBookNow }) => {
                 </h3>
                 <ul style={styles.unorderedList}>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Gain hands-on
-                    exposure to real-world financial markets and essential
-                    investment tools.
+                    <span style={styles.checkIcon}>✔</span>Get real-time knowledge to financial market
                   </li>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Sharpen interview
-                    skills and enhance placement readiness with expert-led
-                    sessions.
+                    <span style={styles.checkIcon}>✔</span> Build Interview ready knowledge to boost placement process
+
                   </li>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Develop awareness of
-                    wealth creation, smart investing and financial planning.
+                    <span style={styles.checkIcon}>✔</span>Earn a recognized digital certificate to enhance your resume and linkedin
+
                   </li>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Learn to analyze
-                    market trends, build strategies and manage risk effectively.
+                    <span style={styles.checkIcon}>✔</span>Explore the career paths like CFA, advisor and research analyst.
                   </li>
-                  <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Earn a recognized
-                    digital certificate to strengthen your resume and Linkedin
-                    profile.
-                  </li>
+                  
                 </ul>
 
                 <h3
@@ -494,21 +465,20 @@ const BasicPlan = ({ onBookNow }) => {
                 </h3>
                 <ul style={styles.unorderedList}>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Enhance academic
-                    programs with advanced, industry-relevant financial
-                    training.
+                    <span style={styles.checkIcon}>✔</span>Offer industry-relevant training that complements academic learning.
+
                   </li>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Boost placement
-                    performance through skill-based, practical education.
+                    <span style={styles.checkIcon}>✔</span>Improve student placements outcomes through practical exposure.
+
                   </li>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> No added work for
-                    college-we manage end-to-end delivery and certification.
+                    <span style={styles.checkIcon}>✔</span> Strengthen your institute’s reputation as a career-focused education provider.
+
                   </li>
                   <li style={styles.listItem}>
-                    <span style={styles.checkIcon}>✔</span> Scalable across
-                    batches with long-term impact.
+                    <span style={styles.checkIcon}>✔</span> Hassle free execution- we handle all the aspects of training and certification.
+
                   </li>
                 </ul>
 
