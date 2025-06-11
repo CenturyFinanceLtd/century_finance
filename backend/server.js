@@ -16,6 +16,7 @@ const queryRoutes = require("./routes/queryRoutes"); // Import query routes
 const courseBookingRoutes = require("./routes/courseBookingRoutes"); // Adjust path as needed
 const enquiryRoutes = require("./routes/enquiryRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 
 // Initialize Express app
 const app = express();
@@ -65,13 +66,9 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes); // All auth routes will be prefixed with /api/auth
 app.use("/api/queries", queryRoutes); // Use query routes, prefixed with /api/queries
 app.use("/api/course-bookings", courseBookingRoutes);
-
-// Booking routes (to be added back later)
-// app.use('/api/bookings', bookingRoutes);
-
 app.use("/api/enquiries", enquiryRoutes);
-// Routes
 app.use('/api/register', registrationRoutes);
+app.use("/api/blogs", blogRoutes);
 
 // --- Global Error Handler ---
 // This should be defined AFTER all other app.use() and routes calls

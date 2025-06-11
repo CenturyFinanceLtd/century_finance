@@ -9,7 +9,7 @@ const BlogPageFullwidth =() => {
     return(
         <Fragment>
             <Navbar/>
-            <PageTitle pageTitle={'Latest News'} pagesub={'Blog'}/> 
+            <PageTitle pageTitle={'Blogs'} pagesub={'Blog'}/> 
             <BlogList blLeft={'d-none'} blRight={'col-lg-10 offset-lg-1'}/>
             <Footer/>
             <Scrollbar/>

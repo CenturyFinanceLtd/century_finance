@@ -16,8 +16,6 @@ import ProductSinglePage from '../ProductSinglePage';
 import CartPage from '../CartPage';
 import CheckoutPage from '../CheckoutPage';
 import OrderRecived from '../OrderRecived';
-import BlogPage from '../BlogPage/BlogPage'
-import BlogPageLeft from '../BlogPageLeft/BlogPageLeft'
 import BlogPageFullwidth from '../BlogPageFullwidth/BlogPageFullwidth'
 import BlogDetails from '../BlogDetails/BlogDetails'
 import BlogDetailsFull from '../BlogDetailsFull/BlogDetailsFull'
@@ -76,9 +74,7 @@ const AllRoute = () => {
           <Route path="order-received" element={<OrderRecived />} />
           <Route path="privacy-policy" element={<PrivacyPage />} />
           <Route path="terms-and-conditions" element={<TermsPage />} />
-          <Route path="blog" element={<BlogPage />} />
-          <Route path="blog-left-sidebar" element={<BlogPageLeft />} />
-          <Route path="blog-fullwidth" element={<BlogPageFullwidth />} />
+          <Route path="blog" element={<BlogPageFullwidth />} />
           <Route path="blog-single/:slug" element={<BlogDetails />} />
           <Route
             path="blog-single-left-sidebar/:slug"
