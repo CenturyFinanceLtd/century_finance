@@ -126,7 +126,7 @@ const BlogSidebar = (props) => {
             ) : (
               allKeywords.map((tag) => (
                 <li key={tag}>
-                  <Link onClick={ClickHandler} to="/blog">
+                  <Link onClick={ClickHandler} to="/blogs">
                     {tag}
                   </Link>
                 </li>
