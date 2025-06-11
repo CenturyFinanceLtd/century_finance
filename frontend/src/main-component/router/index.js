@@ -74,8 +74,8 @@ const AllRoute = () => {
           <Route path="order-received" element={<OrderRecived />} />
           <Route path="privacy-policy" element={<PrivacyPage />} />
           <Route path="terms-and-conditions" element={<TermsPage />} />
-          <Route path="blog" element={<BlogPageFullwidth />} />
-          <Route path="blog-single/:slug" element={<BlogDetails />} />
+          <Route path="blogs" element={<BlogPageFullwidth />} />
+          <Route path="blog/:slug" element={<BlogDetails />} />
           <Route
             path="blog-single-left-sidebar/:slug"
             element={<BlogDetailsLeftSiide />}

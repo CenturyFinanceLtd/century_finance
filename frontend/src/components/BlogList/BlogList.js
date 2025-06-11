@@ -79,7 +79,7 @@ const BlogList = (props) => {
                           <i className="fi flaticon-user"></i> By{" "}
                           <Link
                             onClick={ClickHandler}
-                            to={`/blog-single/${blog.slug}`}>
+                            to={`/blog/${blog.slug}`}>
                             {blog.authorTitle}
                           </Link>
                         </li>
@@ -97,14 +97,14 @@ const BlogList = (props) => {
                       <h3>
                         <Link
                           onClick={ClickHandler}
-                          to={`/blog-single/${blog.slug}`}>
+                          to={`/blog/${blog.slug}`}>
                           {blog.title}
                         </Link>
                       </h3>
                       <p>{blog.metaDescription}</p>
                       <Link
                         onClick={ClickHandler}
-                        to={`/blog-single/${blog.slug}`}
+                        to={`/blog/${blog.slug}`}
                         className="read-more">
                         READ MORE...
                       </Link>
