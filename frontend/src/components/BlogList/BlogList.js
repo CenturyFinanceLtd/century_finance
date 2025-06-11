@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BlogSidebar from "../BlogSidebar/BlogSidebar.js";
-import VideoModal from "../ModalVideo/VideoModal";
 
 const ClickHandler = () => {
   window.scrollTo(10, 0);
@@ -73,7 +72,6 @@ const BlogList = (props) => {
                   <div className={`post ${blog.blClass}`} key={blog.id}>
                     <div className="entry-media video-holder">
                       <img src={blog.blogSingleImg} alt={blog.title} />
-                      <VideoModal />
                     </div>
                     <div className="entry-meta">
                       <ul>

@@ -22,4 +22,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+// Add this new route to your existing blogRoutes.js file
+
+// @route   GET /api/blogs/:slug
+// @desc    Get a single blog post by its slug
+// @access  Public
+router.get('/:slug', async (req, res) => {
+    try {
+        const blog = await Blog.findOne({ slug: req.params.slug });
+
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog post not found.' });
+        }
+
+        res.status(200).json(blog);
+    } catch (error) {
+        console.error('🔴 Error fetching single blog:', error);
+        res.status(500).json({ message: 'Server error while fetching blog post.' });
+    }
+});
+
+
 module.exports = router;

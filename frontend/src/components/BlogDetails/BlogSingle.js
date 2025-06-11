@@ -1,241 +1,197 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import blog3 from '../../images/blog-details/comments-author/img-1.jpg'
-import blog4 from '../../images/blog-details/comments-author/img-2.jpg'
-import blog5 from '../../images/blog-details/comments-author/img-3.jpg'
-import blog6 from '../../images/blog-details/author.jpg'
-import gl1 from '../../images/blog-details/1.jpg'
-import gl2 from '../../images/blog-details/2.jpg'
-import blogs from '../../api/blogs';
-import { useParams } from 'react-router-dom'
-import BlogSidebar from '../BlogSidebar/BlogSidebar.js'
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import BlogSidebar from "../BlogSidebar/BlogSidebar.js";
+
+// Helper component to render different content blocks from the database
+const ContentRenderer = ({ block }) => {
+  switch (block.type) {
+    case "h2":
+      return <h2 className="text-3xl font-bold my-6">{block.data.text}</h2>;
+
+    case "paragraph":
+      // The 'whitespace-pre-wrap' class preserves newlines from your text
+      return (
+        <p className="my-4 text-gray-700 leading-relaxed whitespace-pre-wrap">
+          {block.data.text}
+        </p>
+      );
+
+    case "introduction":
+      return (
+        <p className="text-xl italic text-gray-600 my-6">{block.data.text}</p>
+      );
+
+    case "conclusion":
+      return (
+        <p className="my-6 text-lg font-medium text-gray-800">
+          {block.data.text}
+        </p>
+      );
+
+    case "list":
+    case "ordered_list":
+      const ListTag = block.type === "ordered_list" ? "ol" : "ul";
+      return (
+        <ListTag className="my-6 space-y-4 pl-5 list-disc">
+          {block.data.items.map((item, index) => (
+            <li key={index}>
+              <strong className="font-semibold text-gray-800">
+                {item.title}
+              </strong>
+              <p className="text-gray-600 ml-2">
+                {item.detail || item.details}
+              </p>
+              {item.promo_text && (
+                <p className="text-sm text-blue-600 bg-blue-50 p-2 mt-2 rounded">
+                  {item.promo_text}
+                </p>
+              )}
+            </li>
+          ))}
+        </ListTag>
+      );
+    default:
+      return null; // Don't render unknown block types
+  }
+};
 
 const BlogSingle = (props) => {
+  const { slug } = useParams();
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const { slug } = useParams()
+  useEffect(() => {
+    const fetchBlog = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `https://api.centuryfinancelimited.com/api/blogs/${slug}`
+        );
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Blog post not found.");
+          }
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setBlog(data);
+      } catch (error) {
+        setError(error.message);
+        console.error("Failed to fetch blog:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    const BlogDetails = blogs.find(item => item.slug === slug)
+    fetchBlog();
+  }, [slug]); // Re-fetch if the slug changes
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-    }
+  if (loading) {
+    return <div className="section-padding text-center">Loading Post...</div>;
+  }
 
+  if (error) {
     return (
-        <section className="wpo-blog-single-section section-padding">
-            <div className="container">
-                <div className="row">
-                    <div className={`col col-lg-8 col-12 ${props.blRight}`}>
-                        <div className="wpo-blog-content">
-                            <div className="post format-standard-image">
-                                <div className="entry-media">
-                                    <img src={BlogDetails.blogSingleImg} alt="" />
-                                </div>
-                                <div className="entry-meta">
-                                    <ul>
-                                        <li><i className="fi flaticon-user"></i> By <Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">{BlogDetails.author}</Link> </li>
-                                        <li><i className="fi flaticon-comment-white-oval-bubble"></i> Comments {BlogDetails.comment}</li>
-                                        <li><i className="fi flaticon-calendar"></i> {BlogDetails.create_at}</li>
-                                    </ul>
-                                </div>
-                                <h2>{BlogDetails.title}</h2>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
-                                <blockquote>
-                                    Combined with a handful of model sentence structures, generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-                                </blockquote>
-                                <p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself,</p>
+      <div className="section-padding text-center text-red-600">
+        Error: {error}
+      </div>
+    );
+  }
 
-                                <div className="gallery">
-                                    <div>
-                                        <img src={gl1} alt="" />
-                                    </div>
-                                    <div>
-                                        <img src={gl2} alt="" />
-                                    </div>
-                                </div>
-                            </div>
+  if (!blog) {
+    return (
+      <div className="section-padding text-center">Blog post not found.</div>
+    );
+  }
 
-                            <div className="tag-share clearfix">
-                                <div className="tag">
-                                    <span>Share: </span>
-                                    <ul>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">Education</Link></li>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">Web Design</Link></li>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">Course</Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="tag-share-s2 clearfix">
-                                <div className="tag">
-                                    <span>Share: </span>
-                                    <ul>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">facebook</Link></li>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">twitter</Link></li>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">linkedin</Link></li>
-                                        <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently">pinterest</Link></li>
-                                    </ul>
-                                </div>
-                            </div>
+  // Format date for display
+  const formattedDate = new Date(blog.publishDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
-                            <div className="author-box">
-                                <div className="author-avatar">
-                                    <Link to="/blog-single/Letraset-Sheets-Passage-And-Recently" target="_blank"><img src={blog6} alt="" /></Link>
-                                </div>
-                                <div className="author-content">
-                                    <Link to="/blog-single/Letraset-Sheets-Passage-And-Recently" className="author-name">Author: Jenny Watson</Link>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
-                                    <div className="socials">
-                                        <ul className="social-link">
-                                            <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently"><i className="ti-facebook"></i></Link></li>
-                                            <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently"><i className="ti-twitter-alt"></i></Link></li>
-                                            <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently"><i className="ti-linkedin"></i></Link></li>
-                                            <li><Link to="/blog-single/Letraset-Sheets-Passage-And-Recently"><i className="ti-instagram"></i></Link></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="more-posts">
-                                <div className="previous-post">
-                                    <Link to="/blog">
-                                        <span className="post-control-link">Previous Post</span>
-                                        <span className="post-name">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</span>
-                                    </Link>
-                                </div>
-                                <div className="next-post">
-                                    <Link to="/blog-left-sidebar">
-                                        <span className="post-control-link">Next Post</span>
-                                        <span className="post-name">Dignissimos ducimus qui blanditiis praesentiu deleniti atque corrupti quos dolores</span>
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="comments-area">
-                                <div className="comments-section">
-                                    <h3 className="comments-title">Comments</h3>
-                                    <ol className="comments">
-                                        <li className="comment even thread-even depth-1" id="comment-1">
-                                            <div id="div-comment-1">
-                                                <div className="comment-theme">
-                                                    <div className="comment-image"><img src={blog3} alt="" /></div>
-                                                </div>
-                                                <div className="comment-main-area">
-                                                    <div className="comment-wrapper">
-                                                        <div className="comments-meta">
-                                                            <h4>John Abraham <span className="comments-date">January 12,2022
-                                                                At 9.00am</span></h4>
-                                                        </div>
-                                                        <div className="comment-area">
-                                                            <p>I will give you a complete account of the system, and
-                                                                expound the actual teachings of the great explorer of
-                                                                the truth, </p>
-                                                            <div className="comments-reply">
-                                                                <Link className="comment-reply-link" to="/blog-single/Letraset-Sheets-Passage-And-Recently"><span>Reply</span></Link>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="children">
-                                                <li className="comment">
-                                                    <div>
-                                                        <div className="comment-theme">
-                                                            <div className="comment-image"><img src={blog4} alt="" /></div>
-                                                        </div>
-                                                        <div className="comment-main-area">
-                                                            <div className="comment-wrapper">
-                                                                <div className="comments-meta">
-                                                                    <h4>Lily Watson <span className="comments-date">January
-                                                                        12,2022 At 9.00am</span></h4>
-                                                                </div>
-                                                                <div className="comment-area">
-                                                                    <p>I will give you a complete account of the system,
-                                                                        and expound the actual teachings of the great
-                                                                        explorer of the truth, </p>
-                                                                    <div className="comments-reply">
-                                                                        <Link className="comment-reply-link" to="/blog-single/Letraset-Sheets-Passage-And-Recently"><span>Reply</span></Link>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <ul>
-                                                        <li className="comment">
-                                                            <div>
-                                                                <div className="comment-theme">
-                                                                    <div className="comment-image"><img src={blog5} alt="" /></div>
-                                                                </div>
-                                                                <div className="comment-main-area">
-                                                                    <div className="comment-wrapper">
-                                                                        <div className="comments-meta">
-                                                                            <h4>John Abraham <span className="comments-date">January
-                                                                                12,2022 At 9.00am</span></h4>
-                                                                        </div>
-                                                                        <div className="comment-area">
-                                                                            <p>I will give you a complete account of the
-                                                                                system, and expound the actual teachings
-                                                                                of the great explorer of the truth, </p>
-                                                                            <div className="comments-reply">
-                                                                                <Link className="comment-reply-link" to="/blog-single/Letraset-Sheets-Passage-And-Recently"><span>Reply</span></Link>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="comment">
-                                            <div>
-                                                <div className="comment-theme">
-                                                    <div className="comment-image"><img src={blog3} alt="" /></div>
-                                                </div>
-                                                <div className="comment-main-area">
-                                                    <div className="comment-wrapper">
-                                                        <div className="comments-meta">
-                                                            <h4>John Abraham <span className="comments-date">January 12,2022
-                                                                At 9.00am</span></h4>
-                                                        </div>
-                                                        <div className="comment-area">
-                                                            <p>I will give you a complete account of the system, and
-                                                                expound the actual teachings of the great explorer of
-                                                                the truth, </p>
-                                                            <div className="comments-reply">
-                                                                <Link className="comment-reply-link" to="/blog-single/Letraset-Sheets-Passage-And-Recently"><span>Reply</span></Link>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div className="comment-respond">
-                                    <h3 className="comment-reply-title">Post Comments</h3>
-                                    <form onSubmit={submitHandler} id="commentform" className="comment-form">
-                                        <div className="form-textarea">
-                                            <textarea id="comment" placeholder="Write Your Comments..."></textarea>
-                                        </div>
-                                        <div className="form-inputs">
-                                            <input placeholder="Website" type="url" />
-                                            <input placeholder="Name" type="text" />
-                                            <input placeholder="Email" type="email" />
-                                        </div>
-                                        <div className="form-submit">
-                                            <input id="submit" value="Post Comment" type="submit" />
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <BlogSidebar blLeft={props.blLeft}/>
+  return (
+    <section className="wpo-blog-single-section section-padding">
+      <div className="container">
+        <div className="row">
+          <div className={`col col-lg-8 col-12 ${props.blRight}`}>
+            <div className="wpo-blog-content">
+              <div className="post format-standard-image">
+                <div className="entry-media mb-8">
+                  <img
+                    src={
+                      blog.imageUrl ||
+                      `https://source.unsplash.com/random/1200x600?sig=${blog._id}&query=finance`
+                    }
+                    alt={blog.title}
+                    className="w-full h-auto rounded-lg shadow-md"
+                  />
                 </div>
-            </div>
-        </section>
-    )
+                <div className="entry-meta">
+                  <ul>
+                    <li>
+                      <i className="fi flaticon-user"></i> By {blog.author.name}
+                    </li>
+                    <li>
+                      <i className="fi flaticon-comment-white-oval-bubble"></i>{" "}
+                      Comments {blog.commentsCount || 0}
+                    </li>
+                    <li>
+                      <i className="fi flaticon-calendar"></i> {formattedDate}
+                    </li>
+                  </ul>
+                </div>
+                <h2 className="text-4xl font-bold my-4 text-gray-900">
+                  {blog.title}
+                </h2>
 
-}
+                {/* Dynamically render content blocks here */}
+                {blog.contentBlocks.map((block, index) => (
+                  <ContentRenderer key={index} block={block} />
+                ))}
+              </div>
+
+              <div className="tag-share clearfix">
+                <div className="tag">
+                  <span>Tags: </span>
+                  <ul>
+                    {blog.primaryKeywords.map((keyword, index) => (
+                      <li key={index}>
+                        <Link to="/blog">{keyword}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="author-box">
+                <div className="author-avatar">
+                  {/* Suggest adding authorImageUrl to your database */}
+                  <img
+                    src={
+                      blog.author.imageUrl ||
+                      "https://placehold.co/100x100/EBF4FF/76A9FA?text=Author"
+                    }
+                    alt={blog.author.name}
+                  />
+                </div>
+                <div className="author-content">
+                  <Link to="#" className="author-name">
+                    {blog.author.name}
+                  </Link>
+                  <p>{blog.author.bio}</p>
+                  {/* You can add author social links here if you add them to the database */}
+                </div>
+              </div>
+            </div>
+          </div>
+          <BlogSidebar blLeft={props.blLeft} />
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default BlogSingle;
