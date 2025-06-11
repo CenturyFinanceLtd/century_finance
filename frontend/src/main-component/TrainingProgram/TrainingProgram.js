@@ -400,7 +400,6 @@ const TrainingProgram = () => {
         </div>
       </section>
 
-      {renderCompareTable()}
       <CourseSinglePage />
 
       <Container className="py-5">
@@ -444,6 +443,7 @@ const TrainingProgram = () => {
           </div>
         )}
       </Container>
+      {renderCompareTable()}
       <Footer />
       <Scrollbar />
     </Fragment>
