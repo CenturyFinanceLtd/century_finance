@@ -1,44 +1,40 @@
-// backend/server.js (Now with Authentication and Training Registration Routes)
+// backend/server.js (Now with Authentication Routes)
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const path = require("path"); // Added for serving static files
+// const Razorpay = require('razorpay'); // Still commented out as per your request
 
 // Load environment variables from .env file
-dotenv.config();
+dotenv.config(); // This ensures .env variables are loaded
 
 // Import routes
-const authRoutes = require("./routes/authRoutes");
-const queryRoutes = require("./routes/queryRoutes");
-const courseBookingRoutes = require("./routes/courseBookingRoutes");
+const authRoutes = require("./routes/authRoutes"); // For user authentication
+// const bookingRoutes = require('./routes/bookingRoutes'); // We'll add this back later if needed
+const queryRoutes = require("./routes/queryRoutes"); // Import query routes
+const courseBookingRoutes = require("./routes/courseBookingRoutes"); // Adjust path as needed
 const enquiryRoutes = require("./routes/enquiryRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
-const trainingRegisterRoutes = require("./routes/trainingRegister"); // *** NEW ***
 
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// --- START: CORRECTED MIDDLEWARE CONFIGURATION ---
+
 
 // Middleware setup
+
+
+// *** Updated CORS Configuration ***
+// This should come BEFORE your API routes are defined
 const corsOptions = {
-  origin: "https://www.centuryfinancelimited.com",
-  optionsSuccessStatus: 200,
+  origin: "https://www.centuryfinancelimited.com", // Allow requests from your frontend domain
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors(corsOptions));
-
-// Set body parser limits for large file uploads
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-
-// --- END: CORRECTED MIDDLEWARE CONFIGURATION ---
-
-// *** NEW *** Make the 'uploads' directory accessible
-// This will allow your frontend to display the uploaded screenshots
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(cors()); // Enable CORS for all origins
+app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -47,7 +43,7 @@ if (!MONGODB_URI) {
   console.error(
     "🔴 MongoDB URI not found. Please set MONGODB_URI in your .env file."
   );
-  process.exit(1);
+  process.exit(1); // Critical: Exit if DB URI is not found
 }
 
 mongoose
@@ -55,7 +51,7 @@ mongoose
   .then(() => console.log("✅ Successfully connected to MongoDB Atlas!"))
   .catch((err) => {
     console.error("🔴 MongoDB connection error:", err.message);
-    process.exit(1);
+    process.exit(1); // Critical: Exit if cannot connect to DB
   });
 
 console.log("ℹ️ Razorpay initialization is currently commented out.");
@@ -66,18 +62,22 @@ app.get("/", (req, res) => {
 });
 
 // Authentication routes
-app.use("/api/auth", authRoutes);
-app.use("/api/queries", queryRoutes);
+app.use("/api/auth", authRoutes); // All auth routes will be prefixed with /api/auth
+app.use("/api/queries", queryRoutes); // Use query routes, prefixed with /api/queries
 app.use("/api/course-bookings", courseBookingRoutes);
-app.use("/api/enquiries", enquiryRoutes);
-app.use("/api/register", registrationRoutes);
 
-// *** NEW *** Add the training registration route
-app.use("/api/training-register", trainingRegisterRoutes);
+// Booking routes (to be added back later)
+// app.use('/api/bookings', bookingRoutes);
+
+app.use("/api/enquiries", enquiryRoutes);
+// Routes
+app.use('/api/register', registrationRoutes);
 
 // --- Global Error Handler ---
+// This should be defined AFTER all other app.use() and routes calls
 app.use((err, req, res, next) => {
   console.error("🔴 UNHANDLED ERROR:", err.stack);
+  // Check for specific error types if needed
   if (err.name === "JsonWebTokenError") {
     return res
       .status(401)
@@ -89,6 +89,7 @@ app.use((err, req, res, next) => {
       message: "Your token has expired. Please log in again.",
     });
   }
+  // Default to 500 server error
   res.status(err.statusCode || 500).json({
     status: err.status || "error",
     message: err.message || "Something went very wrong on the server!",
@@ -96,9 +97,12 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
+// Start the server
 app.listen(PORT, () => {
   console.log(`✅ Backend server is listening on port ${PORT}`);
-  console.log(`🔗 API base URL: http://localhost:${PORT}`);
+  console.log(
+    `🔗 API base URL: http://localhost:${PORT} (or your live domain, e.g., https://api.centuryfinancelimited.com)`
+  );
   console.log(
     `🔑 JWT_SECRET loaded: ${
       process.env.JWT_SECRET ? "Yes" : "NO - CRITICAL! Set JWT_SECRET in .env"
