@@ -225,7 +225,7 @@ const PremiumPlan = ({ onBookNow }) => {
           {/* Header & Price Section */}
           <div style={styles.headerPriceSection}>
             <small style={styles.smallTitle}>PREMIUM PLAN</small>
-            <h1 style={styles.mainTitle}>Advanced 2-Day Certified Training in Financial Markets</h1>
+            <h1 style={styles.mainTitle}>2 Days Certified Training in Financial Markets</h1>
 
             <div style={styles.priceContainer}>
                 <span style={styles.priceTag}>₹85,000 + GST</span>

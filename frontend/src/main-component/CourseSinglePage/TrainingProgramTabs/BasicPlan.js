@@ -385,7 +385,7 @@ const BasicPlan = ({ onBookNow }) => {
           padding: "12px",
           border: "1px solid #444",
           color: "#cccccc",
-        }}>Forex Market</td>
+        }}>Foreign Market</td>
         <td style={{
           padding: "12px",
           border: "1px solid #444",

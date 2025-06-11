@@ -225,7 +225,7 @@ const LearningToEarningPlan = ({ onBookNow }) => {
           {/* Header & Price Section */}
           <div style={styles.headerPriceSection}>
             <small style={styles.smallTitle}>LEARNING TO EARNING</small>
-            <h1 style={styles.mainTitle}>Advanced 2-Day Certified Training in Financial Markets</h1>
+            <h1 style={styles.mainTitle}>Advanced 2-Days Certified Financial Market Training</h1>
 
             <div style={styles.priceContainer}>
                 <span style={styles.priceTag}>1,40,000 + GST</span>

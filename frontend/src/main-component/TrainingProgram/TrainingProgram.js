@@ -245,7 +245,7 @@ const TrainingProgram = () => {
             At Century Finance Limited, we believe successful trading begins
             with the right education. Our programs are curated for final-year
             college students, offering core financial literacy in
-            <strong> Equity, Commodity, and Forex markets</strong> — guided by
+            <strong> Equity, Commodity, and Foreign markets</strong> — guided by
             SEBI-certified trainers.
           </p>
 

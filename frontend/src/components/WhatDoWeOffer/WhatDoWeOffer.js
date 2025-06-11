@@ -89,7 +89,7 @@ const CourseSection = (props) => {
                         <li>
                           <strong>Exposure to broader financial markets:</strong>
                           <ul>
-                           <li>Study capital markets, mutual funds, forex trading, and derivatives.
+                           <li>Study capital markets, mutual funds, Foreign trading, and derivatives.
 </li>
                            <li>Broaden your knowledge outside of stocks to explore other financial possibilities.
 </li></ul>
