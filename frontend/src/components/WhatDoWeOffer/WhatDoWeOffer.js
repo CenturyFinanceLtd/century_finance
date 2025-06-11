@@ -99,14 +99,7 @@ const CourseSection = (props) => {
                       </ol>
                      
                     </p>
-                    <div className="more-btn mt-5">
-                      <Link
-                        onClick={ClickHandler}
-                        to="/online-courses"
-                        className="theme-btn-s2">
-                        View All Courses
-                      </Link>
-                    </div>
+                   
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-12 col-12">
