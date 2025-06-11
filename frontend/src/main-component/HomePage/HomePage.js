@@ -15,23 +15,24 @@ const HomePage = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Home - Century Finance Limited</title>
+        <title>
+          Century Finance Limited | Investment & Finance Solutions in India
+        </title>
         <meta
           name="description"
-          content="Get in touch with Century Finance Limited for any inquiries or support. We're here to help with your financial needs."
+          content="Explore trusted financial services with Century Finance Limited. Get expert investment, equity, commodity, and global marketing training all in one place."
         />
         <meta
           name="keywords"
-          content="Contact, Century Finance, Financial Services, Support, Contact Us"
+          content="century finance, century finance limited, century finance company, century finance company ltd, century finance online"
         />
-        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <Navbar hclass={"wpo-header-style-4"} />
       <Hero />
       <About />
       <WhyCentury />
-      
+
       <WhatdoWeOffer />
       {/* <WhatdoWeOffer2 /> */}
       <OurMIssion />

@@ -2,14 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Homepage from '../HomePage/HomePage'
 // import CoursePage from '../CoursePage/CoursePage';
-import HomePage2 from '../HomePage2/HomePage2';
-import HomePage3 from '../HomePage3/HomePage3';
-import HomePage4 from '../HomePage4/HomePage4';
-import HomePage5 from '../HomePage5/HomePage5';
 import AboutPage from '../AboutPage/AboutPage';
 import TeamPage from '../TeamPage/TeamPage';
 import TeamSinglePage from '../TeamSinglePage/TeamSinglePage';
-import EventSinglePage from '../EventSinglePage/EventSinglePage';
 import GalleryPage from '../GalleryPage/GalleryPage';
 import ShopPage from '../ShopPage'
 import ProductSinglePage from '../ProductSinglePage';
@@ -19,7 +14,6 @@ import OrderRecived from '../OrderRecived';
 import BlogPageFullwidth from '../BlogPageFullwidth/BlogPageFullwidth'
 import BlogDetails from '../BlogDetails/BlogDetails'
 import BlogDetailsFull from '../BlogDetailsFull/BlogDetailsFull'
-import BlogDetailsLeftSiide from '../BlogDetailsLeftSiide/BlogDetailsLeftSiide'
 import ContactPage from '../ContactPage/ContactPage';
 import BeComeTeacherPage from '../BeComeTeacherPage/BeComeTeacherPage';
 import LessonPage from '../LessonPage/LessonPage';
@@ -55,17 +49,12 @@ const AllRoute = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="home" element={<Homepage />} />
-          <Route path="home-2" element={<HomePage2 />} />
-          <Route path="home-3" element={<HomePage3 />} />
-          <Route path="home-4" element={<HomePage4 />} />
-          <Route path="home-5" element={<HomePage5 />} />
           <Route path="about-us" element={<AboutPage />} />
           {/* <Route path="course" element={<CoursePage />} /> */}
           <Route path="lesson" element={<LessonPage />} />
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="teacher" element={<TeamPage />} />
           <Route path="team-single/:slug" element={<TeamSinglePage />} />
-          <Route path="event-single/:slug" element={<EventSinglePage />} />
           <Route path="become-teacher" element={<BeComeTeacherPage />} />
           <Route path="shop" element={<ShopPage />} />
           <Route path="product-single/:slug" element={<ProductSinglePage />} />
@@ -76,10 +65,6 @@ const AllRoute = () => {
           <Route path="terms-and-conditions" element={<TermsPage />} />
           <Route path="blogs" element={<BlogPageFullwidth />} />
           <Route path="blog/:slug" element={<BlogDetails />} />
-          <Route
-            path="blog-single-left-sidebar/:slug"
-            element={<BlogDetailsLeftSiide />}
-          />
           <Route
             path="blog-single-fullwidth/:slug"
             element={<BlogDetailsFull />}
