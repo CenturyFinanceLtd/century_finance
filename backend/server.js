@@ -36,28 +36,27 @@ const PORT = process.env.PORT || 4000;
 
 // Whitelist of allowed domains
 const allowedOrigins = [
-  'https://www.centuryfinancelimited.com', // Your main site
-  'https://admin.centuryfinancelimited.com'  // Your admin panel
+  "https://www.centuryfinancelimited.com", // Your main site
+  "https://admin.centuryfinancelimited.com", // Your admin panel
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      const msg =
+        "The CORS policy for this site does not allow access from the specified Origin.";
       return callback(new Error(msg), false);
     }
-    return callback(null, true);
   },
   optionsSuccessStatus: 200,
 };
-
 // Use the cors middleware WITH your specific options
 app.use(cors(corsOptions));
 // Middleware setup
-app.use(bodyParser.json({ limit: '10mb' })); // Increased payload size for rich text & images
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 // Serve uploaded files statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

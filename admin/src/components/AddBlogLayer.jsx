@@ -83,8 +83,9 @@ const AddBlogLayer = () => {
     if (authorImageFile) data.append("authorImage", authorImageFile);
 
     try {
+      // 👇 FIX: Removed the extra slash from the URL
       await axios.post(
-        "https://API.centuryfinancelimited.com//api/blogs/add",
+        "https://api.centuryfinancelimited.com/api/blogs/add",
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -102,7 +103,6 @@ const AddBlogLayer = () => {
 
   // --- QUILL CONFIGURATION ---
   const modules = {
-    // REMOVED: `syntax: true` is gone to prevent the error
     toolbar: { container: "#toolbar-container" },
   };
 
@@ -118,7 +118,7 @@ const AddBlogLayer = () => {
     "script",
     "header",
     "blockquote",
-    /* REMOVED: "code-block" */ "list",
+    "list",
     "indent",
     "direction",
     "align",
@@ -273,7 +273,6 @@ const AddBlogLayer = () => {
                       <button className="ql-header" value="3"></button>
                       <button className="ql-header" value="4"></button>
                       <button className="ql-blockquote"></button>
-                      {/* REMOVED: <button className="ql-code-block"></button> */}
                     </span>
                     <span className="ql-formats">
                       <button className="ql-list" value="ordered"></button>
