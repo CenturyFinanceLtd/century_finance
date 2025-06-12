@@ -145,7 +145,7 @@ const BlogSingle = (props) => {
               )}
             </div>
           </div>
-          <BlogSidebar blLeft={props.blLeft} />
+          <BlogSidebar blLeft={props.blLeft} /> 
         </div>
       </div>
     </section>
