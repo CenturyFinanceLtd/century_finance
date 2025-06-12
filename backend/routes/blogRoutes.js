@@ -4,7 +4,6 @@ const multer = require("multer");
 const path = require("path");
 const BlogPost = require("../models/blogPost");
 
-// --- Multer Configuration for File Uploads ---
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");
@@ -25,18 +24,15 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// --- 👇 FIX IS HERE: ADDED fieldSize TO THE LIMITS ---
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 25 * 1024 * 1024, // 25 MB limit for thumbnail/author files
-    fieldSize: 25 * 1024 * 1024, // 25 MB limit for fields like 'description'
+    fileSize: 25 * 1024 * 1024,
+    fieldSize: 25 * 1024 * 1024,
   },
 });
-// --- END FIX ---
 
-// --- Route to Add a New Blog Post ---
 router.post(
   "/add",
   upload.fields([
@@ -45,6 +41,12 @@ router.post(
   ]),
   async (req, res) => {
     try {
+      // --- Start Debug Logging ---
+      console.log("--- BLOG POST REQUEST RECEIVED ---");
+      console.log("Request Body Fields:", req.body);
+      console.log("Request Files:", req.files);
+      // --- End Debug Logging ---
+
       const {
         title,
         category,
@@ -60,11 +62,14 @@ router.post(
       const existingPost = await BlogPost.findOne({ slug: slug.toLowerCase() });
 
       if (existingPost) {
+        console.log(`Slug "${slug}" already exists. Sending 409 conflict.`);
         return res.status(409).json({
           message:
             "This path (slug) is already in use. Please choose a different one.",
         });
       }
+
+      console.log("Slug check passed.");
 
       const thumbnailPath = req.files.thumbnail
         ? req.files.thumbnail[0].path
@@ -73,7 +78,10 @@ router.post(
         ? req.files.authorImage[0].path
         : null;
 
-      const newPost = new BlogPost({
+      console.log("Thumbnail Path determined:", thumbnailPath);
+      console.log("Author Image Path determined:", authorImagePath);
+
+      const newPostData = {
         title,
         category,
         slug: slug.toLowerCase(),
@@ -87,12 +95,24 @@ router.post(
           image: authorImagePath,
         },
         thumbnail: thumbnailPath,
-      });
+      };
+
+      console.log("Constructed new blog post data object for Mongoose.");
+
+      const newPost = new BlogPost(newPostData);
+
+      console.log("Mongoose document created. Attempting to save...");
 
       await newPost.save();
+
+      console.log("--- SAVE SUCCESSFUL ---");
+
       res.status(201).json({ message: "Blog post created successfully!" });
     } catch (error) {
-      console.error("Error creating blog post:", error);
+      // --- Detailed Error Logging ---
+      console.error("---!!! DETAILED ERROR IN BLOG POST CREATION !!!---");
+      console.error(error);
+      console.error("---!!! END DETAILED ERROR !!!---");
       res
         .status(500)
         .json({ message: "Error saving blog post", error: error.message });
