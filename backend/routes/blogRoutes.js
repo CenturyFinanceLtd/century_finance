@@ -110,18 +110,18 @@ router.post(
   }
 );
 
-// Add this entire block to your blogRoutes.js file
+// ... multer configuration and other code ...
 
-// --- Route to GET All Blog Posts ---
-router.get("/all", async (req, res) => {
+// --- Route to GET All Blog Posts for the public site ---
+// CHANGE #1: Changed "/all" to "/" to match the frontend call to /api/blogs
+router.get("/", async (req, res) => {
   try {
-    console.log("Fetching all blog posts...");
     const blogs = await BlogPost.find({})
-      .select("title slug category createdAt thumbnail") // Select only needed fields
+      // CHANGE #2: Added all necessary fields to the select statement
+      .select("title slug category createdAt thumbnail author metaDescription")
       .sort({ createdAt: -1 }); // Sort by newest first
 
     res.status(200).json(blogs);
-    console.log("Successfully fetched all blog posts.");
   } catch (error) {
     console.error("Error fetching blog posts:", error);
     res
@@ -129,5 +129,9 @@ router.get("/all", async (req, res) => {
       .json({ message: "Failed to fetch blog posts", error: error.message });
   }
 });
+
+
+// --- Route to Add a New Blog Post ---
+// router.post("/add", ... continues here ...
 
 module.exports = router;
