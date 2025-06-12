@@ -2,12 +2,23 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs"); // Import the 'fs' module
 const BlogPost = require("../models/blogPost");
 
+// --- Multer Configuration for File Uploads ---
 const storage = multer.diskStorage({
+  // --- 👇 FIX #1: USE AN ABSOLUTE PATH FOR THE DESTINATION ---
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    // This creates a reliable path to the 'uploads' directory in your project root
+    const uploadPath = path.join(__dirname, "..", "uploads");
+
+    // Ensure the directory exists (optional but good practice)
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
   },
+  // --- END FIX #1 ---
   filename: function (req, file, cb) {
     cb(
       null,
@@ -24,14 +35,16 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+// --- 👇 FIX #2: ENSURE ALL LIMITS ARE SET ---
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 25 * 1024 * 1024,
-    fieldSize: 25 * 1024 * 1024,
+    fileSize: 25 * 1024 * 1024, // 25 MB limit for thumbnail/author files
+    fieldSize: 25 * 1024 * 1024, // 25 MB limit for fields like 'description'
   },
 });
+// --- END FIX #2 ---
 
 router.post(
   "/add",
@@ -41,12 +54,6 @@ router.post(
   ]),
   async (req, res) => {
     try {
-      // --- Start Debug Logging ---
-      console.log("--- BLOG POST REQUEST RECEIVED ---");
-      console.log("Request Body Fields:", req.body);
-      console.log("Request Files:", req.files);
-      // --- End Debug Logging ---
-
       const {
         title,
         category,
@@ -62,26 +69,21 @@ router.post(
       const existingPost = await BlogPost.findOne({ slug: slug.toLowerCase() });
 
       if (existingPost) {
-        console.log(`Slug "${slug}" already exists. Sending 409 conflict.`);
         return res.status(409).json({
           message:
             "This path (slug) is already in use. Please choose a different one.",
         });
       }
 
-      console.log("Slug check passed.");
-
+      // Multer saves files with absolute paths, but we want to store a relative path for serving
       const thumbnailPath = req.files.thumbnail
-        ? req.files.thumbnail[0].path
+        ? path.join("uploads", path.basename(req.files.thumbnail[0].path))
         : null;
       const authorImagePath = req.files.authorImage
-        ? req.files.authorImage[0].path
+        ? path.join("uploads", path.basename(req.files.authorImage[0].path))
         : null;
 
-      console.log("Thumbnail Path determined:", thumbnailPath);
-      console.log("Author Image Path determined:", authorImagePath);
-
-      const newPostData = {
+      const newPost = new BlogPost({
         title,
         category,
         slug: slug.toLowerCase(),
@@ -95,24 +97,12 @@ router.post(
           image: authorImagePath,
         },
         thumbnail: thumbnailPath,
-      };
-
-      console.log("Constructed new blog post data object for Mongoose.");
-
-      const newPost = new BlogPost(newPostData);
-
-      console.log("Mongoose document created. Attempting to save...");
+      });
 
       await newPost.save();
-
-      console.log("--- SAVE SUCCESSFUL ---");
-
       res.status(201).json({ message: "Blog post created successfully!" });
     } catch (error) {
-      // --- Detailed Error Logging ---
-      console.error("---!!! DETAILED ERROR IN BLOG POST CREATION !!!---");
-      console.error(error);
-      console.error("---!!! END DETAILED ERROR !!!---");
+      console.error("Error creating blog post:", error);
       res
         .status(500)
         .json({ message: "Error saving blog post", error: error.message });
