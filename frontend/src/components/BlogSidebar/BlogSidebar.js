@@ -10,23 +10,23 @@ const ClickHandler = () => {
 };
 
 const BlogSidebar = (props) => {
-  // State for blogs, loading, and error status
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all blogs when the component mounts
+  // The URL for your live backend server
+  const API_BASE_URL = "https://api.centuryfinancelimited.com";
+
+  // This fetch logic is already correct
   useEffect(() => {
     const fetchAllBlogs = async () => {
       try {
-        const response = await fetch(
-          "https://api.centuryfinancelimited.com/api/blogs"
-        );
+        const response = await fetch(`${API_BASE_URL}/api/blogs`);
         if (!response.ok) {
           throw new Error("Failed to fetch blogs from API");
         }
         const data = await response.json();
-        setBlogs(data); // Store all fetched blogs
+        setBlogs(data);
       } catch (err) {
         setError(err.message);
         console.error("Sidebar fetch error:", err);
@@ -36,16 +36,23 @@ const BlogSidebar = (props) => {
     };
 
     fetchAllBlogs();
-  }, []); // Empty array ensures this runs only once
+  }, []);
 
-  // Create a list of the 3 most recent posts for the sidebar
-  // Your API sorts by newest, so we just take the first 3.
+  // Your API already sorts by newest, so we just take the first 3 posts.
   const recentPosts = blogs.slice(0, 3);
 
-  // Create a unique list of all keywords for the Tags widget
+  // --- CHANGE #1: Logic to generate tags from the 'metaKeywords' string ---
+  // We split the comma-separated string from each blog into individual tags.
+  // Then we use a Set to get only the unique tags.
   const allKeywords = [
-    ...new Set(blogs.flatMap((blog) => blog.primaryKeywords || [])),
-  ].slice(0, 5);
+    ...new Set(
+      blogs.flatMap((blog) =>
+        blog.metaKeywords
+          ? blog.metaKeywords.split(",").map((k) => k.trim())
+          : []
+      )
+    ),
+  ].slice(0, 8); // Display up to 8 tags
 
   const renderRelatedPosts = () => {
     if (loading) {
@@ -60,21 +67,29 @@ const BlogSidebar = (props) => {
     return recentPosts.map((blog) => (
       <div className="post" key={blog._id}>
         <div className="img-holder">
+          {/* CHANGE #2: Use 'thumbnail' field and build the full URL */}
           <img
-            src={blog.imageUrl || "https://placehold.co/100x80?text=..."}
+            src={
+              blog.thumbnail
+                ? `${API_BASE_URL}/${blog.thumbnail.replace(/\\/g, "/")}`
+                : "https://placehold.co/100x80/eee/ccc?text=..."
+            }
             alt={blog.title}
           />
         </div>
         <div className="details">
           <h4>
-            <Link onClick={ClickHandler} to={`/blog-single/${blog.slug}`}>
+            {/* CHANGE #3: Correct the link path to '/blog/:slug' */}
+            <Link onClick={ClickHandler} to={`/blog/${blog.slug}`}>
               {blog.title}
             </Link>
           </h4>
           <span className="date">
-            {new Date(blog.publishDate).toLocaleDateString("en-US", {
+            {/* CHANGE #4: Use 'createdAt' field for the date */}
+            {new Date(blog.createdAt).toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
+              year: "numeric", // Added year for clarity
             })}
           </span>
         </div>
@@ -85,52 +100,30 @@ const BlogSidebar = (props) => {
   return (
     <div className={`col col-lg-4 col-12 ${props.blLeft}`}>
       <div className="blog-sidebar">
-        {/* Your original commented-out Search Widget */}
-        {/* <div className="widget search-widget">
-                    <h3>Search Here</h3>
-                    <form onSubmit={SubmitHandler}>
-                        <div>
-                            <input type="text" className="form-control" placeholder="Search Post.." />
-                            <button type="submit"><i className="ti-search"></i></button>
-                        </div>
-                    </form>
-                </div> */}
-
-        {/* Your original commented-out Category Widget */}
-        {/* <div className="widget category-widget">
-                    <h3>Post Categories</h3>
-                    <ul>
-                        <li><Link onClick={ClickHandler} to="/blog">Education<span>5</span></Link></li>
-                        <li><Link onClick={ClickHandler} to="/blog">Ai Content <span>7</span></Link></li>
-                        <li><Link onClick={ClickHandler} to="/blog">Knowledge<span>3</span></Link></li>
-                        <li><Link onClick={ClickHandler} to="/blog">Marketing<span>6</span></Link></li>
-                        <li><Link onClick={ClickHandler} to="/blog">Design<span>2</span></Link></li>
-                        <li><Link onClick={ClickHandler} to="/blog">Courses<span>8</span></Link></li>
-                    </ul>
-                </div> */}
+        {/* Your Search and Category widgets remain commented out as requested */}
 
         <div className="widget recent-post-widget">
-          <h3>Related Posts</h3>
-          <div className="posts">
-            {/* DYNAMIC CONTENT: This part now fetches from the database */}
-            {renderRelatedPosts()}
-          </div>
+          <h3>Recent Posts</h3>
+          <div className="posts">{renderRelatedPosts()}</div>
         </div>
 
         <div className="widget tag-widget">
           <h3>Tags</h3>
           <ul>
-            {/* DYNAMIC CONTENT: These tags are generated from your database */}
             {loading ? (
               <li>Loading...</li>
             ) : (
-              allKeywords.map((tag) => (
-                <li key={tag}>
-                  <Link onClick={ClickHandler} to="/blogs">
-                    {tag}
-                  </Link>
-                </li>
-              ))
+              allKeywords.map(
+                (tag) =>
+                  // Added a check to ensure empty tags are not rendered
+                  tag && (
+                    <li key={tag}>
+                      <Link onClick={ClickHandler} to="/blog">
+                        {tag}
+                      </Link>
+                    </li>
+                  )
+              )
             )}
           </ul>
         </div>
