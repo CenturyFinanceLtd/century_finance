@@ -134,4 +134,37 @@ router.get("/", async (req, res) => {
 // --- Route to Add a New Blog Post ---
 // router.post("/add", ... continues here ...
 
+// ... multer configuration and other code ...
+
+// --- Route to GET All Blog Posts for the public site ---
+router.get("/", async (req, res) => {
+  // ... your existing code for getting all blogs ...
+});
+
+// --- 👇 ADD THIS NEW ROUTE TO GET A SINGLE BLOG BY SLUG ---
+router.get("/:slug", async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const blog = await BlogPost.findOne({ slug: slug.toLowerCase() });
+
+    if (!blog) {
+      // If no blog is found with that slug, return a 404 error
+      return res.status(404).json({ message: "Blog post not found" });
+    }
+
+    // If blog is found, send it back
+    res.status(200).json(blog);
+  } catch (error) {
+    console.error("Error fetching single blog post:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch blog post", error: error.message });
+  }
+});
+// --- END OF NEW ROUTE ---
+
+
+// --- Route to Add a New Blog Post ---
+// router.post("/add", ... continues here ...
+
 module.exports = router;

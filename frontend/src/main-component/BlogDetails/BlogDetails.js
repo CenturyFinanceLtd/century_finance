@@ -41,7 +41,6 @@ const BlogDetailsPage = () => {
   if (loading) {
     return (
       <Fragment>
-        {/* --- Default Helmet for Loading State --- */}
         <Helmet>
           <title>Loading Blog... | Century Finance Limited</title>
         </Helmet>
@@ -56,17 +55,19 @@ const BlogDetailsPage = () => {
     );
   }
 
-  if (error) {
+  if (error || !blog) {
+    // Also handle if blog is null after loading
     return (
       <Fragment>
-        {/* --- Default Helmet for Error State --- */}
         <Helmet>
           <title>Error Loading Blog | Century Finance Limited</title>
         </Helmet>
         <Navbar />
-        <PageTitle pageTitle={"Error"} pagesub={"Blog"} />
+        <PageTitle pageTitle={"Post Not Found"} pagesub={"Blog"} />
         <div className="section-padding">
-          <div className="container">Error: {error}</div>
+          <div className="container">
+            Error: {error || "The requested blog post could not be found."}
+          </div>
         </div>
         <Footer />
         <Scrollbar />
@@ -77,26 +78,26 @@ const BlogDetailsPage = () => {
   return (
     <Fragment>
       {/* --- Dynamic Helmet for Loaded Blog Post --- */}
-      {blog && (
-        <Helmet>
-          {/* Dynamically set the page title */}
-          <title>{`${blog.title} | Century Finance Limited`}</title>
+      <Helmet>
+        {/* CHANGE #1: Use 'metaTitle' for the page title, with a fallback to the main title */}
+        <title>{`${
+          blog.metaTitle || blog.title
+        } | Century Finance Limited`}</title>
 
-          {/* Dynamically set the meta description */}
-          <meta name="description" content={blog.metaDescription} />
+        {/* This was already correct */}
+        <meta name="description" content={blog.metaDescription} />
 
-          {/* Dynamically set the meta keywords */}
-          <meta name="keywords" content={blog.primaryKeywords.join(", ")} />
-        </Helmet>
-      )}
+        {/* CHANGE #2: Use 'metaKeywords' from your schema. It's already a string, so no .join() is needed. */}
+        <meta name="keywords" content={blog.metaKeywords} />
+      </Helmet>
 
       <Navbar />
-      <PageTitle
-        pageTitle={blog ? blog.title : "Blog Details"}
-        pagesub={"Blog"}
-      />
 
-      {blog && <BlogSingle blog={blog} />}
+      {/* This correctly uses the main blog title for the hero section */}
+      <PageTitle pageTitle={blog.title} pagesub={"Blog"} />
+
+      {/* The BlogSingle component receives all the blog data to display */}
+      <BlogSingle blLeft={true} />
 
       <Footer />
       <Scrollbar />
