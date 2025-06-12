@@ -32,17 +32,34 @@ const PORT = process.env.PORT || 4000;
 
 // *** Updated CORS Configuration ***
 // This should come BEFORE your API routes are defined
-const corsOptions = {
-  origin: "https://www.centuryfinancelimited.com", // Allow requests from your frontend domain
-  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-app.use(cors()); // Enable CORS for all origins
-app.use(bodyParser.json()); // Parse JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+// --- 👇 FIX IS HERE: UPDATED CORS CONFIGURATION ---
 
-// 👈 3. ADD THIS: Serve uploaded files statically
-// This makes images in the 'uploads' folder accessible via a URL
-// Example: http://localhost:4000/uploads/thumbnail-1678886400000.png
+// Whitelist of allowed domains
+const allowedOrigins = [
+  'https://www.centuryfinancelimited.com', // Your main site
+  'https://admin.centuryfinancelimited.com'  // Your admin panel
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  optionsSuccessStatus: 200,
+};
+
+// Use the cors middleware WITH your specific options
+app.use(cors(corsOptions));
+// Middleware setup
+app.use(bodyParser.json({ limit: '10mb' })); // Increased payload size for rich text & images
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Serve uploaded files statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB Connection
