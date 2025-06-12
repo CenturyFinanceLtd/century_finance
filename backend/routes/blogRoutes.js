@@ -6,13 +6,10 @@ const BlogPost = require("../models/blogPost");
 
 // --- Multer Configuration for File Uploads ---
 const storage = multer.diskStorage({
-  // Destination directory for uploaded files
   destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Make sure this 'uploads' directory exists
+    cb(null, "uploads/");
   },
-  // Filename configuration to avoid naming conflicts
   filename: function (req, file, cb) {
-    // fieldname (e.g., 'thumbnail') - timestamp - original extension
     cb(
       null,
       file.fieldname + "-" + Date.now() + path.extname(file.originalname)
@@ -20,7 +17,6 @@ const storage = multer.diskStorage({
   },
 });
 
-// File filter to allow only image files
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image/")) {
     cb(null, true);
@@ -32,7 +28,6 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 // --- Route to Add a New Blog Post ---
-// We use upload.fields() to handle multiple image uploads from different fields
 router.post(
   "/add",
   upload.fields([
@@ -41,7 +36,6 @@ router.post(
   ]),
   async (req, res) => {
     try {
-      // Extract text data from the request body
       const {
         title,
         category,
@@ -54,7 +48,22 @@ router.post(
         authorDescription,
       } = req.body;
 
-      // Check if files were uploaded and get their paths
+      // --- 👇 NEW: UNIQUE SLUG CHECK ---
+      // Check if a post with this slug already exists.
+      const existingPost = await BlogPost.findOne({ slug: slug.toLowerCase() });
+
+      // If a post is found, send a specific error message.
+      if (existingPost) {
+        // 409 Conflict is the appropriate HTTP status code
+        return res
+          .status(409)
+          .json({
+            message:
+              "This path (slug) is already in use. Please choose a different one.",
+          });
+      }
+      // --- END OF NEW CHECK ---
+
       const thumbnailPath = req.files.thumbnail
         ? req.files.thumbnail[0].path
         : null;
@@ -65,7 +74,7 @@ router.post(
       const newPost = new BlogPost({
         title,
         category,
-        slug,
+        slug: slug.toLowerCase(), // Save slug in lowercase to ensure consistency
         metaTitle,
         metaKeywords,
         metaDescription,
@@ -73,9 +82,9 @@ router.post(
         author: {
           name: authorName,
           description: authorDescription,
-          image: authorImagePath, // Save the file path
+          image: authorImagePath,
         },
-        thumbnail: thumbnailPath, // Save the file path
+        thumbnail: thumbnailPath,
       });
 
       await newPost.save();

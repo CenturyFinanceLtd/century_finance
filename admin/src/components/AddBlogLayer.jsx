@@ -1,20 +1,16 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-
-// Core libraries (hljs has been removed)
 import ReactQuill from "react-quill-new";
-
-// Import required CSS (highlight.js theme has been removed)
 import "react-quill-new/dist/quill.snow.css";
 
+const API_URL = "https://api.centuryfinancelimited.com/api/blogs/add";
+
 const AddBlogLayer = () => {
-  // State for file objects and previews
+  // ... all your state and other functions remain the same ...
   const [thumbnailFile, setThumbnailFile] = useState(null);
   const [authorImageFile, setAuthorImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [authorImagePreview, setAuthorImagePreview] = useState(null);
-
-  // State for editor and form inputs
   const [editorValue, setEditorValue] = useState("");
   const [formData, setFormData] = useState({
     title: "",
@@ -26,10 +22,8 @@ const AddBlogLayer = () => {
     authorName: "",
     authorDescription: "",
   });
-
   const quillRef = useRef(null);
 
-  // --- HANDLER FUNCTIONS ---
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
@@ -67,7 +61,6 @@ const AddBlogLayer = () => {
     const data = new FormData();
     const editorContent = quillRef.current.getEditor().root.innerHTML;
 
-    // Append all form data
     data.append("title", formData.title);
     data.append("category", formData.category);
     data.append("slug", formData.slug);
@@ -78,30 +71,32 @@ const AddBlogLayer = () => {
     data.append("authorDescription", formData.authorDescription);
     data.append("description", editorContent);
 
-    // Append files if they exist
     if (thumbnailFile) data.append("thumbnail", thumbnailFile);
     if (authorImageFile) data.append("authorImage", authorImageFile);
 
     try {
-      // 👇 FIX: Removed the extra slash from the URL
-      await axios.post(
-        "https://api.centuryfinancelimited.com/api/blogs/add",
-        data,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      await axios.post(API_URL, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       alert("Blog post submitted successfully!");
     } catch (error) {
-      console.error(
-        "Error submitting the form:",
-        error.response ? error.response.data : error.message
-      );
-      alert("Failed to submit blog post.");
+      // --- 👇 NEW: IMPROVED ERROR HANDLING ---
+      console.error("Error submitting the form:", error.response || error);
+
+      // Check for the specific 'slug already exists' error
+      if (error.response && error.response.status === 409) {
+        alert(error.response.data.message); // Show the specific message from the server
+      } else {
+        // Show a generic message for all other errors
+        alert(
+          "Failed to submit blog post. Please check the console for details."
+        );
+      }
+      // --- END OF NEW HANDLING ---
     }
   };
 
-  // --- QUILL CONFIGURATION ---
+  // ... rest of the component (modules, formats, and JSX) remains the same ...
   const modules = {
     toolbar: { container: "#toolbar-container" },
   };
@@ -129,6 +124,7 @@ const AddBlogLayer = () => {
   ];
 
   return (
+    // Your entire JSX form goes here
     <div className="row gy-4">
       <div className="col-lg-12">
         <div className="card mt-24">
