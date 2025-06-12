@@ -25,7 +25,15 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const upload = multer({ storage: storage, fileFilter: fileFilter });
+// --- 👇 FIX IS HERE: ADDED FILE SIZE LIMITS TO MULTER ---
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 25 * 1024 * 1024, // 25 MB limit per file (adjust as needed)
+  },
+});
+// --- END FIX ---
 
 // --- Route to Add a New Blog Post ---
 router.post(
@@ -48,21 +56,16 @@ router.post(
         authorDescription,
       } = req.body;
 
-      // --- 👇 NEW: UNIQUE SLUG CHECK ---
       // Check if a post with this slug already exists.
       const existingPost = await BlogPost.findOne({ slug: slug.toLowerCase() });
 
       // If a post is found, send a specific error message.
       if (existingPost) {
-        // 409 Conflict is the appropriate HTTP status code
-        return res
-          .status(409)
-          .json({
-            message:
-              "This path (slug) is already in use. Please choose a different one.",
-          });
+        return res.status(409).json({
+          message:
+            "This path (slug) is already in use. Please choose a different one.",
+        });
       }
-      // --- END OF NEW CHECK ---
 
       const thumbnailPath = req.files.thumbnail
         ? req.files.thumbnail[0].path
@@ -74,7 +77,7 @@ router.post(
       const newPost = new BlogPost({
         title,
         category,
-        slug: slug.toLowerCase(), // Save slug in lowercase to ensure consistency
+        slug: slug.toLowerCase(),
         metaTitle,
         metaKeywords,
         metaDescription,
