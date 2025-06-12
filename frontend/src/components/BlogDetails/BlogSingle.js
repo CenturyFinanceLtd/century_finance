@@ -2,83 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import BlogSidebar from "../BlogSidebar/BlogSidebar.js";
 
-// Your static images are kept for parts of the page that remain static
-import blog6 from "../../images/blog-details/author.jpg";
-import gl1 from "../../images/blog-details/1.jpg";
-
-// This helper component for rendering content remains the same.
-const ContentRenderer = ({ block }) => {
-  switch (block.type) {
-    case "h2":
-      return <h2 className="text-3xl font-bold my-6">{block.data.text}</h2>;
-    case "paragraph":
-      return (
-        <p className="my-4 text-gray-700 leading-relaxed whitespace-pre-wrap">
-          {block.data.text}
-        </p>
-      );
-    case "introduction":
-      return (
-        <p className="text-xl italic text-gray-600 my-6">{block.data.text}</p>
-      );
-    case "ordered_list":
-    case "list":
-      const ListTag = block.type === "ordered_list" ? "ol" : "ul";
-      return (
-        <ListTag className="my-6 space-y-4 pl-5 list-disc">
-          {block.data.items.map((item, index) => (
-            <li key={index}>
-              <strong className="font-semibold text-gray-800">
-                {item.title}
-              </strong>
-              <p className="text-gray-600 ml-2">
-                {item.detail || item.details}
-              </p>
-              {item.promo_text && (
-                <p className="text-sm text-blue-600 bg-blue-50 p-2 mt-2 rounded">
-                  {item.promo_text}
-                </p>
-              )}
-            </li>
-          ))}
-        </ListTag>
-      );
-    case "conclusion":
-      return (
-        <p className="my-6 text-lg font-medium text-gray-800">
-          {block.data.text}
-        </p>
-      );
-    default:
-      return null;
-  }
-};
+// Static image for author fallback
+import authorFallbackImage from "../../images/blog-details/author.jpg";
 
 const BlogSingle = (props) => {
-  // 1. We get the slug from the URL using the useParams hook.
   const { slug } = useParams();
 
-  // 2. We add state to hold our blog data, loading status, and any errors.
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 3. The hardcoded 'BlogDetails' object is removed.
+  // The URL for your live backend server
+  const API_BASE_URL = "https://api.centuryfinancelimited.com";
 
-  // 4. This useEffect hook runs when the component loads or the slug changes.
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
         setLoading(true);
-        // We use the slug to make a specific API request to our backend.
-        const response = await fetch(
-          `https://api.centuryfinancelimited.com/api/blogs/${slug}`
-        );
+        // This fetch request is correct and uses the endpoint we already built
+        const response = await fetch(`${API_BASE_URL}/api/blogs/${slug}`);
         if (!response.ok) {
           throw new Error(`Blog not found or server error`);
         }
         const data = await response.json();
-        setBlog(data); // We store the successfully fetched blog data in our state.
+        setBlog(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -89,9 +36,9 @@ const BlogSingle = (props) => {
     if (slug) {
       fetchBlogData();
     }
-  }, [slug]); // The dependency array ensures this runs again if the slug changes.
+  }, [slug]);
 
-  // 5. We handle the loading and error states before rendering the blog.
+  // --- Loading, Error, and Not Found States ---
   if (loading) {
     return (
       <section className="wpo-blog-single-section section-padding">
@@ -102,27 +49,19 @@ const BlogSingle = (props) => {
     );
   }
 
-  if (error) {
+  if (error || !blog) {
     return (
       <section className="wpo-blog-single-section section-padding">
         <div className="container text-center py-12">
-          <p className="text-red-500">Error: {error}</p>
+          <p className="text-red-500">
+            Error: {error || "Blog post not found."}
+          </p>
         </div>
       </section>
     );
   }
 
-  if (!blog) {
-    return (
-      <section className="wpo-blog-single-section section-padding">
-        <div className="container text-center py-12">
-          <p>Blog post not found.</p>
-        </div>
-      </section>
-    );
-  }
-
-  // 6. The JSX now uses the 'blog' object from our state instead of the old 'BlogDetails'.
+  // --- JSX using the fetched 'blog' object ---
   return (
     <section className="wpo-blog-single-section section-padding">
       <div className="container">
@@ -131,13 +70,25 @@ const BlogSingle = (props) => {
             <div className="wpo-blog-content">
               <div className="post format-standard-image">
                 <div className="entry-media">
-                  <img src={blog.imageUrl || gl1} alt={blog.title} />
+                  {/* CHANGE #1: Use 'thumbnail' for the main image and build the full URL */}
+                  {blog.thumbnail && (
+                    <img
+                      src={`${API_BASE_URL}/${blog.thumbnail.replace(
+                        /\\/g,
+                        "/"
+                      )}`}
+                      alt={blog.title}
+                    />
+                  )}
                 </div>
                 <div className="entry-meta">
                   <ul>
                     <li>
                       <i className="fi flaticon-user"></i> By{" "}
-                      <Link to="#">{blog.author.name}</Link>{" "}
+                      {/* Add a safety check for author object */}
+                      <Link to="#">
+                        {blog.author ? blog.author.name : "Admin"}
+                      </Link>{" "}
                     </li>
                     <li>
                       <i className="fi flaticon-comment-white-oval-bubble"></i>{" "}
@@ -145,31 +96,53 @@ const BlogSingle = (props) => {
                     </li>
                     <li>
                       <i className="fi flaticon-calendar"></i>{" "}
-                      {new Date(blog.publishDate).toLocaleDateString()}
+                      {/* CHANGE #2: Use 'createdAt' for the date */}
+                      {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </li>
                   </ul>
                 </div>
                 <h2>{blog.title}</h2>
-                {blog.contentBlocks.map((block, index) => (
-                  <ContentRenderer key={index} block={block} />
-                ))}
+
+                {/* CHANGE #3: Render the HTML from the 'description' field */}
+                {/* This is the standard and safe way to render HTML content in React */}
+                <div
+                  className="post-content"
+                  dangerouslySetInnerHTML={{ __html: blog.description }}
+                />
               </div>
-              <div className="author-box">
-                <div className="author-avatar">
-                  <Link to="#">
-                    <img
-                      src={blog.author.imageUrl || blog6}
-                      alt={blog.author.name}
-                    />
-                  </Link>
+
+              {/* Author Box - with safety checks */}
+              {blog.author && (
+                <div className="author-box">
+                  <div className="author-avatar">
+                    <Link to="#">
+                      {/* CHANGE #4: Use 'author.image' for the author avatar */}
+                      <img
+                        src={
+                          blog.author.image
+                            ? `${API_BASE_URL}/${blog.author.image.replace(
+                                /\\/g,
+                                "/"
+                              )}`
+                            : authorFallbackImage
+                        }
+                        alt={blog.author.name}
+                      />
+                    </Link>
+                  </div>
+                  <div className="author-content">
+                    <Link to="#" className="author-name">
+                      Author: {blog.author.name}
+                    </Link>
+                    {/* CHANGE #5: Use 'author.description' for the bio */}
+                    <p>{blog.author.description}</p>
+                  </div>
                 </div>
-                <div className="author-content">
-                  <Link to="#" className="author-name">
-                    Author: {blog.author.name}
-                  </Link>
-                  <p>{blog.author.bio}</p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
           <BlogSidebar blLeft={props.blLeft} />
