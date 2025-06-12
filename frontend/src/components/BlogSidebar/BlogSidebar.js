@@ -107,26 +107,7 @@ const BlogSidebar = (props) => {
           <div className="posts">{renderRelatedPosts()}</div>
         </div>
 
-        <div className="widget tag-widget">
-          <h3>Tags</h3>
-          <ul>
-            {loading ? (
-              <li>Loading...</li>
-            ) : (
-              allKeywords.map(
-                (tag) =>
-                  // Added a check to ensure empty tags are not rendered
-                  tag && (
-                    <li key={tag}>
-                      <Link onClick={ClickHandler} to="/blog">
-                        {tag}
-                      </Link>
-                    </li>
-                  )
-              )
-            )}
-          </ul>
-        </div>
+        
       </div>
     </div>
   );
