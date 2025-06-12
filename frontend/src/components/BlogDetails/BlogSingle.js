@@ -117,8 +117,8 @@ const BlogSingle = (props) => {
 
               {/* Author Box - with safety checks */}
               {blog.author && (
-                <div className="author-box">
-                  <div className="author-avatar">
+                <div className="author-box row">
+                  <div className="author-avatar col col-lg-2 col-2">
                     <Link to="#">
                       {/* CHANGE #4: Use 'author.image' for the author avatar */}
                       <img
@@ -134,7 +134,7 @@ const BlogSingle = (props) => {
                       />
                     </Link>
                   </div>
-                  <div className="author-content">
+                  <div className="author-content col col-lg-10 col-10">
                     <Link to="#" className="author-name">
                       Author: {blog.author.name}
                     </Link>
