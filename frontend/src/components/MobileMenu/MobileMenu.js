@@ -88,6 +88,12 @@ const menus = [
   },
 
   {
+    id: 9,
+    title: "Blogs",
+    link: "/blog",
+  },
+
+  {
     id: 10,
     title: "Contact",
     link: "/contactus",

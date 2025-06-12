@@ -187,7 +187,7 @@ const Header = (props) => {
                           <Link onClick={ClickHandler} to="/foreign-market">
                             Foreign Market
                           </Link>
-                        {/* </li>
+                          {/* </li>
                         <li>
                           <Link onClick={ClickHandler} to="/gold">
                             
@@ -199,6 +199,11 @@ const Header = (props) => {
                           </Link> */}
                         </li>
                       </ul>
+                    </li>
+                    <li>
+                      <Link onClick={ClickHandler} to="/blogs">
+                        Blogs
+                      </Link>
                     </li>
                     <li>
                       <Link onClick={ClickHandler} to="/ContactUs">
