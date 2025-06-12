@@ -25,12 +25,13 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// --- 👇 FIX IS HERE: ADDED FILE SIZE LIMITS TO MULTER ---
+// --- 👇 FIX IS HERE: ADDED fieldSize TO THE LIMITS ---
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 25 * 1024 * 1024, // 25 MB limit per file (adjust as needed)
+    fileSize: 25 * 1024 * 1024, // 25 MB limit for thumbnail/author files
+    fieldSize: 25 * 1024 * 1024, // 25 MB limit for fields like 'description'
   },
 });
 // --- END FIX ---
@@ -56,10 +57,8 @@ router.post(
         authorDescription,
       } = req.body;
 
-      // Check if a post with this slug already exists.
       const existingPost = await BlogPost.findOne({ slug: slug.toLowerCase() });
 
-      // If a post is found, send a specific error message.
       if (existingPost) {
         return res.status(409).json({
           message:
