@@ -101,7 +101,7 @@ const BasicPlan = ({ onBookNow }) => {
       fontFamily: '"Montserrat", sans-serif',
       fontSize: "2em",
       fontWeight: "700",
-      color: "#ffffff",
+      color: "#rgb(0 0 0)",
       marginBottom: "25px",
     },
     paragraph: {
@@ -206,13 +206,23 @@ const BasicPlan = ({ onBookNow }) => {
     // --- Text Utility Styles ---
     strongText: {
       fontWeight: "bold",
-      color: "#ffffff", // Ensure bold text stands out
+      color: "rgb(0 0 0)", // Ensure bold text stands out
     },
     noteText: {
       fontSize: "0.95rem",
       color: "#f39c12", // Warning color for notes
       fontStyle: "italic",
     },
+
+whiteBox: {
+  backgroundColor: "#ffffff",
+  color: "#000000",
+  borderRadius: "8px",
+  padding: "30px 25px",
+  marginBottom: "30px",
+  boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+},
+
   };
 
   return (
@@ -267,20 +277,28 @@ const BasicPlan = ({ onBookNow }) => {
           </div>
 
           {/* Objective Section */}
-          <div style={styles.contentSection}>
-            <h2 style={styles.sectionHeading}>Objective</h2>
-            <p style={styles.paragraph}>
-             To seamlessly connect academic-learning with real-world  financial market practices by offering students hand-on-hands exposure to trading concepts, market structure and industry tools. It aims to build a solid foundation for their transition into the professional world of finance. 
+          {/* Objective Section */}
+<div style={styles.contentSection}>
+  <div style={styles.whiteBox}>
+    <h2 style={styles.sectionHeading}>Our Objective</h2>
+    <strong>To seamlessly connect academic-learning with real-world  financial market practices by offering students hand-on-hands exposure to trading concepts, market structure and industry tools. It aims to build a solid foundation for their transition into the professional world of finance. </strong>
+  </div>
+  </div>
 
-            </p>
-          </div>
 
           {/* Program Details Section */}
           <div style={styles.contentSection}>
             <h2 style={styles.sectionHeading}>Program Details</h2>
             <div
-              style={{ ...styles.alertCommon, ...styles.alertSuccess }}
-              className="alert alert-success">
+  style={{
+    ...styles.alertCommon,
+    backgroundColor: "#ffffff", // white background
+    color: "#rgb(0 0 0)",           // black text
+    border: "1px solid #dddddd" // light border for subtle separation
+  }}
+  className="alert alert-light"
+>
+
               <ul style={styles.unorderedList} className="mb-0">
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>{" "}
@@ -311,14 +329,15 @@ const BasicPlan = ({ onBookNow }) => {
           </div>
 
           {/* Program Overview (with Read More/Show Less) */}
-          <div style={styles.contentSection}>
-            <h2 style={styles.sectionHeading}>About Basic Plan
-</h2>
-            <p style={styles.paragraph}>
-               <strong style={styles.strongText}></strong>{" "}
-            Basic Plan is a one day, on-campus training program exclusively tailored for final-year students. It offers a practical exposure to equity, commodity and foreign exchange markets, delivered by experienced trainers. 
+         {/* About Basic Plan */}
+<div style={styles.contentSection}>
+  <div style={styles.whiteBox}>
+    <h2 style={styles.sectionHeading}>About Basic Plan</h2>
+    
+    <strong>It’s a one day, on-campus training program exclusively tailored for final-year students. It offers a practical exposure to equity, commodity and foreign exchange markets, delivered by experienced trainers.</strong>
+  </div>
 
-            </p>
+
 
             {!isExpanded && (
               <button onClick={toggleContent} style={styles.showMoreBtn}>
