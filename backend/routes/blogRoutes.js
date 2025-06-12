@@ -110,4 +110,24 @@ router.post(
   }
 );
 
+// Add this entire block to your blogRoutes.js file
+
+// --- Route to GET All Blog Posts ---
+router.get("/all", async (req, res) => {
+  try {
+    console.log("Fetching all blog posts...");
+    const blogs = await BlogPost.find({})
+      .select("title slug category createdAt thumbnail") // Select only needed fields
+      .sort({ createdAt: -1 }); // Sort by newest first
+
+    res.status(200).json(blogs);
+    console.log("Successfully fetched all blog posts.");
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch blog posts", error: error.message });
+  }
+});
+
 module.exports = router;

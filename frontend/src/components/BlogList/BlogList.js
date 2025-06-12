@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import BlogSidebar from "../BlogSidebar/BlogSidebar.js";
+import axios from "axios";
+import { Link } from "react-router-dom"; // For Edit/Delete links
 
-const ClickHandler = () => {
-  window.scrollTo(10, 0);
-};
+// The URL for your live backend server
+const API_BASE_URL = "https://api.centuryfinancelimited.com";
 
-const BlogList = (props) => {
+const AllBlogsList = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,116 +13,110 @@ const BlogList = (props) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        // Fetch from your LIVE API endpoint
-        const response = await fetch(
-          "https://api.centuryfinancelimited.com/api/blogs"
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        // Map the data from MongoDB to the props your component expects
-        const formattedData = data.map((blog) => ({
-          ...blog, // Pass all original blog data
-          id: blog._id, // Use MongoDB's _id
-          authorTitle: blog.author.name,
-          create_at: new Date(blog.publishDate).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          }),
-          comment: blog.commentsCount || 0, // Use a real comment count if you have one
-          // IMPORTANT: You need a way to get the blog image.
-          // I recommend adding an 'imageUrl' field to your MongoDB documents.
-          blogSingleImg:
-            blog.imageUrl ||
-            "https://placehold.co/800x600/eee/ccc?text=Blog+Image",
-        }));
-
-        setBlogs(formattedData);
-      } catch (error) {
-        setError(error.message);
-        console.error("Failed to fetch blogs:", error);
+        setLoading(true);
+        const response = await axios.get(`${API_BASE_URL}/api/blogs/all`);
+        setBlogs(response.data);
+        setError(null);
+      } catch (err) {
+        setError("Failed to fetch blog posts. Please try again later.");
+        console.error("Fetch error:", err);
       } finally {
         setLoading(false);
       }
     };
 
     fetchBlogs();
-  }, []); // Empty dependency array means this runs once on mount
+  }, []); // Empty array means this effect runs only once on mount
 
   if (loading) {
-    return <div className="section-padding">Loading Blogs...</div>;
+    return (
+      <div className="text-center p-5">
+        <p>Loading blogs...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="section-padding">Error: {error}</div>;
+    return <div className="alert alert-danger">{error}</div>;
   }
 
   return (
-    <section className="wpo-blog-pg-section section-padding">
-      <div className="container">
-        <div className="row">
-          <div className={`col col-lg-8 col-12 ${props.blRight}`}>
-            <div className="wpo-blog-content">
-              {blogs.length > 0 ? (
-                blogs.map((blog) => (
-                  <div className={`post ${blog.blClass}`} key={blog.id}>
-                    <div className="entry-media video-holder">
-                      <img src={blog.blogSingleImg} alt={blog.title} />
-                    </div>
-                    <div className="entry-meta">
-                      <ul>
-                        <li>
-                          <i className="fi flaticon-user"></i> By{" "}
+    <div className="row gy-4">
+      <div className="col-lg-12">
+        <div className="card mt-24">
+          <div className="card-header d-flex justify-content-between align-items-center">
+            <h6 className="text-xl mb-0">All Blog Posts</h6>
+            <Link to="/add-blog" className="btn btn-primary-600 radius-8">
+              Add New Post
+            </Link>
+          </div>
+          <div className="card-body p-0">
+            <div className="table-responsive">
+              <table className="table table-striped table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Thumbnail</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Date Published</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {blogs.length > 0 ? (
+                    blogs.map((blog) => (
+                      <tr key={blog._id}>
+                        <td>
+                          {blog.thumbnail ? (
+                            <img
+                              src={`${API_BASE_URL}/${blog.thumbnail.replace(
+                                /\\/g,
+                                "/"
+                              )}`}
+                              alt={blog.title}
+                              style={{
+                                width: "100px",
+                                height: "auto",
+                                borderRadius: "4px",
+                              }}
+                            />
+                          ) : (
+                            "No Image"
+                          )}
+                        </td>
+                        <td>{blog.title}</td>
+                        <td>{blog.category}</td>
+                        <td>{blog.slug}</td>
+                        <td>{new Date(blog.createdAt).toLocaleDateString()}</td>
+                        <td>
+                          {/* These links are placeholders for now */}
                           <Link
-                            onClick={ClickHandler}
-                            to={`/blog/${blog.slug}`}>
-                            {blog.authorTitle}
+                            to={`/edit-blog/${blog.slug}`}
+                            className="btn btn-sm btn-outline-secondary me-2">
+                            Edit
                           </Link>
-                        </li>
-                        <li>
-                          <i className="fi flaticon-comment-white-oval-bubble"></i>{" "}
-                          Comments {blog.comment}
-                        </li>
-                        <li>
-                          <i className="fi flaticon-calendar"></i>{" "}
-                          {blog.create_at}
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="entry-details">
-                      <h3>
-                        <Link
-                          onClick={ClickHandler}
-                          to={`/blog/${blog.slug}`}>
-                          {blog.title}
-                        </Link>
-                      </h3>
-                      <p>{blog.metaDescription}</p>
-                      <Link
-                        onClick={ClickHandler}
-                        to={`/blog/${blog.slug}`}
-                        className="read-more">
-                        READ MORE...
-                      </Link>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p>No blogs found.</p>
-              )}
-              <div className="pagination-wrapper pagination-wrapper-left">
-                {/* Your pagination logic here */}
-              </div>
+                          <button className="btn btn-sm btn-outline-danger">
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6" className="text-center py-4">
+                        No blog posts found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
-          <BlogSidebar blLeft={props.blLeft} />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default BlogList;
+export default AllBlogsList;
