@@ -18,6 +18,10 @@
     "author": "Your Name/Company",
     "license": "ISC",
     "dependencies": {
+        "@editorjs/editorjs": "^2.30.8",
+        "@editorjs/header": "^2.8.8",
+        "@editorjs/list": "^2.0.8",
+        "@editorjs/paragraph": "^2.11.7",
         "@paypal/checkout-server-sdk": "^1.0.3",
         "axios": "^1.6.8",
         "bcryptjs": "^3.0.2",

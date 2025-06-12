@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+
+const path = require("path"); // 👈 1. MAKE SURE 'path' IS IMPORTED
 // const Razorpay = require('razorpay'); // Still commented out as per your request
 
 // Load environment variables from .env file
@@ -16,7 +18,8 @@ const queryRoutes = require("./routes/queryRoutes"); // Import query routes
 const courseBookingRoutes = require("./routes/courseBookingRoutes"); // Adjust path as needed
 const enquiryRoutes = require("./routes/enquiryRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
-const blogRoutes = require("./routes/blogRoutes");
+const blogRoutes = require("./routes/blogRoutes"); // 👈 2. IMPORT THE NEW BLOG ROUTES
+
 
 // Initialize Express app
 const app = express();
@@ -36,6 +39,11 @@ const corsOptions = {
 app.use(cors()); // Enable CORS for all origins
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+
+// 👈 3. ADD THIS: Serve uploaded files statically
+// This makes images in the 'uploads' folder accessible via a URL
+// Example: http://localhost:4000/uploads/thumbnail-1678886400000.png
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -68,7 +76,7 @@ app.use("/api/queries", queryRoutes); // Use query routes, prefixed with /api/qu
 app.use("/api/course-bookings", courseBookingRoutes);
 app.use("/api/enquiries", enquiryRoutes);
 app.use('/api/register', registrationRoutes);
-app.use("/api/blogs", blogRoutes);
+app.use("/api/blogs", blogRoutes); // 👈 3. ADD THE BLOG ROUTES
 
 // --- Global Error Handler ---
 // This should be defined AFTER all other app.use() and routes calls
