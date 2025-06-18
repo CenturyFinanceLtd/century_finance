@@ -222,9 +222,10 @@ const PremiumPlan = ({ onBookNow }) => {
           {/* Image Section (placed at the top, like a hero image) */}
          
 
+
           {/* Header & Price Section */}
           <div style={styles.headerPriceSection}>
-            <small style={styles.smallTitle}>PREMIUM PLAN</small>
+            <small style={styles.smallTitle}>PR EMIUM PLAN</small>
             <h1 style={styles.mainTitle}>2 Days Certified Training in Financial Markets</h1>
 
             <div style={styles.priceContainer}>

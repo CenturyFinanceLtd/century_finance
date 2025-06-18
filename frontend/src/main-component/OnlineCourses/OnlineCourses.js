@@ -104,69 +104,70 @@ const FeaturesGrid = () => {
     },
     {
       id: 3,
-      title: "Flexible Schedule",
+      title: "Explorer Course",
       content:
         "Access course materials anytime, anywhere, and learn at your own pace.",
-      path: "./OcPages/flexible-schedule",
+      path: "/online-courses/explorer-course",
     },
     {
       id: 4,
-      title: "Community Access",
+      title: "Advance Edge Course",
       content:
         "Join a network of fellow traders and investors to share insights.",
-      path: "./OcPages/community-access",
+      path: "/online-courses/advance-edge-course",
     },
     {
       id: 5,
-      title: "Live Market Analysis",
-      content: "Participate in live sessions analyzing current market trends.",
-      path: "./OcPages/live-analysis",
+      title: "Trader Pro Course",
+      content: 
+      "Participate in live sessions analyzing current market trends.",
+      path: "/online-courses/trader-pro-course",
     },
     {
       id: 6,
-      title: "Personalized Mentorship",
+      title: " Market Master Course",
       content: "Get one-on-one guidance to tailor your trading strategy.",
-      path: "./OcPages/mentorship",
+      path: "/online-courses/market-master-course",
     },
     {
       id: 7,
-      title: "Career Development",
+      title: "IndexWizard Course",
       content:
         "Enhance your resume and professional skills for a career in finance.",
-      path: "./OcPages/career-development",
+      path: "/online-courses/IndexWizardCourse",
     },
     {
       id: 8,
-      title: "Advanced Tools",
+      title: " Global Analyst Course",
       content:
         "Gain access to proprietary trading tools and charting software.",
       path: "./OcPages/advanced-tools",
     },
     {
       id: 9,
-      title: "Risk Management",
+      title: "Wealth Mentor Course",
       content: "Master the essential techniques to protect your capital.",
       path: "./OcPages/risk-management",
     },
     {
       id: 10,
-      title: "Global Markets",
+      title: " Premium Plan Course",
       content:
         "Explore strategies for trading in international equity and forex markets.",
       path: "./OcPages/global-markets",
     },
     {
       id: 11,
-      title: "Certification",
+      title: "Ultra Prime Course",
       content:
         "Receive a certificate of completion to validate your new skills.",
-      path: "./OcPages/certification",
+      path: "",
     },
     {
       id: 12,
-      title: "Continuous Updates",
+      title: "Elite course",
       content: "Get lifelong access to course updates and new content.",
-      path: "./OcPages/updates",
+      path: "/online-courses/elite-course",
     },
   ];
 

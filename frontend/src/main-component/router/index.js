@@ -41,7 +41,16 @@ import ResetPasswordPage from "../ForgotPassword/ResetPasswordPage";
 import RefundPolicy from "../RefundPolicy/RefundPolicy"
 import FoundationCourse from "../OnlineCourses/OcPages/FoundationCourse"
 import IgniteCourse from "../OnlineCourses/OcPages/IgniteCourse";
-
+import ExplorerCourse from "../OnlineCourses/OcPages/ExplorerCourse";
+import AdvanceEdgeCourse from "../OnlineCourses/OcPages/AdvanceEdgeCourse";
+import TraderProCourse from "../OnlineCourses/OcPages/TraderProCourse";
+import  MarketMasterCourse from "../OnlineCourses/OcPages/MarketMasterCourse";
+import  IndexWizardCourse from "../OnlineCourses/OcPages/IndexWizardCourse";
+import   GlobalAnalystCourse from "../OnlineCourses/OcPages/GlobalAnalystCourse";
+import  WealthMentorCourse  from "../OnlineCourses/OcPages/WealthMentorCourse";
+import   PremiumPlanCourse from "../OnlineCourses/OcPages/PremiumPlanCourse";
+import  UltraPrimeCourse from "../OnlineCourses/OcPages/UltraPrimeCourse";
+import  EliteCourse from "../OnlineCourses/OcPages/EliteCourse";
 
 const AllRoute = () => {
 
@@ -101,6 +110,46 @@ const AllRoute = () => {
           <Route
             path="/online-courses/ignite-course"
             element={<IgniteCourse />}
+          />
+          <Route
+            path="/online-courses/explorer-course"
+            element={<ExplorerCourse/>}
+          />
+           <Route
+            path="/online-courses/advance-edge-course"
+            element={<AdvanceEdgeCourse/>}
+          />
+          <Route
+            path="/online-courses/trader-pro-course"
+            element={<TraderProCourse/>}
+          />
+           <Route
+            path="/online-courses/market-master-course"
+            element={< MarketMasterCourse/>}
+          />
+           <Route
+            path="/online-courses/IndexWizardCourse"
+            element={< IndexWizardCourse/>}
+          />
+           <Route
+            path="/online-courses/global-analyst-course"
+            element={<  GlobalAnalystCourse/>}
+          />
+          <Route
+            path="/online-courses/wealth-mentor-course "
+            element={<WealthMentorCourse  />}
+          />
+           <Route
+            path="/online-courses/premium-plan-course "
+            element={<PremiumPlanCourse />}
+          />
+            <Route
+            path="/online-courses/ultra-prime-course "
+            element={<UltraPrimeCourse/>}
+          />
+           <Route
+            path="/online-courses/elite-course"
+            element={<EliteCourse/>}
           />
         </Routes>
       </BrowserRouter>
