@@ -1,199 +1,346 @@
-// OnlineCourse.js
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
-import "./ExpandingCardGrid.css";
-import PopupForm from "./PopupForm";
 
-// ✅ Define coursesData directly here to fix the error
-const coursesData = [
-  {
-    id: "foundation",
-    courseNumber: 1,
-    icon: "",
-    title: "Foundation Course",
-    price: "₹1,900",
-    duration: "2 Weeks",
-    level: "Beginner Level",
-    installmentOption: "2 Easy EMIs Available",
-    whyChoose: "Start your trading journey with confidence through step-by-step guidance.",
-    transformFrom: "“What is Sensex?” → To: “I understand how markets move”",
-    tagline: "Begin your path from basics to expert level here.",
-    expandedDetails: {
-      takeaways: [
-        "Start your journey into the stock market with this beginner-friendly course...",
-        "Why enroll? Because this is the foundation you need...",
-        "Equity Specialization (India): Bank Nifty, Nifty 50, etc.",
-        "U.S. Market Insights: Dow Jones, Dollar Index",
-      ],
-    },
-  },
-  {
-    id: "ignite",
-    courseNumber: 2,
-    icon: "",
-    title: "Ignite",
-    price: "₹3,000",
-    duration: "3 Weeks",
-    installmentOption: "2 Easy EMIs Available",
-    whyChoose: "Understand daily market dynamics and improve your trading decisions.",
-    transformFrom: "“What’s happening in the market?” → To: “I can track it daily”",
-    tagline: "Confidently analyze market movements every day.",
-    expandedDetails: {
-      takeaways: [
-        "Track the market confidently and understand sector-wise movements.",
-        "Use live examples of support and resistance.",
-        "Daily Market Summary & Sectoral Analysis (Auto, Pharma, IT, FMCG)",
-      ],
-    },
-  },
-  // Add other course objects similarly...
-];
+// ✅ FIX IS HERE in the ExpandableText component
+const ExpandableText = () => {
+  const [visibleChunks, setVisibleChunks] = useState(1);
+  const textChunks = [
+    // Chunk 1: Introduction
+    `<h1>Century Finance - Your Trusted Partner in Stock Market Education & Advisory</h1>
+    <p>Century Finance Limited helps people approach financial markets with clarity and confidence. Our training is based on practical experience and real-world scenarios, led by a <strong>SEBI-certified</strong> stock advisor.</p>
+    <p>Our mission is to guide you through the world of stocks by offering personalized training, live trading simulations, and actionable investment insights. We guarantee that each learner acquires practical skills, a thorough awareness of the market, and the self-assurance to make wise judgements by going beyond theory.</p>
+    <p>We are proudly headquartered in <strong>Dubai</strong>, with our main branch in <strong>Mumbai, India</strong>. Our presence across diverse financial hubs allows us to better serve our diverse clients and strengthen our commitment towards financial education and services.</p>
+    <p>At Century Finance, we believe in shared success—our values lie in your growth. No matter if you are just starting out or want to improve your strategies, our programs are designed to meet every skill level.</p>`,
 
+    // Chunk 2: Why Century Finance?
+    `<h2>Why Century Finance?</h2>
+    <p>Choosing the right partner for financial learning and services plays a huge role in shaping your future, and Century Finance Limited understands that. We stand out by combining expert professional knowledge, hands-on experiences, and full financial assistance. With <strong>SEBI-certified advisors</strong>, we offer expert-guided programs, and practical workshops tailored to suit everyone—whether you're just starting or already experienced in trading.</p>
+    <p>Our <strong>“Learning to Earning”</strong> model isn’t just an idea, it’s a philosophy. It’s a straightforward approach focused on turning education into real-world opportunities. Along with learning, we provide high-quality call subscription plans for equity, commodities, and foreign markets, giving traders the tools to make smart, timely decisions.</p>
+    <p>We offer tailored portfolio services, investment options, and easy financial solutions like personal, business, and appliance loans. At Century Finance, we’re built on values like trust, transparency, and a genuine commitment to your success. Whether you’re looking to learn, invest, or start your journey in finance, we’re here to support you every step of the way.</p>`,
+
+    // Chunk 3: What Do We Offer?
+    `<h2>What Do We Offer?</h2>
+    <p>Century Finance Limited provides complete financial services. It includes expert-led training online courses, market advice, investment strategies, and adjustable loan plans. The company helps people learn and seize opportunities to gain confidence in finance.</p>
+    <h3>Training Programs</h3>
+    <p>SEBI-certified experts conduct well-organized stock market and finance courses. These courses cater to students at all levels, from those just starting out to more advanced learners.</p>
+    <h3>Call Subscription Plans</h3>
+    <p>Get research-based trading calls in Equity and Commodity markets delivered in real-time. Subscription options, including Premium and Platinum, let you choose a plan that fits your trading style.</p>
+    <h3>Online Classes</h3>
+    <p>Learn with flexibility through Century Finance online classes. These sessions offer an accessible and interactive way to dive into financial topics anytime, from anywhere.</p>
+    <h3>Portfolio Services</h3>
+    <p>Get professional support to create, handle, and improve your investment portfolio. These services aim to help you achieve steady financial growth.</p>
+    <h3>Investment Plans</h3>
+    <p>Find fixed-return plans like Smart Saver and Wealth Boost crafted to align with specific financial goals and personal risk tolerance.</p>`,
+
+    // Chunk 4: Finance Solutions and FAQs
+    `<h3>Finance Solutions</h3>
+    <p>Access various customized financial services designed to address individual finance needs and objectives. Loans with clear terms and adaptable options—from personal needs to business and appliances—ranging between ₹20,000 and ₹5,00,000 designed to suit both salaried and self-employed people.</p>
+    <hr>
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <h4>1. Is this training suitable for beginners with no prior experience?</h4>
+    <p>Absolutely! At Century Finance, we create training programs to help everyone, even those who are just starting out. We begin by teaching the basics and expand your understanding using practical exercises, live market simulations, and clear instructions from trainers certified by SEBI.</p>
+    <h4>2. What makes your stock market training different from others?</h4>
+    <p>Century Finance Limited takes a hands-on approach that focuses on results. We mix classroom concepts with real-world market exposure, live question-solving sessions, and one-on-one guidance. Supported by SEBI-certified experts, we aim to turn knowledge into income using our special “Learning to Earning” method.</p>
+    <h4>3. What is the stock market & how does it work?</h4>
+    <p>The stock market is a platform where investors buy and sell shares of publicly listed companies. When companies require capital, they raise it by issuing shares through an IPO. These shares get traded on stock exchanges such as NSE or BSE. Share prices change based on demand, news events, and company performance. Investors can gain profits either by selling shares at a higher price or by earning dividends. The stock market helps grow the economy by funding companies and opening up chances to create wealth.</p>`,
+  ];
+  const handleReadMore = () => setVisibleChunks((prev) => prev + 1);
+  const handleReadLess = () => setVisibleChunks(1);
+  const isFullyExpanded = visibleChunks >= textChunks.length;
+
+  // This is the part that was fixed.
+  return (
+    <div className="expandable-text-container">
+      {/*
+        INSTEAD OF THIS:
+        <p>
+          {textChunks.slice(0, visibleChunks).map((chunk, index) => (
+            <Fragment key={index}>{chunk}</Fragment>
+          ))}
+        </p>
+
+        WE DO THIS:
+      */}
+      <div>
+        {textChunks.slice(0, visibleChunks).map((chunk, index) => (
+          <div key={index} dangerouslySetInnerHTML={{ __html: chunk }} />
+        ))}
+      </div>
+
+      {!isFullyExpanded && (
+        <button onClick={handleReadMore} className="read-more-less-btn">
+          Read More...
+        </button>
+      )}
+      {isFullyExpanded && (
+        <button onClick={handleReadLess} className="read-more-less-btn">
+          Read Less
+        </button>
+      )}
+    </div>
+  );
+};
+
+// No changes to the Grid Component
+const FeaturesGrid = () => {
+  const gridData = [
+    {
+      id: 1,
+      title: "Interactive Learning",
+      content:
+        "Engage with dynamic content, quizzes, and real-world simulations.",
+      path: "./OcPages",
+    },
+    {
+      id: 2,
+      title: "Expert Instructors",
+      content:
+        "Learn from industry veterans with decades of market experience.",
+      path: "./OcPages/expert-instructors",
+    },
+    {
+      id: 3,
+      title: "Flexible Schedule",
+      content:
+        "Access course materials anytime, anywhere, and learn at your own pace.",
+      path: "./OcPages/flexible-schedule",
+    },
+    {
+      id: 4,
+      title: "Community Access",
+      content:
+        "Join a network of fellow traders and investors to share insights.",
+      path: "./OcPages/community-access",
+    },
+    {
+      id: 5,
+      title: "Live Market Analysis",
+      content: "Participate in live sessions analyzing current market trends.",
+      path: "./OcPages/live-analysis",
+    },
+    {
+      id: 6,
+      title: "Personalized Mentorship",
+      content: "Get one-on-one guidance to tailor your trading strategy.",
+      path: "./OcPages/mentorship",
+    },
+    {
+      id: 7,
+      title: "Career Development",
+      content:
+        "Enhance your resume and professional skills for a career in finance.",
+      path: "./OcPages/career-development",
+    },
+    {
+      id: 8,
+      title: "Advanced Tools",
+      content:
+        "Gain access to proprietary trading tools and charting software.",
+      path: "./OcPages/advanced-tools",
+    },
+    {
+      id: 9,
+      title: "Risk Management",
+      content: "Master the essential techniques to protect your capital.",
+      path: "./OcPages/risk-management",
+    },
+    {
+      id: 10,
+      title: "Global Markets",
+      content:
+        "Explore strategies for trading in international equity and forex markets.",
+      path: "./OcPages/global-markets",
+    },
+    {
+      id: 11,
+      title: "Certification",
+      content:
+        "Receive a certificate of completion to validate your new skills.",
+      path: "./OcPages/certification",
+    },
+    {
+      id: 12,
+      title: "Continuous Updates",
+      content: "Get lifelong access to course updates and new content.",
+      path: "./OcPages/updates",
+    },
+  ];
+
+  return (
+    <div className="features-grid-container">
+      <h2>Explore Our Features</h2>
+      <div className="grid">
+        {gridData.map((item) => (
+          <div key={item.id} className="grid-box">
+            <h3>{item.title}</h3>
+            <p>{item.content}</p>
+            <a href={item.path} className="grid-read-more-btn">
+              Read More
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// No changes to the main component structure
 const OnlineCourse = () => {
-  const [expandedCardId, setExpandedCardId] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleCardClick = (courseId) => {
-    setExpandedCardId((prevId) => (prevId === courseId ? null : courseId));
-  };
-
-  const handleCloseClick = (e) => {
-    e.stopPropagation();
-    setExpandedCardId(null);
-  };
-
-  const handleEnrollClick = (courseTitle) => {
-    alert(`Proceeding to enrollment for ${courseTitle}...`);
-  };
-
-  useEffect(() => {
-    document.body.classList.add("expanding-card-grid-body-styles");
-    return () => {
-      document.body.classList.remove("expanding-card-grid-body-styles");
-    };
-  }, []);
-
   return (
     <Fragment>
       <Helmet>
-        <title>Online Courses - Century Finance Limited</title>
-        <meta name="description" content="Explore our expanding range of online finance courses." />
-        <meta name="keywords" content="Online Courses, Finance, Trading, Investment, Century Finance" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px|Yesteryear" rel="stylesheet" />
+        <title>Our Content - Century Finance Limited</title>
+        <meta
+          name="description"
+          content="Explore our detailed content and features."
+        />
       </Helmet>
 
+      <style>{`
+        .main-content-area {
+          padding: 50px 15px;
+          max-width: 1200px;
+          margin: 0 auto;
+          font-family: 'Arial', sans-serif;
+        }
+        
+        /* Styles for Expandable Text */
+        .expandable-text-container {
+          background-color: #f9f9f9;
+          padding: 30px;
+          border-radius: 8px;
+          margin-bottom: 50px;
+          text-align: justify;
+        }
+
+        .expandable-text-container h1,
+        .expandable-text-container h2,
+        .expandable-text-container h3,
+        .expandable-text-container h4 {
+            text-align: left;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .expandable-text-container h1 { font-size: 2.2em; }
+        .expandable-text-container h2 { font-size: 1.8em; margin-top: 25px; }
+        .expandable-text-container h3 { font-size: 1.4em; margin-top: 20px; color: #c02727;}
+        .expandable-text-container h4 { font-size: 1.1em; margin-top: 20px; }
+
+
+        .expandable-text-container p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1em;
+        }
+
+        .read-more-less-btn {
+          display: block;
+          margin: 20px auto 0;
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #c02727;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .read-more-less-btn:hover {
+          background-color: #a02020;
+        }
+
+        /* Styles for Features Grid */
+        .features-grid-container {
+          text-align: center;
+        }
+
+        .features-grid-container h2 {
+          margin-bottom: 30px;
+          color: #333;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 25px;
+        }
+
+        .grid-box {
+          background-color: #ffffff;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          padding: 25px;
+          text-align: left;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+          transition: transform 0.3s, box-shadow 0.3s;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .grid-box:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .grid-box h3 {
+          margin-top: 0;
+          color: #c02727;
+        }
+
+        .grid-box p {
+          flex-grow: 1; 
+          color: #666;
+          line-height: 1.6;
+        }
+
+        .grid-read-more-btn {
+          display: inline-block;
+          margin-top: 15px;
+          padding: 8px 16px;
+          background-color: #222;
+          color: white;
+          text-decoration: none;
+          border-radius: 5px;
+          text-align: center;
+          transition: background-color 0.3s;
+        }
+
+        .grid-read-more-btn:hover {
+          background-color: #444;
+        }
+        
+        @media (max-width: 991px) {
+          .grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 767px) {
+          .grid {
+            grid-template-columns: 1fr;
+          }
+          .main-content-area {
+            padding: 30px 15px;
+          }
+        }
+      `}</style>
+
       <Navbar />
-      <PageTitle pageTitle={"Online Courses"} pagesub={"Courses"} bgImage="/bg-image/online.png" />
+      <PageTitle
+        pageTitle={"Our Content"}
+        pagesub={"Content"}
+        bgImage="/bg-image/online.png"
+      />
 
-      <div className="wrapper-custom">
-        <div className="header-custom">
-          <h1 className="header-custom__title">Our Course Catalog</h1>
-          <h2 className="header-custom__subtitle">Expand Your Financial Knowledge</h2>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "15px",
-          }}
-        >
-          <button
-            className="open-popup-button"
-            style={{
-              padding: "12px 24px",
-              fontSize: "16px",
-              backgroundColor: "#c02727",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
-            onClick={() => setIsPopupOpen(true)}
-          >
-            Register Now
-          </button>
-        </div>
-
-        <div className="cards-custom">
-          {coursesData.map((course) => {
-            const isExpanded = expandedCardId === course.id;
-            const isInactive = expandedCardId !== null && expandedCardId !== course.id;
-
-            let cardClasses = "card-custom";
-            if (isExpanded) cardClasses += " is-expanded";
-            else cardClasses += " is-collapsed";
-            if (isInactive) cardClasses += " is-inactive";
-
-            return (
-              <div key={course.id} className={cardClasses}>
-                <div className="card-custom__inner" onClick={() => handleCardClick(course.id)}>
-                  <div className="card-header-line">
-                    <span className="card-course-icon">{course.icon}</span>
-                    <h3 className="card-title-main">
-                      {course.courseNumber}. <em>{course.title}</em> – {course.price}
-                    </h3>
-                  </div>
-                  <div className="card-details-line">
-                    <span className="card-duration-level">
-                      {course.duration}
-                      {course.level && ` | ${course.level}`}
-                    </span>
-                  </div>
-                  {course.installmentOption && (
-                    <div className="card-installment-line">
-                      <em>{course.installmentOption}</em>
-                    </div>
-                  )}
-                  <div className="card-why-choose">
-                    <p>
-                      <em>Why choose this plan?</em>
-                      <br />
-                      {course.whyChoose}
-                    </p>
-                  </div>
-                  <div className="card-transform">
-                    <p>
-                      <em>Transform from:</em> {course.transformFrom}
-                    </p>
-                  </div>
-                  <div className="card-tagline">
-                    <p>{course.tagline}</p>
-                  </div>
-                  <div className="learn-btn">
-                    <p>Learn More</p>
-                  </div>
-                </div>
-
-                <div className="card-custom__expander">
-                  <i className="fa fa-close" onClick={(e) => handleCloseClick(e)}></i>
-                  <div className="expander-content-wrapper">
-                    {course.expandedDetails?.takeaways?.length > 0 ? (
-                      <>
-                        <h4 className="expander-section-title">Description</h4>
-                        <ul className="expander-takeaways-list">
-                          {course.expandedDetails.takeaways.map((item, index) => (
-                            <li key={index}>{item}</li>
-                          ))}
-                        </ul>
-                      </>
-                    ) : (
-                      <p style={{ textAlign: "center", width: "100%" }}>More details coming soon!</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <PopupForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+      <div className="main-content-area">
+        <ExpandableText />
+        <FeaturesGrid />
       </div>
 
       <Footer />
