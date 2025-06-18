@@ -90,17 +90,17 @@ const FeaturesGrid = () => {
   const gridData = [
     {
       id: 1,
-      title: "Interactive Learning",
+      title: "Foundation Course",
       content:
         "Engage with dynamic content, quizzes, and real-world simulations.",
-      path: "./OcPages",
+      path: "/online-courses/foundation-course",
     },
     {
       id: 2,
-      title: "Expert Instructors",
+      title: "Ignite Course",
       content:
         "Learn from industry veterans with decades of market experience.",
-      path: "./OcPages/expert-instructors",
+      path: "/online-courses/ignite-course",
     },
     {
       id: 3,

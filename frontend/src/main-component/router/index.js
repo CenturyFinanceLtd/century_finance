@@ -39,6 +39,8 @@ import Currencies from "../Currencies/Currencies";
 import VerifyResetOtp from "../ForgotPassword/VerifyResetOtp";
 import ResetPasswordPage from "../ForgotPassword/ResetPasswordPage";
 import RefundPolicy from "../RefundPolicy/RefundPolicy"
+import FoundationCourse from "../OnlineCourses/OcPages/FoundationCourse"
+import IgniteCourse from "../OnlineCourses/OcPages/IgniteCourse";
 
 
 const AllRoute = () => {
@@ -92,6 +94,14 @@ const AllRoute = () => {
           <Route path="/verify-reset-otp" element={<VerifyResetOtp />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route
+            path="/online-courses/foundation-course"
+            element={<FoundationCourse />}
+          />
+          <Route
+            path="/online-courses/ignite-course"
+            element={<IgniteCourse />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
