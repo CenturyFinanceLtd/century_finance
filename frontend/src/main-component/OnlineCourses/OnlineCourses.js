@@ -196,7 +196,7 @@ const OnlineCourse = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Our Content - Century Finance Limited</title>
+        <title>Our Online Course - Century Finance Limited</title>
         <meta
           name="description"
           content="Explore our detailed content and features."
@@ -336,7 +336,7 @@ const OnlineCourse = () => {
 
       <Navbar />
       <PageTitle
-        pageTitle={"Our Content"}
+        pageTitle={"Our Online Course"}
         pagesub={"Content"}
         bgImage="/bg-image/online.png"
       />
