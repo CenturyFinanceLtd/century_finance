@@ -62,7 +62,7 @@ const plans = {
 
 const TrainingProgram = () => {
   const [selectedPlans, setSelectedPlans] = useState([]);
-  const [isExpanded, setIsExpanded] = useState(false); // for toggling the additional content visibility
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggle = (id) => {
     if (selectedPlans.includes(id)) {
@@ -81,14 +81,14 @@ const TrainingProgram = () => {
           background: "#fff",
           padding: "39px",
           marginTop: "0",
-         
-          
         }}>
-        <h2 className="text-center text-danger fw-bold mb-4">
+        <h2
+          className="text-center fw-bold mb-4"
+          style={{ color: "#21E786" }}>
           Detailed Comparison of Selected Plans
         </h2>
         <Table bordered responsive hover>
-          <thead className="table-dark">
+          <thead style={{ backgroundColor: "#21E786", color: "#fff" }}>
             <tr>
               <th>Feature</th>
               {selectedPlans.map((planId) => (
@@ -97,66 +97,25 @@ const TrainingProgram = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>Duration</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].duration}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Eligibility</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].eligibility}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Exclusivity</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].exclusivity}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Fees</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].fees}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Topics</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].topics}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Certification</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].certification}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Features</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].features}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Internship</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].internship}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Placement</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].placement}</td>
-              ))}
-            </tr>
-            <tr>
-              <th>Benefits</th>
-              {selectedPlans.map((id) => (
-                <td key={id}>{plans[id].benefits}</td>
-              ))}
-            </tr>
+            {[
+              "duration",
+              "eligibility",
+              "exclusivity",
+              "fees",
+              "topics",
+              "certification",
+              "features",
+              "internship",
+              "placement",
+              "benefits",
+            ].map((key) => (
+              <tr key={key}>
+                <th>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
+                {selectedPlans.map((id) => (
+                  <td key={id}>{plans[id][key]}</td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>
@@ -174,11 +133,7 @@ const TrainingProgram = () => {
         pagesub="Compare Plans"
         bgImage="/bg-image/training.png"
       />
-      <section
-        style={{
-          width: "100%",
-          padding: "20",
-        }}>
+      <section style={{ width: "100%", padding: "20" }}>
         <div
           style={{
             width: "100%",
@@ -198,12 +153,11 @@ const TrainingProgram = () => {
             Master the Market with Century Finance Training Programs
           </h1>
 
-          {/* Elegant Red Divider */}
           <div
             style={{
               width: "100px",
               height: "6px",
-              backgroundColor: "#E22728",
+              backgroundColor: "#21E786",
               margin: "0 auto 30px auto",
               borderRadius: "4px",
               animation: "dividerSlide 1.2s ease-out",
@@ -262,7 +216,6 @@ const TrainingProgram = () => {
             confidence and competence.
           </p>
 
-          {/* Expandable Content */}
           {isExpanded && (
             <div style={{ marginTop: "20px" }}>
               <ul
@@ -362,8 +315,14 @@ const TrainingProgram = () => {
               </ul>
 
               <div
-                className="alert alert-success p-4 rounded mb-3"
-                style={{ fontSize: "1.05rem", marginTop: "40px" }}>
+                className="alert p-4 rounded mb-3"
+                style={{
+                  fontSize: "1.05rem",
+                  marginTop: "40px",
+                  backgroundColor: "#d4edda",
+                  borderColor: "#21E786",
+                  color: "#155724",
+                }}>
                 <strong>
                   Whether you're interested in Equity, Commodity, or Foreign
                   Exchange — Century Finance equips you with the tools, clarity,
@@ -371,8 +330,13 @@ const TrainingProgram = () => {
                 </strong>
               </div>
               <div
-                className="alert alert-warning p-4 rounded"
-                style={{ fontSize: "1.05rem" }}>
+                className="alert p-4 rounded"
+                style={{
+                  fontSize: "1.05rem",
+                  backgroundColor: "#fff3cd",
+                  borderColor: "#ffeeba",
+                  color: "#856404",
+                }}>
                 <strong>
                   Take your first step toward financial mastery with Century
                   Finance Limited — where education meets opportunity.
@@ -381,11 +345,11 @@ const TrainingProgram = () => {
             </div>
           )}
 
-          {/* Read More / Show Less Button - Always at Bottom */}
           <Button
-            color="primary"
-            onClick={() => setIsExpanded(!isExpanded)}
             style={{
+              backgroundColor: "#21E786",
+              borderColor: "#21E786",
+              color: "#fff",
               marginTop: "30px",
               marginBottom: "30px",
               padding: "12px 25px",
@@ -394,7 +358,8 @@ const TrainingProgram = () => {
               borderRadius: "25px",
               transition: "background-color 0.3s",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}>
+            }}
+            onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? "Show Less" : "Read More"}
           </Button>
         </div>
@@ -403,16 +368,19 @@ const TrainingProgram = () => {
       <CourseSinglePage />
 
       <Container className="py-5">
-        <h2 className="text-center mb-4 fw-bold text-primary">
+        <h2 className="text-center mb-4 fw-bold" style={{ color: "#21E786" }}>
           Select Plans to Compare
         </h2>
         <Row className="g-4 justify-content-center">
           {Object.values(plans).map((plan) => (
             <Col md={4} key={plan.id}>
               <Card
-                className={`shadow-sm ${
-                  selectedPlans.includes(plan.id) ? "border border-danger" : ""
-                }`}>
+                className="shadow-sm"
+                style={{
+                  border: selectedPlans.includes(plan.id)
+                    ? "2px solid #21E786"
+                    : "1px solid #dee2e6",
+                }}>
                 <CardBody>
                   <div className="form-check mb-2">
                     <input
@@ -428,7 +396,9 @@ const TrainingProgram = () => {
                       Compare
                     </label>
                   </div>
-                  <h5 className="text-success fw-bold">{plan.name}</h5>
+                  <h5 className="fw-bold" style={{ color: "#21E786" }}>
+                    {plan.name}
+                  </h5>
                 </CardBody>
               </Card>
             </Col>
@@ -437,7 +407,13 @@ const TrainingProgram = () => {
 
         {selectedPlans.length > 0 && (
           <div className="text-center mt-4">
-            <Button color="danger" className="px-5 rounded-pill">
+            <Button
+              style={{
+                backgroundColor: "#21E786",
+                borderColor: "#21E786",
+                color: "#fff",
+              }}
+              className="px-5 rounded-pill">
               Compare Plans ({selectedPlans.length})
             </Button>
           </div>
