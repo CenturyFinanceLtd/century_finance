@@ -92,83 +92,83 @@ const FeaturesGrid = () => {
       id: 1,
       title: "Foundation Course",
       content:
-        "Engage with dynamic content, quizzes, and real-world simulations.",
+        "",
       path: "/online-courses/foundation-course",
     },
     {
       id: 2,
       title: "Ignite Course",
       content:
-        "Learn from industry veterans with decades of market experience.",
+        "",
       path: "/online-courses/ignite-course",
     },
     {
       id: 3,
       title: "Explorer Course",
       content:
-        "Access course materials anytime, anywhere, and learn at your own pace.",
+        "",
       path: "/online-courses/explorer-course",
     },
     {
       id: 4,
       title: "Advance Edge Course",
       content:
-        "Join a network of fellow traders and investors to share insights.",
+        "",
       path: "/online-courses/advance-edge-course",
     },
     {
       id: 5,
       title: "Trader Pro Course",
       content: 
-      "Participate in live sessions analyzing current market trends.",
+      "",
       path: "/online-courses/trader-pro-course",
     },
     {
       id: 6,
       title: " Market Master Course",
       content:
-       "Get one-on-one guidance to tailor your trading strategy.",
+       "",
       path: "/online-courses/market-master-course",
     },
     {
       id: 7,
       title: "IndexWizard Course",
       content:
-        "Enhance your resume and professional skills for a career in finance.",
+        "",
       path: "/online-courses/IndexWizardCourse",
     },
     {
       id: 8,
       title: " Global Analyst Course",
       content:
-        "Gain access to proprietary trading tools and charting software.",
+        "",
       path: "/online-courses/global-analyst-course",
     },
     {
       id: 9,
       title: "Wealth Mentor Course",
       content: 
-        "Master the essential techniques to protect your capital.",
+        "",
       path: "/online-courses/wealth-mentor-course",
     },
     {
       id: 10,
       title: "Premium Plan Course",
       content:
-        "Explore strategies for trading in international equity and forex markets.",
+        "",
       path: "/online-courses/premium-plan-course",
     },
     {
       id: 11,
       title: "Ultra Prime Course",
       content:
-        "Receive a certificate of completion to validate your new skills.",
+        "",
       path: "/online-courses/ultra-prime-course",
     },
     {
       id: 12,
       title: "Elite course",
-      content: "Get lifelong access to course updates and new content.",
+      content: "",
       path: "/online-courses/elite-course",
     },
   ];
