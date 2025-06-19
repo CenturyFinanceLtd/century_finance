@@ -136,15 +136,15 @@ const AllRoute = () => {
             element={<  GlobalAnalystCourse/>}
           />
           <Route
-            path="/online-courses/wealth-mentor-course "
+            path="/online-courses/wealth-mentor-course"
             element={<WealthMentorCourse  />}
           />
            <Route
-            path="/online-courses/premium-plan-course "
+            path="/online-courses/premium-plan-course"
             element={<PremiumPlanCourse />}
           />
             <Route
-            path="/online-courses/ultra-prime-course "
+            path="/online-courses/ultra-prime-course"
             element={<UltraPrimeCourse/>}
           />
            <Route

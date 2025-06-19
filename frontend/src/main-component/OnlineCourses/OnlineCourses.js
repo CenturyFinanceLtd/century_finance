@@ -126,7 +126,8 @@ const FeaturesGrid = () => {
     {
       id: 6,
       title: " Market Master Course",
-      content: "Get one-on-one guidance to tailor your trading strategy.",
+      content:
+       "Get one-on-one guidance to tailor your trading strategy.",
       path: "/online-courses/market-master-course",
     },
     {
@@ -141,27 +142,28 @@ const FeaturesGrid = () => {
       title: " Global Analyst Course",
       content:
         "Gain access to proprietary trading tools and charting software.",
-      path: "./OcPages/advanced-tools",
+      path: "/online-courses/global-analyst-course",
     },
     {
       id: 9,
       title: "Wealth Mentor Course",
-      content: "Master the essential techniques to protect your capital.",
-      path: "./OcPages/risk-management",
+      content: 
+        "Master the essential techniques to protect your capital.",
+      path: "/online-courses/wealth-mentor-course",
     },
     {
       id: 10,
-      title: " Premium Plan Course",
+      title: "Premium Plan Course",
       content:
         "Explore strategies for trading in international equity and forex markets.",
-      path: "./OcPages/global-markets",
+      path: "/online-courses/premium-plan-course",
     },
     {
       id: 11,
       title: "Ultra Prime Course",
       content:
         "Receive a certificate of completion to validate your new skills.",
-      path: "",
+      path: "/online-courses/ultra-prime-course",
     },
     {
       id: 12,

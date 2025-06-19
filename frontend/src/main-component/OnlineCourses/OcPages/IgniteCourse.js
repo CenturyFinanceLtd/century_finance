@@ -12,39 +12,57 @@ const IgniteCourse = () => {
         <title>Ignite Course - Century Finance Limited</title>
         <meta
           name="description"
-          content="Advance your stock market skills with the Ignite Course by Century Finance. Learn indices, technicals, sectoral analysis and support/resistance strategies with SEBI-certified certification."
+          content="Enroll in the Ignite Course by Century Finance: a 3-week SEBI-certified program covering Indian and global indices, support/resistance, sectoral analysis, and technical foundations."
         />
         <meta
           name="keywords"
-          content="Ignite Course, Stock Market, Century Finance, Indices, Technical Analysis, Support Resistance, SEBI Certified"
+          content="Ignite Course, Stock Market Training, Sector Analysis, Technical Analysis, SEBI Certification, Century Finance"
         />
         <meta name="robots" content="index, follow" />
       </Helmet>
 
       <Navbar />
-      <PageTitle pageTitle="Ignite Course" pagesub="Advance Your Market Knowledge" />
+      <PageTitle pageTitle="Ignite Course" pagesub="Advance Your Market Knowledge with Global Insight" />
 
-      <section
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          padding: "4rem 1rem",
-        }}
-      >
-        <div
-          style={{
-            fontFamily: "Inter, sans-serif",
-            color: "#1f2937",
-          }}
-        >
-          {/* Header */}
+      <section style={{ display: "flex", justifyContent: "center", padding: "4rem 1rem" }}>
+        <div style={{ fontFamily: "Inter, sans-serif", color: "#1f2937", maxWidth: "900px" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <h1 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#e65410" }}>
-              Ignite Course
-            </h1>
+            <h1 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#e65410" }}>IGNITE COURSE</h1>
             <p style={{ fontSize: "1.125rem", color: "#4b5563", marginTop: "0.75rem" }}>
-              <strong>Advance your skills in indices, global markets, and technical analysis with our SEBI-certified program.</strong>
+              <strong>Join with Century Finance Limited</strong>
             </p>
+
+            <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+              <button
+                style={{
+                  backgroundColor: "#e65410",
+                  color: "#fff",
+                  padding: "0.75rem 1.5rem",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+                onClick={() => window.location.href = "/pay-now"}
+              >
+                Pay Now
+              </button>
+              <button
+                style={{
+                  backgroundColor: "#1f2937",
+                  color: "#fff",
+                  padding: "0.75rem 1.5rem",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+                onClick={() => window.location.href = "/book-course"}
+              >
+                Book Course
+              </button>
+            </div>
+
             <div
               style={{
                 marginTop: "2rem",
@@ -59,105 +77,60 @@ const IgniteCourse = () => {
                 color: "#111827",
               }}
             >
-              <span><strong>Fee:</strong> ₹3000 + GST</span>
+              <span><strong>Fee:</strong> ₹3,000 + GST</span>
               <span><strong>Duration:</strong> 3 Weeks</span>
-              <span><strong>EMIs:</strong> 3 Installments</span>
+              <span><strong>Installments:</strong> 3 EMIs</span>
               <span><strong>Certification:</strong> SEBI-Certified</span>
-              <span><strong>Topics:</strong> Index, Global Market, Support & Resistance</span>
             </div>
           </div>
 
-          {/* Program Overview */}
-          <div style={{ marginTop: "2rem" }}>
-            <h2 style={{ fontSize: "1.6rem", fontWeight: "700", color: "#1e293b" }}>Program Overview</h2>
-            <p style={{ color: "#374151", fontSize: "1.05rem", marginTop: "0.75rem" }}>
+          <div style={{ marginBottom: "2.5rem" }}>
+            <h2 style={{ fontSize: "1.6rem", fontWeight: "700", color: "#1e293b", marginBottom: "1rem" }}>Program Overview</h2>
+            <p style={{ fontSize: "1.05rem", color: "#374151" }}>
               The Ignite Course is a comprehensive program designed to equip aspiring traders and finance enthusiasts with a solid foundation in the financial market. It covers Indian and Global Indices, sectoral movement and technical analysis tools, providing real-time insights, practical analysis techniques and simplified explanation of complex financial concepts.
             </p>
           </div>
 
-          {/* Skills */}
-          <div style={{ marginTop: "2.5rem" }}>
-            <h2 style={{ fontSize: "1.6rem", fontWeight: "700", color: "#1e293b" }}>Skills You Gain</h2>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "0.75rem",
-                marginTop: "1rem",
-                color: "#334155",
-                fontSize: "1rem",
-              }}
-            >
-              <span>✅ Equities</span>
-              <span>✅ Indices</span>
-              <span>✅ Commodities</span>
-              <span>✅ Market Trends</span>
-              <span>✅ Charting</span>
-              <span>✅ Breakouts</span>
-              <span>✅ Support & Resistance</span>
-            </div>
+          <div style={{ marginBottom: "2rem" }}>
+            <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>Skills You Gain</h3>
+            <p style={{ color: "#374151", fontSize: "1rem" }}>
+              Equities &nbsp;||&nbsp; Indices &nbsp;||&nbsp; Commodities &nbsp;||&nbsp; Market &nbsp;||&nbsp; Charting &nbsp;||&nbsp; Breakouts &nbsp;||&nbsp; Support &nbsp;||&nbsp; Resistance
+            </p>
           </div>
 
-          {/* What You’ll Learn */}
-          <div style={{ marginTop: "2.5rem" }}>
-            <h2 style={{ fontSize: "1.6rem", fontWeight: "700", color: "#1e293b" }}>What You’ll Learn</h2>
-            <ol style={{ marginTop: "1rem", paddingLeft: "1.25rem", color: "#475569", lineHeight: "1.75" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
+            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index Insights: Bank Nifty, Nifty 50, Midcap, Dow Jones, Dollar Index, CSA & more</li>
               <li>Global Market Overview: India, Europe & US</li>
-              <li>Daily Market Summary & Sectoral Analysis (Auto, Pharma, IT, FMCG)</li>
-              <li>Support & Resistance: Enhance the foundation of technical analysis</li>
-            </ol>
+              <li>Daily market summary & Sectoral Analysis (Auto, Pharma, IT, FMCG)</li>
+              <li>Support & Resistance: Enhance the foundation of the technical analysis</li>
+            </ul>
           </div>
 
-          {/* Modules */}
-          <div style={{ marginTop: "2.5rem" }}>
-            <h2 style={{ fontSize: "1.6rem", fontWeight: "700", color: "#1e293b" }}>Course Modules</h2>
+          <div>
+            <h3 style={{ fontSize: "1.3rem", fontWeight: "700", color: "#1f2937", marginBottom: "1rem" }}>Course Modules</h3>
 
-            <div style={{ marginTop: "1.25rem" }}>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: "600", color: "#e65410" }}>
-                Module 1: Market Indices & Global Insights
-              </h3>
-              <p style={{ color: "#374151", marginTop: "0.5rem" }}>
-                This module offers insight into major Indian and global indices like Nifty 50, Bank Nifty, Dow Jones. Understand how global markets are interconnected and how sector weightage influences index movements. Build a strong foundation in reading market structure and recognizing global market trends effectively.
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h4><strong>Module 1: Market Indices & Global Insights</strong></h4>
+              <p>
+                This module offers insight into major Indian and global indices like Nifty50, Bank Nifty, Dow Jones. Understand how global markets are interconnected and how sector weightage influences index movements. Build a strong foundation in reading market structure and recognizing global market trends effectively.
               </p>
             </div>
 
-            <div style={{ marginTop: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: "600", color: "#e65410" }}>
-                Module 2: Sectoral Analysis & Daily Market Tracking
-              </h3>
-              <p style={{ color: "#374151", marginTop: "0.5rem" }}>
-                This module helps learners to understand and analyze daily market summaries with ease. It covers sectoral performance across Auto, Pharma, IT, FMCG, and explains how sector movements influence broader indices. It provides practical exposure to how news and events impact market behavior and trends.
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h4><strong>Module 2: Sectoral Analysis & Daily Market Tracking</strong></h4>
+              <p>
+                This module helps learners to understand and analyze daily market summaries with ease. It covers sectoral performance across Auto, pharma etc., and explains how sector movements influence broader indices. It provides a practical exposure to how news and events impact market behavior and trends.
               </p>
             </div>
 
-            <div style={{ marginTop: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: "600", color: "#e65410" }}>
-                Module 3: Technical Foundation - Support & Resistance Mastery
-              </h3>
-              <p style={{ color: "#374151", marginTop: "0.5rem" }}>
-                Get the knowledge of the fundamentals of technical analysis, focusing on identifying and mastering support and resistance zones effectively. Learners will explore how these levels guide market entry and exit decisions. It covers the basics of chart reading along with key indicators that complement support and resistance analysis.
+            <div>
+              <h4><strong>Module 3: Technical Foundation - Support & Resistance Mastery</strong></h4>
+              <p>
+                Get the knowledge of the fundamentals of technical analysis, focusing on identifying and supporting and resistance zones effectively. Learners will explore how these levels guide market entry and exit decisions. It covers the basics chart reading techniques along with the key indicator that complement support and resistance analysis.
               </p>
             </div>
-          </div>
-
-          {/* CTA */}
-          <div
-            style={{
-              marginTop: "3rem",
-              backgroundColor: "#fef9c3",
-              borderRadius: "12px",
-              padding: "2rem",
-              textAlign: "center",
-              border: "1px solid #fde68a",
-            }}
-          >
-            <h3 style={{ fontSize: "1.5rem", fontWeight: "600", color: "#92400e" }}>
-              Enroll Now & Accelerate Your Market Journey!
-            </h3>
-            <p style={{ marginTop: "0.75rem", color: "#78350f" }}>
-              Join Century Finance and gain practical, certified financial market knowledge.
-            </p>
           </div>
         </div>
       </section>
