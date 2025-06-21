@@ -8,37 +8,46 @@ import Footer from "../../components/footer/Footer";
 const ExpandableText = () => {
   const [visibleChunks, setVisibleChunks] = useState(1);
   const textChunks = [
-    `<h1>Century Finance - Your Trusted Partner in Stock Market Education & Advisory</h1>
-    <p>Century Finance Limited helps people approach financial markets with clarity and confidence. Our training is based on practical experience and real-world scenarios, led by a <strong>SEBI-certified</strong> stock advisor.</p>
-    <p>Our mission is to guide you through the world of stocks by offering personalized training, live trading simulations, and actionable investment insights. We guarantee that each learner acquires practical skills, a thorough awareness of the market, and the self-assurance to make wise judgements by going beyond theory.</p>
-    <p>We are proudly headquartered in <strong>Dubai</strong>, with our main branch in <strong>Mumbai, India</strong>. Our presence across diverse financial hubs allows us to better serve our diverse clients and strengthen our commitment towards financial education and services.</p>
-    <p>At Century Finance, we believe in shared success—our values lie in your growth. No matter if you are just starting out or want to improve your strategies, our programs are designed to meet every skill level.</p>`,
-    `<h2>Why Century Finance?</h2>
-    <p>Choosing the right partner for financial learning and services plays a huge role in shaping your future, and Century Finance Limited understands that. We stand out by combining expert professional knowledge, hands-on experiences, and full financial assistance. With <strong>SEBI-certified advisors</strong>, we offer expert-guided programs, and practical workshops tailored to suit everyone—whether you're just starting or already experienced in trading.</p>
-    <p>Our <strong>“Learning to Earning”</strong> model isn’t just an idea, it’s a philosophy. It’s a straightforward approach focused on turning education into real-world opportunities. Along with learning, we provide high-quality call subscription plans for equity, commodities, and foreign markets, giving traders the tools to make smart, timely decisions.</p>
-    <p>We offer tailored portfolio services, investment options, and easy financial solutions like personal, business, and appliance loans. At Century Finance, we’re built on values like trust, transparency, and a genuine commitment to your success. Whether you’re looking to learn, invest, or start your journey in finance, we’re here to support you every step of the way.</p>`,
-    `<h2>What Do We Offer?</h2>
-    <p>Century Finance Limited provides complete financial services. It includes expert-led training online courses, market advice, investment strategies, and adjustable loan plans. The company helps people learn and seize opportunities to gain confidence in finance.</p>
-    <h3>Training Programs</h3>
-    <p>SEBI-certified experts conduct well-organized stock market and finance courses. These courses cater to students at all levels, from those just starting out to more advanced learners.</p>
-    <h3>Call Subscription Plans</h3>
-    <p>Get research-based trading calls in Equity and Commodity markets delivered in real-time. Subscription options, including Premium and Platinum, let you choose a plan that fits your trading style.</p>
-    <h3>Online Classes</h3>
-    <p>Learn with flexibility through Century Finance online classes. These sessions offer an accessible and interactive way to dive into financial topics anytime, from anywhere.</p>
-    <h3>Portfolio Services</h3>
-    <p>Get professional support to create, handle, and improve your investment portfolio. These services aim to help you achieve steady financial growth.</p>
-    <h3>Investment Plans</h3>
-    <p>Find fixed-return plans like Smart Saver and Wealth Boost crafted to align with specific financial goals and personal risk tolerance.</p>`,
-    `<h3>Finance Solutions</h3>
-    <p>Access various customized financial services designed to address individual finance needs and objectives. Loans with clear terms and adaptable options—from personal needs to business and appliances—ranging between ₹20,000 and ₹5,00,000 designed to suit both salaried and self-employed people.</p>
+    `<h1>Learn Stock Market Trading - From Anywhere</h1>
+    <h2>What is the Stock Market?</h2>
+    <p>The stock market is a platform where individuals and institutions trade shares of publicly listed companies. It links investors with companies in need of funding to expand. These traders are facilitated in India by exchanges such as NSE and BSE. Businesses use IPOs to raise money by selling shares to the general public, which are then freely traded on the market. In addition to stocks, the market also contains derivatives, bonds and mutual funds.</p>`,
+    
+    `<h2>Century Finance Online Courses</h2>
+    <p>At Century Finance Limited, we believe that good financial education ought to be easily accessible, useful and career-oriented. Our online trading courses are designed to cater to learners at every stage starting out in the finance industry to future professionals prepared to enter the market. Whether you’re interested in the online courses for equity market, commodity or foreign market, our organized learning path provides flexible online trading classes, certified mentorship and real-world insights.</p>
+    <p>Experienced financial professionals and SEBI-certified instructors lead our courses, making sure that each session is engaging, relevant and directly related to today’s dynamic market environment. To help you develop the confidence and abilities required to be successful in trading and investing, each course is accompanied with hands-on-demos, real-time market examples and interactive tests.</p>`,
+
+    `<h2>Each Course Include:</h2>
+    <h3>Well-Structured Learning Paths:</h3>
+    <p>Every course is made with a specific goal in mind, taking you from the basic idea to the advanced marketing tactics.</p>
+    <h3>Market-Aligned Skill Development:</h3>
+    <p>The curriculum helps you develop practical skills that are applicable to real-world finance employment because it is designed to meet the expectations of the business.</p>
+    <h3>Hands-on Training With Tools:</h3>
+    <p>With detailed instructions and live market practice, learn how to navigate trading platforms and financial instruments.</p>
+    <h3>Applying Knowledge in Real-Time:</h3>
+    <p>To guarantee that you can confidently apply what you learn, courses incorporate case studies, technical analysis and simulation.</p>
+    <h3>Industry-Recognized Certificate:</h3>
+    <p>Get a validated digital certificate upon successful completion, which will add credibility to your resume and career profile.</p>`,
+
+    `<h2>What You’ll Learn:</h2>
+    <p>At Century Finance Limited, our stock market courses are designed not only to teach theory but to build real-world insights. Here’s what you can learn across our courses:</p>
+    <h3>Market Fundamentals:</h3>
+    <p>Recognize how the domestic and international foreign market, commodity and equities market operate.</p>
+    <h3>Technical & Fundamental Analysis:</h3>
+    <p>Learn how to read charts, spot trends and assess business using important financial metrics with technical and fundamental analysis.</p>
+    <h3>Analysis of Indexes and Sectors:</h3>
+    <p>Monitor important indices such as the NIFTY50, Dow Jones and DAX and examine industries like FMCG, IT, Pharma and auto.</p>
+    <h3>Trading Platforms & Tools:</h3>
+    <p>Gain practical exposure with real-time trading and market stimulators.</p>
+    <h3>Derivative Instruments:</h3>
+    <p>Understands the basics of futures, options and leverage strategies for informed training.</p>
+    <h3>Risk Management:</h3>
+    <p>Acquire the skills necessary to properly allocate your capital through positioning sizing and asset allocation.</p>
+    <h3>Global Market Awareness:</h3>
+    <p>Analyze currency change, economic calendars and global market movements.</p>
+    <h3>Career Readiness:</h3>
+    <p>Develop the abilities necessary for positions in finance, including analyst, traders, investment advisor and others.</p>
     <hr>
-    <h2>Frequently Asked Questions (FAQs)</h2>
-    <h4>1. Is this training suitable for beginners with no prior experience?</h4>
-    <p>Absolutely! At Century Finance, we create training programs to help everyone, even those who are just starting out. We begin by teaching the basics and expand your understanding using practical exercises, live market simulations, and clear instructions from trainers certified by SEBI.</p>
-    <h4>2. What makes your stock market training different from others?</h4>
-    <p>Century Finance Limited takes a hands-on approach that focuses on results. We mix classroom concepts with real-world market exposure, live question-solving sessions, and one-on-one guidance. Supported by SEBI-certified experts, we aim to turn knowledge into income using our special “Learning to Earning” method.</p>
-    <h4>3. What is the stock market & how does it work?</h4>
-    <p>The stock market is a platform where investors buy and sell shares of publicly listed companies. When companies require capital, they raise it by issuing shares through an IPO. These shares get traded on stock exchanges such as NSE or BSE. Share prices change based on demand, news events, and company performance. Investors can gain profits either by selling shares at a higher price or by earning dividends. The stock market helps grow the economy by funding companies and opening up chances to create wealth.</p>`,
+    <h2 style="text-align:center;">BEGIN YOUR ADVANCE JOURNEY WITH CENTURY FINANCE LIMITED</h2>`,
   ];
   const handleReadMore = () => setVisibleChunks((prev) => prev + 1);
   const handleReadLess = () => setVisibleChunks(1);
