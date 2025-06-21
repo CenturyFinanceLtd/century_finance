@@ -128,26 +128,6 @@ const Footer = (props) => {
                       Home
                     </Link>
                   </li>
-                  <li>
-                    <Link onClick={ClickHandler} to="/about">
-                      About Us
-                    </Link>
-                  </li>
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/course">
-                      Featured Courses
-                    </Link>
-                  </li> */}
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/teacher">
-                      Teachers
-                    </Link>
-                  </li> */}
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/blog">
-                      Latest News
-                    </Link>
-                  </li> */}
                 </ul>
               </div>
             </div>
@@ -158,30 +138,15 @@ const Footer = (props) => {
                 </div>
                 <ul>
                   <li>
-                    <Link onClick={ClickHandler} to="/contact">
+                    <Link onClick={ClickHandler} to="/ContactUs">
                       Contact Us
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/course">
-                      Courses
-                    </Link>
-                  </li> */}
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/lesson">
-                      Lesson
-                    </Link>
-                  </li> */}
                   <li>
                     <Link onClick={ClickHandler} to="/register">
                       Sign Up
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/testimonial">
-                      Testimonials
-                    </Link>
-                  </li> */}
                 </ul>
               </div>
             </div>
@@ -196,9 +161,6 @@ const Footer = (props) => {
                       <i className="fi flaticon-email"></i>
                       customerservice@centuryfinancelimited.com
                     </li>
-                    {/* <li>
-                      <i className="fi flaticon-phone-call"></i>(+91) 8815532159
-                    </li> */}
                     <li>
                       <i className="fi flaticon-placeholder"></i>Iconic
                       Corenthum, 5th floor, Tower C, Block A, Industrial Areas
@@ -249,11 +211,6 @@ const Footer = (props) => {
                       About us
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link onClick={ClickHandler} to="/faq">
-                      FAQ
-                    </Link>
-                  </li> */}
                 </ul>
               </div>
             </div>
