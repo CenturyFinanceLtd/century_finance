@@ -72,6 +72,7 @@ const tabData = [
             </>
         )
     },
+    
 
     {
         name: "Nifty-50",
@@ -82,12 +83,14 @@ const tabData = [
                     The <strong>Nifty-50</strong> is a subset of the broader Indian equity market, acting as a key indicator of large-cap stock performance. With 50 high-performing companies from 14 sectors, it accurately mirrors India’s economic growth and industrial diversification.
                 </p>
 
+
                 <h4 className="mt-4 fw-semibold">Features and Composition</h4>
                 <ul>
                     <li><strong>Free Float Market Cap:</strong> Ensures real-market exposure by excluding promoter holdings.</li>
                     <li><strong>Liquidity:</strong> Stocks with high trading volumes and consistent delivery percentages.</li>
                     <li><strong>Sector Weighting:</strong> Banking and IT dominate, followed by FMCG and Oil & Gas.</li>
                 </ul>
+
 
                 <h4 className="mt-4 fw-semibold">Role in Investment Strategy</h4>
                 <ul>
@@ -97,10 +100,12 @@ const tabData = [
                 </ul>
 
 
+
+
             </>
         ),
     },
-    {
+ {
         name: "Bank Nifty",
         content: (
             <>
@@ -109,12 +114,14 @@ const tabData = [
                     The <strong>Bank Nifty</strong> index comprises the 12 most liquid and large capitalized banking stocks listed on the NSE. It serves as the key indicator for banking sector health and is one of the most traded derivative products in India.
                 </p>
 
+
                 <h4 className="mt-4 fw-semibold">Constituents and Focus</h4>
                 <ul>
                     <li><strong>Core Banks:</strong> HDFC Bank, ICICI Bank, Axis Bank, SBI</li>
                     <li><strong>Public & Private:</strong> Blended mix offering broad banking exposure</li>
                     <li><strong>Loan Growth & NPAs:</strong> Major impact on index value</li>
                 </ul>
+
 
                 <h4 className="mt-4 fw-semibold">Importance in Trading</h4>
                 <ul>
@@ -124,10 +131,12 @@ const tabData = [
                 </ul>
 
 
+
+
             </>
         ),
     },
-    {
+{
         name: "Fin Nifty",
         content: (
             <>
@@ -136,12 +145,14 @@ const tabData = [
                     The <strong>Fin Nifty</strong> Index tracks the performance of diversified financial services firms, including NBFCs, insurance companies, AMCs, and more. It captures financial innovation and fintech growth beyond traditional banking.
                 </p>
 
+
                 <h4 className="mt-4 fw-semibold">Composition Overview</h4>
                 <ul>
                     <li>Includes HDFC Ltd, Bajaj Finance, LIC Housing Finance</li>
                     <li>Focus on consumer credit, life insurance, asset management</li>
                     <li>NBFC and fintech contribution rising steadily</li>
                 </ul>
+
 
                 <h4 className="mt-4 fw-semibold">Strategic Role</h4>
                 <ul>
@@ -151,10 +162,12 @@ const tabData = [
                 </ul>
 
 
+
+
             </>
         ),
     },
-    {
+     {
         name: "Midcap",
         content: (
             <>
@@ -163,12 +176,14 @@ const tabData = [
                     The <strong>Midcap Index</strong> includes companies that are not large enough to be blue-chip but too big to be classified as small caps. These companies are typically high-growth businesses in niche sectors or fast-developing segments of the Indian economy.
                 </p>
 
+
                 <h4 className="mt-4 fw-semibold">Profile</h4>
                 <ul>
                     <li>Nifty Midcap 150 / Midcap 100 are the key indices</li>
                     <li>Offer balance of risk and reward</li>
                     <li>Higher volatility than large-caps, but often stronger upcycles</li>
                 </ul>
+
 
                 <h4 className="mt-4 fw-semibold">Investment Use</h4>
                 <ul>
@@ -178,9 +193,13 @@ const tabData = [
                 </ul>
 
 
+
+
             </>
         ),
     },
+
+
     {
         name: "Sensex",
         content: (
@@ -190,12 +209,14 @@ const tabData = [
                     The <strong>S&P BSE Sensex</strong>, launched in 1986, is the oldest stock market index in India. Comprising 30 of the largest and most actively traded stocks on the Bombay Stock Exchange (BSE), it reflects the country’s overall economic strength and market momentum.
                 </p>
 
+
                 <h4 className="mt-4 fw-semibold">Key Facts</h4>
                 <ul>
                     <li>Free-float market capitalization based</li>
                     <li>Sector-balanced with Finance, IT, Oil & Gas, and Pharma leaders</li>
                     <li>Globally followed and forms the core of many global funds</li>
                 </ul>
+
 
                 <h4 className="mt-4 fw-semibold">Market Influence</h4>
                 <ul>
@@ -205,9 +226,14 @@ const tabData = [
                 </ul>
 
 
+
+
             </>
         ),
     },
+
+
+    // ... other tab objects unchanged
 ];
 
 const Indian = () => {
@@ -233,11 +259,13 @@ const Indian = () => {
                                         <button
                                             key={tab.name}
                                             onClick={() => setActiveTab(tab.name)}
-                                            className={`px-4 py-2 fw-semibold border rounded-pill ${activeTab === tab.name ? "bg-danger text-white border-danger" : "bg-light text-dark border-secondary"
+                                            className={`px-4 py-2 fw-semibold border rounded-pill ${activeTab === tab.name ? "bg-success text-white border-success" : "bg-light text-dark border-secondary"
                                                 }`}
                                             style={{
                                                 transition: "0.3s",
-                                                boxShadow: activeTab === tab.name ? "0 4px 12px rgba(224,0,0,0.2)" : "none",
+                                                boxShadow: activeTab === tab.name ? "0 4px 12px rgba(33,231,134,0.2)" : "none",
+                                                backgroundColor: activeTab === tab.name ? "#21E786" : undefined,
+                                                borderColor: activeTab === tab.name ? "#21E786" : undefined,
                                             }}
                                         >
                                             {tab.name}
@@ -246,7 +274,7 @@ const Indian = () => {
                                 </div>
 
                                 {/* Content */}
-                                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #E00000" }}>
+                                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #21E786" }}>
                                     {tabData.find((tab) => tab.name === activeTab)?.content}
                                 </div>
 

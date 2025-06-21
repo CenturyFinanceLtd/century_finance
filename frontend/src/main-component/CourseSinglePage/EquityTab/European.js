@@ -461,9 +461,9 @@ const European = () => {
                         activeTab === tab.name ? "active-tab" : "inactive-tab"
                       }`}
                       style={{
-                        borderColor: activeTab === tab.name ? "#E00000" : "#D8D8D8",
+                        borderColor: activeTab === tab.name ? "#21E786" : "#D8D8D8",
                         color: activeTab === tab.name ? "#fff" : "#222",
-                        backgroundColor: activeTab === tab.name ? "#E00000" : "#F8F8F8",
+                        backgroundColor: activeTab === tab.name ? "#21E786" : "#F8F8F8",
                         transition: "0.3s",
                       }}
                     >
@@ -473,7 +473,7 @@ const European = () => {
                 </div>
 
                 {/* Content */}
-                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #E00000" }}>
+                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #21E786" }}>
                   <h4 className="fw-bold mb-3" style={{ color: "#222" }}>{activeTab}</h4>
                   <p style={{ color: "#444", lineHeight: "1.6" }}>
                     {tabData.find((tab) => tab.name === activeTab)?.content}

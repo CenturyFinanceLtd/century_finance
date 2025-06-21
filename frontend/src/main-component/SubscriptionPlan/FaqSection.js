@@ -4,12 +4,10 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 
-
 const faqData = [
   {
     id: "panel1",
-    question:
-      "Are these plans suitable for beginners?",
+    question: "Are these plans suitable for beginners?",
     answerLines: [
       "Yes. Even basic plans are *beginner-friendly* with simplified instructions. Higher plans offer detailed guidance but may suit those with some trading experience.",
     ],
@@ -18,7 +16,11 @@ const faqData = [
     id: "panel2",
     question: "What’s the difference between the plans?",
     answerLines: [
-      " Number of Calls* (Fixed or Unlimited)" ,"Duration (16 Days to 12 Months)", "Market Segments Covered (Equity, Commodity, Crypto) ","Technical Tools (Basic to Advanced)" ,"Bonus Financial Services (SGB, SIP, MTF, Mutual Fund Advisory)" ,
+      "Number of Calls* (Fixed or Unlimited)",
+      "Duration (16 Days to 12 Months)",
+      "Market Segments Covered (Equity, Commodity, Crypto)",
+      "Technical Tools (Basic to Advanced)",
+      "Bonus Financial Services (SGB, SIP, MTF, Mutual Fund Advisory)",
     ],
   },
   {
@@ -39,7 +41,6 @@ const faqData = [
       "Entry price",
       "Stop-loss",
       "Exit levels",
-      
     ],
   },
   {
@@ -53,17 +54,12 @@ const faqData = [
       "We focus on *education and strategy-backed market advisory* in line with SEBI's investor protection framework.",
     ],
   },
-    {
+  {
     id: "panel6",
     question: "How are these calls delivered to me?",
-    answerLines: [
-      "WhatsApp",
-      "Email",
-      "By Call",
-      "Telegram",
-    ],
+    answerLines: ["WhatsApp", "Email", "By Call", "Telegram"],
   },
-    {
+  {
     id: "panel7",
     question: "Will I be able to trade even if I have a full-time job?",
     answerLines: [
@@ -78,38 +74,29 @@ const faqData = [
     question: "Can I upgrade to a higher plan later?",
     answerLines: [
       "Absolutely. You can *upgrade anytime* by contacting our support team. The difference in pricing will be adjusted.",
-      
     ],
   },
-
 ];
 
 const FaqSection = (props) => {
-  // Set 'panel1' as the default expanded panel
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // Define active styles for reuse
   const activeSummaryStyles = {
-    backgroundColor: "red",
+    backgroundColor: "#21E786",
     color: "white",
     "& .MuiTypography-root": {
-      // Ensure Typography text is also white
       color: "white",
     },
     "& .MuiAccordionSummary-expandIconWrapper": {
-      // Ensure expand icon is also white
       color: "white",
     },
   };
 
   return (
-    // The class names like "wpo-benefits-section" are from your snippet.
-    // You might want to adjust them if this is part of a larger themed section.
-    
     <div className={`container wpo-benefits-section ${props.sectionClass || ""}`}>
       <div className="row">
         <div className="col-lg-12 col-12">
@@ -118,21 +105,23 @@ const FaqSection = (props) => {
               <Accordion
                 key={faqItem.id}
                 expanded={expanded === faqItem.id}
-                onChange={handleChange(faqItem.id)}>
+                onChange={handleChange(faqItem.id)}
+              >
                 <AccordionSummary
                   aria-controls={`${faqItem.id}bh-content`}
                   id={`${faqItem.id}bh-header`}
-                  sx={expanded === faqItem.id ? activeSummaryStyles : {}}>
+                  sx={expanded === faqItem.id ? activeSummaryStyles : {}}
+                >
                   <Typography>{faqItem.question}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   {faqItem.answerLines.map((line, index) => (
                     <Typography
                       key={index}
-                      component="p" // Render each line as a paragraph
-                      sx={faqItem.id === "panel4" && index > 0 ? { pl: 2 } : {}} // Indent list items for Q4
-                      variant="body2" // Use a suitable variant
-                      gutterBottom={index < faqItem.answerLines.length - 1} // Add bottom margin for all but last line
+                      component="p"
+                      sx={faqItem.id === "panel4" && index > 0 ? { pl: 2 } : {}}
+                      variant="body2"
+                      gutterBottom={index < faqItem.answerLines.length - 1}
                     >
                       {faqItem.id === "panel4" && index > 0
                         ? `• ${line}`

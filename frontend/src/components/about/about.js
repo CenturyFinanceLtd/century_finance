@@ -25,14 +25,14 @@ const About = (props) => {
                   <div className="wpo-about-img-inner">
                     <img src={abImg2} alt="" />
                   </div>
-                  <div className="exprience-wrap">
+                  <div className="exprience-wrap" style={{ backgroundColor: "#21E786" }}>
                     <div className="exprience">
-                      <div className="icon">
+                      <div className="icon" style={{ color: "#fff" }}>
                         <i className="fi flaticon-award"></i>
                       </div>
                       <div className="content">
-                        <h3>25+</h3>
-                        <p>Years Of Experience</p>
+                        <h3 style={{ color: "#fff" }}>25+</h3>
+                        <p style={{ color: "#fff" }}>Years Of Experience</p>
                       </div>
                     </div>
                   </div>
@@ -42,93 +42,97 @@ const About = (props) => {
             <div className="col-lg-6 col-md-12 col-12">
               <div className="wpo-about-text">
                 <div className="wpo-section-title">
-                  <small>About Us</small>
+                  <small style={{ color: "#21E786" }}>About Us</small>
                   <h2>
-                   Century Finance-
-                    <span>
+                    Century Finance-
+                    <span style={{ color: "#21E786" }}>
                       {" "}
-                      Your Trusted Partner in Stock Market Education & Advisory
-
+                      Your Trusted Partner 
                       <i className="shape">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 206 53"
-                          fill="none">
-                          <path d="M152.182 2.58319C107.878 0.889793 54.8748 6.13932 21.2281 18.6943C14.2699 21.4407 7.93951 24.7738 5.70192 28.7128C4.27488 31.2398 5.03121 33.954 7.69121 36.2925C14.8835 42.3911 31.9822 45.4011 46.8006 47.3115C78.3067 51.0179 113.672 51.7406 145.489 48.3204C167.194 46.0009 200.667 39.5923 199.399 28.5709C198.543 20.0621 180.437 14.5729 162.979 11.6178C138.219 7.469 111.131 6.00576 84.5743 5.86862C71.32 5.85789 58.0913 6.85723 45.6675 8.78436C33.512 10.7186 21.2709 13.4317 12.6602 17.5817C11.2246 18.2877 8.62449 17.4553 9.9973 16.6813C20.7486 11.2493 38.0215 7.73493 53.9558 5.76368C77.1194 2.90994 101.75 3.75426 125.339 5.14356C158.167 7.2615 207.554 13.5139 204.928 30.7413C203.629 36.0898 194.762 40.5057 184.681 43.5503C156.563 51.768 119.114 53.6844 85.6331 52.5265C65.1694 51.7477 44.4831 50.1855 25.9972 46.2442C11.4129 43.1186 -1.0337 37.8297 0.0679738 30.5063C2.14003 19.9035 31.4913 12.0006 52.6201 7.98775C71.2971 4.45904 91.3384 2.2302 111.674 1.24636C125.228 0.595237 138.962 0.539188 152.536 1.15931C153.475 1.20224 154.154 1.55523 154.051 1.94876C153.951 2.33872 153.115 2.62135 152.182 2.58319Z" />
+                          fill="#21E786"
+                        >
+                          <path
+                            fill="#21E786"
+                            d="M152.182 2.58319C107.878 0.889793 54.8748 6.13932 21.2281 18.6943C14.2699 21.4407 7.93951 24.7738 5.70192 28.7128C4.27488 31.2398 5.03121 33.954 7.69121 36.2925C14.8835 42.3911 31.9822 45.4011 46.8006 47.3115C78.3067 51.0179 113.672 51.7406 145.489 48.3204C167.194 46.0009 200.667 39.5923 199.399 28.5709C198.543 20.0621 180.437 14.5729 162.979 11.6178C138.219 7.469 111.131 6.00576 84.5743 5.86862C71.32 5.85789 58.0913 6.85723 45.6675 8.78436C33.512 10.7186 21.2709 13.4317 12.6602 17.5817C11.2246 18.2877 8.62449 17.4553 9.9973 16.6813C20.7486 11.2493 38.0215 7.73493 53.9558 5.76368C77.1194 2.90994 101.75 3.75426 125.339 5.14356C158.167 7.2615 207.554 13.5139 204.928 30.7413C203.629 36.0898 194.762 40.5057 184.681 43.5503C156.563 51.768 119.114 53.6844 85.6331 52.5265C65.1694 51.7477 44.4831 50.1855 25.9972 46.2442C11.4129 43.1186 -1.0337 37.8297 0.0679738 30.5063C2.14003 19.9035 31.4913 12.0006 52.6201 7.98775C71.2971 4.45904 91.3384 2.2302 111.674 1.24636C125.228 0.595237 138.962 0.539188 152.536 1.15931C153.475 1.20224 154.154 1.55523 154.051 1.94876C153.951 2.33872 153.115 2.62135 152.182 2.58319Z"
+                          />
                         </svg>
                       </i>
                     </span>
+                     &nbsp; in Stock Market Education & Advisory
                   </h2>
                 </div>
                 <p>
-                 Century Finance Limited,helps people approach financial markets with clarity and confidence.Our training is based on practical experience and real-world scenarios, led by a SEBI-certified stock advisor. 
-
+                  Century Finance Limited, helps people approach financial
+                  markets with clarity and confidence. Our training is based on
+                  practical experience and real-world scenarios, led by a
+                  SEBI-certified stock advisor.
                 </p>
                 <p>
-                 Our mission is to guide you through the world of stocks by offering personalized training, live trading simulations, and actionable investment insights. We guarantee that each learner acquires practical skills, a thorough awareness of the market, and the self-assurance to make wise judgements by going beyond theory.
-
+                  Our mission is to guide you through the world of stocks by
+                  offering personalized training, live trading simulations, and
+                  actionable investment insights. We guarantee that each learner
+                  acquires practical skills, a thorough awareness of the market,
+                  and the self-assurance to make wise judgements by going
+                  beyond theory.
                 </p>
                 <p>
-                 We are proudly headquartered at Dubai, with our main branch in Mumbai,India. Our presence across diverse financial hubs allows us to better serve our diverse clients and strengthen our commitment towards financial education and services. 
-
+                  We are proudly headquartered at Dubai, with our main branch in
+                  Mumbai, India. Our presence across diverse financial hubs
+                  allows us to better serve our diverse clients and strengthen
+                  our commitment towards financial education and services.
                 </p>
-               <p>At Century Finance, we believe in shared success- our values lie in your growth. No matter if you are just starting out or want to improve your strategies, our programs are designed to meet every skill level.
-</p>
+                <p>
+                  At Century Finance, we believe in shared success – our values
+                  lie in your growth. No matter if you are just starting out or
+                  want to improve your strategies, our programs are designed to
+                  meet every skill level.
+                </p>
 
                 <div className="wpo-about-features-wrap">
-                  <div className="wpo-about-features-item">
-                    <div className="wpo-about-features-icon">
-                      <div className="icon">
-                        <i className="fi flaticon-training-1"></i>
+                  {[
+                    { icon: "training-1", count: 150, label: "Courses" },
+                    { icon: "video-lesson", count: 100, label: "Demo Classes" },
+                    { icon: "team", count: 100, label: "k Students" },
+                    { icon: "training", count: 50, label: "Mentors" },
+                  ].map((item, index) => (
+                    <div className="wpo-about-features-item" key={index}>
+                      <div className="wpo-about-features-icon">
+                        <div
+                          className="icon"
+                          style={{ color: "#21E786", fontWeight: "bold" }}
+                        >
+                          <i className={`fi flaticon-${item.icon}`}></i>
+                        </div>
+                      </div>
+                      <div className="wpo-about-features-text">
+                        <h5 style={{ color: "#21E786" }}>
+                          <CountUp end={item.count} enableScrollSpy />+{" "}
+                          {item.label}
+                        </h5>
                       </div>
                     </div>
-                    <div className="wpo-about-features-text">
-                      <h5>
-                        <CountUp end={150} enableScrollSpy />+ Courses
-                      </h5>
-                    </div>
-                  </div>
-                  <div className="wpo-about-features-item">
-                    <div className="wpo-about-features-icon">
-                      <div className="icon">
-                        <i className="fi flaticon-video-lesson"></i>
-                      </div>
-                    </div>
-                    <div className="wpo-about-features-text">
-                      <h5>
-                        <CountUp end={100} enableScrollSpy />+ Demo Classes
-                      </h5>
-                    </div>
-                  </div>
-                  <div className="wpo-about-features-item">
-                    <div className="wpo-about-features-icon">
-                      <div className="icon">
-                        <i className="fi flaticon-team"></i>
-                      </div>
-                    </div>
-                    <div className="wpo-about-features-text">
-                      <h5>
-                        <CountUp end={100} enableScrollSpy />k Students
-                      </h5>
-                    </div>
-                  </div>
-                  <div className="wpo-about-features-item">
-                    <div className="wpo-about-features-icon">
-                      <div className="icon">
-                        <i className="fi flaticon-training"></i>
-                      </div>
-                    </div>
-                    <div className="wpo-about-features-text">
-                      <h5>
-                        <CountUp end={50} enableScrollSpy />+ Mentors
-                      </h5>
-                    </div>
-                  </div>
+                  ))}
                 </div>
+
                 <Link
                   onClick={ClickHandler}
                   to={"/about"}
-                  className="theme-btn-s2">
+                  className="theme-btn-s2"
+                  style={{
+                    backgroundColor: "#21E786",
+                    border: "none",
+                    color: "#fff",
+                    padding: "10px 25px",
+                    borderRadius: "5px",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    marginTop: "20px",
+                  }}
+                >
                   Learn More About Us
                 </Link>
               </div>

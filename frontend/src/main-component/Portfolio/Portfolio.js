@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
-import "./Portfolio.css"
+import "./Portfolio.css";
 
 const plans = [
   {
@@ -14,8 +14,9 @@ const plans = [
     annualFee: "₹10,000 / Year",
     description: (
       <>
-      <div className="alert alert-success p-3 rounded mb-4">
-<p><strong>We open and manage your Demat account — for just ₹10,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
+        <div className="alert alert-success p-3 rounded mb-4">
+          <p><strong>We open and manage your Demat account — for just ₹10,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p>
+        </div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>First-time investors</li>
@@ -46,9 +47,9 @@ const plans = [
     annualFee: "₹25,000 / Year",
     description: (
       <>
-
-       <div className="alert alert-success p-3 rounded mb-4">
-<p><strong>We open and manage your Demat account — for just ₹25,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
+        <div className="alert alert-success p-3 rounded mb-4">
+          <p><strong>We open and manage your Demat account — for just ₹25,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p>
+        </div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>Freelancers, consultants, business owners</li>
@@ -80,9 +81,9 @@ const plans = [
     annualFee: "₹65,000 / Year",
     description: (
       <>
-
-       <div className="alert alert-success p-3 rounded mb-4">
-<p><strong>We open and manage your Demat account — for just ₹65,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
+        <div className="alert alert-success p-3 rounded mb-4">
+          <p><strong>We open and manage your Demat account — for just ₹65,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p>
+        </div>
         <p><strong>Who It’s For:</strong></p>
         <ul>
           <li>High Net-Worth Individuals (HNIs)</li>
@@ -107,16 +108,16 @@ const plans = [
       </>
     ),
   },
-    {
+  {
     id: "Titanium Wealth  Plan",
     title: " Titanium Wealth Plan",
     portfolioSize: "₹50 Lakh – ₹1 Crore",
     annualFee: "₹85,000 / Year",
     description: (
       <>
-
-       <div className="alert alert-success p-3 rounded mb-4">
-<p><strong>We open and manage your Demat account — for just ₹85,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p></div>
+        <div className="alert alert-success p-3 rounded mb-4">
+          <p><strong>We open and manage your Demat account — for just ₹85,000/year. You keep 75% of all earnings. We retain only 25% as performance share.</strong></p>
+        </div>
         <p><strong>Who It’s For:</strong></p>
         <ol>
           <li>Senior executives with surplus deployable capital</li>
@@ -124,33 +125,29 @@ const plans = [
           <li>Ultra-strategic planners looking to diversify beyond traditional markets</li>
           <li>Wealthy individuals wanting deep control + high sophistication</li>
         </ol>
-
         <p><strong>Plan Features:</strong></p>
         <ul>
-          <li><strong>Ultra-Personalized Investment Architecture- </strong>Ultra-Personalized Investment Architecture</li>
-          <li><strong>Dedicated Family Wealth Officer- </strong>Your own financial expert acting as a personal CFO—bridging tax, legal, and investment advice.</li>
-          <li><strong>Private Market Access & Alternatives- </strong>Entry into exclusive assets like Private Equity, Pre-IPOs, AIFs, Sovereign Funds & Structured Global ETFs.</li>
-          <li><strong>Dynamic Cross-Border Asset Allocation-</strong>Exposure to US/UK/Asia equities, international debt, REITs, and currency-hedged instruments—compliant with RBI’s LRS norms.</li>
-          <li><strong>On-Demand Wealth Reviews- </strong>Get deep insights into your portfolio anytime, including risk stress-tests, goal tracking & market alignment reports.</li>
-          <li><strong>Crisis-Mode Rebalancing Strategy- </strong>Smart alerts + expert intervention to protect your wealth during economic or geopolitical turbulence.</li>
+          <li><strong>Ultra‑Personalized Investment Architecture–</strong> Ultra‑Personalized Investment Architecture</li>
+          <li><strong>Dedicated Family Wealth Officer–</strong> Your own financial expert acting as a personal CFO—bridging tax, legal, and investment advice.</li>
+          <li><strong>Private Market Access & Alternatives–</strong> Entry into exclusive assets like Private Equity, Pre‑IPOs, AIFs, Sovereign Funds & Structured Global ETFs.</li>
+          <li><strong>Dynamic Cross‑Border Asset Allocation–</strong> Exposure to US/UK/Asia equities, international debt, REITs, and currency‑hedged instruments—compliant with RBI’s LRS norms.</li>
+          <li><strong>On‑Demand Wealth Reviews–</strong> Get deep insights into your portfolio anytime, including risk stress‑tests, goal tracking & market alignment reports.</li>
+          <li><strong>Crisis‑Mode Rebalancing Strategy–</strong> Smart alerts + expert intervention to protect your wealth during economic or geopolitical turbulence.</li>
         </ul>
-
         <p><strong>Benefits:</strong></p>
         <ol>
-          <li>Complete visibility + top-tier discretion over high-value assets</li>
-          <li>Stronger returns through non-retail market opportunities</li>
+          <li>Complete visibility + top‑tier discretion over high‑value assets</li>
+          <li>Stronger returns through non‑retail market opportunities</li>
           <li>Strategic capital shielding, growth, and tax planning—all in one place</li>
           <li>Exceptional service without losing autonomy</li>
         </ol>
-
-        <p><strong>Best For:</strong> 
-        <li>Investors who want serious capital multiplication without giving up control</li>
-        <li>Individuals preparing for international diversification and succession planning</li>
-        <li>HNIs aiming for global exposure, private market access, and legacy-grade wealth management</li>
-        <li>Visionaries who value confidentiality, depth, and data-driven advisory over generic portfolio handling
-
-</li>
-        </p>
+        <p><strong>Best For:</strong></p>
+        <ul>
+          <li>Investors who want serious capital multiplication without giving up control</li>
+          <li>Individuals preparing for international diversification and succession planning</li>
+          <li>HNIs aiming for global exposure, private market access, and legacy‑grade wealth management</li>
+          <li>Visionaries who value confidentiality, depth, and data‑driven advisory over generic portfolio handling</li>
+        </ul>
       </>
     ),
   },
@@ -158,11 +155,10 @@ const plans = [
 
 const importantHighlights = [
   "Your money, your control! 75% stays with you, just 25% is utilized by us to create wealthfor you.",
-  "Global-Class Investment Exposure: Access private equity, international markets, and high-yield alternatives—unavailable to retail investors.",
+  "Global‑Class Investment Exposure: Access private equity, international markets, and high‑yield alternatives—unavailable to retail investors.",
   "Dedicated Family Wealth Officer: Your own private financial strategist who understands your entire wealth ecosystem.",
   "Fully Compliant with RBI & SEBI Regulations: Peace of mind with every move—growth without grey zones.",
   "Live Dashboard & Emergency Rebalancing: Always know your net worth trajectory and activate defense strategies during downturns.",
-  
 ];
 
 const PortfolioContent = () => {
@@ -181,7 +177,7 @@ const PortfolioContent = () => {
   };
 
   const header = {
-    color: "#e65410",
+    color: "#21E786", // ✅ changed from #e65410 to #21E786
     fontWeight: "700",
     fontSize: "2.25rem",
     marginBottom: "1rem",
@@ -194,7 +190,6 @@ const PortfolioContent = () => {
     color: "#3b82f6",
     marginBottom: "2rem",
     textAlign: "center",
-    
   };
 
   const sectiontitle = {
@@ -219,10 +214,8 @@ const PortfolioContent = () => {
         />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-
       <Navbar />
       <PageTitle pageTitle={"Portfolio"} pagesub={"Portfolio"} bgImage="/bg-image/portfolio.png" />
-
       <div style={container}>
         <h2 style={header}>
           Century Finance Limited — Comprehensive Portfolio Management Solutions
@@ -233,8 +226,8 @@ const PortfolioContent = () => {
           We specialize in professionally-managed, transparent, and
           growth-focused portfolio handling for all investors.
         </p>
+
         <div className="bg-white border-4 border-yellow-400 rounded-3xl shadow-2xl px-6 py-10 md:px-10 md:py-14 max-w-6xl mx-auto my-12 transition-all duration-300 hover:scale-[1.01]">
-          {/* Heading */}
           <div className="text-center mb-6">
             <p className="text-base text-gray-700 leading-relaxed max-w-2xl mx-auto">
               At{" "}
@@ -245,8 +238,6 @@ const PortfolioContent = () => {
               managed investment experience before opening your Demat account.
             </p>
           </div>
-
-          {/* Key Details */}
           <ul className="list-disc pl-6 space-y-3 text-sm text-gray-800 max-w-xl mx-auto mb-8">
             <li>
               💼 <strong>Fully Managed Demo Portfolio:</strong> Try our
@@ -262,20 +253,21 @@ const PortfolioContent = () => {
             </li>
           </ul>
         </div>
-        <div className="text-center mb-12" style={{padding:"15px 0px"}}>
-          <a href="" className="book-now-btn">
+
+        <div className="text-center mb-12" style={{ padding: "15px 0px" }}>
+          <a href="#" className="book-now-btn">
             Book Now
           </a>
         </div>
 
-        {/* Tabs */}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             marginBottom: "35px",
             borderBottom: "2px solid #e1e1e1",
-          }}>
+          }}
+        >
           {plans.map((plan) => (
             <button
               key={plan.id}
@@ -296,13 +288,13 @@ const PortfolioContent = () => {
                 transition: "all 0.3s ease",
                 outline: "none",
                 borderRadius: "0 0 8px 8px",
-              }}>
+              }}
+            >
               {plan.title}
             </button>
           ))}
         </div>
 
-        {/* Plan Details */}
         <div
           style={{
             border: "1px solid #ddd",
@@ -313,7 +305,8 @@ const PortfolioContent = () => {
             boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
             fontSize: "16px",
             color: "#1f2937",
-          }}>
+          }}
+        >
           {plans.map(
             (plan) =>
               activePlan === plan.id && (
@@ -324,7 +317,8 @@ const PortfolioContent = () => {
                       marginBottom: "15px",
                       fontWeight: "700",
                       fontSize: "1.9rem",
-                    }}>
+                    }}
+                  >
                     {plan.title}
                   </h3>
                   <p style={{ fontWeight: "600", fontSize: "1.1rem" }}>
@@ -336,7 +330,8 @@ const PortfolioContent = () => {
                       fontWeight: "600",
                       fontSize: "1.1rem",
                       marginBottom: "20px",
-                    }}>
+                    }}
+                  >
                     Annual Fee:{" "}
                     <span style={{ color: "#555" }}>{plan.annualFee}</span>
                   </p>
@@ -346,7 +341,6 @@ const PortfolioContent = () => {
           )}
         </div>
 
-        {/* Important Highlights */}
         <div
           style={{
             marginTop: "50px",
@@ -356,12 +350,9 @@ const PortfolioContent = () => {
             borderRadius: "8px",
             fontWeight: "600",
             color: "#004085",
-            fontSize: "1.1rem",
-            boxShadow: "0 4px 15px rgba(0,123,255,0.15)",
-            maxWidth: "1000px",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}>
+           
+          }}
+        >
           <h3
             style={{
               marginBottom: "15px",
@@ -369,15 +360,11 @@ const PortfolioContent = () => {
               fontSize: "1.8rem",
               borderBottom: "2px solid #007bff",
               paddingBottom: "8px",
-            }}>
+            }}
+          >
             Important Highlights
           </h3>
-          <ul
-            style={{
-              paddingLeft: "20px",
-              marginTop: "10px",
-              listStyleType: "disc",
-            }}>
+          <ul style={{ paddingLeft: "20px", marginTop: "10px", listStyleType: "disc" }}>
             {importantHighlights.map((point, idx) => (
               <li key={idx} style={{ marginBottom: "10px" }}>
                 {point}
@@ -386,7 +373,6 @@ const PortfolioContent = () => {
           </ul>
         </div>
 
-        {/* Call to Action */}
         <div
           style={{
             marginTop: "60px",
@@ -400,24 +386,17 @@ const PortfolioContent = () => {
             maxWidth: "1000px",
             marginLeft: "auto",
             marginRight: "auto",
-          }}>
-          <h3
-            style={{
-              fontWeight: "700",
-              fontSize: "2rem",
-              marginBottom: "15px",
-            }}>
+          }}
+        >
+          <h3 style={{ fontWeight: "700", fontSize: "2rem", marginBottom: "15px" }}>
             📞 Ready to Start Your Wealth Journey?
           </h3>
           <p style={{ marginBottom: "10px" }}>
-            Mail us or book a consultation to understand which plan aligns best
-            with your portfolio and future goals.
+            Mail us or book a consultation to understand which plan aligns best with your portfolio and future goals.
           </p>
           <p style={{ fontSize: "1rem", marginBottom: "5px" }}>
             📧 <strong>Email:</strong>{" "}
-            <a
-              href="customerservice@centuryfinancelimited.com"
-              style={{ color: "#ffd966", textDecoration: "underline" }}>
+            <a href="customerservice@centuryfinancelimited.com" style={{ color: "#21E786", textDecoration: "underline" }}>
               info@centuryfinance.com
             </a>
           </p>
@@ -427,7 +406,8 @@ const PortfolioContent = () => {
               href="https://www.centuryfinancelimited.com/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#ffd966", textDecoration: "underline" }}>
+              style={{ color: "#21E786", textDecoration: "underline" }}
+            >
               www.centuryfinance.com
             </a>
           </p>

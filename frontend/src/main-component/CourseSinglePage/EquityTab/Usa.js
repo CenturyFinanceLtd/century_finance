@@ -24,7 +24,6 @@ const tabData = [
 
         <h5 className="mt-4 fw-semibold">Key Metrics and Statistics</h5>
         <ul>
-
           <li><strong>Metric:</strong>	Value (approx., May 2025)</li>
           <li><strong>Index Value:</strong>	39,100+ points</li>
           <li><strong>Annualized Return (10 yrs):</strong>	~10.5%</li>
@@ -33,7 +32,6 @@ const tabData = [
           <li><strong>Market Capitalization</strong>		~$10 Trillion+ (combined)</li>
           <li><strong>Update Frequency</strong>		Every 15 seconds during trading</li>
         </ul>
-
       </>
     ),
   },
@@ -64,8 +62,6 @@ const tabData = [
           <li><b>Clearing & Settlement</b>Through NSE IFSC Clearing Corporation (NICCL)</li>
           <li><b>Time Zone Advantage</b>	Bridges the gap between U.S. close and Indian market open</li>
         </ul>
-
-
       </>
     ),
   },
@@ -89,8 +85,6 @@ const tabData = [
 
             A value above 100 means the U.S. dollar has strengthened compared to its 1973 level; below 100 indicates depreciation.</li>
         </ul>
-
-
       </>
     ),
   },
@@ -119,11 +113,12 @@ const Usa = () => {
                     <button
                       key={tab.name}
                       onClick={() => setActiveTab(tab.name)}
-                      className={`px-4 py-2 fw-semibold border rounded-pill ${activeTab === tab.name ? "bg-danger text-white border-danger" : "bg-light text-dark border-secondary"
-                        }`}
+                      className={`px-4 py-2 fw-semibold border rounded-pill ${activeTab === tab.name ? "text-white" : "text-dark"} ${activeTab === tab.name ? "" : "bg-light border-secondary"}`}
                       style={{
+                        backgroundColor: activeTab === tab.name ? "#21E786" : "",
+                        borderColor: activeTab === tab.name ? "#21E786" : "",
                         transition: "0.3s",
-                        boxShadow: activeTab === tab.name ? "0 4px 12px rgba(224,0,0,0.2)" : "none",
+                        boxShadow: activeTab === tab.name ? "0 4px 12px rgba(33, 231, 134, 0.3)" : "none",
                       }}
                     >
                       {tab.name}
@@ -132,7 +127,7 @@ const Usa = () => {
                 </div>
 
                 {/* Content */}
-                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #E00000" }}>
+                <div className="text-start p-4 shadow rounded" style={{ backgroundColor: "#FDFDFD", borderLeft: "5px solid #21E786" }}>
                   {tabData.find((tab) => tab.name === activeTab)?.content}
                 </div>
 

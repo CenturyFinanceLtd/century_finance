@@ -142,8 +142,6 @@ const tabData = [
           <li><strong>Time Advantage:</strong> Bridges Asian and European/US markets.</li>
           <li><strong>China Proxy:</strong> Primary vehicle for international China exposure.</li>
         </ul>
-
-    
       </>
     ),
   },
@@ -164,26 +162,29 @@ const Asian = () => {
           </div>
 
           {/* Tabs */}
-          <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
-            {tabData.map((tab) => (
-              <button
-                key={tab.name}
-                onClick={() => setActiveTab(tab.name)}
-                className={`px-4 py-2 fw-semibold border rounded-pill ${
-                  activeTab === tab.name ? "bg-danger text-white border-danger" : "bg-light text-dark border-secondary"
-                }`}
-                style={{
-                  transition: "0.3s",
-                  boxShadow: activeTab === tab.name ? "0 4px 12px rgba(224,0,0,0.2)" : "none",
-                }}
-              >
-                {tab.name}
-              </button>
-            ))}
-          </div>
+        <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
+  {tabData.map((tab) => (
+    <button
+      key={tab.name}
+      onClick={() => setActiveTab(tab.name)}
+      className={`px-4 py-2 fw-semibold border rounded-pill ${
+        activeTab === tab.name ? "text-white" : "text-dark"
+      }`}
+      style={{
+        transition: "0.3s",
+        boxShadow: activeTab === tab.name ? "0 4px 12px rgba(33,231,134,0.2)" : "none",
+        backgroundColor: activeTab === tab.name ? "#21E786" : "#D8D8D8",
+        borderColor: activeTab === tab.name ? "#21E786" : "#F8F8F8",
+      }}
+    >
+      {tab.name}
+    </button>
+  ))}
+</div>
+
 
           {/* Tab Content */}
-          <div className="p-4 shadow rounded" style={{ backgroundColor: "#fdfdfd", borderLeft: "5px solid #E00000", color: "#222" }}>
+          <div className="p-4 shadow rounded" style={{ backgroundColor: "#fdfdfd", borderLeft: "5px solid #21E786", color: "#222" }}>
             {tabData.find((tab) => tab.name === activeTab)?.content}
           </div>
         </div>

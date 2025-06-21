@@ -432,33 +432,36 @@ const Commodities = () => {
                     </p>
                   </div>
 
-                  <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
-                    {tabData.map((tab) => (
-                      <button
-                        key={tab.name}
-                        onClick={() => setActiveTab(tab.name)}
-                        className={`px-4 py-2 fw-semibold border rounded-pill ${
-                          activeTab === tab.name
-                            ? "bg-danger text-white border-danger"
-                            : "bg-light text-dark border-secondary"
-                        }`}
-                        style={{
-                          transition: "0.3s",
-                          boxShadow:
-                            activeTab === tab.name
-                              ? "0 4px 12px rgba(224,0,0,0.2)"
-                              : "none",
-                        }}>
-                        {tab.name}
-                      </button>
-                    ))}
-                  </div>
+                <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
+  {tabData.map((tab) => (
+    <button
+      key={tab.name}
+      onClick={() => setActiveTab(tab.name)}
+      className={`px-4 py-2 fw-semibold border rounded-pill ${
+        activeTab === tab.name
+          ? "text-white"
+          : "text-dark border-secondary"
+      }`}
+      style={{
+        backgroundColor: activeTab === tab.name ? "#21E786" : "#f8f9fa",
+        borderColor: activeTab === tab.name ? "#21E786" : "#ccc",
+        transition: "0.3s",
+        boxShadow:
+          activeTab === tab.name
+            ? "0 4px 12px rgba(33, 231, 134, 0.3)"
+            : "none",
+      }}>
+      {tab.name}
+    </button>
+  ))}
+</div>
+
 
                   <div
                     className="text-start p-4 shadow rounded"
                     style={{
                       backgroundColor: "#FDFDFD",
-                      borderLeft: "5px solid #E00000",
+                      borderLeft: "5px solid #21E786",
                       minHeight: "300px",
                     }}>
                     <h4 className="fw-bold mb-3" style={{ color: "#e65410" }}>

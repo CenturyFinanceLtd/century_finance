@@ -136,7 +136,7 @@ const PremiumPlan = ({ onBookNow }) => {
       marginBottom: '1.5rem',
       border: '1px solid #444444', // Subtle border
       fontWeight: '500',
-      backgroundColor: '#2a2a2a', // Slightly lighter dark background for alerts
+      backgroundColor:'rgb(42, 74, 42)', // Slightly lighter dark background for alerts
       color: '#ffffff',
       fontFamily: '"Open Sans", sans-serif',
     },

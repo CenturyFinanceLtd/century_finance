@@ -4,7 +4,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../store/actions/authActions";
 import MobileMenu from "../MobileMenu/MobileMenu"; // Corrected path assuming it's in the same components folder
-import Logo from "../../images/logo.png"; // Your existing logo
+import Logo3 from "../../images/Logo3.png"; // Your existing logo
 import HeaderTopbar from "../HeaderTopbar/HeaderTopbar"; // Corrected path
 import {
   FaUserCircle,
@@ -117,7 +117,7 @@ const Header = (props) => {
               <div className="col-lg-1 col-md-4 col-4">
                 <div className="navbar-header">
                   <Link onClick={ClickHandler} className="navbar-brand" to="/">
-                    <img src={Logo} alt="logo" />
+                    <img src={Logo3} alt="Logo3" />
                   </Link>
                 </div>
               </div>
