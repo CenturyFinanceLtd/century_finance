@@ -108,7 +108,7 @@ const About = (props) => {
                         </div>
                       </div>
                       <div className="wpo-about-features-text">
-                        <h5 style={{ color: "#21E786" }}>
+                        <h5 style={{ color: "#010502" }}>
                           <CountUp end={item.count} enableScrollSpy />+{" "}
                           {item.label}
                         </h5>

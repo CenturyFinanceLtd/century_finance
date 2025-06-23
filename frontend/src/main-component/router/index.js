@@ -24,6 +24,9 @@ import LoginPage from '../LoginPage';
 import SignUpPage from '../SignUpPage';
 import ForgotPassword from '../ForgotPassword';
 import OnlineCourses from '../OnlineCourses/OnlineCourses';
+import UCTrainingProgram from "../TrainingProgram/UCTrainingProgram";
+import CTrainingProgram from "../TrainingProgram/CTrainingProgram";
+import ISTrainingProgram from "../TrainingProgram/ISTrainingProgram";
 import TrainingProgram from "../TrainingProgram/TrainingProgram";
 import Portfolio from "../Portfolio/Portfolio";
 import SubscriptionPlan from "../SubscriptionPlan/SubscriptionPlan";
@@ -86,7 +89,10 @@ const AllRoute = () => {
           <Route path="register" element={<SignUpPage />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="online-courses" element={<OnlineCourses />} />
-          <Route path="training-program" element={<TrainingProgram />} />
+          <Route path="/training-program/universities-and-colleges" element={<UCTrainingProgram />} />
+          <Route path="/training-program/corporate" element={<CTrainingProgram />} />
+          <Route path="/training-program/institutes-and-schools" element={<ISTrainingProgram />} />
+          <Route path="/training-program" element={<TrainingProgram />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route
             path="calls-subscription-plan"

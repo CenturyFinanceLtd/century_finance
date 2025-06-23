@@ -16,12 +16,12 @@ ul.smothscroll a {
     color: #fff;
     background-size: 200%, 1px;
     background-position: 0;
-    border: 2px solid#21E786
+    border:  #095c45
     
     ;
 }
 ul.smothscroll a:hover {
-    background-color: #ff0000;
+    background: #095c45;
     color: #fff;
 }
 

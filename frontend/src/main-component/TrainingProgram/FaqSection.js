@@ -7,75 +7,47 @@ import Typography from "@mui/material/Typography";
 const faqData = [
   {
     id: "panel1",
-    question: "Are these plans suitable for beginners?",
+    question: "Who can enroll in the century finance training programs?",
     answerLines: [
-      "Yes. Even basic plans are *beginner-friendly* with simplified instructions. Higher plans offer detailed guidance but may suit those with some trading experience.",
+      "All students and professionals or learners who want to gain knowledge of the stock market and finance related domain. ",
     ],
   },
   {
     id: "panel2",
-    question: "What’s the difference between the plans?",
+    question: "What is the difference between basic plan, premium plan and learning to earning plan?",
     answerLines: [
-      "Number of Calls* (Fixed or Unlimited)",
-      "Duration (16 Days to 12 Months)",
-      "Market Segments Covered (Equity, Commodity, Crypto)",
-      "Technical Tools (Basic to Advanced)",
-      "Bonus Financial Services (SGB, SIP, MTF, Mutual Fund Advisory)",
+      "Basic Plan - Gives foundational knowledge of the stock market. ",
+      "Premium Plan - Gives comprehensive training with live stimulation and advanced ideas. ",
+      "Learning to Earning Plan - Combines internship, training and direct placement help for total career placement.",
+      
     ],
   },
   {
     id: "panel3",
-    question: "Do you follow regulatory guidelines?",
+    question: "Will I receive certification after completion of training?",
     answerLines: [
-      "✅ Yes. We strictly follow:",
-      "SEBI compliance",
-      "NCPI & NAC norms",
-      "Research and advisory guidelines as applicable",
+      "✅Yes, all participants will receive digital certificates on the completion of  successful training and assessments. ",
+      
     ],
   },
   {
     id: "panel4",
-    question: "Are these calls safe for someone with no technical knowledge?",
+    question: "Are these programs available online or only in offline mode ?",
     answerLines: [
-      "Yes. Our calls are shared in *plain language* with:",
-      "Entry price",
-      "Stop-loss",
-      "Exit levels",
+      "Currently, these training programs are available in offline mode  only but we offer online certification courses. ",
+     
     ],
   },
   {
     id: "panel5",
-    question: "Is this service legal and SEBI-compliant?",
+    question: "Do training programs include placement assistance? ",
     answerLines: [
-      "Yes. We operate under *strict guidelines* and do not:",
-      "Offer guaranteed returns",
-      "Handle client funds",
-      "Promote unregulated products",
-      "We focus on *education and strategy-backed market advisory* in line with SEBI's investor protection framework.",
+      "Yes, for now the  “Learning to Earning Model”  includes the internship and placement assistance. ",
+     
     ],
   },
-  {
-    id: "panel6",
-    question: "How are these calls delivered to me?",
-    answerLines: ["WhatsApp", "Email", "By Call", "Telegram"],
-  },
-  {
-    id: "panel7",
-    question: "Will I be able to trade even if I have a full-time job?",
-    answerLines: [
-      "Yes. Our plans are tailored for working professionals, with:",
-      "Pre-market or early morning call dispatches",
-      "Clear instructions (entry/exit/stop-loss)",
-      "Optional *position trades* that don’t require minute-by-minute monitoring",
-    ],
-  },
-  {
-    id: "panel8",
-    question: "Can I upgrade to a higher plan later?",
-    answerLines: [
-      "Absolutely. You can *upgrade anytime* by contacting our support team. The difference in pricing will be adjusted.",
-    ],
-  },
+
+  
 ];
 
 const FaqSection = (props) => {
