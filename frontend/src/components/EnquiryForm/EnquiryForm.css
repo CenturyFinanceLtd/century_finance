@@ -65,7 +65,7 @@
 /* --- Form Header --- */
 .form-header {
     position: relative;
-    background-color: #f01212;
+    background-color: #21E786;
     /* Dark Blue */
     text-align: center;
     padding: 1rem 1.5rem;
@@ -98,7 +98,7 @@
 
 .close-button:hover {
     color: white;
-    background-color: #e12d2d;
+    background-color: #21E786;
 }
 
 .close-button svg {
@@ -130,8 +130,8 @@
 }
 
 .form-input:focus {
-    border-color: #f66060;
-    box-shadow: 0 0 0 3px rgba(246, 59, 59, 0.3);
+    border-color:#21E786;
+    box-shadow: 0 0 0 3px rgba(9, 130, 33, 0.3);
 }
 
 .form-input::placeholder {
@@ -177,11 +177,11 @@
 .submit-button {
     width: 100%;
     background-color: transparent;
-    color: #f97316;
+    color:#21E786;
     font-weight: 600;
     font-size: 16px;
     padding: 0.8rem 1rem;
-    border: 2px solid #f97316;
+    border: 2px solid #21E786;
     border-radius: 6px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -192,14 +192,14 @@
 }
 
 .submit-button:hover:not(:disabled) {
-    background-color: #f97316;
+    background-color:#21E786;
     color: white;
 }
 
 /* Style for disabled button */
 .submit-button:disabled {
-    background-color: #fdba74;
-    border-color: #fdba74;
+    background-color: #21E786;
+    border-color: #21E786;
     color: white;
     cursor: not-allowed;
 }

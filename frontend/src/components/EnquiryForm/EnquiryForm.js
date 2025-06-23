@@ -21,7 +21,7 @@ const EnquiryForm = () => {
   const courses = [
     "Select a Course",
     "Training Program",
-    "Call SUbscription",
+    "Call Subscription",
     "Online Course",
     "Portfolio",
     "Investment",
