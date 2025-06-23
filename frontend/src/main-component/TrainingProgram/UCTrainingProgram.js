@@ -82,9 +82,7 @@ const TrainingProgram = () => {
           padding: "39px",
           marginTop: "0",
         }}>
-        <h2
-          className="text-center fw-bold mb-4"
-          style={{ color: "#21E786" }}>
+        <h2 className="text-center fw-bold mb-4" style={{ color: "#21E786" }}>
           Detailed Comparison of Selected Plans
         </h2>
         <Table bordered responsive hover>
@@ -125,13 +123,14 @@ const TrainingProgram = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>About Institute & School Training:
-</title>
+        <title>
+          Colleges & Universities Training Program - Century Finance Limited
+        </title>
       </Helmet>
       <Navbar />
       <PageTitle
-        pageTitle="Training Program"
-        pagesub="Compare Plans"
+        pageTitle="Colleges & Universities Training Program"
+        pagesub="Colleges & Universities Training Program"
         bgImage="/bg-image/training.png"
       />
       <section style={{ width: "100%", padding: "20" }}>
@@ -151,8 +150,7 @@ const TrainingProgram = () => {
               color: "#1C1C1C",
               marginBottom: "16px",
             }}>
-           Master the Market with Century Finance Training Programs
-
+            Master the Market with Century Finance Training Programs
           </h1>
 
           <div
@@ -187,8 +185,7 @@ const TrainingProgram = () => {
               color: "#1C1C1C",
               marginTop: "40px",
             }}>
-        About College & Universities Training Program:
-
+            About College & Universities Training Program:
           </h2>
 
           <p
@@ -199,8 +196,24 @@ const TrainingProgram = () => {
               maxWidth: "1000px",
               margin: "0 auto",
             }}>
-           At Century Finance Limited, we believe that successful trading begins with the right education. Our comprehensive training program in equity market, commodity and foreign exchange are designed to help students at every level, especially those in their final year college and university. We offer the tactics, resources and self-assurance needed to end in the current fast- paced financial environment, regardless of your level of experience.</p>
-          <p>Our training programs emphasize instruction that is applicable to the workplace. We guarantee that each participant is completely equipped to comprehend, evaluate and act in the stock market with clarity and confidence by using immersive courses, real-time market simulations and advice from SEBI-certified professionals. Students who successfully complete the program are awarded a recognized digital certificate that witnesses their abilities and demonstrates their dedication to career advancement. </p>
+            At Century Finance Limited, we believe that successful trading
+            begins with the right education. Our comprehensive training program
+            in equity market, commodity and foreign exchange are designed to
+            help students at every level, especially those in their final year
+            college and university. We offer the tactics, resources and
+            self-assurance needed to end in the current fast- paced financial
+            environment, regardless of your level of experience.
+          </p>
+          <p>
+            Our training programs emphasize instruction that is applicable to
+            the workplace. We guarantee that each participant is completely
+            equipped to comprehend, evaluate and act in the stock market with
+            clarity and confidence by using immersive courses, real-time market
+            simulations and advice from SEBI-certified professionals. Students
+            who successfully complete the program are awarded a recognized
+            digital certificate that witnesses their abilities and demonstrates
+            their dedication to career advancement.{" "}
+          </p>
 
           <p
             style={{
@@ -244,19 +257,26 @@ const TrainingProgram = () => {
                     maxWidth: "1000px",
                     margin: "0 auto",
                   }}>
-                 At Century Finance Limited, Our stock market training courses are carefully crafted for final year students with clear goals to match their  present learning style and gearing up their  future professional goals. Here’s what each plan aims to deliver
+                  At Century Finance Limited, Our stock market training courses
+                  are carefully crafted for final year students with clear goals
+                  to match their present learning style and gearing up their
+                  future professional goals. Here’s what each plan aims to
+                  deliver
                 </p>
                 <li>
-                  ✅ <strong>Basic Plan:</strong>Tailored to connect classroom concepts with real world financial market practices.
-
+                  ✅ <strong>Basic Plan:</strong>Tailored to connect classroom
+                  concepts with real world financial market practices.
                 </li>
                 <li>
-                  ✅ <strong>Premium Plan:</strong>To enhance career readiness through hand-on-training, expert session and advance certification - ideal for finance job seekers.
-
+                  ✅ <strong>Premium Plan:</strong>To enhance career readiness
+                  through hand-on-training, expert session and advance
+                  certification - ideal for finance job seekers.
                 </li>
                 <li>
-                  ✅ <strong>Learning to Earning:</strong> To transform students into market ready professionals by providing practical skills, hands-on-training experience and a well-defined roadmap for a successful finance career.
-
+                  ✅ <strong>Learning to Earning:</strong> To transform students
+                  into market ready professionals by providing practical skills,
+                  hands-on-training experience and a well-defined roadmap for a
+                  successful finance career.
                 </li>
               </ul>
 
@@ -321,7 +341,11 @@ const TrainingProgram = () => {
                   color: "#155724",
                 }}>
                 <strong>
-                 Whether you're interested in the Equity Market training program to understand stock fundamentals, the Commodity market training program to explore physical asset trading, or the Foreign exchange training program for global currency markets, Century Finance equips you with eve
+                  Whether you're interested in the Equity Market training
+                  program to understand stock fundamentals, the Commodity market
+                  training program to explore physical asset trading, or the
+                  Foreign exchange training program for global currency markets,
+                  Century Finance equips you with eve
                 </strong>
               </div>
               <div

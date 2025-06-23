@@ -3,134 +3,22 @@ import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import Scrollbar from "../../components/scrollbar/scrollbar";
-import CourseSinglePage from "../CourseSinglePage/CTrainingProgramTabs/TrainingTab";
 import Footer from "../../components/footer/Footer";
-import { Container, Row, Col, Card, CardBody, Button, Table } from "reactstrap";
+import { Button } from "reactstrap"; // ✅ Fixed missing Button import
 import "./Training.css";
 
-const plans = {
-  basic: {
-    id: "basic",
-    name: "Basic Plan",
-    duration: "1 Day",
-    eligibility:
-      "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
-    exclusivity: "Only for College & Universities",
-    fees: "₹45,000 + GST",
-    topics: "Equity, Commodity, Foreign Exchange Market",
-    certification: "Digital Certification (Post-Assessment)",
-    features: "Real-time Market Exposure, Industry Awareness",
-    internship: "No",
-    placement: "No",
-    benefits: "Strengthens curriculum, boosts placement outcomes",
-  },
-  premium: {
-    id: "premium",
-    name: "Premium Plan",
-    duration: "2 Days",
-    eligibility:
-      "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
-    exclusivity: "Only for College & Universities",
-    fees: "₹85,000 + GST",
-    topics:
-      "Equity, Commodity, Foreign Exchange Market, Mutual Funds, MTF, Banex, SGP, Portfolio Planning",
-    certification: "Digital Certification (Post-Assessment)",
-    features:
-      "Strategy Workshops, Real Market Simulations, 1:1 Mentorship, Assessment",
-    internship: "No",
-    placement: "No",
-    benefits: "Adds value to academics, improves placement reputation",
-  },
-  learning: {
-    id: "learning",
-    name: "Learning to Earning Model",
-    duration: "Multi Phase: 2 Days + 2 month internship + Placement Support",
-    eligibility:
-      "Final Year Students (B.Com, BBA, MBA, BA.Eco, Finance stream)",
-    exclusivity: "Only for College & Universities",
-    fees: "₹1,40,000 + GST",
-    topics:
-      "All modules from Premium plan in depth + Internship + Placement Training",
-    certification: "Digital Certification + Certified Internship Certificate",
-    features:
-      "Internship, Live Trading, Placement Guidance, Advanced Training, Direct Hiring Opportunities",
-    internship: "2 Month Internship with Weekly Mentorship",
-    placement: "Yes + Interview Round + Direct Hiring for Top Performers",
-    benefits: "Long-term career impact, campus-to-corporate model",
-  },
-};
-
 const TrainingProgram = () => {
-  const [selectedPlans, setSelectedPlans] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleToggle = (id) => {
-    if (selectedPlans.includes(id)) {
-      setSelectedPlans(selectedPlans.filter((plan) => plan !== id));
-    } else if (selectedPlans.length < 3) {
-      setSelectedPlans([...selectedPlans, id]);
-    }
-  };
-
-  const renderCompareTable = () => {
-    if (selectedPlans.length < 1) return null;
-
-    return (
-      <div
-        style={{
-          background: "#fff",
-          padding: "39px",
-          marginTop: "0",
-        }}>
-        <h2
-          className="text-center fw-bold mb-4"
-          style={{ color: "#21E786" }}>
-          Detailed Comparison of Selected Plans
-        </h2>
-        <Table bordered responsive hover>
-          <thead style={{ backgroundColor: "#21E786", color: "#fff" }}>
-            <tr>
-              <th>Feature</th>
-              {selectedPlans.map((planId) => (
-                <th key={planId}>{plans[planId].name}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              "duration",
-              "eligibility",
-              "exclusivity",
-              "fees",
-              "topics",
-              "certification",
-              "features",
-              "internship",
-              "placement",
-              "benefits",
-            ].map((key) => (
-              <tr key={key}>
-                <th>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
-                {selectedPlans.map((id) => (
-                  <td key={id}>{plans[id][key]}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
-    );
-  };
 
   return (
     <Fragment>
       <Helmet>
-        <title>Training Program - Century Finance Limited</title>
+        <title>Corporate Training Program - Century Finance Limited</title>
       </Helmet>
       <Navbar />
       <PageTitle
-        pageTitle="Training Program"
-        pagesub="Compare Plans"
+        pageTitle="Corporate Training Program"
+        pagesub="Corporate Training Program"
         bgImage="/bg-image/training.png"
       />
       <section style={{ width: "100%", padding: "20" }}>
@@ -365,61 +253,6 @@ const TrainingProgram = () => {
         </div>
       </section>
 
-      <CourseSinglePage />
-
-      <Container className="py-5">
-        <h2 className="text-center mb-4 fw-bold" style={{ color: "#21E786" }}>
-          Select Plans to Compare
-        </h2>
-        <Row className="g-4 justify-content-center">
-          {Object.values(plans).map((plan) => (
-            <Col md={4} key={plan.id}>
-              <Card
-                className="shadow-sm"
-                style={{
-                  border: selectedPlans.includes(plan.id)
-                    ? "2px solid #21E786"
-                    : "1px solid #dee2e6",
-                }}>
-                <CardBody>
-                  <div className="form-check mb-2">
-                    <input
-                      type="checkbox"
-                      id={plan.id}
-                      className="form-check-input"
-                      checked={selectedPlans.includes(plan.id)}
-                      onChange={() => handleToggle(plan.id)}
-                    />
-                    <label
-                      htmlFor={plan.id}
-                      className="form-check-label fw-bold">
-                      Compare
-                    </label>
-                  </div>
-                  <h5 className="fw-bold" style={{ color: "#21E786" }}>
-                    {plan.name}
-                  </h5>
-                </CardBody>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-
-        {selectedPlans.length > 0 && (
-          <div className="text-center mt-4">
-            <Button
-              style={{
-                backgroundColor: "#21E786",
-                borderColor: "#21E786",
-                color: "#fff",
-              }}
-              className="px-5 rounded-pill">
-              Compare Plans ({selectedPlans.length})
-            </Button>
-          </div>
-        )}
-      </Container>
-      {renderCompareTable()}
       <Footer />
       <Scrollbar />
     </Fragment>
