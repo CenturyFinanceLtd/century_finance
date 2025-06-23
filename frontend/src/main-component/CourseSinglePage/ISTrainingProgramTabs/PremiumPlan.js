@@ -490,14 +490,38 @@ whiteBox: {
          
 
           {/* Program Details */}
-          <div style={styles.contentSection}>
+           <div style={styles.contentSection}>
             <h2 style={styles.sectionHeading}>Program Details</h2>
-            <ul style={styles.unorderedList}>
-              <li style={styles.listItem}><span style={styles.checkIcon}>✔</span>Comprehensive 1 Day Session: An organized 3 hours program that provides a thorough grasp of real-world trading conditions by delving deeply into foreign exchange, commodities and equity market</li>
-              <li style={styles.listItem}><span style={styles.checkIcon}>✔</span>Exposure To The Live Market:Through the observation and analysis of real-time trading data, students acquire a practical understanding of trend analysis, market behavior and decision making procedures.</li>
-              <li style={styles.listItem}><span style={styles.checkIcon}>✔</span> Expert Led Session: The curriculum, which is taught by seasoned financial experts, offers individualized mentoring to allay students' concerns and provide guidance during the session. </li>
-              <li style={styles.listItem}><span style={styles.checkIcon}>✔</span>Advanced Strategy Training:It improves analytical thinking and market interpretation by introducing technical techniques such as gap theory, volume analysis and candlestick patterns.</li>
-            </ul>
+            <div
+              style={{
+                ...styles.alertCommon,
+                backgroundColor: "#ffffff",
+                color: "#rgb(0 0 0)",
+                border: "1px solid #dddddd",
+              }}
+              className="alert alert-light"
+            >
+              <ul style={styles.unorderedList} className="mb-0">
+                <li style={styles.listItem}>
+                  <span style={styles.checkIcon}>✔</span>
+                 Designed for Final Year Students, only for Colleges and Universities
+                </li>
+                <li style={styles.listItem}>
+                  <span style={styles.checkIcon}>✔</span>
+                 BBA,B.Com, BA-Economics, MBA or Finance related streams are eligible 
+
+                </li>
+                <li style={styles.listItem}>
+                  <span style={styles.checkIcon}>✔</span>
+                 Program fees:- Rs.85,000 per batch + GST
+
+                </li>
+                <li style={styles.listItem}>
+                  <span style={styles.checkIcon}>✔</span>
+                 Digital Certificate awarded on completion of Training.
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Program Overview with toggle */}

@@ -95,7 +95,7 @@ const About = (props) => {
                   {[
                     { icon: "training-1", count: 150, label: "Courses" },
                     { icon: "video-lesson", count: 100, label: "Demo Classes" },
-                    { icon: "team", count: 100, label: "k Students" },
+                    { icon: "team", count: 100, label: " Students" },
                     { icon: "training", count: 50, label: "Mentors" },
                   ].map((item, index) => (
                     <div className="wpo-about-features-item" key={index}>
@@ -109,7 +109,7 @@ const About = (props) => {
                       </div>
                       <div className="wpo-about-features-text">
                         <h5 style={{ color: "#010502" }}>
-                          <CountUp end={item.count} enableScrollSpy />+{" "}
+                          <CountUp end={item.count} enableScrollSpy />k+{" "}
                           {item.label}
                         </h5>
                       </div>
