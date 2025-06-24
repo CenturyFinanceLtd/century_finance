@@ -32,7 +32,7 @@ const BasicPlan = ({ onBookNow }) => {
 
       color: "#ffffff", // Light text color for contrast
 
-      padding: "0", // Inner padding will be handled by sub-sections
+      padding: "50px", // Inner padding will be handled by sub-sections
 
       borderRadius: "8px",
 
@@ -324,9 +324,9 @@ const BasicPlan = ({ onBookNow }) => {
 
       flexWrap: "wrap",
 
-      gap: "10px",
+      gap: "15px",
 
-      marginBottom: "25px",
+      marginBottom: "20px",
 
     },
 
@@ -402,7 +402,7 @@ const BasicPlan = ({ onBookNow }) => {
 
       fontWeight: "bold",
 
-      color: "rgb(0 0 0)", // Ensure bold text stands out
+      color: "rgb(255 255 255)", // Ensure bold text stands out
 
     },
 
@@ -585,6 +585,21 @@ whiteBox: {
                   The program is cost-effective, flexible and adaptable, making it a practical addition for schools and institutes of various sizes.
                 </li>
               </ul>
+               <div style={{ ...styles.alertCommon, ...styles.alertLight }} className="alert alert-light border mt-4">
+                  <h4 style={{ ...styles.sectionHeading, fontSize: '1.2em' }}>Partner With Us</h4>
+                  <p style={styles.paragraph}>
+                    Give your students the <strong style={styles.strongText}>competitive edge</strong> they need in today's finance industry.
+                  </p>
+                  <p style={styles.paragraph}>
+                    📧 <strong style={styles.strongText}>Email:</strong> <a href="mailto:customerservice@centuryfinancelimited.com" style={styles.alertLink}>customerservice@centuryfinancelimited.com</a>
+                  </p>
+                  <p style={styles.paragraph}>
+                    🌐 <strong style={styles.strongText}>Website:</strong> <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={styles.alertLink}>www.centuryfinancelimited.com</a>
+                  </p>
+                  <p style={styles.noteText}>
+                    *Note: Limited slots are available — advance booking is highly recommended.*
+                  </p>
+                </div>
             </>
           )}
 

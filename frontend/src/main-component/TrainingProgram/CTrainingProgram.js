@@ -56,7 +56,7 @@ const CorporateTraining = ({ onBookNow }) => {
       padding: "15px",
       display: "flex",
       flexWrap: "wrap",
-      gap: "15px",
+      gap: "110px",
       fontSize: "14px",
       color: "#fff",
       marginBottom: "30px",

@@ -260,9 +260,9 @@ const PremiumPlan = ({ onBookNow }) => {
 
       fontWeight: "500",
 
-      backgroundColor: "#2a2a2a", // Slightly lighter dark background for alerts
+      backgroundColor: "#054509", // Slightly lighter dark background for alerts
 
-      color: "#ffffff",
+      color: "#054509",
 
       fontFamily: '"Open Sans", sans-serif',
 
@@ -398,7 +398,7 @@ const PremiumPlan = ({ onBookNow }) => {
 
       fontWeight: "bold",
 
-      color: "rgb(0 0 0)", // Ensure bold text stands out
+      color: "rgb(255 255 255)", // Ensure bold text stands out
 
     },
 
@@ -504,21 +504,25 @@ whiteBox: {
               <ul style={styles.unorderedList} className="mb-0">
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>
-                 Designed for Final Year Students, only for Colleges and Universities
-                </li>
-                <li style={styles.listItem}>
-                  <span style={styles.checkIcon}>✔</span>
-                 BBA,B.Com, BA-Economics, MBA or Finance related streams are eligible 
+                           Comprehensive 1 Day Session: An organized 3 hours program that provides a thorough grasp of real-world trading conditions by delving deeply into foreign exchange, commodities and equity markets. 
 
                 </li>
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>
-                 Program fees:- Rs.85,000 per batch + GST
+                           Exposure To The Live Market: Through the observation and analysis of real-time trading data, students acquire a practical understanding of trend analysis, market behavior and decision making procedures.
+
 
                 </li>
                 <li style={styles.listItem}>
                   <span style={styles.checkIcon}>✔</span>
-                 Digital Certificate awarded on completion of Training.
+                           Expert Led Session: The curriculum, which is taught by seasoned financial experts, offers individualized mentoring to allay students' concerns and provide guidance during the session. 
+
+
+                </li>
+                <li style={styles.listItem}>
+                  <span style={styles.checkIcon}>✔</span>
+                           Advanced Strategy Training: It improves analytical thinking and market interpretation by introducing technical techniques such as gap theory, volume analysis and candlestick patterns.
+
                 </li>
               </ul>
             </div>

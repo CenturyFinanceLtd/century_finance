@@ -50,8 +50,8 @@ const TrainingTab = ({ EventsDetails }) => {
       id: "1",
       title: "Basic Plan",
       IconComponent: IconBasicPlan,
-      description: "Fee: Just 45,000 INR",
-      activeDescription: "Fee: 45,000 INR",
+      description: "Fee: Just 10,000 INR",
+      activeDescription: "Fee: 10,000 INR",
       price: 45000, // Actual numeric price
       PlanComponent: BasicPlan, // Component to render for this tab's content
     },
@@ -59,8 +59,8 @@ const TrainingTab = ({ EventsDetails }) => {
       id: "2",
       title: "Premium Plan",
       IconComponent: IconPremiumPlan,
-      description: "Fee: Just 85,000 INR",
-      activeDescription: "Fee: Just 85,000 INR",
+      description: "Fee: Just 14,000 INR",
+      activeDescription: "Fee: Just 14,000 INR",
       price: 85000,
       PlanComponent: PremiumPlan,
     },

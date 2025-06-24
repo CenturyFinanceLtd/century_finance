@@ -311,9 +311,9 @@ const TrainingProgram = () => {
                   link: "/training-program/universities-and-colleges", // ✅ corrected
                 },
                 {
-                  title: "Schools & Institutes Training Program",
+                  title: "Institutes & SchoolsTraining Program",
                   description:
-                    "Specialized programs for final-year students in finance and management.",
+                    "Specialized programs for students in finance and management.",
                   link: "/training-program/institutes-and-schools", // ✅ correct
                 },
                 {
