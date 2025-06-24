@@ -134,34 +134,51 @@ const Header = (props) => {
                         About
                       </Link>
                     </li>
-                    <li>
-                      <Link onClick={ClickHandler} to="/training-program">
-                        Training Program
+                    <li className="menu-item-has-children">
+                      <Link onClick={ClickHandler} to="#">
+                        Education <i className="ti-angle-down"></i>
                       </Link>
+                      <ul className="sub-menu">
+                        <li>
+                          <Link onClick={ClickHandler} to="/training-program">
+                            Training Program
+                          </Link>
+                        </li>
+                        <li>
+                          <Link onClick={ClickHandler} to="/online-courses">
+                            Online Courses
+                          </Link>
+                        </li>
+                      </ul>
                     </li>
-                    <li>
-                      <Link onClick={ClickHandler} to="/online-courses">
-                        Online Courses
+
+                    <li className="menu-item-has-children">
+                      <Link onClick={ClickHandler} to="#">
+                        Plans <i className="ti-angle-down"></i>
                       </Link>
+                      <ul className="sub-menu">
+                        <li>
+                          <Link
+                            onClick={ClickHandler}
+                            to="/calls-subscription-plan">
+                            Calls Subscription Plan
+                          </Link>
+                        </li>
+
+                        <li>
+                          <Link onClick={ClickHandler} to="/investment">
+                            Investment
+                          </Link>
+                        </li>
+                      </ul>
                     </li>
+
                     <li>
                       <Link onClick={ClickHandler} to="/portfolio">
                         Portfolio
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        onClick={ClickHandler}
-                        to="/calls-subscription-plan">
-                        Calls Subscription Plan
-                      </Link>
-                    </li>
 
-                    <li>
-                      <Link onClick={ClickHandler} to="/investment">
-                        Investment
-                      </Link>
-                    </li>
                     <li>
                       <Link onClick={ClickHandler} to="/finance-services">
                         Finance
@@ -187,16 +204,6 @@ const Header = (props) => {
                           <Link onClick={ClickHandler} to="/foreign-market">
                             Foreign Market
                           </Link>
-                          {/* </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/gold">
-                            
-                          </Link>
-                        </li>
-                        <li>
-                          <Link onClick={ClickHandler} to="/currencies">
-                           
-                          </Link> */}
                         </li>
                       </ul>
                     </li>
