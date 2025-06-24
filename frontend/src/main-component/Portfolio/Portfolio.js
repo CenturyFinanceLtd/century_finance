@@ -240,15 +240,15 @@ const PortfolioContent = () => {
           </div>
           <ul className="list-disc pl-6 space-y-3 text-sm text-gray-800 max-w-xl mx-auto mb-8">
             <li>
-              💼 <strong>Fully Managed Demo Portfolio:</strong> Try our
+               <strong>Fully Managed Demo Portfolio:</strong> Try our
               professional handling for just ₹2000, valid for 15 days.
             </li>
             <li>
-              🔍 <strong>Transparency First:</strong> No commitment
+               <strong>Transparency First:</strong> No commitment
               required—move to full service only if satisfied.
             </li>
             <li>
-              ✅ <strong>Clarity Guaranteed:</strong> We help you understand how
+               <strong>Clarity Guaranteed:</strong> We help you understand how
               real investment management works—without risk.
             </li>
           </ul>
