@@ -150,7 +150,7 @@ const BasicPlan = ({ onBookNow }) => {
       color: "#3498db",
     },
     alertSuccess: {
-      backgroundColor: "#2a4a2a", // Darker success tone
+      backgroundColor: "#043608", // Darker success tone
       color: "#2ecc71",
     },
     alertLight: {
@@ -276,6 +276,14 @@ whiteBox: {
             </div>
           </div>
 
+          <div style={styles.contentSection}>
+  <div style={styles.whiteBox}>
+    <h2 style={styles.sectionHeading}>About Basic Plan</h2>
+    
+    <strong>It’s a one day, on-campus training program exclusively tailored for final-year students. It offers a practical exposure to equity, commodity and foreign exchange markets, delivered by experienced trainers.</strong>
+  </div>
+          
+
           {/* Objective Section */}
           {/* Objective Section */}
 <div style={styles.contentSection}>
@@ -330,12 +338,7 @@ whiteBox: {
 
           {/* Program Overview (with Read More/Show Less) */}
          {/* About Basic Plan */}
-<div style={styles.contentSection}>
-  <div style={styles.whiteBox}>
-    <h2 style={styles.sectionHeading}>About Basic Plan</h2>
-    
-    <strong>It’s a one day, on-campus training program exclusively tailored for final-year students. It offers a practical exposure to equity, commodity and foreign exchange markets, delivered by experienced trainers.</strong>
-  </div>
+
 
 
 

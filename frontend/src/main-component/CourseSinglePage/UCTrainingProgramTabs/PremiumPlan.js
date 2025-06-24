@@ -136,7 +136,7 @@ const PremiumPlan = ({ onBookNow }) => {
       marginBottom: '1.5rem',
       border: '1px solid #444444', // Subtle border
       fontWeight: '500',
-      backgroundColor:'rgb(42, 74, 42)', // Slightly lighter dark background for alerts
+      backgroundColor:'#043608', // Slightly lighter dark background for alerts
       color: '#ffffff',
       fontFamily: '"Open Sans", sans-serif',
     },
@@ -149,7 +149,7 @@ const PremiumPlan = ({ onBookNow }) => {
       color: '#3498db',
     },
     alertSuccess: {
-      backgroundColor: '#', // Darker success tone
+      backgroundColor: '#043608', // Darker success tone
       color: '#2ecc71',
     },
     alertLight: {
@@ -381,7 +381,7 @@ const PremiumPlan = ({ onBookNow }) => {
                     </a>
                   </p>
                   <p style={{ ...styles.noteText, marginTop: '1rem' }}>
-                    *Note: Limited slots are available — advance booking is highly recommended.*
+                    Note: Limited slots are available — advance booking is highly recommended.
                   </p>
                 </div>
 
