@@ -15,8 +15,17 @@ const TrainingProgram = () => {
     <Fragment>
       <Helmet>
         <title>
-          Institute & School Training Program - Century Finance Limited
+          Top Financial Equity & Commodity Market Training for Schools &
+          Colleges | Century Finance
         </title>
+        <meta
+          name="description"
+          content="Empower your students with expert-led equity, commodity, and global market training. Partner with Century Finance to build the future of finance education."
+        />
+        <meta
+          name="keywords"
+          content="Financial Market Training Program,   Finance Market Training Program for Institutes, Finance Market Training Program for Colleges, Finance Market Training"
+        />
       </Helmet>
       <Navbar />
       <PageTitle

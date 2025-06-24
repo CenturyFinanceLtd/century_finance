@@ -124,8 +124,17 @@ const TrainingProgram = () => {
     <Fragment>
       <Helmet>
         <title>
-          Colleges & Universities Training Program - Century Finance Limited
+          Finance Training Programs for Universities & Colleges | Century
+          Finance
         </title>
+        <meta
+          name="description"
+          content="Join hands with Century Finance to offer certified stock market & global trading training to your students. Designed for universities & colleges across India."
+        />
+        <meta
+          name="keywords"
+          content="Finance Training Programs, Finance Training Programs College & Universities, Training Programs College, Century Finance Training, Finance Universities Training Program"
+        />
       </Helmet>
       <Navbar />
       <PageTitle

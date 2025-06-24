@@ -16,7 +16,18 @@ const TrainingProgram = () => {
     return (
       <Fragment>
         <Helmet>
-          <title>Training Program - Century Finance Limited</title>
+          <title>
+            Best Training Program Equity, Commodity & Foreign Exchange | Century
+            Finance
+          </title>
+          <meta
+            name="description"
+            content="Master equity, commodity, and foreign exchange strategies with Century Finance Limited expert-led training programs. Boost your career in the financial markets today!"
+          />
+          <meta
+            name="keywords"
+            content="Equity Market Training Program, Commodity market Training Program, Foreign  Exchnage Training Program, Equity Market Training, Commodity Training, Foreign Exchange Training"
+          />
         </Helmet>
         <Navbar />
         <PageTitle
