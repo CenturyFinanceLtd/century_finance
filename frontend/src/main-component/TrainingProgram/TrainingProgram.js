@@ -316,7 +316,7 @@ const TrainingProgram = () => {
               style={{ padding: "0 20px" }}>
               {[
                 {
-                  title: "University and Colleges Training Program",
+                  title: "Universities and Colleges Training Program",
                   description:
                     "End-to-end curriculum integration and placement-aligned programs.",
                   link: "/training-program/universities-and-colleges", // ✅ corrected

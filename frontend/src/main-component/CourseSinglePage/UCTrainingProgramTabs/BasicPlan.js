@@ -255,7 +255,7 @@ whiteBox: {
                 marginBottom: "0",
               }}
               className="alert alert-info">
-              <strong style={styles.strongText}>
+              <strong style={{color:"#ffffff"}}>
                 Join with Century Finance Limited
               </strong>
               <br />

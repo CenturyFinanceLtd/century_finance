@@ -237,6 +237,27 @@ const CorporateTraining = ({ onBookNow }) => {
                 control and minimize financial risks with confidence.
               </li>
             </ul>
+            <div style={{ ...styles.alertCommon, ...styles.alertLight }} className="alert alert-light border mt-4">
+                  <h4 style={{ ...styles.sectionHeading, fontSize: '1.2em', marginBottom: '10px' }}>Partner With Us</h4>
+                  <p style={styles.paragraph}>
+                    Give your students the <strong style={styles.strongText}>competitive edge</strong> they need in today's finance industry.
+                  </p>
+                  <p style={{ ...styles.paragraph, marginBottom: "5px" }}>
+                    📧 <strong style={styles.strongText}>Email:</strong>{" "}
+                    <a href="mailto:customerservice@centuryfinancelimited.com" style={styles.alertLink}>
+                      customerservice@centuryfinancelimited.com
+                    </a>
+                  </p>
+                  <p style={styles.paragraph}>
+                    🌐 <strong style={styles.strongText}>Website:</strong>{" "}
+                    <a href="https://www.centuryfinancelimited.com/" target="_blank" rel="noopener noreferrer" style={styles.alertLink}>
+                      https://www.centuryfinancelimited.com/
+                    </a>
+                  </p>
+                  <p style={{ ...styles.noteText, marginTop: '1rem' }}>
+                    Note: Limited slots are available — advance booking is highly recommended.
+                  </p>
+                </div>
           </div>
         </div>
       </section>

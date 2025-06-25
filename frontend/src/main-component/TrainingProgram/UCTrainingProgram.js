@@ -19,7 +19,7 @@ const plans = {
     fees: "₹45,000 + GST",
     topics: "Equity, Commodity, Foreign Exchange Market",
     certification: "Digital Certification (Post-Assessment)",
-    features: "Real-time Market Exposure, Industry Awareness",
+    features: "Real-time Market Exspore,u Industry Awareness",
     internship: "No",
     placement: "No",
     benefits: "Strengthens curriculum, boosts placement outcomes",
@@ -213,7 +213,13 @@ const TrainingProgram = () => {
             self-assurance needed to end in the current fast- paced financial
             environment, regardless of your level of experience.
           </p>
-          <p>
+          <p style={{
+              fontSize: "1.1rem",
+              color: "#444",
+              lineHeight: "1.8",
+              maxWidth: "1000px",
+              margin: "0 auto",
+            }}>
             Our training programs emphasize instruction that is applicable to
             the workplace. We guarantee that each participant is completely
             equipped to comprehend, evaluate and act in the stock market with
