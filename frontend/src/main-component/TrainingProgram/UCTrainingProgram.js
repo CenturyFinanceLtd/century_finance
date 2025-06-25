@@ -194,7 +194,7 @@ const TrainingProgram = () => {
               color: "#1C1C1C",
               marginTop: "40px",
             }}>
-            About College & Universities Training Program:
+            About Colleges & Universities Training Program:
           </h2>
 
           <p

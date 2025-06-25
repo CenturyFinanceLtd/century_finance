@@ -517,11 +517,11 @@ whiteBox: {
                   </h4>
                   <p style={styles.paragraph}>
                     Give your students the{" "}
-                    <strong style={styles.strongText}>competitive edge</strong>{" "}
+                    <strong style={{color:"white"}}>competitive edge</strong>{" "}
                     they need in today's finance industry.
                   </p>
                   <p style={{ ...styles.paragraph, marginBottom: "5px" }}>
-                    📧 <strong style={styles.strongText}>Email:</strong>{" "}
+                    📧 <strong style={{color:"#ffffff"}}>Email:</strong>{" "}
                     <a
                       href="mailto:customerservice@centuryfinancelimited.com"
                       style={styles.alertLink}>
@@ -529,7 +529,7 @@ whiteBox: {
                     </a>
                   </p>
                   <p style={styles.paragraph}>
-                    🌐 <strong style={styles.strongText}>Website:</strong>{" "}
+                    🌐 <strong style={{color:"white"}}>Website:</strong>{" "}
                     <a
                       href="https://www.centuryfinancelimited.com/"
                       target="_blank"
