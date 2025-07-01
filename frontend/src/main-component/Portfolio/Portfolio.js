@@ -77,7 +77,7 @@ const plans = [
   {
     id: "legacyElite",
     title: "Legacy Elite Portfolio",
-    portfolioSize: "₹25 Lakh – ₹1 Crore",
+    portfolioSize: "₹25 Lakh – ₹50 Lakh",
     annualFee: "₹65,000 / Year",
     description: (
       <>
