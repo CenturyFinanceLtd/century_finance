@@ -182,7 +182,7 @@ const Footer = (props) => {
                   {/* Updated year to current year 2025 */}©{" "}
                   {new Date().getFullYear()}{" "}
                   <Link onClick={ClickHandler} to="/">
-                    Novacon Infrastructure & Trading Private Limited
+                    Century Finance Limited
                   </Link>
                   . All rights reserved.
                 </li>
