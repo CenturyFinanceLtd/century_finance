@@ -104,7 +104,7 @@ const EliteCourse = () => {
           {/* Learnings */}
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Global Indices: Nifty 50, Bank Nifty, Dow Jones, DAX & more</li>
               <li>Core Technicals: RSI, MACD, Bollinger Bands, Candlestick Patterns</li>
               <li>Sector Deep-Dives: Daily analysis of FMCG, Pharma, IT, and Auto</li>
@@ -119,7 +119,7 @@ const EliteCourse = () => {
               <li>Weekly Webinars + Personalized Mentorship</li>
               <li>Instant Signal Access + 1-Year Premium Workshop Entry</li>
               <li>Lifetime Learning Access + Entry to Elite Investor Circle</li>
-            </ul>
+            </ol>
           </div>
 
           {/* Modules */}

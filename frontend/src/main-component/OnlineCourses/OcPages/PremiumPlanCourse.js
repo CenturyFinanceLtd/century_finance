@@ -103,7 +103,7 @@ const PremiumPlanCourse = () => {
           {/* Learnings */}
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You’ll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index & Global Insights: Nifty 50, Bank Nifty, Midcap, Fin Nifty, Dow Jones, DAX, FTSE</li>
               <li>Technical Analysis: RSI, MACD, Bollinger Bands, candlestick formations</li>
               <li>Daily Sector Recaps: FMCG, Pharma, IT, Auto</li>
@@ -119,7 +119,7 @@ const PremiumPlanCourse = () => {
               <li>Exclusive Access to Century Investors Community</li>
               <li>Weekly Trading Psychology Webinars and Live Discussions</li>
               <li>Watchlist Creation, Calendar Mapping, and Technical Review Sessions</li>
-            </ul>
+            </ol>
           </div>
 
           {/* Modules */}

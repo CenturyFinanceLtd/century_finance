@@ -100,7 +100,7 @@ const GlobalAnalystCourse = () => {
 
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index Mastery: Nifty50, Bank Nifty, Midcap, Dow Jones, DAX, FTSE</li>
               <li>Global Market Insights: India, Europe and US markets</li>
               <li>Sector Analysis & Recaps: Focus on Auto, Pharma & FMCG</li>
@@ -114,7 +114,7 @@ const GlobalAnalystCourse = () => {
               <li>Foreign Market & Commodities: Gold, Oil, USD-INR</li>
               <li>Global Asset Correlation</li>
               <li>Moving Averages as Dynamic Support/Resistance</li>
-            </ul>
+            </ol>
           </div>
 
           <div>

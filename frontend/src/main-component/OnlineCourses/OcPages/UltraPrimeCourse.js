@@ -100,7 +100,7 @@ const UltraPrimeCourse = () => {
 
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You’ll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index & Global Insights: Nifty 50, Bank Nifty, Midcap, Fin Nifty, Dow Jones, DAX, FTSE</li>
               <li>Technical Analysis: RSI, MACD, Bollinger Bands, candlestick formations</li>
               <li>Daily sector Recaps: FMCG, Pharma, IT, Auto</li>
@@ -115,7 +115,7 @@ const UltraPrimeCourse = () => {
               <li>Weekly Webinars + 1-on-1 Strategy Mentorship</li>
               <li>Priority Support + Real-Time Signals</li>
               <li>Consolidation Mastery: Spot breakout zones with precision</li>
-            </ul>
+            </ol>
           </div>
 
           <div>

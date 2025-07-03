@@ -103,7 +103,7 @@ const MarketMasterCourse = () => {
           {/* Learnings */}
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index Mastery: Nifty 50, Bank Nifty, Fin Nifty, Midcap, Dow Jones, DAX, FTSE</li>
               <li>Global Market Insights: Comprehensive analysis of the European, American and Indian Market</li>
               <li>Daily Recaps & Sector Analysis (FMCG, IT, Pharma, Auto)</li>
@@ -115,7 +115,7 @@ const MarketMasterCourse = () => {
               <li>Business Cycle Mastery and sector rotation</li>
               <li>Monthly Market Outlooks & Customized Watchlist: Tools for Strategic Execution</li>
               <li>Live Learning: 2x Q&A + 3 Live trading sessions every month</li>
-            </ul>
+            </ol>
           </div>
 
           {/* Modules */}

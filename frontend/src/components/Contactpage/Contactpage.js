@@ -22,7 +22,7 @@ const Contactpage = () => {
                         <h2>Address</h2>
                         <p>
                           Century Finance Limited Office 57/A, 2nd Floor
-                          Mahindra Chamber Dr. D N Road Fort, Mumbai 400 001
+                          Mahindra Chamber Dr. D N Road Fort, Mumbai 400001
                         </p>
                       </div>
                     </div>

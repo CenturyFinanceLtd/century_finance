@@ -103,7 +103,7 @@ const TraderProCourse = () => {
           {/* Learnings */}
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Master major indices: Nifty50, Bank Nifty, Midcap, Fin Nifty, Dow Jones, DAX, FTSE</li>
               <li>Global market dynamics: India, Europe, US</li>
               <li>Daily sectoral recaps: Auto, IT, Pharma, FMCG</li>
@@ -115,7 +115,7 @@ const TraderProCourse = () => {
               <li>Risk management tools: SL, 1% Rule, position sizing</li>
               <li>Bullish/bearish patterns and emotion-based trading insights</li>
               <li>Live Learning: 2x Q&A + 3 Live trading sessions every month</li>
-            </ul>
+            </ol>
           </div>
 
           {/* Modules */}

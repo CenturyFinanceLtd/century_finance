@@ -100,7 +100,7 @@ const ExplorerCourse = () => {
 
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index Insights: Bank Nifty, Nifty 50, Midcap, Dow Jones, Dollar Index, CSA & More</li>
               <li>Global Market Overview: India, Europe & US</li>
               <li>Daily market summary & Sectoral Analysis (Auto, Pharma, IT, FMCG)</li>
@@ -110,7 +110,7 @@ const ExplorerCourse = () => {
               <li>Global Economic Calendar Insights</li>
               <li>Breakout & Breakdown Patterns - Spot Games - Changing Price Moves</li>
               <li>How to go beyond trading & build a complete financial mindset</li>
-            </ul>
+            </ol>
           </div>
 
           <div>

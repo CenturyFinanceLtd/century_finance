@@ -104,7 +104,7 @@ const IndexWizardCourse = () => {
           {/* Learnings */}
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index Deep Dive: Master Indices like Nifty50, Bank Nifty, Fin Nifty, Dow Jones, DAX, FTSE</li>
               <li>Global Market Insights: Analyze movements from India, Europe and US</li>
               <li>Sectoral Analysis: Real-time recaps from Auto, Pharma, IT, FMCG</li>
@@ -116,7 +116,7 @@ const IndexWizardCourse = () => {
               <li>Mock Trading Platform Access: Practice and sharpen skills in real-time</li>
               <li>Monthly Outlook & Custom Watchlist: Stay ahead of trends with strategic planning</li>
               <li>Live Learning: 2x Q&A + 3 Live trading sessions every month</li>
-            </ul>
+            </ol>
           </div>
 
           {/* Modules */}

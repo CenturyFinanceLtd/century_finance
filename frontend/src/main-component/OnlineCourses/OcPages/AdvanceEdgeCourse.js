@@ -100,7 +100,7 @@ const AdvanceEdgeCourse = () => {
 
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index Insights: Bank Nifty, Nifty 50, Midcap, Dow Jones, Dollar Index, CSA & More</li>
               <li>Global Market Overview: India, Europe & US</li>
               <li>Daily market summary & Sectoral Analysis (Auto, Pharma, IT, FMCG)</li>
@@ -113,7 +113,7 @@ const AdvanceEdgeCourse = () => {
               <li>Basics about Candlesticks</li>
               <li>Bullish and Bearish Patterns - Read Market Psychology</li>
               <li>2x Live Q&A Sessions with Market Analysts</li>
-            </ul>
+            </ol>
           </div>
 
           <div>

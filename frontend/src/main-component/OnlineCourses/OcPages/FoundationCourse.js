@@ -101,12 +101,12 @@ const FoundationCourse = () => {
 
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "0.75rem", color: "#1f2937" }}>What You'll Learn</h3>
-            <ul style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
+            <ol style={{ paddingLeft: "1rem", color: "#374151", fontSize: "1rem", lineHeight: "1.75rem" }}>
               <li>Index function and Market fundamentals</li>
               <li>Interaction between regional and international market</li>
               <li>Relationship indicators and global movements</li>
               <li>Key terms used in international and Indian Stock Markets</li>
-            </ul>
+            </ol>
           </div>
 
           <div>
