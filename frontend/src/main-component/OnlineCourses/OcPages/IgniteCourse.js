@@ -78,7 +78,7 @@ const IgniteCourse = () => {
               }}
             >
               <span><strong>Fee:</strong> ₹3,000 + GST</span>
-              <span><strong>Duration:</strong> 3 Weeks</span>
+              <span><strong>Duration:</strong> 4 Weeks</span>
               <span><strong>Installments:</strong> 3 EMIs</span>
               <span><strong>Certification:</strong> SEBI-Certified</span>
             </div>
