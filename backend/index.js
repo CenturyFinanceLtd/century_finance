@@ -19,6 +19,10 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.status(200).json({ status: 'ok', message: 'Century Finance API' });
+});
+
 // MongoDB connection
 mongoose.connect('mongodb+srv://centuryfinanceltd1974_db_user:btReK68irFQvFGVK@cfldatabase.gnznryq.mongodb.net/?retryWrites=true&w=majority&appName=CFLdatabase', {
     useNewUrlParser: true,

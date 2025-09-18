@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import PageTitle from '../components/pagetitle/PageTitle';
 import Footer from '../components/footer';
+import { API_BASE } from '../utils/api';
 
 function TagPage() {
   const { tag } = useParams();
@@ -11,7 +12,7 @@ function TagPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+  const API_BASE_URL = API_BASE;
   const api = useMemo(() => ({
     async getJson(path) {
       try {

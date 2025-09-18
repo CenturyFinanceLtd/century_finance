@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import JoditEditor from "jodit-react";
+import { getApiBaseUrl } from "../../utils/apiBase";
 
 class BlogPostCard extends React.Component {
   constructor(props) {
@@ -40,14 +41,7 @@ class BlogPostCard extends React.Component {
     return tmp.textContent || tmp.innerText || "";
   };
 
-  inferApiBase = () => {
-    // CRA inlines REACT_APP_* at build time; this avoids touching global `process` at runtime.
-    const envBase = process.env.REACT_APP_API_BASE_URL;
-    if (envBase) return envBase;
-    const { protocol, hostname } = window.location;
-    if (hostname === 'localhost' || hostname === '127.0.0.1') return 'http://localhost:5000';
-    return `${protocol}//${hostname}`;
-  }
+  inferApiBase = () => getApiBaseUrl();
 
   handleSubmit = async () => {
     const API_BASE_URL = this.inferApiBase();

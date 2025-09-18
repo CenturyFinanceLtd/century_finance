@@ -3,6 +3,7 @@ import PageTitle from '../components/pagetitle/PageTitle';
 import Footer from '../components/footer';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { API_BASE } from '../utils/api';
 
 
 function Blog(props) {
@@ -10,7 +11,7 @@ function Blog(props) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    const API_BASE_URL = API_BASE;
 
     const apiHelpers = useMemo(() => ({
         base: API_BASE_URL,

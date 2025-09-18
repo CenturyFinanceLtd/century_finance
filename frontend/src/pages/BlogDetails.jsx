@@ -2,12 +2,13 @@ import React , {useEffect, useMemo, useState} from 'react';
 import Footer from '../components/footer';
 import PageTitle from '../components/pagetitle/PageTitle';
 import { Link, useParams } from 'react-router-dom';
+import { API_BASE } from '../utils/api';
 
 
 
 function BlogDetails(props) {
     const { slug } = useParams();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    const API_BASE_URL = API_BASE;
 
     const apiHelpers = useMemo(() => ({
         base: API_BASE_URL,

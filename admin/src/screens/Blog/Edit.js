@@ -2,13 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import PageHeader from "../../components/PageHeader";
 import BlogPostCard from "../../components/Blog/BlogPostCard";
+import { getApiBaseUrl } from "../../utils/apiBase";
 
 function inferApiBase() {
-  const envBase = process.env.REACT_APP_API_BASE_URL;
-  if (envBase) return envBase;
-  const { protocol, hostname } = window.location;
-  if (hostname === "localhost" || hostname === "127.0.0.1") return "http://localhost:5000";
-  return `${protocol}//${hostname}`;
+  return getApiBaseUrl();
 }
 
 class BlogEdit extends React.Component {

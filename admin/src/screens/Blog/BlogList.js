@@ -4,15 +4,12 @@ import PageHeader from "../../components/PageHeader";
 import BlogListCard from "../../components/Blog/BlogListCard";
 import SearchCard from "../../components/Blog/SearchCard";
 import BlogAdsCard from "../../components/Blog/BlogAdsCard";
+import { getApiBaseUrl } from "../../utils/apiBase";
 import { blogAdsCardData } from "../../Data/BlogData";
 
 // Helper to infer API base URL similar to BlogPostCard
 function inferApiBase() {
-  const envBase = process.env.REACT_APP_API_BASE_URL;
-  if (envBase) return envBase;
-  const { protocol, hostname } = window.location;
-  if (hostname === "localhost" || hostname === "127.0.0.1") return "http://localhost:5000";
-  return `${protocol}//${hostname}`;
+  return getApiBaseUrl();
 }
 
 class BlogList extends React.Component {

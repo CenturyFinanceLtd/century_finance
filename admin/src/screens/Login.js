@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Logo from "../assets/images/logo-white.svg";
 import { updateEmail, updatePassword, onLoggedin } from "../actions";
+import { getApiBaseUrl } from "../utils/apiBase";
 
 class Login extends React.Component {
     constructor(props) {
@@ -25,7 +26,8 @@ class Login extends React.Component {
     handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost:5000/api/login", {
+            const API_BASE_URL = getApiBaseUrl();
+            const res = await fetch(`${API_BASE_URL}/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
