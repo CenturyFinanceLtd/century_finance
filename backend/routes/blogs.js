@@ -205,7 +205,16 @@ router.delete('/:id', async (req, res) => {
 
 // File upload configuration and route (placed after exports for clarity)
 // but in Express this still works since we attached to the same router instance above.
-const uploadDir = path.join(__dirname, '..', 'blogimages');
+const uploadDir = path.join(
+  __dirname,
+  '..',
+  '..',
+  'frontend',
+  'src',
+  'assets',
+  'images',
+  'blogimages'
+);
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 const storage = multer.diskStorage({

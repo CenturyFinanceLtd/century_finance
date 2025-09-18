@@ -46,11 +46,19 @@ app.use('/', authRoutes); // support endpoints without /api prefix
 app.use('/api', customerRoutes);
 
 // Ensure upload directory exists and serve static files
-const uploadsDir = path.join(__dirname, 'blogimages');
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
+const blogImagesDir = path.join(
+    __dirname,
+    '..',
+    'frontend',
+    'src',
+    'assets',
+    'images',
+    'blogimages'
+);
+if (!fs.existsSync(blogImagesDir)) {
+    fs.mkdirSync(blogImagesDir, { recursive: true });
 }
-app.use('/blogimages', express.static(uploadsDir));
+app.use('/blogimages', express.static(blogImagesDir));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
