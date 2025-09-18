@@ -1,0 +1,104 @@
+﻿.legal-page {
+  background: var(--background-body);
+  color: var(--primary-color3);
+}
+
+.legal-content {
+  padding: 50px 0 173px;
+}
+
+.legal-content .inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--primary-color8);
+  color: var(--primary-color3);
+  border: 1px solid var(--primary-color25);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 24px var(--primary-color24);
+}
+
+.legal-content h2 {
+  font-family: 'Bakbak One', sans-serif;
+  letter-spacing: 0.02em;
+  font-size: 28px;
+  margin: 0 0 16px;
+  color: var(--primary-color11);
+}
+
+.legal-content h3 {
+  font-family: 'Bakbak One', sans-serif;
+  letter-spacing: 0.02em;
+  font-size: 20px;
+  margin: 28px 0 12px;
+  color: var(--primary-color11);
+}
+
+.legal-content p {
+  margin: 10px 0;
+  color: var(--primary-color3);
+  line-height: 1.8;
+}
+
+.legal-content ul {
+  padding-left: 20px;
+  margin: 8px 0 12px;
+}
+
+.legal-content li {
+  margin: 6px 0;
+}
+
+.legal-content a {
+  color: var(--primary-color5);
+  text-decoration: none;
+}
+
+.legal-content a:hover {
+  text-decoration: underline;
+}
+
+/* Refund page specific helpers */
+.refund-hero {
+  background: linear-gradient(90deg, var(--primary-color6), var(--primary-color8));
+  border: 1px solid var(--primary-color25);
+  border-radius: 16px;
+  padding: 36px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.refund-hero h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: var(--primary-color11);
+}
+
+.refund-hero p {
+  margin: 0;
+  color: var(--primary-color3);
+}
+
+.alert-box {
+  background: rgba(33, 231, 134, 0.08);
+  border-left: 4px solid var(--primary-color5);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+
+.cta-box {
+  background: rgba(255, 71, 87, 0.08);
+  border-left: 4px solid #ff4757;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .legal-content .inner { padding: 24px 18px; }
+  .refund-hero { padding: 24px 16px; }
+  .refund-hero h1 { font-size: 22px; }
+}
+

@@ -1,0 +1,23 @@
+@use '../../scss/' as *;
+
+.tf-about {
+    .tf-heading {
+        text-align: center;
+        margin-bottom: 60px;
+        
+        .heading {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .sub-heading {
+            font-size: 18px;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    }
+}

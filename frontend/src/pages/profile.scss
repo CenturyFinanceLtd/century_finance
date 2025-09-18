@@ -1,0 +1,182 @@
+/* Section spacing for profile page */
+section.tf-section.profile-page {
+  padding-top: 50px;
+  padding-bottom: 173px;
+}
+
+/* Profile page styles: light/dark via CSS variables */
+
+.profile-page {
+  .profile-card,
+  .security-card {
+    background-color: var(--primary-color6);
+    border: 1px solid var(--primary-color24);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .profile-card {
+    text-align: center;
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin: 0 auto 12px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-color5);
+      color: #141B22; /* readable on accent */
+      font-weight: 700;
+      font-size: 36px;
+      letter-spacing: 0.5px;
+    }
+
+    .name {
+      font-size: 22px;
+      line-height: 30px;
+      color: var(--primary-color3);
+      margin-bottom: 4px;
+    }
+
+    .email {
+      font-size: 14px;
+      color: var(--primary-color2);
+    }
+
+    .profile-meta {
+      text-align: left;
+      margin-top: 18px;
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--primary-color24);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .label {
+          color: var(--primary-color13);
+          font-size: 14px;
+        }
+
+        .value {
+          color: var(--primary-color3);
+          font-weight: 500;
+          margin-left: 16px;
+          text-align: right;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+      }
+    }
+
+    .actions {
+      margin-top: 16px;
+
+      .w-100 {
+        width: 100%;
+      }
+    }
+  }
+
+  .security-card {
+    h4 {
+      margin-bottom: 8px;
+    }
+    .hint {
+      color: var(--primary-color13);
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .profile-form {
+      .form-row {
+        margin-bottom: 12px;
+      }
+      .two-cols {
+        display: flex;
+        gap: 16px;
+        @media (max-width: 991px) {
+          flex-direction: column;
+        }
+      }
+
+      fieldset {
+        display: block;
+        width: 100%;
+
+        label {
+          display: block;
+          font-size: 14px;
+          color: var(--primary-color13);
+          margin-bottom: 6px;
+        }
+        input {
+          width: 100%;
+        }
+      }
+
+      .submit-row {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199.98px) {
+  section.tf-section.profile-page { padding-bottom: 120px; }
+}
+
+@media (max-width: 991.98px) {
+  section.tf-section.profile-page { padding-bottom: 90px; padding-top: 40px; }
+  .profile-page {
+    .security-card { margin-top: 20px; }
+  }
+}
+
+@media (max-width: 767.98px) {
+  section.tf-section.profile-page { padding-bottom: 64px; padding-top: 32px; }
+  .profile-page {
+    .profile-card, .security-card { padding: 16px; border-radius: 12px; }
+    .profile-card {
+      .avatar { width: 80px; height: 80px; font-size: 30px; }
+      .name { font-size: 20px; }
+      .email { font-size: 13px; }
+      .profile-meta li {
+        .label { font-size: 13px; }
+      }
+    }
+    .security-card {
+      h4 { font-size: 18px; }
+      .hint { font-size: 13px; }
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  section.tf-section.profile-page { padding-bottom: 48px; padding-top: 28px; }
+  .profile-page {
+    .profile-card {
+      .profile-meta li {
+        .label { flex: 0 1 42%; }
+        .value { flex: 1 1 58%; margin-left: 0; text-align: left; }
+      }
+    }
+    .security-card .profile-form .two-cols { gap: 12px; }
+  }
+}
+
+/* Tighter layout for short landscape viewports */
+@media (orientation: landscape) and (max-height: 480px) {
+  section.tf-section.profile-page { padding-top: 20px; padding-bottom: 40px; }
+  .profile-page .profile-card, .profile-page .security-card { padding: 14px; }
+}

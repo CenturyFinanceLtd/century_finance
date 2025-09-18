@@ -1,0 +1,1006 @@
+// Variables mapped to global CSS variables for light/dark themes
+$primary-bg: var(--background-body);
+$secondary-bg: var(--primary-color7);
+$tertiary-bg: var(--primary-color8);
+$accent-green: var(--primary-color5);
+$accent-green-dark: var(--primary-color5);
+$text-primary: var(--primary-color3);
+$text-secondary: var(--primary-color2);
+$text-muted: var(--primary-color31);
+$border-light: var(--primary-color24);
+$border-green: var(--primary-color18);
+$glass-bg: var(--primary-color23);
+$glass-bg-green: var(--primary-color18);
+// Font Variables
+$font-family: 'Poppins',
+sans-serif;
+$font-size-base: 1rem;
+$font-size-lg: 1.2rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 2.5rem;
+$font-size-4xl: 3.5rem;
+// Spacing Variables
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 15px;
+$spacing-lg: 20px;
+$spacing-xl: 30px;
+$spacing-2xl: 40px;
+$spacing-3xl: 60px;
+$spacing-4xl: 80px;
+$spacing-5xl: 100px;
+// Border Radius
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin glass-card {
+    background: $glass-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid $border-light;
+    border-radius: $border-radius-lg;
+}
+
+@mixin hover-lift {
+    transition: all 0.3s ease;
+    &:hover {
+        transform: translateY(-5px);
+        border-color: $border-green;
+    }
+}
+
+@mixin gradient-bg {
+    background: linear-gradient(135deg, $primary-bg 0%, $tertiary-bg 100%);
+}
+
+@mixin green-gradient {
+    background: linear-gradient(135deg, $accent-green 0%, $accent-green-dark 100%);
+}
+
+@mixin btn-base {
+  border: none;
+  padding: 15px 30px;  // was $md $xl
+  font-size: 1rem;     // was $font-size-base
+  font-weight: 600;
+  border-radius: 8px;  // was $border-radius-sm
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 255, 150, 0.3);
+  }
+}
+
+// Page wrapper
+.page-portfolio {
+    background-color: $primary-bg;
+    color: $text-primary;
+    min-height: 100vh;
+    // Typography alignment with site
+    .heading,
+    .title {
+        font-family: 'Bakbak One';
+        font-weight: 700;
+        color: var(--primary-color3);
+    }
+    .sub-heading {
+        font-family: 'Bakbak One';
+        font-weight: 400;
+        color: var(--primary-color5);
+    }
+    p,
+    li,
+    .content {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+    }
+    .stat-value {
+        font-family: 'Bakbak One';
+        font-weight: 700;
+    }
+    .tab-btn {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+    .card-stats span {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+}
+
+// Hero Section
+.page-portfolio .portfolio-hero {
+    position: relative;
+    @include gradient-bg;
+    padding: $spacing-4xl 0 120px;
+    overflow: hidden;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(45deg, rgba(0, 255, 150, 0.1) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(0, 255, 150, 0.1) 0%, transparent 50%);
+        z-index: 1;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 $spacing-lg;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-3xl;
+        align-items: center;
+    }
+    .hero-text {
+        .heading {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: $spacing-lg;
+            letter-spacing: -0.02em;
+        }
+        .sub-heading {
+            font-size: 18px;
+            margin-bottom: $spacing-lg;
+            opacity: 0.9;
+        }
+        p {
+            font-size: $font-size-lg;
+            line-height: 1.6;
+            margin-bottom: $spacing-xl;
+            opacity: 0.8;
+        }
+    }
+    .explore-btn {
+        @include btn-base;
+        @include green-gradient;
+        color: $primary-bg;
+    }
+    .hero-cards {
+        @include flex-column;
+        gap: $spacing-lg;
+    }
+    .portfolio-card {
+        @include glass-card;
+        @include hover-lift;
+        padding: $spacing-xl;
+        &.featured {
+            background: linear-gradient(135deg, $glass-bg-green 0%, rgba(0, 255, 150, 0.05) 100%);
+            border: 1px solid $border-green;
+        }
+        h3,
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: $spacing-md;
+            color: $accent-green;
+        }
+        p {
+            font-size: $font-size-base;
+            line-height: 1.5;
+            opacity: 0.8;
+            margin-bottom: $spacing-md;
+        }
+        .card-stats {
+            display: flex;
+            gap: $spacing-md;
+            font-size: 0.9rem;
+            span {
+                color: $accent-green;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+// Text Utilities
+.text-green {
+    color: $accent-green;
+}
+
+// Scrolling Text (not used currently)
+.page-portfolio .scrolling-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $accent-green;
+    color: $primary-bg;
+    padding: $spacing-sm 0;
+    overflow: hidden;
+    .scroll-content {
+        display: flex;
+        animation: scroll 20s linear infinite;
+        white-space: nowrap;
+        span {
+            font-weight: 700;
+            font-size: $font-size-base;
+            margin-right: $spacing-3xl;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+// Local container override (scoped to this page)
+.page-portfolio .tf-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+}
+
+// Portfolio Strategies
+.page-portfolio .portfolio-strategies {
+    padding: $spacing-5xl 0;
+    background: $secondary-bg;
+    h2 {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: $spacing-md;
+    }
+    >.tf-container>p {
+        text-align: center;
+        font-size: $font-size-lg;
+        opacity: 0.7;
+        margin-bottom: $spacing-3xl;
+    }
+    .strategy-tabs {
+        @include flex-center;
+        gap: $spacing-lg;
+        margin-bottom: $spacing-3xl;
+    }
+    .tab-btn {
+        background: transparent;
+        border: 2px solid $border-light;
+        color: $text-primary;
+        padding: $spacing-md $spacing-xl;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-base;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &.active,
+        &:hover {
+            border-color: $accent-green;
+            color: $accent-green;
+            background: $glass-bg-green;
+        }
+    }
+    .strategy-content {
+        margin-top: $spacing-3xl;
+    }
+    .strategy-details {
+        h3 {
+            font-size: $font-size-2xl;
+            font-weight: 700;
+            margin-bottom: $spacing-sm;
+        }
+        .strategy-subtitle {
+            color: $accent-green;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: $spacing-lg;
+        }
+        .strategy-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: $spacing-2xl;
+        }
+        .strategy-metrics {
+            display: flex;
+            gap: $spacing-2xl;
+            .metric {
+                @include flex-column;
+                gap: $spacing-xs;
+                &-label {
+                    font-size: 0.9rem;
+                    opacity: 0.6;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                &-value {
+                    font-size: $font-size-xl;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+    // Allocation Chart
+    .allocation-chart {
+        h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: $spacing-xl;
+        }
+        .allocation-bars {
+            @include flex-column;
+            gap: $spacing-lg;
+        }
+        .allocation-item {
+            @include flex-column;
+            gap: 8px;
+            .allocation-label {
+                @include flex-between;
+                font-size: $font-size-base;
+                font-weight: 500;
+            }
+            .allocation-bar {
+                height: 8px;
+                background: $border-light;
+                border-radius: 4px;
+                overflow: hidden;
+                .allocation-fill {
+                    height: 100%;
+                    @include green-gradient;
+                    border-radius: 4px;
+                    transition: width 1s ease;
+                }
+            }
+        }
+    }
+}
+
+// Stats Section
+.page-portfolio .stats-section {
+    padding: $spacing-5xl 0;
+    background: $primary-bg;
+    h2 {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: $spacing-lg;
+    }
+    >.tf-container>p {
+        text-align: center;
+        font-size: $font-size-lg;
+        line-height: 1.6;
+        opacity: 0.8;
+        margin-bottom: $spacing-4xl;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .stats-grid {
+        row-gap: $spacing-2xl;
+    }
+    .stat-item {
+        text-align: center;
+        padding: $spacing-2xl $spacing-lg;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid $border-light;
+        border-radius: $border-radius-lg;
+        transition: all 0.3s ease;
+        &:hover {
+            transform: translateY(-5px);
+            border-color: $border-green;
+            background: $glass-bg-green;
+        }
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: $spacing-lg;
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: $spacing-sm;
+        }
+        .stat-label {
+            font-size: $font-size-base;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+    }
+}
+
+// Services Section
+.page-portfolio .services-section {
+    padding: $spacing-5xl 0;
+    background: $secondary-bg;
+    h2 {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: $spacing-md;
+    }
+    >.tf-container>p {
+        text-align: center;
+        font-size: $font-size-lg;
+        opacity: 0.7;
+        margin-bottom: $spacing-4xl;
+    }
+    .services-grid {
+        row-gap: $spacing-xl;
+    }
+    .service-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid $border-light;
+        border-radius: $border-radius-lg;
+        padding: $spacing-2xl;
+        transition: all 0.3s ease;
+        &:hover {
+            transform: translateY(-5px);
+            border-color: $border-green;
+            background: $glass-bg-green;
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: $spacing-lg;
+        }
+        h3 {
+            font-size: $font-size-xl;
+            font-weight: 700;
+            margin-bottom: $spacing-md;
+            color: $accent-green;
+        }
+        p {
+            font-size: $font-size-base;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 25px;
+        }
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                font-size: 0.95rem;
+                color: $accent-green;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+// CTA Section
+.page-portfolio .cta-section {
+    padding: $spacing-5xl 0;
+    @include gradient-bg;
+    text-align: center;
+    h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: $spacing-lg;
+    }
+    p {
+        font-size: $font-size-lg;
+        opacity: 0.8;
+        margin-bottom: $spacing-2xl;
+    }
+    .group-btn {
+        @include flex-center;
+        gap: $spacing-lg;
+    }
+}
+
+// Specific CTA bottom padding as requested
+// Mobile Responsiveness
+@media (max-width: 768px) {
+    .portfolio-hero {
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: $spacing-2xl;
+            text-align: center;
+        }
+        .hero-text .heading {
+            font-size: 36px;
+        }
+    }
+    // Increase CTA bottom padding on mobile for Portfolio page
+    .page-portfolio section.tf-section.cta-section {
+        padding-bottom: 204px;
+    }
+    .portfolio-strategies {
+        .strategy-content {
+            grid-template-columns: 1fr;
+            gap: $spacing-2xl;
+        }
+        .strategy-tabs {
+            flex-direction: column;
+            align-items: center;
+        }
+        .strategy-details .strategy-metrics {
+            justify-content: center;
+        }
+    }
+    // Heading size adjustments for small screens
+    .portfolio-strategies h2,
+    .stats-section h2,
+    .services-section h2 {
+        font-size: 28px;
+    }
+    .cta-section .group-btn {
+        flex-direction: column;
+        align-items: center;
+    }
+    .scrolling-text {
+        font-size: 0.9rem;
+    }
+    // Reduce spacing on mobile
+    .portfolio-strategies,
+    .stats-section,
+    .services-section,
+    .cta-section {
+        padding: $spacing-3xl 0;
+    }
+    .portfolio-hero {
+        padding: $spacing-3xl 0 $spacing-4xl;
+    }
+}
+
+// Tablet Responsiveness
+@media (max-width: 1024px) and (min-width: 769px) {
+    .hero-content {
+        gap: $spacing-2xl;
+    }
+    .strategy-content {
+        gap: $spacing-2xl;
+    }
+    .services-grid {
+        row-gap: $spacing-xl;
+    }
+}
+
+// Animation Utilities
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+
+/* ===================== NEW PORTFOLIO LAYOUT (as per images) ===================== */
+
+// Intro Section (Image 2)
+.page-portfolio .portfolio-intro {
+    padding: $spacing-4xl 0 $spacing-3xl;
+    background: $primary-bg;
+    .intro-wrap {
+        text-align: center;
+        max-width: 980px;
+        margin: 0 auto;
+    }
+    .intro-heading {
+        font-size: 42px;
+        line-height: 1.3;
+        font-weight: 800;
+        margin-bottom: $spacing-md;
+        // subtle green highlight to match design
+        background: linear-gradient(90deg, #19C570 0%, #21E786 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .brand-gradient {
+        color: $accent-green;
+    }
+    .intro-sub {
+        color: $text-secondary;
+        font-weight: 600;
+        margin-bottom: $spacing-sm;
+        display: grid;
+        gap: 2px;
+        strong {
+            font-style: italic;
+            color: #0F5CC3;
+        }
+        span {
+            font-style: italic;
+            color: #3D7BE2;
+            opacity: .95;
+        }
+    }
+    .intro-note {
+        color: $text-primary;
+        opacity: .9;
+        margin: 8px 0 $spacing-lg;
+    }
+    .intro-points {
+        text-align: left;
+        max-width: 900px;
+        line-height: 1.6;
+        div {
+            margin: 4px 0;
+        }
+        strong {
+            color: $text-primary;
+        }
+    }
+    .intro-cta {
+        @include flex-center;
+    }
+    .book-now {
+        @include btn-base;
+        @include green-gradient;
+        color: #061013;
+        border-radius: 9999px;
+        box-shadow: 0 18px 30px rgba(33, 231, 134, .35);
+        padding: 14px 28px;
+        font-weight: 700;
+    }
+}
+
+// Plans Tabs (Image 1)
+.page-portfolio .portfolio-plans {
+    padding: 0 0 $spacing-4xl;
+    background: $primary-bg;
+    .tabs {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: $spacing-lg;
+        border-bottom: 1px solid $border-light;
+        margin-bottom: $spacing-xl;
+    }
+    .tab {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: $spacing-md 0;
+        color: $text-primary;
+        // font-weight: 700;
+        opacity: .85;
+        transition: color .25s ease;
+        cursor: pointer;
+        text-align: center;
+        &.active,
+        &:hover {
+            color: $accent-green;
+        }
+    }
+    .tab-underline {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        height: 3px;
+        width: 25%;
+        background: $accent-green;
+        transform: translateX(calc(var(--active-index) * 100%));
+        transition: transform .35s ease;
+    }
+    .plan-card {
+        @include glass-card;
+        background: var(--primary-color8);
+        padding: $spacing-2xl;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(2, 12, 20, .04);
+        max-width: 1100px;
+        margin: 0 auto; // center the card within container
+    }
+    .plan-header {
+        margin-bottom: $spacing-lg;
+        text-align: center; // center header text inside card
+        display: grid; // enable centering of grid children
+        justify-items: center; // center meta rows horizontally
+        .plan-title {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        .plan-meta {
+            color: $text-primary;
+            opacity: .9;
+            margin-top: 4px;
+            display: grid;
+            gap: 6px;
+            text-align: center; // ensure meta lines are centered
+            justify-items: center;
+        }
+        .label {
+            color: $text-secondary;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+    }
+    .plan-banner {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        gap: $spacing-md;
+        align-items: center;
+        background: $glass-bg-green;
+        border: 1px solid $border-green;
+        color: $text-primary;
+        border-radius: 10px;
+        padding: $spacing-md $spacing-lg;
+        margin-bottom: $spacing-xl;
+        i {
+            color: $accent-green;
+            font-size: 18px;
+        }
+    }
+    .plan-grid {
+        display: grid;
+        grid-template-columns: 1fr; // one column like the image
+        row-gap: $spacing-xl;
+    }
+    .plan-block {
+        h4 {
+            font-size: 18px;
+            // font-weight: 800;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 0;
+            opacity: .9;
+        }
+        ul,
+        ol {
+            margin: 0;
+            padding-left: 22px;
+            line-height: 1.75;
+        }
+        &.features {
+            ul {
+                list-style: none;
+                padding-left: 0;
+            }
+            li {
+                margin-bottom: 7px;
+            }
+            li strong {
+                color: $text-primary;
+                font-weight: 800;
+            }
+        }
+        &.who {
+            ol {
+                list-style: decimal;
+            }
+        }
+        &.benefits {
+            ol {
+                list-style: decimal;
+            }
+        }
+        &.bestfor {
+            .bestfor-list {
+                list-style: none;
+                padding-left: 0;
+            }
+            .bestfor-list li {
+                margin-bottom: 6px;
+            }
+        }
+    }
+}
+
+// Highlights & Contact (Image 4)
+.page-portfolio .highlights-section {
+    padding: $spacing-3xl 0 $spacing-5xl;
+    background: $primary-bg;
+    .highlights-card {
+        position: relative;
+        background: linear-gradient(0deg, rgba(33, 150, 243, .08), rgba(33, 150, 243, .08)), var(--primary-color8);
+        border: 1px solid rgba(33, 150, 243, .25);
+        border-radius: 14px;
+        padding: $spacing-xl $spacing-2xl;
+        margin: 0 auto $spacing-2xl;
+        max-width: 1100px;
+        box-shadow: 0 8px 22px rgba(2, 12, 20, .05);
+        // left blue accent bar
+        &::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 10px;
+            bottom: 10px;
+            width: 8px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, #1E88E5, #2196F3);
+        }
+    }
+    .highlights-title {
+        font-weight: 800;
+        font-size: 18px;
+        color: #0F5CC3;
+        padding-bottom: $spacing-md;
+        margin-bottom: $spacing-md;
+        border-bottom: 2px solid rgba(33, 150, 243, .55);
+    }
+    .highlights-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            line-height: 1.7;
+            color: #0F5CC3;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 8px;
+                top: 12px;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #1E88E5;
+                box-shadow: 0 0 0 2px rgba(33, 150, 243, .25);
+            }
+        }
+    }
+}
+
+// Simple appear animation
+.appear {
+    animation: fadeUp .35s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// Responsive adjustments for new layout
+@media (max-width: 1024px) {
+    .page-portfolio .portfolio-plans .tabs {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: $spacing-sm;
+    }
+    .page-portfolio .portfolio-plans .tab-underline {
+        width: 50%;
+        transform: translateX(calc(var(--active-index) * 100%));
+    }
+}
+
+@media (max-width: 767px) {
+    .page-portfolio .portfolio-intro .intro-heading {
+        font-size: 24px;
+    }
+    .page-portfolio .portfolio-plans .tabs {
+        grid-template-columns: 1fr;
+    }
+    .page-portfolio .portfolio-plans .tab-underline {
+        width: 100%;
+    }
+    .page-portfolio .portfolio-plans .plan-grid {
+        grid-template-columns: 1fr;
+    }
+    .page-portfolio .contact-section .contact-callout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+// Contact Callout: separate section with specified bottom padding
+.page-portfolio .contact-section {
+    padding: 0 0 173px; // desktop bottom padding
+    background: $primary-bg;
+    .contact-callout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: var(--primary-color7);
+        border: 1px solid $border-light;
+        border-radius: 14px;
+        padding: $spacing-xl $spacing-2xl;
+        box-shadow: 0 10px 30px rgba(2, 12, 20, .06);
+        max-width: 880px;
+        margin: $spacing-xl auto 0;
+        .icon {
+            color: $accent-green;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: $spacing-md;
+        }
+        .content {
+            opacity: .95;
+        }
+        .links {
+            display: grid;
+            gap: 6px;
+            margin-top: 6px;
+            justify-items: center;
+        }
+        a {
+            color: $accent-green;
+            font-weight: 600;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .page-portfolio .contact-section {
+        padding-bottom: 204px;
+    } // mobile bottom padding
+}
+
+// Dark theme adjustments for highlights/contact/plan card
+body.is_dark {
+    .page-portfolio {
+        .highlights-section {
+            .highlights-card {
+                background: var(--primary-color7);
+                border: 1px solid $border-light;
+                &::before {
+                    background: $border-green;
+                }
+            }
+            .highlights-title {
+                color: $text-primary;
+                border-bottom: 1px solid $border-light;
+            }
+            .highlights-list li {
+                color: $text-primary;
+            }
+            .highlights-list li::before {
+                background: $accent-green;
+                box-shadow: 0 0 0 2px $glass-bg;
+            }
+        }
+        .contact-section .contact-callout {
+            background: var(--primary-color8);
+            border-color: $border-light;
+        }
+        .portfolio-plans .plan-card {
+            background: var(--primary-color7);
+        }
+        .portfolio-plans .plan-banner {
+            background: $glass-bg-green;
+            border-color: $border-green;
+        }
+    }
+}

@@ -1,230 +1,193 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePageOne from "./pages/HomePageOne";
-import HomePageTwo from "./pages/HomePageTwo";
-import HomePageThree from "./pages/HomePageThree";
-import HomePageFour from "./pages/HomePageFour";
-import HomePageFive from "./pages/HomePageFive";
-import HomePageSix from "./pages/HomePageSix";
-import HomePageSeven from "./pages/HomePageSeven";
-import EmailPage from "./pages/EmailPage";
-import AddUserPage from "./pages/AddUserPage";
-import AlertPage from "./pages/AlertPage";
-import AssignRolePage from "./pages/AssignRolePage";
-import AvatarPage from "./pages/AvatarPage";
-import BadgesPage from "./pages/BadgesPage";
-import ButtonPage from "./pages/ButtonPage";
-import CalendarMainPage from "./pages/CalendarMainPage";
-import CardPage from "./pages/CardPage";
-import CarouselPage from "./pages/CarouselPage";
-import ChatEmptyPage from "./pages/ChatEmptyPage";
-import ChatMessagePage from "./pages/ChatMessagePage";
-import ChatProfilePage from "./pages/ChatProfilePage";
-import CodeGeneratorNewPage from "./pages/CodeGeneratorNewPage";
-import CodeGeneratorPage from "./pages/CodeGeneratorPage";
-import ColorsPage from "./pages/ColorsPage";
-import ColumnChartPage from "./pages/ColumnChartPage";
-import CompanyPage from "./pages/CompanyPage";
-import CurrenciesPage from "./pages/CurrenciesPage";
-import DropdownPage from "./pages/DropdownPage";
-import ErrorPage from "./pages/ErrorPage";
-import FaqPage from "./pages/FaqPage";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import FormLayoutPage from "./pages/FormLayoutPage";
-import FormValidationPage from "./pages/FormValidationPage";
-import FormPage from "./pages/FormPage";
-import GalleryPage from "./pages/GalleryPage";
-import ImageGeneratorPage from "./pages/ImageGeneratorPage";
-import ImageUploadPage from "./pages/ImageUploadPage";
-import InvoiceAddPage from "./pages/InvoiceAddPage";
-import InvoiceEditPage from "./pages/InvoiceEditPage";
-import InvoiceListPage from "./pages/InvoiceListPage";
-import InvoicePreviewPage from "./pages/InvoicePreviewPage";
-import KanbanPage from "./pages/KanbanPage";
-import LanguagePage from "./pages/LanguagePage";
-import LineChartPage from "./pages/LineChartPage";
-import ListPage from "./pages/ListPage";
-import MarketplaceDetailsPage from "./pages/MarketplaceDetailsPage";
-import MarketplacePage from "./pages/MarketplacePage";
-import NotificationAlertPage from "./pages/NotificationAlertPage";
-import NotificationPage from "./pages/NotificationPage";
-import PaginationPage from "./pages/PaginationPage";
-import PaymentGatewayPage from "./pages/PaymentGatewayPage";
-import PieChartPage from "./pages/PieChartPage";
-import PortfolioPage from "./pages/PortfolioPage";
-import PricingPage from "./pages/PricingPage";
-import ProgressPage from "./pages/ProgressPage";
-import RadioPage from "./pages/RadioPage";
-import RoleAccessPage from "./pages/RoleAccessPage";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
-import StarRatingPage from "./pages/StarRatingPage";
-import StarredPage from "./pages/StarredPage";
-import SwitchPage from "./pages/SwitchPage";
-import TableBasicPage from "./pages/TableBasicPage";
-import TableDataPage from "./pages/TableDataPage";
-import TabsPage from "./pages/TabsPage";
-import TagsPage from "./pages/TagsPage";
-import TermsConditionPage from "./pages/TermsConditionPage";
-import TextGeneratorPage from "./pages/TextGeneratorPage";
-import ThemePage from "./pages/ThemePage";
-import TooltipPage from "./pages/TooltipPage";
-import TypographyPage from "./pages/TypographyPage";
-import UsersGridPage from "./pages/UsersGridPage";
-import UsersListPage from "./pages/UsersListPage";
-import ViewDetailsPage from "./pages/ViewDetailsPage";
-import VideoGeneratorPage from "./pages/VideoGeneratorPage";
-import VideosPage from "./pages/VideosPage";
-import ViewProfilePage from "./pages/ViewProfilePage";
-import VoiceGeneratorPage from "./pages/VoiceGeneratorPage";
-import WalletPage from "./pages/WalletPage";
-import WidgetsPage from "./pages/WidgetsPage";
-import WizardPage from "./pages/WizardPage";
-import RouteScrollToTop from "./helper/RouteScrollToTop";
-import TextGeneratorNewPage from "./pages/TextGeneratorNewPage";
-import HomePageEight from "./pages/HomePageEight";
-import HomePageNine from "./pages/HomePageNine";
-import HomePageTen from "./pages/HomePageTen";
-import HomePageEleven from "./pages/HomePageEleven";
-import GalleryGridPage from "./pages/GalleryGridPage";
-import GalleryMasonryPage from "./pages/GalleryMasonryPage";
-import GalleryHoverPage from "./pages/GalleryHoverPage";
-import BlogPage from "./pages/BlogPage";
-import BlogDetailsPage from "./pages/BlogDetailsPage";
-import AddBlogPage from "./pages/AddBlogPage";
-import TestimonialsPage from "./pages/TestimonialsPage";
-import ComingSoonPage from "./pages/ComingSoonPage";
-import AccessDeniedPage from "./pages/AccessDeniedPage";
-import MaintenancePage from "./pages/MaintenancePage";
-import BlankPagePage from "./pages/BlankPagePage";
+import React from "react";
+import { connect } from "react-redux";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import Login from "./screens/Login";
+import dashboard from "./screens/Dashbord/Dashbord";
+import demographic from "./screens/Dashbord/Demographic";
+import ioT from "./screens/Dashbord/IoT";
+import NavbarMenu from "./components/NavbarMenu";
+import appInbox from "./screens/App/Inbox";
+import appChat from "./screens/App/Chat";
+import appCalendar from "./screens/App/Calendar";
+import appContact from "./screens/App/Contact";
+import appTaskbar from "./screens/App/Taskbar";
+import filemanagerdashboard from "./screens/FileManager/Dashboard";
+import filedocuments from "./screens/FileManager/Documents";
+import filemedia from "./screens/FileManager/Media";
+import fileimages from "./screens/FileManager/Images";
+import blognewPost from "./screens/Blog/NewPost";
+import blogedit from "./screens/Blog/Edit";
+import blogdetails from "./screens/Blog/BlogDetails";
+import bloglist from "./screens/Blog/BlogList";
+import uitypography from "./screens/UIElements/Typography";
+import uitabs from "./screens/UIElements/Tabs";
+import uibuttons from "./screens/UIElements/Button";
+import bootstrapui from "./screens/UIElements/BootstrapUI";
+import uiicons from "./screens/UIElements/Icons";
+import uinotifications from "./screens/UIElements/Notifications";
+import uicolors from "./screens/UIElements/Colors";
+import uilistgroup from "./screens/UIElements/ListGroup";
+import uimediaobject from "./screens/UIElements/MediaObject";
+import uimodal from "./screens/UIElements/Modals";
+import uiprogressbar from "./screens/UIElements/ProgressBar";
+import widgetsdata from "./screens/Widgets/Data";
+import widgetsweather from "./screens/Widgets/Weather";
+import widgetsblog from "./screens/Widgets/Blog";
+import widgetsecommers from "./screens/Widgets/ECommers";
+import registration from "./screens/Auth/Registration";
+import lockscreen from "./screens/Auth/Lockscreen";
+import forgotpassword from "./screens/Auth/ForgotPassword";
+import page404 from "./screens/Auth/Page404";
+import page403 from "./screens/Auth/Page403";
+import page500 from "./screens/Auth/Page500";
+import page503 from "./screens/Auth/Page503";
+import blankpage from "./screens/Pages/BlankPage";
+import profilev1page from "./screens/Pages/ProfileV1";
+import profilev2page from "./screens/Pages/ProfileV2";
+import imagegalleryprofile from "./screens/Pages/ImageGallery";
+import timeline from "./screens/Pages/TimeLine";
+import pricing from "./screens/Pages/Pricing";
+import invoices from "./screens/Pages/Invoices";
+import invoicesv2 from "./screens/Pages/InvoicesV2";
+import searchresult from "./screens/Pages/SearchResults";
+import helperclass from "./screens/Pages/HelperClass";
+import teamsboard from "./screens/Pages/TeamsBoard";
+import projectslist from "./screens/Pages/ProjectsList";
+import maintanance from "./screens/Pages/Maintanance";
+import testimonials from "./screens/Pages/Testimonials";
+import faqs from "./screens/Pages/Faqs";
+import formvalidation from "./screens/Forms/FormValidation";
+import basicelements from "./screens/Forms/BasicElements";
+import tablenormal from "./screens/Tables/TableNormal";
+import echart from "./screens/Charts/Echart";
+import leafletmap from "./screens/Maps/GoogleMaps";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <RouteScrollToTop />
-      <Routes>
-        <Route exact path='/' element={<HomePageOne />} />
-        <Route exact path='/index-2' element={<HomePageTwo />} />
-        <Route exact path='/index-3' element={<HomePageThree />} />
-        <Route exact path='/index-4' element={<HomePageFour />} />
-        <Route exact path='/index-5' element={<HomePageFive />} />
-        <Route exact path='/index-6' element={<HomePageSix />} />
-        <Route exact path='/index-7' element={<HomePageSeven />} />
-        <Route exact path='/index-8' element={<HomePageEight />} />
-        <Route exact path='/index-9' element={<HomePageNine />} />
-        <Route exact path='/index-10' element={<HomePageTen />} />
-        <Route exact path='/index-11' element={<HomePageEleven />} />
+window.__DEV__ = true;
 
-        {/* SL */}
-        <Route exact path='/add-user' element={<AddUserPage />} />
-        <Route exact path='/alert' element={<AlertPage />} />
-        <Route exact path='/assign-role' element={<AssignRolePage />} />
-        <Route exact path='/avatar' element={<AvatarPage />} />
-        <Route exact path='/badges' element={<BadgesPage />} />
-        <Route exact path='/button' element={<ButtonPage />} />
-        <Route exact path='/calendar-main' element={<CalendarMainPage />} />
-        <Route exact path='/calendar' element={<CalendarMainPage />} />
-        <Route exact path='/card' element={<CardPage />} />
-        <Route exact path='/carousel' element={<CarouselPage />} />
-        <Route exact path='/chat-empty' element={<ChatEmptyPage />} />
-        <Route exact path='/chat-message' element={<ChatMessagePage />} />
-        <Route exact path='/chat-profile' element={<ChatProfilePage />} />
-        <Route exact path='/code-generator' element={<CodeGeneratorPage />} />
-        <Route
-          exact
-          path='/code-generator-new'
-          element={<CodeGeneratorNewPage />}
-        />
-        <Route exact path='/colors' element={<ColorsPage />} />
-        <Route exact path='/column-chart' element={<ColumnChartPage />} />
-        <Route exact path='/company' element={<CompanyPage />} />
-        <Route exact path='/currencies' element={<CurrenciesPage />} />
-        <Route exact path='/dropdown' element={<DropdownPage />} />
-        <Route exact path='/email' element={<EmailPage />} />
-        <Route exact path='/faq' element={<FaqPage />} />
-        <Route exact path='/forgot-password' element={<ForgotPasswordPage />} />
-        <Route exact path='/form-layout' element={<FormLayoutPage />} />
-        <Route exact path='/form-validation' element={<FormValidationPage />} />
-        <Route exact path='/form' element={<FormPage />} />
+class App extends React.Component {
+        constructor(props) {
+            console.warn = () => {};
+            super(props);
+            this.state = {
+                isLoad: true,
+            };
+        }
+        render() {
+            let res = window.location.pathname;
+            let baseUrl = process.env.PUBLIC_URL;
+            baseUrl = baseUrl.split("/");
+            res = res.split("/");
+            res = res.length > 0 ? res[baseUrl.length] : "/";
+            res = res ? res : "/";
+            const activeKey1 = res;
 
-        <Route exact path='/gallery' element={<GalleryPage />} />
-        <Route exact path='/gallery-grid' element={<GalleryGridPage />} />
-        <Route exact path='/gallery-masonry' element={<GalleryMasonryPage />} />
-        <Route exact path='/gallery-hover' element={<GalleryHoverPage />} />
+            const publicPages = [
+                "",
+                "/",
+                "login",
+                "registration",
+                "lockscreen",
+                "forgotpassword",
+                "page404",
+                "page403",
+                "page500",
+                "page503",
+                "maintanance",
+            ];
+            const isPublic = publicPages.includes(activeKey1);
+            const isAuthenticated = this.props.isLoggedin || localStorage.getItem("user");
+            if (!isAuthenticated && !isPublic) {
+                return <Redirect to={`${process.env.PUBLIC_URL}/login`} />;
+            }
 
-        <Route exact path='/blog' element={<BlogPage />} />
-        <Route exact path='/blog-details' element={<BlogDetailsPage />} />
-        <Route exact path='/add-blog' element={<AddBlogPage />} />
+            return (
+                <div id="wrapper">
+                    {isPublic ? (
+                        <Switch>
+                            {/* <Route exact path={`${process.env.PUBLIC_URL}`} component={Login} /> */}
+                            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Login} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
+                            <Route
+                                exact
+                                path={`${process.env.PUBLIC_URL}/forgotpassword`
+                                }
+                                component={forgotpassword}
+                            />
+                            <Route exact path={`${process.env.PUBLIC_URL}/page404`} component={page404} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/page403`} component={page403} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/page500`} component={page500} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/page503`} component={page503} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/registration`} component={registration} />
+                            <Route exact path={`registration`} component={registration} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/lockscreen`} component={lockscreen} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/maintanance`} component={maintanance} />
+                        </Switch>
+                    ) : (
+                        <>
+                            <NavbarMenu history={this.props.history} activeKey={activeKey1} />
+                            <div id="main-content">
+                                <Switch>
+                                    <Route exact path={`${process.env.PUBLIC_URL}/dashboard`} component={dashboard} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/demographic`} component={demographic} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/ioT`} component={ioT} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/appinbox`} component={appInbox} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/appchat`} component={appChat} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/appcalendar`} component={appCalendar} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/appcontact`} component={appContact} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/apptaskbar`} component={appTaskbar} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/filemanagerdashboard`} component={filemanagerdashboard} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/filedocuments`} component={filedocuments} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/filemedia`} component={filemedia} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/fileimages`} component={fileimages} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/blognewpost`} component={blognewPost} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/blogedit/:id`} component={blogedit} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/blogdetails`} component={blogdetails} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/bloglist`} component={bloglist} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uitypography`} component={uitypography} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uitabs`} component={uitabs} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/bootstrapui`} component={bootstrapui} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uiicons`} component={uiicons} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uinotifications`} component={uinotifications} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uicolors`} component={uicolors} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uilistgroup`} component={uilistgroup} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uimediaobject`} component={uimediaobject} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uimodal`} component={uimodal} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uibuttons`} component={uibuttons} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/uiprogressbar`} component={uiprogressbar} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/widgetsdata`} component={widgetsdata} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/widgetsweather`} component={widgetsweather} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/widgetsblog`} component={widgetsblog} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/widgetsecommers`} component={widgetsecommers} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/blankpage`} component={blankpage} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/profilev1page`} component={profilev1page} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/profilev2page`} component={profilev2page} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/imagegalleryprofile`} component={imagegalleryprofile} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/timeline`} component={timeline} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/pricing`} component={pricing} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/invoices`} component={invoices} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/invoicesv2`} component={invoicesv2} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/searchresult`} component={searchresult} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/helperclass`} component={helperclass} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/teamsboard`} component={teamsboard} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/projectslist`} component={projectslist} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/testimonials`} component={testimonials} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/faqs`} component={faqs} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/formvalidation`} component={formvalidation} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/basicelements`} component={basicelements} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/tablenormal`} component={tablenormal} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/echart`} component={echart} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/leafletmap`} component={leafletmap} />
+                                </Switch>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+        }
 
-        <Route exact path='/testimonials' element={<TestimonialsPage />} />
-        <Route exact path='/coming-soon' element={<ComingSoonPage />} />
-        <Route exact path='/access-denied' element={<AccessDeniedPage />} />
-        <Route exact path='/maintenance' element={<MaintenancePage />} />
-        <Route exact path='/blank-page' element={<BlankPagePage />} />
+        const mapStateToProps = ({ loginReducer }) => ({
+            isLoggedin: loginReducer.isLoggedin,
+        });
 
-        <Route exact path='/image-generator' element={<ImageGeneratorPage />} />
-        <Route exact path='/image-upload' element={<ImageUploadPage />} />
-        <Route exact path='/invoice-add' element={<InvoiceAddPage />} />
-        <Route exact path='/invoice-edit' element={<InvoiceEditPage />} />
-        <Route exact path='/invoice-list' element={<InvoiceListPage />} />
-        <Route exact path='/invoice-preview' element={<InvoicePreviewPage />} />
-        <Route exact path='/kanban' element={<KanbanPage />} />
-        <Route exact path='/language' element={<LanguagePage />} />
-        <Route exact path='/line-chart' element={<LineChartPage />} />
-        <Route exact path='/list' element={<ListPage />} />
-        <Route
-          exact
-          path='/marketplace-details'
-          element={<MarketplaceDetailsPage />}
-        />
-        <Route exact path='/marketplace' element={<MarketplacePage />} />
-        <Route
-          exact
-          path='/notification-alert'
-          element={<NotificationAlertPage />}
-        />
-        <Route exact path='/notification' element={<NotificationPage />} />
-        <Route exact path='/pagination' element={<PaginationPage />} />
-        <Route exact path='/payment-gateway' element={<PaymentGatewayPage />} />
-        <Route exact path='/pie-chart' element={<PieChartPage />} />
-        <Route exact path='/portfolio' element={<PortfolioPage />} />
-        <Route exact path='/pricing' element={<PricingPage />} />
-        <Route exact path='/progress' element={<ProgressPage />} />
-        <Route exact path='/radio' element={<RadioPage />} />
-        <Route exact path='/role-access' element={<RoleAccessPage />} />
-        <Route exact path='/sign-in' element={<SignInPage />} />
-        <Route exact path='/sign-up' element={<SignUpPage />} />
-        <Route exact path='/star-rating' element={<StarRatingPage />} />
-        <Route exact path='/starred' element={<StarredPage />} />
-        <Route exact path='/switch' element={<SwitchPage />} />
-        <Route exact path='/table-basic' element={<TableBasicPage />} />
-        <Route exact path='/table-data' element={<TableDataPage />} />
-        <Route exact path='/tabs' element={<TabsPage />} />
-        <Route exact path='/tags' element={<TagsPage />} />
-        <Route exact path='/terms-condition' element={<TermsConditionPage />} />
-        <Route
-          exact
-          path='/text-generator-new'
-          element={<TextGeneratorNewPage />}
-        />
-        <Route exact path='/text-generator' element={<TextGeneratorPage />} />
-        <Route exact path='/theme' element={<ThemePage />} />
-        <Route exact path='/tooltip' element={<TooltipPage />} />
-        <Route exact path='/typography' element={<TypographyPage />} />
-        <Route exact path='/users-grid' element={<UsersGridPage />} />
-        <Route exact path='/users-list' element={<UsersListPage />} />
-        <Route exact path='/view-details' element={<ViewDetailsPage />} />
-        <Route exact path='/video-generator' element={<VideoGeneratorPage />} />
-        <Route exact path='/videos' element={<VideosPage />} />
-        <Route exact path='/view-profile' element={<ViewProfilePage />} />
-        <Route exact path='/voice-generator' element={<VoiceGeneratorPage />} />
-        <Route exact path='/wallet' element={<WalletPage />} />
-        <Route exact path='/widgets' element={<WidgetsPage />} />
-        <Route exact path='/wizard' element={<WizardPage />} />
-
-        <Route exact path='*' element={<ErrorPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+        export default withRouter(connect(mapStateToProps, {})(App));

@@ -1,0 +1,5 @@
+﻿
+# temp & patch files
+/patch*.txt
+/tmp_*
+

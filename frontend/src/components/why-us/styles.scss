@@ -1,0 +1,22 @@
+@use '../../scss/' as *;
+
+.tf-about {
+    .why-us-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        
+        .why-us-text {
+            font-family: 'Poppins';
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 28px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
