@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import JoditEditor from "jodit-react";
-import { getApiBaseUrl } from "../../utils/apiBase";
+import { buildApiUrl } from "../../utils/api";
 
 class BlogPostCard extends React.Component {
   constructor(props) {
@@ -41,10 +41,8 @@ class BlogPostCard extends React.Component {
     return tmp.textContent || tmp.innerText || "";
   };
 
-  inferApiBase = () => getApiBaseUrl();
 
   handleSubmit = async () => {
-    const API_BASE_URL = this.inferApiBase();
     const { title, category, coverFile, content, excerpt, slug, tagsInput, existingCover } = this.state;
     const contentToUse = content || this.lastEditorValue || "";
     if (!title || !contentToUse) {
@@ -58,13 +56,13 @@ class BlogPostCard extends React.Component {
       if (coverFile) {
         const fd = new FormData();
         fd.append("image", coverFile);
-        const upRes = await fetch(`${API_BASE_URL}/api/blogs/upload`, {
+        const upRes = await fetch(buildApiUrl('/api/blogs/upload'), {
           method: "POST",
           body: fd,
         });
         if (!upRes.ok) throw new Error("Image upload failed");
         const upJson = await upRes.json();
-        coverImageUrl = upJson.fullUrl || `${API_BASE_URL}${upJson.url}`;
+        coverImageUrl = upJson.fullUrl || buildApiUrl(upJson.url);
       } else if (this.props.blogId) {
         // keep existing cover when editing if no new file chosen
         coverImageUrl = existingCover || "";
@@ -100,7 +98,7 @@ class BlogPostCard extends React.Component {
       };
       let res, json;
       if (this.props.blogId) {
-        res = await fetch(`${API_BASE_URL}/api/blogs/${this.props.blogId}`, {
+        res = await fetch(buildApiUrl(`/api/blogs/${this.props.blogId}`), {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -116,7 +114,7 @@ class BlogPostCard extends React.Component {
           window.location.href = `${trimmed}/bloglist`;
         }
       } else {
-        res = await fetch(`${API_BASE_URL}/api/blogs`, {
+        res = await fetch(buildApiUrl('/api/blogs'), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),

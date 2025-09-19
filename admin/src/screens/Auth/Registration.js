@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Logo from "../../assets/images/logo-white.svg";
-import { getApiBaseUrl } from "../../utils/apiBase";
+import { buildApiUrl } from "../../utils/api";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -19,9 +19,8 @@ class Registration extends React.Component {
   }
   handleSubmit = async (e) => {
     e.preventDefault();
-    const API_BASE_URL = getApiBaseUrl();
     try {
-      const res = await fetch(`${API_BASE_URL}/api/register`, {
+      const res = await fetch(buildApiUrl("/api/register"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

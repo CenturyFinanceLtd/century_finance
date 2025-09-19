@@ -2,11 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PageHeader from "../../components/PageHeader";
 import BlogPostCard from "../../components/Blog/BlogPostCard";
-import { getApiBaseUrl } from "../../utils/apiBase";
-
-function inferApiBase() {
-  return getApiBaseUrl();
-}
+import { buildApiUrl } from "../../utils/api";
 
 class BlogEdit extends React.Component {
   constructor(props) {
@@ -18,8 +14,7 @@ class BlogEdit extends React.Component {
     window.scrollTo(0, 0);
     const id = this.props.match.params.id;
     try {
-      const API_BASE_URL = inferApiBase();
-      const res = await fetch(`${API_BASE_URL}/api/blogs/id/${id}`);
+      const res = await fetch(buildApiUrl(`/api/blogs/id/${id}`));
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Failed to load blog");
       this.setState({ blog: json, loading: false });
@@ -68,4 +63,3 @@ const mapStateToProps = ({ ioTReducer }) => ({
 });
 
 export default connect(mapStateToProps, {})(BlogEdit);
-

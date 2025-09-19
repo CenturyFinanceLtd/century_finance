@@ -4,13 +4,8 @@ import PageHeader from "../../components/PageHeader";
 import BlogListCard from "../../components/Blog/BlogListCard";
 import SearchCard from "../../components/Blog/SearchCard";
 import BlogAdsCard from "../../components/Blog/BlogAdsCard";
-import { getApiBaseUrl } from "../../utils/apiBase";
 import { blogAdsCardData } from "../../Data/BlogData";
-
-// Helper to infer API base URL similar to BlogPostCard
-function inferApiBase() {
-  return getApiBaseUrl();
-}
+import { buildApiUrl } from "../../utils/api";
 
 class BlogList extends React.Component {
   constructor(props) {
@@ -24,8 +19,7 @@ class BlogList extends React.Component {
   fetchBlogs = async () => {
     this.setState({ loading: true, error: "" });
     try {
-      const API_BASE_URL = inferApiBase();
-      const res = await fetch(`${API_BASE_URL}/api/blogs`);
+      const res = await fetch(buildApiUrl('/api/blogs'));
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Failed to load blogs");
       this.setState({ blogs: json, loading: false });
@@ -43,8 +37,7 @@ class BlogList extends React.Component {
   handleDelete = async (id) => {
     if (!window.confirm("Delete this blog?")) return;
     try {
-      const API_BASE_URL = inferApiBase();
-      const res = await fetch(`${API_BASE_URL}/api/blogs/${id}`, { method: "DELETE" });
+      const res = await fetch(buildApiUrl(`/api/blogs/${id}`), { method: "DELETE" });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Delete failed");
       this.setState((s) => ({ blogs: s.blogs.filter((b) => b._id !== id) }));
