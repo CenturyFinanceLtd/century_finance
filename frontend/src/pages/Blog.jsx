@@ -10,6 +10,9 @@ function Blog(props) {
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const POSTS_PER_PAGE = 9;
 
     const API_BASE_URL = API_BASE;
 
@@ -56,6 +59,32 @@ function Blog(props) {
         setError('');
         if (category) loadBlogsByCategory(); else loadBlogs();
     }, [category]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [category, blogs.length]);
+
+    const totalPages = useMemo(() => Math.max(1, Math.ceil(blogs.length / POSTS_PER_PAGE)), [blogs.length]);
+
+    const visibleBlogs = useMemo(() => {
+        const start = (currentPage - 1) * POSTS_PER_PAGE;
+        return blogs.slice(start, start + POSTS_PER_PAGE);
+    }, [blogs, currentPage]);
+
+    const pageNumbers = useMemo(
+        () => Array.from({ length: totalPages }, (_, idx) => idx + 1),
+        [totalPages]
+    );
+
+    const handlePageChange = (page) => {
+        if (page < 1 || page > totalPages || page === currentPage) return;
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handlePrevious = () => handlePageChange(currentPage - 1);
+    const handleNext = () => handlePageChange(currentPage + 1);
+
     return (
         <div>
 
@@ -76,7 +105,7 @@ function Blog(props) {
                         {error && !loading && (
                             <div className="col-12"><p style={{color:'red'}}>Error: {error}</p></div>
                         )}
-                        {!loading && !error && blogs.map((b) => (
+                        {!loading && !error && visibleBlogs.map((b) => (
                             <div key={b._id} className="col-xl-4 col-lg-6 col-md-6">
                                 <article className="tf-blog-item">
                                     <div className="image">
@@ -120,18 +149,37 @@ function Blog(props) {
                         ))}
 
                         
-                        <div className="col-md-12 ">
-                            <div className="tf-pagination">
-                                <ul>
-                                    <li className="btn-page"><Link to="#" ><i className="fas fa-angle-left"></i></Link></li>
-                                    <li className="active"><Link to="#">2</Link></li>
-                                    <li><Link to="#" >3</Link></li>
-                                    <li><Link to="#">4</Link></li>
-                                    <li className="continue"><Link to="#">...</Link></li>
-                                    <li className="btn-page btn-next"><Link to="#"><i className="fas fa-angle-right"></i></Link></li>
+                        {!loading && !error && blogs.length > 0 && (
+                            <div className="col-md-12 ">
+                                <div className="tf-pagination">
+                                    <ul>
+                                        <li className={`btn-page${currentPage === 1 ? ' disabled' : ''}`}>
+                                            <Link to="#" onClick={(e) => { e.preventDefault(); handlePrevious(); }}>
+                                                <i className="fas fa-angle-left"></i>
+                                            </Link>
+                                        </li>
+                                        {pageNumbers.map((page) => (
+                                            <li key={page} className={page === currentPage ? 'active' : ''}>
+                                                <Link
+                                                    to="#"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        handlePageChange(page);
+                                                    }}
+                                                >
+                                                    {page}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                        <li className={`btn-page btn-next${currentPage === totalPages ? ' disabled' : ''}`}>
+                                            <Link to="#" onClick={(e) => { e.preventDefault(); handleNext(); }}>
+                                                <i className="fas fa-angle-right"></i>
+                                            </Link>
+                                        </li>
                                     </ul>
+                                </div>
                             </div>
-                        </div>                 
+                        )}
                         
                     </div>
                 </div>
