@@ -1,5 +1,33 @@
-﻿
-# temp & patch files
-/patch*.txt
-/tmp_*
+﻿# Dependencies
+/node_modules
 
+# Build output
+/build
+/dist
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor/IDE settings
+.vscode/
+.idea/
+*.swp
+
+# Testing
+/coverage
+
+# Misc
+*.tgz
