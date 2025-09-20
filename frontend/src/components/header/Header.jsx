@@ -1,6 +1,6 @@
 import React , { useState , useEffect, useContext } from 'react';
 
-import { Link , NavLink } from 'react-router-dom';
+import { Link , NavLink, useLocation } from 'react-router-dom';
 import menus from '../../pages/menu';
 import { Dropdown } from 'react-bootstrap';
 
@@ -16,6 +16,8 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 const Header = () => {
+
+    const location = useLocation();
 
     const [scroll, setScroll] = useState(false);
         useEffect(() => {
@@ -35,6 +37,31 @@ const Header = () => {
 
     
     const [activeIndex, setActiveIndex] = useState(null);
+
+    useEffect(() => {
+        const matchesPath = (link) => {
+            if (!link) return false;
+            if (link === '/') {
+                return location.pathname === '/';
+            }
+            return location.pathname === link || location.pathname.startsWith(`${link}/`);
+        };
+
+        const matchedIndex = menus.findIndex((item) => {
+            if (matchesPath(item.links)) {
+                return true;
+            }
+
+            if (item.namesub) {
+                return item.namesub.some((submenu) => matchesPath(submenu.links));
+            }
+
+            return false;
+        });
+
+        setActiveIndex(matchedIndex !== -1 ? matchedIndex : null);
+    }, [location.pathname]);
+
     const handleDropdown = index => {
         setActiveIndex(index); 
     };

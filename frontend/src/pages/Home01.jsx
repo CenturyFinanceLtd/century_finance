@@ -4,9 +4,9 @@ import dataAbout from '../assets/fake-data/data-about';
 import dataBanner from '../assets/fake-data/data-banner';
 import dataCollection from '../assets/fake-data/data-collection';
 import dataFaqs from '../assets/fake-data/data-faq';
+import placementTracks from '../assets/fake-data/data-placement-tracks';
 import dataPartner from '../assets/fake-data/data-partner';
 import dataRoadmap from '../assets/fake-data/data-roadmap';
-import dataServices from '../assets/fake-data/data-services';
 import dataTeam from '../assets/fake-data/data-team';
 import dataWork from '../assets/fake-data/data-work';
 
@@ -20,8 +20,8 @@ import Footer from '../components/footer';
 
 import Logo from '../components/logo/Logo';
 import Partner from '../components/partner/Partner';
+import PlacementTrack from '../components/placement-track/PlacementTrack';
 import RoadMap from '../components/roadmap/RoadMap';
-import Services from '../components/services/Services';
 import Team from '../components/team/Team';
 
 
@@ -38,10 +38,9 @@ function Home01(props) {
 
             <About1 data={dataAbout} />
 
-            <Services data={dataServices} />
-
             <Collection data={dataCollection} />
 
+            <PlacementTrack tracks={placementTracks} />
 
             <RoadMap data={dataRoadmap} />
 
@@ -62,4 +61,3 @@ function Home01(props) {
 }
 
 export default Home01;
-

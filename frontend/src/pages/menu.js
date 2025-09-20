@@ -11,7 +11,7 @@
     {
         id: 3,
         name: 'Our Courses',
-        links: 'our-courses',
+        links: '/our-courses',
     },
     {
         id: 4,

@@ -1,22 +1,42 @@
 /* Media Queries
 -------------------------------------------------------------- */
 
+
 /* Global CTA spacing: default desktop + mobile override */
-section.tf-section.cta-section { padding-bottom: 173px; }
-@media only screen and (max-width: 767px) {
-  section.tf-section.cta-section { padding-bottom: 204px; }
+
+section.tf-section.cta-section {
+    padding-bottom: 173px;
 }
+
+@media only screen and (max-width: 767px) {
+    section.tf-section.cta-section {
+        padding-bottom: 204px;
+    }
+}
+
 
 /* Section stacking rhythm: prevent doubled spacing from bottom+top paddings */
+
+
 /* When one tf-section directly follows another, remove top padding from the latter. */
-section.tf-section + section.tf-section { padding-top: 0 !important; margin-top: 0 !important; }
+
+// section.tf-section+section.tf-section {
+//     padding-top: 0 !important;
+//     margin-top: 0 !important;
+// }
 
 /* Responsive fine‑tuning so spacing remains comfortable on smaller screens */
+
 @media only screen and (max-width: 1024px) {
-  section.tf-section + section.tf-section { padding-top: 0 !important; }
+    section.tf-section+section.tf-section {
+        padding-top: 0 !important;
+    }
 }
+
 @media only screen and (max-width: 767px) {
-  section.tf-section + section.tf-section { padding-top: 0 !important; }
+    section.tf-section+section.tf-section {
+        padding-top: 0 !important;
+    }
 }
 
 @media only screen and (max-width: 1800px) {

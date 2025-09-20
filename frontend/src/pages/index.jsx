@@ -8,6 +8,7 @@ import Tag from "./Tag";
 import Collection from "./Collection";
 import CommingSoon from "./CommingSoon";
 import Contact from "./Contact";
+import OurCourses from "./OurCourses";
 import Faq01 from "./Faq01";
 import Faq02 from "./Faq02";
 import Home01 from "./Home01";
@@ -90,6 +91,21 @@ const routes = [
           keywords="about Century Finance Limited, mission, values"
         />{" "}
         <About01 />{" "}
+      </>
+    ),
+  },
+  {
+    path: "/our-courses",
+    component: (
+      <>
+        {" "}
+        <SEO
+          siteName={SITE}
+          title="Our Courses"
+          description="Discover SEBI-certified courses, immersive bootcamps, and trading programs from Century Finance Limited."
+          keywords="century finance courses, trading bootcamp, finance training"
+        />{" "}
+        <OurCourses />{" "}
       </>
     ),
   },
