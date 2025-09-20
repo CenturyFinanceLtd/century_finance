@@ -82,13 +82,13 @@ $border-color: var(--primary-color24);
             flex-direction: column;
             gap: 6px;
             h3 {
-                font-family: 'Bakbak One', sans-serif;
+                font-family: "Bakbak One", sans-serif;
                 font-size: 26px;
                 color: $text-primary;
                 margin: 0;
             }
             .series-summary {
-                font-family: 'Poppins', sans-serif;
+                font-family: "Poppins", sans-serif;
                 font-size: 16px;
                 line-height: 1.6;
                 color: $text-secondary;
@@ -102,7 +102,7 @@ $border-color: var(--primary-color24);
             padding-top: 18px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             .series-focus {
-                font-family: 'Poppins', sans-serif;
+                font-family: "Poppins", sans-serif;
                 font-size: 16px;
                 line-height: 1.6;
                 color: $text-primary;
@@ -118,7 +118,7 @@ $border-color: var(--primary-color24);
                 li {
                     position: relative;
                     padding-left: 26px;
-                    font-family: 'Poppins', sans-serif;
+                    font-family: "Poppins", sans-serif;
                     font-size: 15px;
                     line-height: 1.6;
                     color: $text-secondary;
@@ -165,7 +165,7 @@ $border-color: var(--primary-color24);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
         }
         &.featured {
-            background: linear-gradient(180deg, rgba(0, 255, 150, 0.08) 0%, rgba(0, 255, 150, 0.03) 100%);
+            background: linear-gradient( 180deg, rgba(0, 255, 150, 0.08) 0%, rgba(0, 255, 150, 0.03) 100%);
             border-color: rgba(0, 255, 150, 0.6);
             box-shadow: 0 32px 70px rgba(0, 0, 0, 0.28);
             .series-badge {
@@ -197,6 +197,7 @@ $border-color: var(--primary-color24);
             -webkit-overflow-scrolling: touch;
             scroll-padding: 18px;
             perspective: 1200px;
+            margin-top: 18px;
             &.is-looping {
                 scroll-snap-type: none;
             }
@@ -212,7 +213,7 @@ $border-color: var(--primary-color24);
             transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
             transform-origin: center;
             opacity: 0.85;
-            box-shadow: 0 38px 80px rgba(0, 0, 0, 0.28), 0 15px 32px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.28), 0 0 10px rgba(0, 0, 0, 0.18);
             .series-badge {
                 top: 12px;
                 right: 20px;
@@ -238,7 +239,7 @@ $border-color: var(--primary-color24);
             &.is-active {
                 transform: perspective(1200px) translateZ(0) scale(1);
                 opacity: 1;
-                box-shadow: 0 46px 95px rgba(0, 0, 0, 0.32), 0 20px 40px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.32), 0 0 10px rgba(0, 0, 0, 0.2);
             }
             &.is-before {
                 transform: perspective(1200px) translateX(-22px) rotateY(12deg) scale(0.94);
@@ -255,7 +256,7 @@ $border-color: var(--primary-color24);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 18px;
+            margin-top: 9px;
             gap: 12px;
             padding: 0 18px;
             .dot {

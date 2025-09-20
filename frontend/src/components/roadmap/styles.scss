@@ -529,3 +529,32 @@
     padding-top: 100px;
     padding-bottom: 186px;
 }
+
+.is_dark {
+    .tf-roadmap {
+        .list-infor {
+            .icon {
+                .logo-light {
+                    display: none;
+                }
+                .logo-dark {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.tf-roadmap .list-infor .icon {
+    display: inline-flex;
+    align-items: center;
+
+    .roadmap-logo {
+        width: 16px;
+        height: auto;
+    }
+
+    .logo-dark {
+        display: none;
+    }
+}
