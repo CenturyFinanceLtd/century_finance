@@ -247,6 +247,10 @@ section.tf-section.cta-section {
     .tf-slider-item .content-inner .heading,
     .tf-slider-item .content-inner .sub-heading {
         max-width: 100%;
+        // margin-bottom: 30px;
+    }
+    .tf-slider-item .content-inner .sub-heading {
+        margin-bottom: 20px;
     }
     .tf-slider-item.style-3 {
         padding: 80px 0 0;
@@ -330,6 +334,24 @@ section.tf-section.cta-section {
     .sidebar.sidebar-collection {
         margin-bottom: 60px;
     }
+    .tf-slider-item {
+        padding-bottom: 20px;
+        .content-inner {
+            margin-right: 0;
+            padding-top: 35px;
+        }
+    }
+    .tf-about .counter-wrap .tf-counter{
+        margin-right: 40px;
+    }
+    .tf-counter .content {
+        font-size: 35px;
+        line-height: 45px;
+    }
+    .logo-slider-inner h3 {
+        font-size: 25px;
+        line-height: 30px;
+    }
     .tf-roadmap.style2 {
         padding: 0;
         display: block;
@@ -345,6 +367,7 @@ section.tf-section.cta-section {
                 display: none;
             }
         }
+        
     }
 }
 
@@ -419,6 +442,11 @@ section.tf-section.cta-section {
         width: calc(50% - 20px);
         margin-right: 20px;
     }
+    .tf-slider-item .content-inner{
+        margin-bottom: 20px;
+        padding-top: 35px;
+    }
+
 }
 
 @media only screen and (max-width: 530px) {
@@ -439,6 +467,9 @@ section.tf-section.cta-section {
     }
     .tf-collection-inner .filter-content li a i {
         margin-left: 5px;
+    }
+    .tf-slider-item .content-inner .animate-contain {
+        height: 60px;
     }
 }
 
