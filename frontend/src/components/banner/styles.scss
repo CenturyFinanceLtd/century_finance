@@ -1,4 +1,4 @@
-@use '../../scss/' as *;
+﻿@use '../../scss/' as *;
 
 
 .tf-slider {
@@ -110,6 +110,7 @@
             @include w-402 {
                 width: 70%;
                 margin-right: 0;
+                display: none;
             }
             &.style-2 {
                 padding: 11px 22px;
@@ -179,6 +180,22 @@
                 @include desktop-1650 {
                     width: 100%;
                 }
+            }
+        }
+
+        .videoslider {
+            display: none;
+        }
+
+        @include mobile {
+            .videoslider {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .content-slide {
+                display: none;
             }
         }
     }
@@ -316,4 +333,6 @@
         }
     } 
 }
+
+
 

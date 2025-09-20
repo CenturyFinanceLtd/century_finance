@@ -16,6 +16,7 @@ import img3 from '../../assets/images/slider/slider-3.png'
 import img4 from '../../assets/images/slider/slider-9.png'
 import img5 from '../../assets/images/slider/slider-10.png'
 import img6 from '../../assets/images/slider/slider-11.png'
+import mobile from '../../assets/videos/mobile.mp4'
 import Button from '../button/Button';
 import Button02 from '../button/Button02';
 
@@ -60,12 +61,13 @@ function Banner01(props) {
                                                 <p className="sub-heading">{idx.desc}</p>
                                                 <div className="btn-slider ">
                                                     <Button path='#' title='EXPLORE MORE' />
-                                                    {/* <Button02 path='/collection' title='' /> */}
-                                                    
                                                 </div>
                                             </div>
 
                                             <div className="content-right ">
+                                                <video className='videoslider' autoPlay loop muted>
+                                                    <source src={mobile} type="video/mp4" />
+                                                </video>
                                                 <div className="content-slide">
                                                 
                                                     <div className="image">
