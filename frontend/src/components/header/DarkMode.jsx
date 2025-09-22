@@ -7,6 +7,7 @@ const DarkMode = () => {
     let clickedClass = "clicked"
     const body = document.body
     const lightTheme = "is_dark"
+    
     const darkTheme = "is_light"
     let theme
 
@@ -49,3 +50,6 @@ const DarkMode = () => {
 }
 
 export default DarkMode;
+
+
+

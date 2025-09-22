@@ -4,43 +4,43 @@ function Logo(props) {
     const [dataLogo] = useState([
         {
             id: 1,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'STRATEGIC WEALTH PARTNERS'
         },
         {
             id: 2,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'CAPITAL GROWTH ADVISORS'
         },
         {
             id: 3,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'ENTERPRISE LENDING SOLUTIONS'
         },
         {
             id: 4,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'RISK & COMPLIANCE DESK'
         },
         {
             id: 5,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'DIGITAL BANKING INNOVATION'
         },
         {
             id: 6,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'CORPORATE TREASURY SERVICES'
         },
         {
             id: 7,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'MICROFINANCE OUTREACH'
         },
         {
             id: 8,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'ASSET MANAGEMENT SQUAD'
         },
         {
             id: 9,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'DATA ANALYTICS LAB'
         },
         {
             id: 10,
-            name: 'CENTURY FINANCE LIMITED'
+            name: 'INVESTOR RELATIONS TEAM'
         },
     ])
     return (
@@ -67,3 +67,4 @@ function Logo(props) {
 }
 
 export default Logo;
+
