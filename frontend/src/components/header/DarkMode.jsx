@@ -8,34 +8,33 @@ const LIGHT_THEME = 'is_light'
 const DARK_THEME = 'is_dark'
 
 const DarkMode = () => {
-    let clickedClass = "clicked"
-    const body = document.body
-    const lightTheme = "is_dark"
-    const darkTheme = "is_light"
-    let theme
+    const [theme, setTheme] = useState(LIGHT_THEME)
 
-    if (localStorage) {
-        theme = localStorage.getItem("theme")
-    }
-    if (theme === lightTheme || theme === darkTheme) {
-        body.classList.add(theme)
-    } else {
-        body.classList.add(darkTheme)
-    }
-
-    const switchTheme = e => {
-        if (theme === darkTheme) {
-            body.classList.replace(darkTheme, lightTheme)
-            e.target.classList.remove(clickedClass)
-            localStorage.setItem("theme", "is_dark")
-            theme = lightTheme
-        } else {
-            body.classList.replace(lightTheme, darkTheme)
-            e.target.classList.add(clickedClass)
-            localStorage.setItem("theme", "is_light")
-            theme = darkTheme
+    useEffect(() => {
+        const { classList } = document.body
+        classList.remove(DARK_THEME)
+        classList.add(LIGHT_THEME)
+        if (typeof window !== 'undefined' && window.localStorage) {
+            window.localStorage.setItem('theme', LIGHT_THEME)
         }
+    }, [])
+
+    const switchTheme = (event) => {
+        event.preventDefault()
+        setTheme((currentTheme) => {
+            const nextTheme = currentTheme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME
+            const { classList } = document.body
+            classList.remove(currentTheme)
+            classList.add(nextTheme)
+            if (typeof window !== 'undefined' && window.localStorage) {
+                window.localStorage.setItem('theme', nextTheme)
+            }
+            return nextTheme
+        })
     }
+
+    const isDark = theme === DARK_THEME
+
     return (
         <div className="mode-switcher">
             <Link
@@ -56,4 +55,4 @@ const DarkMode = () => {
     )
 }
 
-export default DarkMode;
+export default DarkMode
