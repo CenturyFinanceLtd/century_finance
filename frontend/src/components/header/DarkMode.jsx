@@ -6,8 +6,8 @@ import imgmoon from '../../assets/images/icon/moon.png'
 const DarkMode = () => {
     let clickedClass = "clicked"
     const body = document.body
-    const lightTheme = "is_light"
-    const darkTheme = "is_dark"
+    const lightTheme = "is_dark"
+    const darkTheme = "is_light"
     let theme
 
     if (localStorage) {
@@ -23,12 +23,12 @@ const DarkMode = () => {
         if (theme === darkTheme) {
             body.classList.replace(darkTheme, lightTheme)
             e.target.classList.remove(clickedClass)
-            localStorage.setItem("theme", "is_light")
+            localStorage.setItem("theme", "is_dark")
             theme = lightTheme
         } else {
             body.classList.replace(lightTheme, darkTheme)
             e.target.classList.add(clickedClass)
-            localStorage.setItem("theme", "is_dark")
+            localStorage.setItem("theme", "is_light")
             theme = darkTheme
         }
     }

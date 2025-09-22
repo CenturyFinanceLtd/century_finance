@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PageTitle from "../components/pagetitle/PageTitle";
 import Footer from "../components/footer";
 import Team from "../components/team/Team";
@@ -8,7 +7,7 @@ import dataTeam from "../assets/fake-data/data-team";
 import dataPartner from "../assets/fake-data/data-partner";
 import "./About01.scss";
 
-function About01(props) {
+function About01() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -16,40 +15,67 @@ function About01(props) {
   }, []);
 
   const stats = [
-    { value: "$25.3K", label: "Monthly", icon: "💰" },
-    { value: "$430K", label: "Investment", icon: "📈" },
-    { value: "10,351", label: "Active Users", icon: "👥" },
-    { value: "25+", label: "Years Experience", icon: "🏆" },
+    {
+      value: "25+",
+      label: "Years immersed in the capital markets",
+      abbreviation: "YR",
+    },
+    {
+      value: "12K",
+      label: "Learners mentored across three countries",
+      abbreviation: "LM",
+    },
+    {
+      value: "$430M",
+      label: "Capital guided through advisory mandates",
+      abbreviation: "CG",
+    },
+    {
+      value: "98%",
+      label: "Client retention powered by disciplined processes",
+      abbreviation: "CR",
+    },
   ];
 
   const features = [
     {
-      title: "Expert Training",
-      description: "SEBI-certified stock advisors with practical experience",
-      icon: "🎯",
+      title: "Research First",
+      description:
+        "We build every recommendation on deep fundamental and quantitative analysis.",
+      abbreviation: "RF",
     },
     {
-      title: "Live Trading",
-      description: "Real-world scenarios and live trading simulations",
-      icon: "⚡",
+      title: "Live Market Labs",
+      description:
+        "Participants learn in simulated trading rooms that mirror real volatility.",
+      abbreviation: "LM",
     },
     {
-      title: "Personalized Learning",
-      description: "Customized training programs for every skill level",
-      icon: "🎓",
+      title: "Personalised Pathways",
+      description:
+        "Flexible learning tracks help beginners, pros, and entrepreneurs grow together.",
+      abbreviation: "PP",
     },
     {
-      title: "Global Presence",
-      description: "Headquartered in Dubai with branches in Mumbai",
-      icon: "🌍",
+      title: "Global Reach",
+      description:
+        "Dubai headquarters with satellite desks in Mumbai and Kochi support local insight.",
+      abbreviation: "GR",
     },
   ];
 
   const achievements = [
-    { number: "150k+", label: "Courses", color: "#00D4AA" },
-    { number: "100k+", label: "Demo Classes", color: "#00B4D8" },
-    { number: "100k+", label: "Students", color: "#0077B6" },
-    { number: "50k+", label: "Mentors", color: "#023E8A" },
+    { number: "150+", label: "Corporate programs delivered", color: "#00D4AA" },
+    { number: "100K", label: "Training hours streamed", color: "#00B4D8" },
+    { number: "40", label: "Certified mentors on the desk", color: "#0077B6" },
+    { number: "24/5", label: "Research support coverage", color: "#023E8A" },
+  ];
+
+  const approachHighlights = [
+    "Blend classroom clarity with market-floor reality",
+    "Meet every learner where they are with structured roadmaps",
+    "Scale portfolios responsibly through documented playbooks",
+    "Commit to ethics, compliance, and transparent reporting",
   ];
 
   return (
@@ -62,24 +88,22 @@ function About01(props) {
           <div className="hero-background">
             <div className="container">
               <div className="hero-content">
-                <div className="hero-badge">
-                  <span className="badge-icon">⭐</span>
-                  <span>25+ Years Of Experience</span>
+                <div className="hero-badge" aria-label="Century Finance experience">
+                  <span className="badge-icon">CF</span>
+                  <span>Since 1999</span>
                 </div>
                 <h1 className="hero-title">
                   Century Finance
-                  <span className="title-highlight">
-                    Your Trusted Partner in
-                  </span>
+                  <span className="title-highlight">Market wisdom for next-gen investors</span>
                   <span className="title-main">
-                    Stock Market Education & Advisory
+                    We train, advise, and build disciplined investors for the long term.
                   </span>
                 </h1>
                 <p className="hero-description">
-                  Century Finance Limited helps people approach financial
-                  markets with clarity and confidence. Our training is based on
-                  practical experience and real-world scenarios, led by a
-                  SEBI-certified stock advisor.
+                  Century Finance Limited is a capital markets learning and advisory house.
+                  From our Dubai headquarters we serve investors, founders, and family offices
+                  in the Middle East and India through structured learning journeys,
+                  research-backed advisory, and a community of traders who never stop testing ideas.
                 </p>
               </div>
             </div>
@@ -87,16 +111,18 @@ function About01(props) {
         </section>
 
         {/* Stats Section */}
-        <section className="stats-section">
+        <section className="stats-section" aria-label="Century Finance in numbers">
           <div className="container">
             <div className="stats-grid">
               {stats.map((stat, index) => (
                 <div
-                  key={index}
+                  key={stat.label}
                   className={`stat-card ${isVisible ? "slide-up" : ""}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="stat-icon">{stat.icon}</div>
+                  <div className="stat-icon" aria-hidden="true">
+                    {stat.abbreviation}
+                  </div>
                   <div className="stat-value">{stat.value}</div>
                   <div className="stat-label">{stat.label}</div>
                 </div>
@@ -111,58 +137,58 @@ function About01(props) {
             <div className="content-grid">
               <div className="content-text">
                 <div className="tf-heading style-2 mission-heading">
-                  <h2 className="heading">OUR MISSION</h2>
+                  <h2 className="heading">Our Mission</h2>
                 </div>
                 <p className="section-description">
-                  Our mission is to guide you through the world of stocks by
-                  offering personalized training, live trading simulations, and
-                  actionable investment insights. We guarantee that each learner
-                  acquires practical skills, a thorough awareness of the market,
-                  and the self-assurance to make wise judgements by going beyond
-                  theory.
+                  We exist to demystify equities, commodities, and currency markets for serious investors.
+                  Every playbook we teach is stress-tested by our trading desk and documented for reuse,
+                  so learners graduate with a calm, repeatable process backed by data, risk controls,
+                  and clear reporting structures.
                 </p>
 
-                <h3 className="subsection-title">Global Presence</h3>
+                <h3 className="subsection-title">How We Work</h3>
                 <p className="subsection-text">
-                  We are proudly headquartered at Dubai, with our main branch in
-                  Mumbai, India. Our presence across diverse financial hubs
-                  allows us to better serve our diverse clients and strengthen
-                  our commitment towards financial education and services.
+                  Training programmes combine policy, macro narratives, and price action frameworks.
+                  Advisory clients receive independent research notes, model portfolios, and weekly pulse reviews
+                  that translate noise into structured action.
                 </p>
 
-                <h3 className="subsection-title">Our Values</h3>
-                <p className="subsection-text">
-                  At Century Finance, we believe in shared success – our values
-                  lie in your growth. No matter if you are just starting out or
-                  want to improve your strategies, our programs are designed to
-                  meet every skill level.
-                </p>
+                <h3 className="subsection-title">Our Promise</h3>
+                <ul className="subsection-list">
+                  {approachHighlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </div>
 
               <div className="content-visual">
                 <div className="visual-card">
                   <div className="visual-header">
-                    <h4>Trading Analytics</h4>
-                    <div className="status-indicator active"></div>
+                    <h4>Learning Journey Snapshot</h4>
+                    <div className="status-indicator active" aria-hidden="true"></div>
                   </div>
                   <div className="visual-content">
-                    <div className="chart-placeholder">
+                    <div className="chart-placeholder" aria-hidden="true">
                       <div className="chart-bars">
-                        <div className="bar" style={{ height: "60%" }}></div>
-                        <div className="bar" style={{ height: "80%" }}></div>
-                        <div className="bar" style={{ height: "45%" }}></div>
-                        <div className="bar" style={{ height: "90%" }}></div>
+                        <div className="bar" style={{ height: "55%" }}></div>
                         <div className="bar" style={{ height: "70%" }}></div>
+                        <div className="bar" style={{ height: "45%" }}></div>
+                        <div className="bar" style={{ height: "85%" }}></div>
+                        <div className="bar" style={{ height: "95%" }}></div>
                       </div>
                     </div>
                     <div className="metrics">
                       <div className="metric">
-                        <span className="metric-label">Success Rate</span>
-                        <span className="metric-value">94.2%</span>
+                        <span className="metric-label">Certification Rate</span>
+                        <span className="metric-value">92%</span>
                       </div>
                       <div className="metric">
-                        <span className="metric-label">Active Traders</span>
-                        <span className="metric-value">12,847</span>
+                        <span className="metric-label">Average Portfolio Lift</span>
+                        <span className="metric-value">+18%</span>
+                      </div>
+                      <div className="metric">
+                        <span className="metric-label">Mentorship Sessions</span>
+                        <span className="metric-value">3,400+</span>
                       </div>
                     </div>
                   </div>
@@ -177,17 +203,19 @@ function About01(props) {
           <div className="container">
             <div className="tf-heading features-heading">
               <h2 className="heading">
-                WHY CHOOSE <span>CENTURY FINANCE?</span>
+                Why Choose <span>Century Finance?</span>
               </h2>
             </div>
             <div className="features-grid">
               {features.map((feature, index) => (
                 <div
-                  key={index}
+                  key={feature.title}
                   className={`feature-card ${isVisible ? "fade-in-up" : ""}`}
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
-                  <div className="feature-icon">{feature.icon}</div>
+                  <div className="feature-icon" aria-hidden="true">
+                    {feature.abbreviation}
+                  </div>
                   <h3 className="feature-title">{feature.title}</h3>
                   <p className="feature-description">{feature.description}</p>
                 </div>
@@ -202,7 +230,7 @@ function About01(props) {
             <div className="achievements-grid">
               {achievements.map((achievement, index) => (
                 <div
-                  key={index}
+                  key={achievement.label}
                   className={`achievement-card ${isVisible ? "scale-in" : ""}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >

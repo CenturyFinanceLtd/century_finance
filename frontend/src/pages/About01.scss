@@ -321,6 +321,17 @@
     margin-bottom: 24px;
   }
 
+  .subsection-list {
+    margin-bottom: 28px;
+    padding-left: 24px;
+    list-style: disc;
+
+    li {
+      color: var(--about-muted);
+      margin-bottom: 12px;
+    }
+  }
+
   .visual-card {
     background: var(--about-detail-gradient);
     border-radius: 20px;
@@ -596,3 +607,4 @@
     }
   }
 }
+
