@@ -15,7 +15,7 @@ function Work(props) {
                     <div className="row">   
                         <div className="col-md-12 ">
                             <div className="tf-heading mb60 wow fadeInUp">
-                                <h2 className="heading">HOW<span> CENTURY FINANCE LIMITED </span>WORK</h2>
+                                <h2 className="heading">HOW<span> WE </span>WORK</h2>
                             </div>
                         </div> 
                         {

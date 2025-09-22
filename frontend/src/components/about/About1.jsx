@@ -13,7 +13,7 @@ function About1(props) {
 
     const [dataBlock] = useState(
         {
-            heading: 'ABOUT CENTURY FINANCE',
+            heading: 'ABOUT US',
             desc: 'Century Finance Limited is your trusted partner for comprehensive financial services, investment solutions, and market training. With SEBI-certified experts, we provide professional guidance in stock market education, portfolio management, and financial planning to help you achieve your investment goals.'
 
         }

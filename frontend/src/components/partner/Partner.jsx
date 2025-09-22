@@ -115,7 +115,7 @@ function Partner(props) {
                 <div className="row">   
                     <div className="col-md-12 ">
                         <div className="tf-heading mb60 wow fadeInUp">
-                            <h2 className="heading"><span>CENTURY FINANCE LIMITED</span> PARTNER</h2>
+                            <h2 className="heading"><span>OUR </span> PARTNERS</h2>
                         </div>
                     </div>
                     <div className="col-md-12 wow fadeInUp IT-Companies">
