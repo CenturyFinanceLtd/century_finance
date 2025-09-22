@@ -13,30 +13,30 @@
         name: 'Our Courses',
         links: '/our-courses',
     },
+    // {
+    //     id: 4,
+    //     name: 'Call Subscription',
+    //     links: '/calls-subscription-plan',
+    // },
+    // {
+    //     id: 5,
+    //     name: 'Investment',
+    //     links: '/investment',
+    // },
     {
         id: 4,
-        name: 'Call Subscription',
-        links: '/calls-subscription-plan',
-    },
-    {
-        id: 5,
-        name: 'Investment',
-        links: '/investment',
-    },
-    {
-        id: 6,
         name: 'Portfolio',
         links: '/portfolio',
     },
     {
-        id: 7,
-        name: 'Blog',
+        id: 5,
+        name: 'Blogs',
         links: '/blogs',
 
     },
 
     {
-        id: 8,
+        id: 6,
         name: 'Contact Us',
         links: '/contact',
     },
