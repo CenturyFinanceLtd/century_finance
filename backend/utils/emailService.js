@@ -1,407 +1,259 @@
-const Imap = require('imap');
-const { simpleParser } = require('mailparser');
-const nodemailer = require('nodemailer');
+const { ClientSecretCredential } = require('@azure/identity');
+const { Client } = require('@microsoft/microsoft-graph-client');
+const { TokenCredentialAuthenticationProvider } = require('@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials');
 
-// CFL Admin credentials - used to access all mailboxes via delegation
-const ADMIN_EMAIL = 'cfl@centuryfinancelimited.com';
-const ADMIN_PASSWORD = process.env.EMAIL_CFL_PASSWORD || '';
+// Azure AD App credentials from environment variables
+const TENANT_ID = process.env.AZURE_TENANT_ID || '';
+const CLIENT_ID = process.env.AZURE_CLIENT_ID || '';
+const CLIENT_SECRET = process.env.AZURE_CLIENT_SECRET || '';
 
-// IMAP/SMTP configuration for Microsoft 365
-const IMAP_CONFIG = {
-    host: 'outlook.office365.com',
-    port: 993,
-    tls: true,
-    authTimeout: 30000,
-    tlsOptions: { 
-        rejectUnauthorized: false,
-        servername: 'outlook.office365.com'
-    }
-};
-
-const SMTP_CONFIG = {
-    host: 'smtp.office365.com',
-    port: 587,
-    secure: false
-};
-
-// All email accounts - CFL admin has Full Access delegation to all of these
+// All email accounts to manage
 const emailAccounts = {
     cfl: {
         id: 'cfl',
         name: 'CFL Admin',
-        email: 'cfl@centuryfinancelimited.com',
-        isAdmin: true
+        email: 'cfl@centuryfinancelimited.com'
     },
     ceo: {
         id: 'ceo',
         name: 'CEO',
-        email: 'ceo@centuryfinancelimited.com',
-        isAdmin: false
+        email: 'ceo@centuryfinancelimited.com'
     },
     hrishant: {
         id: 'hrishant',
         name: 'Hrishant Singh',
-        email: 'hrishant@centuryfinancelimited.com',
-        isAdmin: false
+        email: 'hrishant@centuryfinancelimited.com'
     },
     hr: {
         id: 'hr',
         name: 'HR Department',
-        email: 'hr@centuryfinancelimited.com',
-        isAdmin: false
+        email: 'hr@centuryfinancelimited.com'
     },
     deepak: {
         id: 'deepak',
         name: 'Deepak Kumar',
-        email: 'deepak.kumar@centuryfinancelimited.com',
-        isAdmin: false
+        email: 'deepak.kumar@centuryfinancelimited.com'
     }
 };
+
+/**
+ * Get Microsoft Graph client
+ */
+function getGraphClient() {
+    if (!TENANT_ID || !CLIENT_ID || !CLIENT_SECRET) {
+        throw new Error('Azure credentials not configured. Set AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET in .env');
+    }
+
+    const credential = new ClientSecretCredential(TENANT_ID, CLIENT_ID, CLIENT_SECRET);
+    
+    const authProvider = new TokenCredentialAuthenticationProvider(credential, {
+        scopes: ['https://graph.microsoft.com/.default']
+    });
+
+    return Client.initWithMiddleware({ authProvider });
+}
 
 /**
  * Get list of email accounts
  */
 function getAccounts() {
-    const hasAdminPassword = !!ADMIN_PASSWORD;
+    const isConfigured = !!(TENANT_ID && CLIENT_ID && CLIENT_SECRET);
     return Object.values(emailAccounts).map(account => ({
         id: account.id,
         name: account.name,
         email: account.email,
-        configured: hasAdminPassword // All accounts work if admin password is set
+        configured: isConfigured
     }));
 }
 
 /**
- * Create IMAP connection for a specific mailbox
- * Uses shared mailbox access format: admin_email\target_mailbox
+ * Fetch emails from a mailbox using Microsoft Graph API
  */
-function createImapConnection(targetEmail) {
-    // For shared mailbox access in M365, use format: admin@domain\shared@domain
-    // Or just use the target email if it's the admin account
-    let imapUser;
-    
-    if (targetEmail === ADMIN_EMAIL) {
-        imapUser = ADMIN_EMAIL;
-    } else {
-        // Shared mailbox format for M365 IMAP
-        // Format: admin_email\target_mailbox_email
-        imapUser = `${ADMIN_EMAIL}\\${targetEmail}`;
+async function fetchEmails(accountId, folder = 'inbox', limit = 50) {
+    const account = emailAccounts[accountId];
+    if (!account) {
+        throw new Error('Account not found');
     }
-    
-    console.log('Creating IMAP connection:');
-    console.log('  Target mailbox:', targetEmail);
-    console.log('  IMAP user:', imapUser);
-    console.log('  Password configured:', ADMIN_PASSWORD ? 'Yes' : 'No');
-    
-    return new Imap({
-        user: imapUser,
-        password: ADMIN_PASSWORD,
-        host: IMAP_CONFIG.host,
-        port: IMAP_CONFIG.port,
-        tls: IMAP_CONFIG.tls,
-        authTimeout: IMAP_CONFIG.authTimeout,
-        tlsOptions: IMAP_CONFIG.tlsOptions
-    });
+
+    const client = getGraphClient();
+    const userEmail = account.email;
+
+    // Map folder names
+    let graphFolder = folder;
+    if (folder === 'sent') graphFolder = 'sentItems';
+    if (folder === 'drafts') graphFolder = 'drafts';
+    if (folder === 'inbox') graphFolder = 'inbox';
+
+    console.log(`Fetching ${folder} for ${userEmail}`);
+
+    try {
+        const messages = await client
+            .api(`/users/${userEmail}/mailFolders/${graphFolder}/messages`)
+            .top(limit)
+            .orderby('receivedDateTime desc')
+            .select('id,subject,from,toRecipients,ccRecipients,receivedDateTime,isRead,bodyPreview,hasAttachments,flag')
+            .get();
+
+        const emails = messages.value.map(msg => ({
+            uid: msg.id,
+            subject: msg.subject || '(No Subject)',
+            from: msg.from?.emailAddress?.name 
+                ? `${msg.from.emailAddress.name} <${msg.from.emailAddress.address}>`
+                : msg.from?.emailAddress?.address || 'Unknown',
+            fromAddress: msg.from?.emailAddress?.address || '',
+            to: msg.toRecipients?.map(r => r.emailAddress.address).join(', ') || '',
+            date: msg.receivedDateTime,
+            snippet: msg.bodyPreview || '',
+            isRead: msg.isRead,
+            isStarred: msg.flag?.flagStatus === 'flagged',
+            hasAttachments: msg.hasAttachments
+        }));
+
+        console.log(`Fetched ${emails.length} emails from ${folder}`);
+        return emails;
+    } catch (error) {
+        console.error('Graph API error:', error.message);
+        throw error;
+    }
 }
 
 /**
- * Fetch emails from a specific folder using IMAP
+ * Fetch a single email by ID with full content
  */
-function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
-    return new Promise((resolve, reject) => {
-        const account = emailAccounts[accountId];
-        if (!account) {
-            return reject(new Error('Account not found'));
-        }
-        if (!ADMIN_PASSWORD) {
-            return reject(new Error('Email password not configured. Add EMAIL_CFL_PASSWORD to .env file.'));
-        }
+async function fetchEmailByUid(accountId, messageId, folder = 'inbox') {
+    const account = emailAccounts[accountId];
+    if (!account) {
+        throw new Error('Account not found');
+    }
 
-        const imap = createImapConnection(account.email);
-        const emails = [];
+    const client = getGraphClient();
+    const userEmail = account.email;
 
-        imap.once('ready', () => {
-            console.log('IMAP connected successfully for:', account.email);
-            
-            // Map folder names to M365 folder names
-            let imapFolder = folder;
-            if (folder === 'Sent' || folder === 'sent') {
-                imapFolder = 'Sent Items';
-            } else if (folder === 'Drafts' || folder === 'drafts') {
-                imapFolder = 'Drafts';
-            } else if (folder === 'Trash') {
-                imapFolder = 'Deleted Items';
-            } else if (folder === 'inbox') {
-                imapFolder = 'INBOX';
-            }
+    try {
+        const message = await client
+            .api(`/users/${userEmail}/messages/${messageId}`)
+            .select('id,subject,from,toRecipients,ccRecipients,receivedDateTime,body,hasAttachments,attachments')
+            .expand('attachments')
+            .get();
 
-            console.log('Opening folder:', imapFolder);
+        // Mark as read
+        await client
+            .api(`/users/${userEmail}/messages/${messageId}`)
+            .patch({ isRead: true });
 
-            imap.openBox(imapFolder, true, (err, box) => {
-                if (err) {
-                    console.error('Error opening folder:', err.message);
-                    imap.end();
-                    return reject(err);
-                }
-
-                const total = box.messages.total;
-                console.log('Total messages in folder:', total);
-                
-                if (total === 0) {
-                    imap.end();
-                    return resolve([]);
-                }
-
-                const start = Math.max(1, total - limit + 1);
-                const fetchRange = `${start}:${total}`;
-
-                const fetch = imap.seq.fetch(fetchRange, {
-                    bodies: '',
-                    struct: true
-                });
-
-                fetch.on('message', (msg, seqno) => {
-                    let emailData = { seqno, uid: null };
-
-                    msg.on('body', (stream) => {
-                        let buffer = '';
-                        stream.on('data', (chunk) => {
-                            buffer += chunk.toString('utf8');
-                        });
-                        stream.once('end', () => {
-                            simpleParser(buffer)
-                                .then(parsed => {
-                                    emailData.subject = parsed.subject || '(No Subject)';
-                                    emailData.from = parsed.from ? parsed.from.text : 'Unknown';
-                                    emailData.fromAddress = parsed.from?.value?.[0]?.address || '';
-                                    emailData.to = parsed.to ? parsed.to.text : '';
-                                    emailData.date = parsed.date;
-                                    emailData.text = parsed.text || '';
-                                    emailData.html = parsed.html || '';
-                                    emailData.snippet = (parsed.text || '').substring(0, 150);
-                                    emailData.attachments = (parsed.attachments || []).map(att => ({
-                                        filename: att.filename,
-                                        size: att.size,
-                                        contentType: att.contentType
-                                    }));
-                                })
-                                .catch(err => console.error('Parse error:', err));
-                        });
-                    });
-
-                    msg.once('attributes', (attrs) => {
-                        emailData.uid = attrs.uid;
-                        emailData.flags = attrs.flags;
-                        emailData.isRead = attrs.flags.includes('\\Seen');
-                        emailData.isStarred = attrs.flags.includes('\\Flagged');
-                    });
-
-                    msg.once('end', () => {
-                        emails.push(emailData);
-                    });
-                });
-
-                fetch.once('error', (err) => {
-                    console.error('Fetch error:', err);
-                    imap.end();
-                    reject(err);
-                });
-
-                fetch.once('end', () => {
-                    imap.end();
-                    emails.sort((a, b) => new Date(b.date) - new Date(a.date));
-                    console.log('Fetched', emails.length, 'emails');
-                    resolve(emails);
-                });
-            });
-        });
-
-        imap.once('error', (err) => {
-            console.error('IMAP error for', account.email, ':', err.message);
-            reject(err);
-        });
-
-        imap.connect();
-    });
+        return {
+            uid: message.id,
+            subject: message.subject || '(No Subject)',
+            from: message.from?.emailAddress?.name 
+                ? `${message.from.emailAddress.name} <${message.from.emailAddress.address}>`
+                : message.from?.emailAddress?.address || 'Unknown',
+            fromAddress: message.from?.emailAddress?.address || '',
+            to: message.toRecipients?.map(r => r.emailAddress.address).join(', ') || '',
+            cc: message.ccRecipients?.map(r => r.emailAddress.address).join(', ') || '',
+            date: message.receivedDateTime,
+            text: message.body?.contentType === 'text' ? message.body.content : '',
+            html: message.body?.contentType === 'html' ? message.body.content : message.body?.content || '',
+            attachments: (message.attachments || []).map(att => ({
+                filename: att.name,
+                size: att.size,
+                contentType: att.contentType
+            }))
+        };
+    } catch (error) {
+        console.error('Graph API error fetching email:', error.message);
+        throw error;
+    }
 }
 
 /**
- * Fetch a single email by UID
- */
-function fetchEmailByUid(accountId, uid, folder = 'INBOX') {
-    return new Promise((resolve, reject) => {
-        const account = emailAccounts[accountId];
-        if (!account) {
-            return reject(new Error('Account not found'));
-        }
-        if (!ADMIN_PASSWORD) {
-            return reject(new Error('Email password not configured'));
-        }
-
-        const imap = createImapConnection(account.email);
-
-        imap.once('ready', () => {
-            let imapFolder = folder;
-            if (folder === 'Sent') imapFolder = 'Sent Items';
-
-            imap.openBox(imapFolder, false, (err) => {
-                if (err) {
-                    imap.end();
-                    return reject(err);
-                }
-
-                const fetch = imap.fetch(uid, { bodies: '', markSeen: true });
-                let emailData = null;
-
-                fetch.on('message', (msg) => {
-                    msg.on('body', (stream) => {
-                        let buffer = '';
-                        stream.on('data', (chunk) => {
-                            buffer += chunk.toString('utf8');
-                        });
-                        stream.once('end', () => {
-                            simpleParser(buffer)
-                                .then(parsed => {
-                                    emailData = {
-                                        uid,
-                                        subject: parsed.subject || '(No Subject)',
-                                        from: parsed.from ? parsed.from.text : 'Unknown',
-                                        fromAddress: parsed.from?.value?.[0]?.address || '',
-                                        to: parsed.to ? parsed.to.text : '',
-                                        cc: parsed.cc ? parsed.cc.text : '',
-                                        date: parsed.date,
-                                        text: parsed.text || '',
-                                        html: parsed.html || '',
-                                        attachments: (parsed.attachments || []).map(att => ({
-                                            filename: att.filename,
-                                            size: att.size,
-                                            contentType: att.contentType
-                                        }))
-                                    };
-                                })
-                                .catch(err => reject(err));
-                        });
-                    });
-                });
-
-                fetch.once('end', () => {
-                    imap.end();
-                    resolve(emailData);
-                });
-
-                fetch.once('error', (err) => {
-                    imap.end();
-                    reject(err);
-                });
-            });
-        });
-
-        imap.once('error', reject);
-        imap.connect();
-    });
-}
-
-/**
- * Send an email using SMTP (sends as CFL Admin)
+ * Send an email using Microsoft Graph API
  */
 async function sendEmail(accountId, emailData) {
-    if (!ADMIN_PASSWORD) {
-        throw new Error('Email password not configured');
+    const account = emailAccounts[accountId];
+    if (!account) {
+        throw new Error('Account not found');
     }
 
-    const transporter = nodemailer.createTransport({
-        host: SMTP_CONFIG.host,
-        port: SMTP_CONFIG.port,
-        secure: SMTP_CONFIG.secure,
-        auth: {
-            user: ADMIN_EMAIL,
-            pass: ADMIN_PASSWORD
-        },
-        tls: {
-            ciphers: 'SSLv3',
-            rejectUnauthorized: false
-        }
-    });
+    const client = getGraphClient();
+    const userEmail = account.email;
 
-    const mailOptions = {
-        from: `CFL Admin <${ADMIN_EMAIL}>`,
-        to: emailData.to,
-        cc: emailData.cc || '',
-        bcc: emailData.bcc || '',
+    const message = {
         subject: emailData.subject,
-        text: emailData.text || '',
-        html: emailData.html || ''
+        body: {
+            contentType: emailData.html ? 'HTML' : 'Text',
+            content: emailData.html || emailData.text || ''
+        },
+        toRecipients: emailData.to.split(',').map(email => ({
+            emailAddress: { address: email.trim() }
+        }))
     };
 
-    const result = await transporter.sendMail(mailOptions);
-    return result;
+    if (emailData.cc) {
+        message.ccRecipients = emailData.cc.split(',').map(email => ({
+            emailAddress: { address: email.trim() }
+        }));
+    }
+
+    try {
+        await client
+            .api(`/users/${userEmail}/sendMail`)
+            .post({ message, saveToSentItems: true });
+
+        console.log(`Email sent from ${userEmail}`);
+        return { success: true, messageId: 'sent' };
+    } catch (error) {
+        console.error('Graph API error sending email:', error.message);
+        throw error;
+    }
 }
 
 /**
  * Delete an email
  */
-function deleteEmail(accountId, uid, folder = 'INBOX') {
-    return new Promise((resolve, reject) => {
-        const account = emailAccounts[accountId];
-        if (!account || !ADMIN_PASSWORD) {
-            return reject(new Error('Account not configured'));
-        }
+async function deleteEmail(accountId, messageId, folder = 'inbox') {
+    const account = emailAccounts[accountId];
+    if (!account) {
+        throw new Error('Account not found');
+    }
 
-        const imap = createImapConnection(account.email);
+    const client = getGraphClient();
+    const userEmail = account.email;
 
-        imap.once('ready', () => {
-            let imapFolder = folder;
-            if (folder === 'Sent') imapFolder = 'Sent Items';
+    try {
+        await client
+            .api(`/users/${userEmail}/messages/${messageId}`)
+            .delete();
 
-            imap.openBox(imapFolder, false, (err) => {
-                if (err) {
-                    imap.end();
-                    return reject(err);
-                }
-
-                imap.addFlags(uid, ['\\Deleted'], (err) => {
-                    if (err) {
-                        imap.end();
-                        return reject(err);
-                    }
-
-                    imap.expunge((err) => {
-                        imap.end();
-                        if (err) return reject(err);
-                        resolve(true);
-                    });
-                });
-            });
-        });
-
-        imap.once('error', reject);
-        imap.connect();
-    });
+        console.log(`Email deleted from ${userEmail}`);
+        return true;
+    } catch (error) {
+        console.error('Graph API error deleting email:', error.message);
+        throw error;
+    }
 }
 
 /**
- * Get folder list
+ * Get folders list
  */
-function getFolders(accountId) {
-    return new Promise((resolve, reject) => {
-        const account = emailAccounts[accountId];
-        if (!account || !ADMIN_PASSWORD) {
-            return reject(new Error('Account not configured'));
-        }
+async function getFolders(accountId) {
+    const account = emailAccounts[accountId];
+    if (!account) {
+        throw new Error('Account not found');
+    }
 
-        const imap = createImapConnection(account.email);
+    const client = getGraphClient();
+    const userEmail = account.email;
 
-        imap.once('ready', () => {
-            imap.getBoxes((err, boxes) => {
-                imap.end();
-                if (err) return reject(err);
-                resolve(boxes);
-            });
-        });
+    try {
+        const folders = await client
+            .api(`/users/${userEmail}/mailFolders`)
+            .get();
 
-        imap.once('error', reject);
-        imap.connect();
-    });
+        return folders.value;
+    } catch (error) {
+        console.error('Graph API error getting folders:', error.message);
+        throw error;
+    }
 }
 
 module.exports = {
