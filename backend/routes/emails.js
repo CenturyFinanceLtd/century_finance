@@ -78,6 +78,22 @@ router.get('/:accountId/drafts', async (req, res) => {
 });
 
 /**
+ * GET /api/emails/:accountId/trash
+ * Fetch trash/deleted emails
+ */
+router.get('/:accountId/trash', async (req, res) => {
+    try {
+        const { accountId } = req.params;
+        const { limit = 50 } = req.query;
+        const emails = await emailService.fetchEmails(accountId, 'deleteditems', parseInt(limit));
+        res.json({ success: true, emails, count: emails.length });
+    } catch (error) {
+        console.error('Fetch trash error:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
  * GET /api/emails/:accountId/message/:messageId
  * Fetch single email by messageId (Graph API ID is a string, not int)
  */

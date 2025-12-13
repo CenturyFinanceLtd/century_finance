@@ -286,6 +286,17 @@ class FileEmail extends React.Component {
                     >
                       <i className="fa fa-file mr-2"></i> Drafts
                     </li>
+                    <li
+                      className={`p-2 rounded ${
+                        selectedFolder === "trash"
+                          ? "bg-primary text-white"
+                          : ""
+                      }`}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => this.fetchEmails("trash")}
+                    >
+                      <i className="fa fa-trash mr-2"></i> Trash
+                    </li>
                   </ul>
 
                   {/* Account Switcher */}
