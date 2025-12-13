@@ -37,7 +37,7 @@ router.get('/:accountId/inbox', async (req, res) => {
     try {
         const { accountId } = req.params;
         const { limit = 50 } = req.query;
-        const emails = await emailService.fetchEmails(accountId, 'INBOX', parseInt(limit));
+        const emails = await emailService.fetchEmails(accountId, 'inbox', parseInt(limit));
         res.json({ success: true, emails, count: emails.length });
     } catch (error) {
         console.error('Fetch inbox error:', error);
@@ -53,7 +53,7 @@ router.get('/:accountId/sent', async (req, res) => {
     try {
         const { accountId } = req.params;
         const { limit = 50 } = req.query;
-        const emails = await emailService.fetchEmails(accountId, 'Sent', parseInt(limit));
+        const emails = await emailService.fetchEmails(accountId, 'sent', parseInt(limit));
         res.json({ success: true, emails, count: emails.length });
     } catch (error) {
         console.error('Fetch sent error:', error);
@@ -69,7 +69,7 @@ router.get('/:accountId/drafts', async (req, res) => {
     try {
         const { accountId } = req.params;
         const { limit = 50 } = req.query;
-        const emails = await emailService.fetchEmails(accountId, 'Drafts', parseInt(limit));
+        const emails = await emailService.fetchEmails(accountId, 'drafts', parseInt(limit));
         res.json({ success: true, emails, count: emails.length });
     } catch (error) {
         console.error('Fetch drafts error:', error);
@@ -78,14 +78,15 @@ router.get('/:accountId/drafts', async (req, res) => {
 });
 
 /**
- * GET /api/emails/:accountId/message/:uid
- * Fetch single email by UID
+ * GET /api/emails/:accountId/message/:messageId
+ * Fetch single email by messageId (Graph API ID is a string, not int)
  */
-router.get('/:accountId/message/:uid', async (req, res) => {
+router.get('/:accountId/message/:messageId', async (req, res) => {
     try {
-        const { accountId, uid } = req.params;
-        const { folder = 'INBOX' } = req.query;
-        const email = await emailService.fetchEmailByUid(accountId, parseInt(uid), folder);
+        const { accountId, messageId } = req.params;
+        const { folder = 'inbox' } = req.query;
+        // messageId is a string for Graph API, don't parseInt
+        const email = await emailService.fetchEmailByUid(accountId, messageId, folder);
         res.json({ success: true, email });
     } catch (error) {
         console.error('Fetch email error:', error);
@@ -126,14 +127,15 @@ router.post('/:accountId/send', async (req, res) => {
 });
 
 /**
- * DELETE /api/emails/:accountId/message/:uid
+ * DELETE /api/emails/:accountId/message/:messageId
  * Delete an email
  */
-router.delete('/:accountId/message/:uid', async (req, res) => {
+router.delete('/:accountId/message/:messageId', async (req, res) => {
     try {
-        const { accountId, uid } = req.params;
-        const { folder = 'INBOX' } = req.query;
-        await emailService.deleteEmail(accountId, parseInt(uid), folder);
+        const { accountId, messageId } = req.params;
+        const { folder = 'inbox' } = req.query;
+        // messageId is a string for Graph API
+        await emailService.deleteEmail(accountId, messageId, folder);
         res.json({ success: true });
     } catch (error) {
         console.error('Delete email error:', error);
