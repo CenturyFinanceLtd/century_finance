@@ -2,115 +2,110 @@ const Imap = require('imap');
 const { simpleParser } = require('mailparser');
 const nodemailer = require('nodemailer');
 
-// Email accounts configuration
-// In production, these should be stored securely in environment variables or database
+// CFL Admin credentials - used to access all mailboxes via delegation
+const ADMIN_EMAIL = 'cfl@centuryfinancelimited.com';
+const ADMIN_PASSWORD = process.env.EMAIL_CFL_PASSWORD || '';
+
+// IMAP/SMTP configuration for Microsoft 365
+const IMAP_CONFIG = {
+    host: 'outlook.office365.com',
+    port: 993,
+    tls: true,
+    authTimeout: 30000,
+    tlsOptions: { 
+        rejectUnauthorized: false,
+        servername: 'outlook.office365.com'
+    }
+};
+
+const SMTP_CONFIG = {
+    host: 'smtp.office365.com',
+    port: 587,
+    secure: false
+};
+
+// All email accounts - CFL admin has Full Access delegation to all of these
 const emailAccounts = {
     cfl: {
         id: 'cfl',
         name: 'CFL Admin',
         email: 'cfl@centuryfinancelimited.com',
-        // Password will be loaded from environment variable
-        password: process.env.EMAIL_CFL_PASSWORD || '',
-        imap: {
-            host: 'outlook.office365.com',
-            port: 993,
-            tls: true,
-            authTimeout: 30000
-        },
-        smtp: {
-            host: 'smtp.office365.com',
-            port: 587,
-            secure: false
-        }
+        isAdmin: true
     },
     ceo: {
         id: 'ceo',
         name: 'CEO',
         email: 'ceo@centuryfinancelimited.com',
-        password: process.env.EMAIL_CEO_PASSWORD || '',
-        imap: {
-            host: 'outlook.office365.com',
-            port: 993,
-            tls: true,
-            authTimeout: 30000
-        },
-        smtp: {
-            host: 'smtp.office365.com',
-            port: 587,
-            secure: false
-        }
+        isAdmin: false
     },
     hrishant: {
         id: 'hrishant',
-        name: 'Hrishant',
+        name: 'Hrishant Singh',
         email: 'hrishant@centuryfinancelimited.com',
-        password: process.env.EMAIL_HRISHANT_PASSWORD || '',
-        imap: {
-            host: 'outlook.office365.com',
-            port: 993,
-            tls: true,
-            authTimeout: 30000
-        },
-        smtp: {
-            host: 'smtp.office365.com',
-            port: 587,
-            secure: false
-        }
+        isAdmin: false
     },
     hr: {
         id: 'hr',
         name: 'HR Department',
         email: 'hr@centuryfinancelimited.com',
-        password: process.env.EMAIL_HR_PASSWORD || '',
-        imap: {
-            host: 'outlook.office365.com',
-            port: 993,
-            tls: true,
-            authTimeout: 30000
-        },
-        smtp: {
-            host: 'smtp.office365.com',
-            port: 587,
-            secure: false
-        }
+        isAdmin: false
     },
     deepak: {
         id: 'deepak',
         name: 'Deepak Kumar',
         email: 'deepak.kumar@centuryfinancelimited.com',
-        password: process.env.EMAIL_DEEPAK_PASSWORD || '',
-        imap: {
-            host: 'outlook.office365.com',
-            port: 993,
-            tls: true,
-            authTimeout: 30000
-        },
-        smtp: {
-            host: 'smtp.office365.com',
-            port: 587,
-            secure: false
-        }
+        isAdmin: false
     }
 };
 
 /**
- * Get list of configured email accounts (without passwords)
+ * Get list of email accounts
  */
 function getAccounts() {
+    const hasAdminPassword = !!ADMIN_PASSWORD;
     return Object.values(emailAccounts).map(account => ({
         id: account.id,
         name: account.name,
         email: account.email,
-        configured: !!account.password
+        configured: hasAdminPassword // All accounts work if admin password is set
     }));
 }
 
 /**
+ * Create IMAP connection for a specific mailbox
+ * Uses shared mailbox access format: admin_email\target_mailbox
+ */
+function createImapConnection(targetEmail) {
+    // For shared mailbox access in M365, use format: admin@domain\shared@domain
+    // Or just use the target email if it's the admin account
+    let imapUser;
+    
+    if (targetEmail === ADMIN_EMAIL) {
+        imapUser = ADMIN_EMAIL;
+    } else {
+        // Shared mailbox format for M365 IMAP
+        // Format: admin_email\target_mailbox_email
+        imapUser = `${ADMIN_EMAIL}\\${targetEmail}`;
+    }
+    
+    console.log('Creating IMAP connection:');
+    console.log('  Target mailbox:', targetEmail);
+    console.log('  IMAP user:', imapUser);
+    console.log('  Password configured:', ADMIN_PASSWORD ? 'Yes' : 'No');
+    
+    return new Imap({
+        user: imapUser,
+        password: ADMIN_PASSWORD,
+        host: IMAP_CONFIG.host,
+        port: IMAP_CONFIG.port,
+        tls: IMAP_CONFIG.tls,
+        authTimeout: IMAP_CONFIG.authTimeout,
+        tlsOptions: IMAP_CONFIG.tlsOptions
+    });
+}
+
+/**
  * Fetch emails from a specific folder using IMAP
- * @param {string} accountId - Account identifier
- * @param {string} folder - Folder name (INBOX, Sent, etc.)
- * @param {number} limit - Number of emails to fetch
- * @returns {Promise<Array>} - Array of email objects
  */
 function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
     return new Promise((resolve, reject) => {
@@ -118,46 +113,45 @@ function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
         if (!account) {
             return reject(new Error('Account not found'));
         }
-        if (!account.password) {
-            return reject(new Error('Account password not configured'));
+        if (!ADMIN_PASSWORD) {
+            return reject(new Error('Email password not configured. Add EMAIL_CFL_PASSWORD to .env file.'));
         }
 
-        const imap = new Imap({
-            user: account.email,
-            password: account.password,
-            host: account.imap.host,
-            port: account.imap.port,
-            tls: account.imap.tls,
-            authTimeout: account.imap.authTimeout,
-            tlsOptions: { rejectUnauthorized: false }
-        });
-
+        const imap = createImapConnection(account.email);
         const emails = [];
 
         imap.once('ready', () => {
-            // Map common folder names to M365 folder names
+            console.log('IMAP connected successfully for:', account.email);
+            
+            // Map folder names to M365 folder names
             let imapFolder = folder;
-            if (folder === 'Sent') {
+            if (folder === 'Sent' || folder === 'sent') {
                 imapFolder = 'Sent Items';
-            } else if (folder === 'Drafts') {
+            } else if (folder === 'Drafts' || folder === 'drafts') {
                 imapFolder = 'Drafts';
             } else if (folder === 'Trash') {
                 imapFolder = 'Deleted Items';
+            } else if (folder === 'inbox') {
+                imapFolder = 'INBOX';
             }
+
+            console.log('Opening folder:', imapFolder);
 
             imap.openBox(imapFolder, true, (err, box) => {
                 if (err) {
+                    console.error('Error opening folder:', err.message);
                     imap.end();
                     return reject(err);
                 }
 
                 const total = box.messages.total;
+                console.log('Total messages in folder:', total);
+                
                 if (total === 0) {
                     imap.end();
                     return resolve([]);
                 }
 
-                // Fetch the last 'limit' messages
                 const start = Math.max(1, total - limit + 1);
                 const fetchRange = `${start}:${total}`;
 
@@ -179,8 +173,7 @@ function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
                                 .then(parsed => {
                                     emailData.subject = parsed.subject || '(No Subject)';
                                     emailData.from = parsed.from ? parsed.from.text : 'Unknown';
-                                    emailData.fromAddress = parsed.from && parsed.from.value && parsed.from.value[0] 
-                                        ? parsed.from.value[0].address : '';
+                                    emailData.fromAddress = parsed.from?.value?.[0]?.address || '';
                                     emailData.to = parsed.to ? parsed.to.text : '';
                                     emailData.date = parsed.date;
                                     emailData.text = parsed.text || '';
@@ -192,9 +185,7 @@ function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
                                         contentType: att.contentType
                                     }));
                                 })
-                                .catch(err => {
-                                    console.error('Parse error:', err);
-                                });
+                                .catch(err => console.error('Parse error:', err));
                         });
                     });
 
@@ -211,20 +202,22 @@ function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
                 });
 
                 fetch.once('error', (err) => {
+                    console.error('Fetch error:', err);
                     imap.end();
                     reject(err);
                 });
 
                 fetch.once('end', () => {
                     imap.end();
-                    // Sort by date descending (newest first)
                     emails.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    console.log('Fetched', emails.length, 'emails');
                     resolve(emails);
                 });
             });
         });
 
         imap.once('error', (err) => {
+            console.error('IMAP error for', account.email, ':', err.message);
             reject(err);
         });
 
@@ -234,10 +227,6 @@ function fetchEmails(accountId, folder = 'INBOX', limit = 50) {
 
 /**
  * Fetch a single email by UID
- * @param {string} accountId - Account identifier
- * @param {number} uid - Email UID
- * @param {string} folder - Folder name
- * @returns {Promise<Object>} - Email object with full content
  */
 function fetchEmailByUid(accountId, uid, folder = 'INBOX') {
     return new Promise((resolve, reject) => {
@@ -245,19 +234,11 @@ function fetchEmailByUid(accountId, uid, folder = 'INBOX') {
         if (!account) {
             return reject(new Error('Account not found'));
         }
-        if (!account.password) {
-            return reject(new Error('Account password not configured'));
+        if (!ADMIN_PASSWORD) {
+            return reject(new Error('Email password not configured'));
         }
 
-        const imap = new Imap({
-            user: account.email,
-            password: account.password,
-            host: account.imap.host,
-            port: account.imap.port,
-            tls: account.imap.tls,
-            authTimeout: account.imap.authTimeout,
-            tlsOptions: { rejectUnauthorized: false }
-        });
+        const imap = createImapConnection(account.email);
 
         imap.once('ready', () => {
             let imapFolder = folder;
@@ -285,8 +266,7 @@ function fetchEmailByUid(accountId, uid, folder = 'INBOX') {
                                         uid,
                                         subject: parsed.subject || '(No Subject)',
                                         from: parsed.from ? parsed.from.text : 'Unknown',
-                                        fromAddress: parsed.from && parsed.from.value && parsed.from.value[0] 
-                                            ? parsed.from.value[0].address : '',
+                                        fromAddress: parsed.from?.value?.[0]?.address || '',
                                         to: parsed.to ? parsed.to.text : '',
                                         cc: parsed.cc ? parsed.cc.text : '',
                                         date: parsed.date,
@@ -322,27 +302,20 @@ function fetchEmailByUid(accountId, uid, folder = 'INBOX') {
 }
 
 /**
- * Send an email using SMTP
- * @param {string} accountId - Account identifier
- * @param {Object} emailData - Email data { to, cc, bcc, subject, text, html }
- * @returns {Promise<Object>} - Send result
+ * Send an email using SMTP (sends as CFL Admin)
  */
 async function sendEmail(accountId, emailData) {
-    const account = emailAccounts[accountId];
-    if (!account) {
-        throw new Error('Account not found');
-    }
-    if (!account.password) {
-        throw new Error('Account password not configured');
+    if (!ADMIN_PASSWORD) {
+        throw new Error('Email password not configured');
     }
 
     const transporter = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
+        host: SMTP_CONFIG.host,
+        port: SMTP_CONFIG.port,
+        secure: SMTP_CONFIG.secure,
         auth: {
-            user: account.email,
-            pass: account.password
+            user: ADMIN_EMAIL,
+            pass: ADMIN_PASSWORD
         },
         tls: {
             ciphers: 'SSLv3',
@@ -351,7 +324,7 @@ async function sendEmail(accountId, emailData) {
     });
 
     const mailOptions = {
-        from: `${account.name} <${account.email}>`,
+        from: `CFL Admin <${ADMIN_EMAIL}>`,
         to: emailData.to,
         cc: emailData.cc || '',
         bcc: emailData.bcc || '',
@@ -366,27 +339,15 @@ async function sendEmail(accountId, emailData) {
 
 /**
  * Delete an email
- * @param {string} accountId - Account identifier
- * @param {number} uid - Email UID
- * @param {string} folder - Folder name
- * @returns {Promise<boolean>}
  */
 function deleteEmail(accountId, uid, folder = 'INBOX') {
     return new Promise((resolve, reject) => {
         const account = emailAccounts[accountId];
-        if (!account || !account.password) {
+        if (!account || !ADMIN_PASSWORD) {
             return reject(new Error('Account not configured'));
         }
 
-        const imap = new Imap({
-            user: account.email,
-            password: account.password,
-            host: account.imap.host,
-            port: account.imap.port,
-            tls: account.imap.tls,
-            authTimeout: account.imap.authTimeout,
-            tlsOptions: { rejectUnauthorized: false }
-        });
+        const imap = createImapConnection(account.email);
 
         imap.once('ready', () => {
             let imapFolder = folder;
@@ -419,24 +380,16 @@ function deleteEmail(accountId, uid, folder = 'INBOX') {
 }
 
 /**
- * Get folder list for an account
+ * Get folder list
  */
 function getFolders(accountId) {
     return new Promise((resolve, reject) => {
         const account = emailAccounts[accountId];
-        if (!account || !account.password) {
+        if (!account || !ADMIN_PASSWORD) {
             return reject(new Error('Account not configured'));
         }
 
-        const imap = new Imap({
-            user: account.email,
-            password: account.password,
-            host: account.imap.host,
-            port: account.imap.port,
-            tls: account.imap.tls,
-            authTimeout: account.imap.authTimeout,
-            tlsOptions: { rejectUnauthorized: false }
-        });
+        const imap = createImapConnection(account.email);
 
         imap.once('ready', () => {
             imap.getBoxes((err, boxes) => {
