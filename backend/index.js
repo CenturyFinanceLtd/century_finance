@@ -39,11 +39,13 @@ db.once('open', () => {
 const authRoutes = require('./routes/auth');
 const blogRoutes = require('./routes/blogs');
 const customerRoutes = require('./routes/customers');
+const emailRoutes = require('./routes/emails');
 // Mount blog routes before generic /api auth to avoid accidental shadowing
 app.use('/api/blogs', blogRoutes);
 app.use('/api', authRoutes);
 app.use('/', authRoutes); // support endpoints without /api prefix
 app.use('/api', customerRoutes);
+app.use('/api/emails', emailRoutes);
 
 // Ensure upload directory exists and serve static files
 const blogImagesDir = path.join(
