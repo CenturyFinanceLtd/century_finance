@@ -15,6 +15,7 @@ import filemanagerdashboard from "./screens/FileManager/Dashboard";
 import filedocuments from "./screens/FileManager/Documents";
 import filemedia from "./screens/FileManager/Media";
 import fileimages from "./screens/FileManager/Images";
+import fileemail from "./screens/FileManager/Email";
 import blognewPost from "./screens/Blog/NewPost";
 import blogedit from "./screens/Blog/Edit";
 import blogdetails from "./screens/Blog/BlogDetails";
@@ -139,6 +140,7 @@ class App extends React.Component {
                                     <Route exact path={`${process.env.PUBLIC_URL}/filedocuments`} component={filedocuments} />
                                     <Route exact path={`${process.env.PUBLIC_URL}/filemedia`} component={filemedia} />
                                     <Route exact path={`${process.env.PUBLIC_URL}/fileimages`} component={fileimages} />
+                                    <Route exact path={`${process.env.PUBLIC_URL}/fileemail`} component={fileemail} />
                                     <Route exact path={`${process.env.PUBLIC_URL}/blognewpost`} component={blognewPost} />
                                     <Route exact path={`${process.env.PUBLIC_URL}/blogedit/:id`} component={blogedit} />
                                     <Route exact path={`${process.env.PUBLIC_URL}/blogdetails`} component={blogdetails} />

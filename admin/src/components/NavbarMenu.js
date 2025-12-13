@@ -652,6 +652,12 @@ class NavbarMenu extends React.Component {
                         >
                           <Link to="fileimages">Images</Link>
                         </li>
+                        <li
+                          className={activeKey === "fileemail" ? "active" : ""}
+                          onClick={() => {}}
+                        >
+                          <Link to="fileemail">Email</Link>
+                        </li>
                       </ul>
                     </li>
                     <li id="BlogContainer" className="">
