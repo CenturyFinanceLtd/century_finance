@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import PageHeader from "../../components/PageHeader";
 
-// API base URL - adjust based on your backend
-const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
+// API base URL - production API
+const API_BASE = "https://api.centuryfinancelimited.com";
 
 class FileEmail extends React.Component {
   constructor(props) {
